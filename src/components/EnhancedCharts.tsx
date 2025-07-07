@@ -160,7 +160,13 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
                     strokeWidth={3}
                     fill="url(#leadsGradient)"
                     name="Leads"
-                    animationDuration={1500}
+                    animationBegin={0}
+                    animationDuration={2000}
+                    strokeDasharray="1000"
+                    strokeDashoffset="1000"
+                    style={{
+                      animation: 'drawLine 2s ease-in-out forwards'
+                    }}
                   />
                   <Area
                     type="monotone"
@@ -169,7 +175,13 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
                     strokeWidth={3}
                     fill="url(#siteVisitsGradient)"
                     name="Site Visits"
-                    animationDuration={1500}
+                    animationBegin={500}
+                    animationDuration={2000}
+                    strokeDasharray="1000"
+                    strokeDashoffset="1000"
+                    style={{
+                      animation: 'drawLine 2s ease-in-out 0.5s forwards'
+                    }}
                   />
                   <Area
                     type="monotone"
@@ -178,7 +190,13 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
                     strokeWidth={3}
                     fill="url(#bookingsGradient)"
                     name="Bookings"
-                    animationDuration={1500}
+                    animationBegin={1000}
+                    animationDuration={2000}
+                    strokeDasharray="1000"
+                    strokeDashoffset="1000"
+                    style={{
+                      animation: 'drawLine 2s ease-in-out 1s forwards'
+                    }}
                   />
                   <Area
                     type="monotone"
@@ -187,7 +205,13 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
                     strokeWidth={3}
                     fill="url(#cplGradient)"
                     name="CPL"
-                    animationDuration={1500}
+                    animationBegin={1500}
+                    animationDuration={2000}
+                    strokeDasharray="1000"
+                    strokeDashoffset="1000"
+                    style={{
+                      animation: 'drawLine 2s ease-in-out 1.5s forwards'
+                    }}
                   />
                 </AreaChart>
               </ResponsiveContainer>

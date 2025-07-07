@@ -97,3 +97,12 @@ All colors MUST be HSL.
 .chart-gradient {
   background: linear-gradient(180deg, rgba(147, 51, 234, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
 }
+
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
