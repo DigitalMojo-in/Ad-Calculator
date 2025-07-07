@@ -126,7 +126,8 @@ const LeadCalculator = () => {
                                marketingChannels.includes('Google') ? 1.2 : 1.0;
     
     const chartData = [];
-    const timePoints = Math.max(Math.ceil(monthCount), 3);
+    // Use actual month count as time points
+    const timePoints = Math.ceil(monthCount);
     
     for (let i = 1; i <= timePoints; i++) {
       const baseProgress = i / timePoints;

@@ -31,10 +31,10 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
     { name: 'Site Visits', value: metrics.siteVisits, color: '#f59e0b' }
   ];
 
-  // Enhanced chart data with CPL trend
-  const enhancedChartData = chartData.map((item, index) => ({
+  // Enhanced chart data with constant CPL
+  const enhancedChartData = chartData.map((item) => ({
     ...item,
-    cpl: Math.round(metrics.cpl * (1 + (index * 0.05))) // Sample CPL variation over time
+    cpl: metrics.cpl // Use constant CPL value
   }));
 
   // Custom tooltip for donut chart
