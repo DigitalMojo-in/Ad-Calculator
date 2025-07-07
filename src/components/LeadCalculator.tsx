@@ -76,13 +76,8 @@ const LeadCalculator = () => {
                             launchType === 'NRI' ? 1.2 : 1.0;
     
     
-    // Use actual CPL from data
-    let cpl = marketingChannels.includes('+')? actualCPL:
-                marketingChannels.includes('Google') ? actualCPL+cplMult : actualCPL-cplMult;
-    cpl=Math.round(cpl*locationMultiplier);
-    if(cpl<300){
-      cpl=cpl+200;
-    }
+    // Use constant CPL as specified
+    const cpl = actualCPL;
     const leads = Math.round(baseLeads * locationMultiplier * bhkMultiplier * channelMultiplier * propertyMultiplier * launchMultiplier);  
     const qualifiedLeads = Math.round(leads * 0.3);
     const siteVisits = Math.round(qualifiedLeads * 0.27);
@@ -137,9 +132,7 @@ const LeadCalculator = () => {
       const baseProgress = i / timePoints;
       const adjustedProgress = Math.pow(baseProgress, 0.7) * marketingMultiplier;
       
-      const timeLabel = monthCount < 1 ? `Week ${i}` : 
-                       monthCount === 1 ? `Week ${i}` : 
-                       `Month ${i}`;
+      const timeLabel = monthCount < 1 ? `Week ${i}` : `Month ${i}`;
       
       chartData.push({
         month: timeLabel,
