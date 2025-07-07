@@ -77,7 +77,12 @@ const LeadCalculator = () => {
     
     
     // Use constant CPL as specified
-    const cpl = actualCPL;
+    let cpl = marketingChannels.includes('+')? actualCPL:
+                marketingChannels.includes('Google') ? actualCPL+cplMult : actualCPL-cplMult;
+    cpl=Math.round(cpl*locationMultiplier);
+    if(cpl<300){
+      cpl=cpl+200;
+    }
     const leads = Math.round(baseLeads * locationMultiplier * bhkMultiplier * channelMultiplier * propertyMultiplier * launchMultiplier);  
     const qualifiedLeads = Math.round(leads * 0.3);
     const siteVisits = Math.round(qualifiedLeads * 0.27);
