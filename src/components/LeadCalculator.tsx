@@ -195,6 +195,14 @@ const LeadCalculator = () => {
     setShowForm(true);
   };
 
+  const handleBookCall = () => {
+    if (!resultsUnlocked) {
+      setShowForm(true);
+    } else {
+      handleCTAClick("booking a free strategy call");
+    }
+  };
+
   return (
     <div className="min-h-screen hero-gradient relative">
       {/* Hero Section */}
@@ -577,22 +585,19 @@ const LeadCalculator = () => {
               Trusted by Performance-Driven Brands
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 items-center justify-items-center">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-              <div
-                key={i}
-                className="w-24 h-12 bg-white/20 rounded-lg partner-logo flex items-center justify-center text-white/60 text-xs font-medium font-spartan"
-              >
-                Logo {i}
-              </div>
-            ))}
+          <div className="flex justify-center">
+            <img 
+              src="/lovable-uploads/341259b0-c651-460f-a46a-1c5a0715b567.png"
+              alt="Trusted client logos including Jeevvashakti Realty, Om Sree, Saket Pranamam, Reliance Builders, Indraprastha, Kosaraju Realty and many more"
+              className="max-w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+            />
           </div>
         </div>
 
         {/* Mobile Sticky CTA */}
         <div className="md:hidden sticky-cta">
           <Button 
-            onClick={() => handleCTAClick("talking about growth")}
+            onClick={handleBookCall}
             className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
           >
             <Phone className="mr-2 h-4 w-4" />
@@ -606,7 +611,7 @@ const LeadCalculator = () => {
         <div className="container mx-auto px-4">
           <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
           <Button 
-            onClick={() => handleCTAClick("booking a free strategy call")}
+            onClick={handleBookCall}
             className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
           >
             <Phone className="mr-2 h-5 w-5" />
