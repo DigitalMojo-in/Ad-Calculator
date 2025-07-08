@@ -18,24 +18,28 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 280 100% 50%;
-    --primary-foreground: 210 40% 98%;
+    /* Digital Mojo Brand Colors */
+    --primary: 153 75% 32%; /* Green #1ea34f */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 195 95% 44%; /* Blue #06aed7 */
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 30 89% 49%; /* Orange #eb7311 */
+    --accent-foreground: 0 0% 100%;
+
+    --purple-brand: 274 29% 46%; /* Purple #754c9b */
+    --yellow-brand: 48 100% 47%; /* Yellow #f0bc00 */
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 280 100% 50%;
-    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 280 100% 50%;
+    --ring: 153 75% 32%;
 
     --radius: 0.5rem;
 
@@ -56,19 +60,24 @@ All colors MUST be HSL.
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --primary: 280 100% 50%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    
+    /* Digital Mojo Brand Colors - Dark Mode */
+    --primary: 153 75% 32%; /* Green #1ea34f */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 195 95% 44%; /* Blue #06aed7 */
+    --secondary-foreground: 0 0% 100%;
+    --accent: 30 89% 49%; /* Orange #eb7311 */
+    --accent-foreground: 0 0% 100%;
+    --purple-brand: 274 29% 46%; /* Purple #754c9b */
+    --yellow-brand: 48 100% 47%; /* Yellow #f0bc00 */
+    
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 280 100% 50%;
-    --accent-foreground: 210 40% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 280 100% 50%;
+    --ring: 153 75% 32%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -90,12 +99,38 @@ All colors MUST be HSL.
   }
 }
 
-.gradient-bg {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* Digital Mojo Brand Gradients */
+.hero-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 50%, hsl(var(--purple-brand)) 100%);
 }
 
 .chart-gradient {
-  background: linear-gradient(180deg, rgba(147, 51, 234, 0.3) 0%, rgba(236, 72, 153, 0.3) 100%);
+  background: linear-gradient(180deg, rgba(30, 163, 79, 0.3) 0%, rgba(6, 174, 215, 0.3) 100%);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(30, 163, 79, 0.2);
+}
+
+.partner-logo {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.partner-logo:hover {
+  filter: grayscale(0%);
+}
+
+.sticky-cta {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 50;
 }
 
 @keyframes drawLine {
