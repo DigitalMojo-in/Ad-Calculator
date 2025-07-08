@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, Home, Building, MapPin, TrendingUp, BarChart3, Target } from 'lucide-react';
+import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2 } from 'lucide-react';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
 import { useToast } from '@/hooks/use-toast';
@@ -230,65 +230,7 @@ const LeadCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen hero-gradient relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
-        
-        {/* Floating Real Estate Icons */}
-        <div className="absolute top-20 left-10 animate-bounce" style={{ animationDelay: '0s', animationDuration: '3s' }}>
-          <Home className="w-8 h-8 text-primary/20" />
-        </div>
-        <div className="absolute top-40 right-20 animate-bounce" style={{ animationDelay: '1s', animationDuration: '4s' }}>
-          <Building className="w-6 h-6 text-secondary/20" />
-        </div>
-        <div className="absolute bottom-40 left-20 animate-bounce" style={{ animationDelay: '2s', animationDuration: '3.5s' }}>
-          <MapPin className="w-7 h-7 text-accent/20" />
-        </div>
-        <div className="absolute bottom-60 right-10 animate-bounce" style={{ animationDelay: '0.5s', animationDuration: '4.5s' }}>
-          <TrendingUp className="w-8 h-8 text-primary/20" />
-        </div>
-        <div className="absolute top-60 left-1/3 animate-bounce" style={{ animationDelay: '1.5s', animationDuration: '3s' }}>
-          <BarChart3 className="w-6 h-6 text-secondary/20" />
-        </div>
-        <div className="absolute bottom-20 left-1/2 animate-bounce" style={{ animationDelay: '2.5s', animationDuration: '4s' }}>
-          <Target className="w-7 h-7 text-accent/20" />
-        </div>
-        
-        {/* Floating Geometric Shapes */}
-        <div className="absolute top-32 right-1/3 w-4 h-4 bg-primary/10 rounded-full animate-pulse" style={{ animationDelay: '0s', animationDuration: '2s' }}></div>
-        <div className="absolute bottom-32 left-1/4 w-6 h-6 bg-secondary/10 rounded-full animate-pulse" style={{ animationDelay: '1s', animationDuration: '2.5s' }}></div>
-        <div className="absolute top-80 right-1/4 w-3 h-3 bg-accent/10 rounded-full animate-pulse" style={{ animationDelay: '1.5s', animationDuration: '2s' }}></div>
-        
-        {/* Moving Lines */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <svg className="w-full h-full">
-            <defs>
-              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0" />
-                <stop offset="50%" stopColor="hsl(var(--primary))" stopOpacity="0.3" />
-                <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path 
-              d="M 0,100 Q 300,50 600,150 T 1200,100" 
-              stroke="url(#lineGradient)" 
-              strokeWidth="2" 
-              fill="none"
-              className="animate-pulse"
-              style={{ animationDuration: '4s' }}
-            />
-            <path 
-              d="M 0,300 Q 400,200 800,350 T 1200,250" 
-              stroke="url(#lineGradient)" 
-              strokeWidth="2" 
-              fill="none"
-              className="animate-pulse"
-              style={{ animationDelay: '2s', animationDuration: '5s' }}
-            />
-          </svg>
-        </div>
-      </div>
+    <div className="min-h-screen hero-gradient relative">
       {/* Fixed Header with Logo */}
       <header className="sticky top-0 z-50 bg-black/30 backdrop-blur-lg shadow-md border-b border-white/10 transition-all duration-300">
   <div className="container mx-auto px-6 py-3 flex items-center justify-between">
