@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Minus, ChevronDown, Phone, Download, Calendar } from 'lucide-react';
+import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2 } from 'lucide-react';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
 import { useToast } from '@/hooks/use-toast';
@@ -37,6 +37,7 @@ const LeadCalculator = () => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState<UserFormData>({ name: '', mobile: '' });
   const [resultsUnlocked, setResultsUnlocked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [metrics, setMetrics] = useState<Metrics>({
     leads: 8333,
@@ -171,13 +172,14 @@ const LeadCalculator = () => {
 
   const handleUnlockResults = async () => {
     if (!formData.name || !formData.mobile) return;
-  
-    const webAppURL = "https://script.google.com/macros/s/AKfycbzrzBr_M-Bm0d_9DXEVy0rJlI6TxKL1_kPvl5I55oDo5VWU6gXu96YHXk4_WXVIJV8R/exec"; // Replace with actual URL
+    
+    setIsLoading(true);
+    const webAppURL = "https://script.google.com/macros/s/AKfycbzrzBr_M-Bm0d_9DXEVy0rJlI6TxKL1_kPvl5I55oDo5VWU6gXu96YHXk4_WXVIJV8R/exec";
   
     try {
       const response = await fetch(webAppURL, {
         method: "POST",
-        mode: "no-cors", // Avoid CORS errors
+        mode: "no-cors",
         headers: {
           "Content-Type": "application/json",
         },
@@ -187,9 +189,11 @@ const LeadCalculator = () => {
         }),
       });
   
-      // Even if no-cors doesn't return JSON, we can still proceed
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Show loading for better UX
+      
       setResultsUnlocked(true);
       setShowForm(false);
+      setIsLoading(false);
       toast({
         title: "We will call you back soon! 😊",
         description: "Thank you for your interest. Our team will reach out to you shortly.",
@@ -199,6 +203,7 @@ const LeadCalculator = () => {
         document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
       }, 300);
     } catch (error) {
+      setIsLoading(false);
       console.error("Error submitting form:", error);
       alert("Something went wrong. Please try again.");
     }
@@ -226,19 +231,21 @@ const LeadCalculator = () => {
 
   return (
     <div className="min-h-screen hero-gradient relative">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-8">
-        {/* Header with Logo */}
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center">
+      {/* Fixed Header with Logo */}
+      <header className="sticky top-0 z-40 bg-gradient-to-r from-primary/20 to-secondary/20 backdrop-blur-md border-b border-white/10">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-center">
             <img 
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
               alt="Digital Mojo Logo" 
-              className="w-10 h-10 mr-3 object-contain"
+              className="w-16 h-16 object-contain"
             />
-            <span className="text-white font-bold text-lg font-spartan tracking-wide">Digital Mojo</span>
           </div>
         </div>
+      </header>
+
+      {/* Hero Section */}
+      <div className="container mx-auto px-4 py-8">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
@@ -296,7 +303,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Property Type</label>
                   <Select value={propertyType} onValueChange={setPropertyType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -313,7 +320,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Launch Type</label>
                   <Select value={launchType} onValueChange={setLaunchType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -329,7 +336,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Location</label>
                   <Select value={location} onValueChange={setLocation}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -388,7 +395,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Configuration</label>
                   <Select value={bhk} onValueChange={setBhk}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -409,7 +416,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Marketing Channels</label>
                   <Select value={marketingChannels} onValueChange={setMarketingChannels}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -424,7 +431,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Duration</label>
                   <Select value={duration} onValueChange={setDuration}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -587,10 +594,15 @@ const LeadCalculator = () => {
                     </Button>
                     <Button
                       onClick={handleUnlockResults}
-                      disabled={!formData.name || !formData.mobile}
-                      className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold rounded-xl h-12 transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+                      disabled={!formData.name || !formData.mobile || isLoading}
+                      className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold rounded-xl h-12 transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50"
                     >
-                      Unlock Results
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Processing...
+                        </>
+                      ) : resultsUnlocked ? "Book" : "Unlock Results"}
                     </Button>
                   </div>
                 </div>
