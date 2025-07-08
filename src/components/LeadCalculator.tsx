@@ -215,8 +215,12 @@ const LeadCalculator = () => {
         {/* Header with Logo */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded mr-3"></div>
-            <span className="text-white font-bold text-lg font-spartan tracking-wide">Digital Mojo</span>
+            <img 
+              src="/lovable-uploads/b0dad92f-7faf-4242-9cf6-7ef83a606621.png" 
+              alt="Digital Mojo Logo" 
+              className="w-10 h-10 mr-3"
+            />
+            <span className="text-white font-bold text-lg font-spartan tracking-wide">DIGITAL MOJO</span>
           </div>
         </div>
 
