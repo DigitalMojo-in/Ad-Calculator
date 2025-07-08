@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Minus } from 'lucide-react';
+import { Plus, Minus, ChevronDown, Phone, Download, Calendar } from 'lucide-react';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
 
@@ -19,6 +19,11 @@ interface Metrics {
   totalBudget: number;
 }
 
+interface UserFormData {
+  name: string;
+  mobile: string;
+}
+
 const LeadCalculator = () => {
   const [propertyType, setPropertyType] = useState('Residential');
   const [launchType, setLaunchType] = useState('Launch');
@@ -27,6 +32,9 @@ const LeadCalculator = () => {
   const [marketingChannels, setMarketingChannels] = useState('Google');
   const [sellUnits, setSellUnits] = useState(50);
   const [duration, setDuration] = useState('6 Months');
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState<UserFormData>({ name: '', mobile: '' });
+  const [resultsUnlocked, setResultsUnlocked] = useState(false);
 
   const [metrics, setMetrics] = useState<Metrics>({
     leads: 8333,
@@ -159,34 +167,90 @@ const LeadCalculator = () => {
     setSellUnits(Math.max(1, value));
   };
 
+  const handleUnlockResults = () => {
+    if (formData.name && formData.mobile) {
+      setResultsUnlocked(true);
+      setShowForm(false);
+      // Smooth scroll to results
+      setTimeout(() => {
+        document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  };
+
+  const handleViewResults = () => {
+    setShowForm(true);
+  };
+
   return (
-    <div className="min-h-screen hero-gradient">
+    <div className="min-h-screen hero-gradient relative">
+      {/* Hero Section */}
       <div className="container mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="text-center mb-12 animate-fade-in">
-          <div className="flex items-center justify-center mb-6">
+        {/* Header with Logo */}
+        <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center">
             <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded mr-3"></div>
-            <span className="text-primary font-semibold text-sm tracking-wider uppercase">Digital Mojo</span>
+            <span className="text-white font-bold text-lg font-spartan tracking-wide">Digital Mojo</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-            Let's Show You Just How Far Your<br />
-            Growth Can Go <span className="bg-gradient-to-r from-primary to-yellow-brand bg-clip-text text-transparent">With Us</span>
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
-            Data-driven insights. ROI that speaks. Let's build your growth story.
-          </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {/* Left Panel - Controls */}
-          <div className="lg:col-span-1">
-            <Card className="bg-white/95 backdrop-blur-lg border-none shadow-2xl rounded-2xl card-hover">
-              <CardContent className="p-8 space-y-6">
+        {/* Hero Content */}
+        <div className="text-center mb-16 max-w-6xl mx-auto">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
+            Let's Show You Just How Far Your<br />
+            Growth Can Go <span className="text-yellow-brand">With Us</span>
+          </h1>
+          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
+            Data-driven insights. ROI that speaks. Let's build your growth story.
+          </p>
+          
+          {/* Scroll Indicator */}
+          <div className="scroll-indicator mt-12">
+            <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
+          </div>
+        </div>
+
+        {/* Calculator Section */}
+        <div className="max-w-4xl mx-auto mb-16">
+          <Card className="glass-card border-none shadow-2xl rounded-3xl overflow-hidden">
+            <CardContent className="p-8">
+              {/* Sell Units - Primary Input */}
+              <div className="mb-8 text-center">
+                <label className="text-foreground text-lg font-bold mb-4 block font-spartan">Units to Sell</label>
+                <div className="flex items-center justify-center gap-4 max-w-md mx-auto">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="h-12 w-12 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
+                    onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
+                  >
+                    <Minus className="h-5 w-5" />
+                  </Button>
+                  <Input
+                    type="number"
+                    value={sellUnits}
+                    onChange={handleSellUnitsChange}
+                    min="1"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-2xl rounded-xl h-16 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  />
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="h-12 w-12 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
+                    onClick={() => setSellUnits(sellUnits + 1)}
+                  >
+                    <Plus className="h-5 w-5" />
+                  </Button>
+                </div>
+              </div>
+
+              {/* Two Column Layout for Other Inputs */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Property Type */}
                 <div>
-                  <label className="text-foreground text-sm font-medium mb-2 block">Property Type</label>
+                  <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Property Type</label>
                   <Select value={propertyType} onValueChange={setPropertyType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -199,31 +263,31 @@ const LeadCalculator = () => {
                   </Select>
                 </div>
 
-                {/* Launch Type and Location */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-foreground text-sm font-medium mb-2 block">Launch Type</label>
-                    <Select value={launchType} onValueChange={setLaunchType}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="Teaser">Teaser</SelectItem>
-                        <SelectItem value="Launch">Launch</SelectItem>
-                        <SelectItem value="Sustenance">Sustenance</SelectItem>
-                        <SelectItem value="NRI">NRI</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                {/* Launch Type */}
+                <div>
+                  <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Launch Type</label>
+                  <Select value={launchType} onValueChange={setLaunchType}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                      <SelectItem value="Teaser">Teaser</SelectItem>
+                      <SelectItem value="Launch">Launch</SelectItem>
+                      <SelectItem value="Sustenance">Sustenance</SelectItem>
+                      <SelectItem value="NRI">NRI</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
 
-                  <div>
-                    <label className="text-foreground text-sm font-medium mb-2 block">Location</label>
-                    <Select value={location} onValueChange={setLocation}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                    <SelectItem value="Bangalore East">Bangalore East</SelectItem>
+                {/* Location */}
+                <div>
+                  <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Location</label>
+                  <Select value={location} onValueChange={setLocation}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                      <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
                       <SelectItem value="Bangalore West">Bangalore West</SelectItem>
@@ -270,162 +334,156 @@ const LeadCalculator = () => {
                       <SelectItem value="Noida">Noida</SelectItem>
                       <SelectItem value="Noida Central">Noida Central</SelectItem>
                       <SelectItem value="Pune">Pune</SelectItem>
-
                     </SelectContent>
                   </Select>
-                  </div>
                 </div>
 
-                {/* BHK and Marketing Channels */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="text-foreground text-sm font-medium mb-2 block">Configuration</label>
-                    <Select value={bhk} onValueChange={setBhk}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="1 RK">1 RK</SelectItem>
-                        <SelectItem value="1 BHK">1 BHK</SelectItem>
-                        <SelectItem value="2 BHK">2 BHK</SelectItem>
-                        <SelectItem value="3 BHK">3 BHK</SelectItem>
-                        <SelectItem value="4 BHK">4 BHK</SelectItem>
-                        <SelectItem value="5 BHK">5 BHK</SelectItem>
-                        <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
-                        <SelectItem value="Plot Size 2000 Sq - 4000 Sq">Plot Size 2000 Sq - 4000 Sq</SelectItem>
-                        <SelectItem value="Villa">Villa</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div>
-                    <label className="text-foreground text-sm font-medium mb-2 block">Marketing Channels</label>
-                    <Select value={marketingChannels} onValueChange={setMarketingChannels}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="Google">Google Ads</SelectItem>
-                        <SelectItem value="Meta">Meta Ads</SelectItem>
-                        <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                {/* Configuration */}
+                <div>
+                  <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Configuration</label>
+                  <Select value={bhk} onValueChange={setBhk}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                      <SelectItem value="1 RK">1 RK</SelectItem>
+                      <SelectItem value="1 BHK">1 BHK</SelectItem>
+                      <SelectItem value="2 BHK">2 BHK</SelectItem>
+                      <SelectItem value="3 BHK">3 BHK</SelectItem>
+                      <SelectItem value="4 BHK">4 BHK</SelectItem>
+                      <SelectItem value="5 BHK">5 BHK</SelectItem>
+                      <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
+                      <SelectItem value="Plot Size 2000 Sq - 4000 Sq">Plot Size 2000 Sq - 4000 Sq</SelectItem>
+                      <SelectItem value="Villa">Villa</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
-                {/* Sell Units Input and Duration */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <label className="text-foreground text-sm font-medium">Sell Units</label>
-                    <div className="flex items-center gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="h-10 w-10 p-0 border-2 border-muted hover:border-secondary hover:bg-secondary/10 rounded-xl transition-all duration-200"
-                        onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
-                      >
-                        <Minus className="h-4 w-4" />
-                      </Button>
-                      <Input
-                        type="number"
-                        value={sellUnits}
-                        onChange={handleSellUnitsChange}
-                        min="1"
-                        className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground text-center font-medium rounded-xl h-10 transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                      />
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="h-10 w-10 p-0 border-2 border-muted hover:border-secondary hover:bg-secondary/10 rounded-xl transition-all duration-200"
-                        onClick={() => setSellUnits(sellUnits + 1)}
-                      >
-                        <Plus className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-foreground text-sm font-medium">Duration</label>
-                    <Select value={duration} onValueChange={setDuration}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="15 Days">15 Days</SelectItem>
-                        <SelectItem value="1 Month">1 Month</SelectItem>
-                        <SelectItem value="2 Months">2 Months</SelectItem>
-                        <SelectItem value="3 Months">3 Months</SelectItem>
-                        <SelectItem value="4 Months">4 Months</SelectItem>
-                        <SelectItem value="5 Months">5 Months</SelectItem>
-                        <SelectItem value="6 Months">6 Months</SelectItem>
-                        <SelectItem value="7 Months">7 Months</SelectItem>
-                        <SelectItem value="8 Months">8 Months</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                {/* Marketing Channels */}
+                <div>
+                  <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Marketing Channels</label>
+                  <Select value={marketingChannels} onValueChange={setMarketingChannels}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                      <SelectItem value="Google">Google Ads</SelectItem>
+                      <SelectItem value="Meta">Meta Ads</SelectItem>
+                      <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
-                <div className="text-xs text-muted-foreground pt-4 border-t border-border">
-                  <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
+                {/* Duration */}
+                <div>
+                  <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Duration</label>
+                  <Select value={duration} onValueChange={setDuration}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200 shadow-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                      <SelectItem value="15 Days">15 Days</SelectItem>
+                      <SelectItem value="1 Month">1 Month</SelectItem>
+                      <SelectItem value="2 Months">2 Months</SelectItem>
+                      <SelectItem value="3 Months">3 Months</SelectItem>
+                      <SelectItem value="4 Months">4 Months</SelectItem>
+                      <SelectItem value="5 Months">5 Months</SelectItem>
+                      <SelectItem value="6 Months">6 Months</SelectItem>
+                      <SelectItem value="7 Months">7 Months</SelectItem>
+                      <SelectItem value="8 Months">8 Months</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
 
-          {/* Right Panel - Metrics and Charts */}
-          <div className="lg:col-span-2 space-y-6">
+              {/* View Results Button */}
+              <div className="text-center mt-8">
+                <Button
+                  onClick={handleViewResults}
+                  className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+                >
+                  View Results
+                </Button>
+              </div>
+
+              <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
+                <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Results Section with Blur Overlay */}
+        <div id="results-section" className="relative">
+          {!resultsUnlocked && (
+            <div className="absolute inset-0 z-20 blur-overlay rounded-3xl"></div>
+          )}
+          
+          <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
             {/* Metrics Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              <Card className="bg-white/95 backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold text-primary">{metrics.leads.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground font-medium">Leads</div>
-                  <div className="text-lg font-semibold text-foreground mt-2">₹{metrics.cpl.toLocaleString()}</div>
-                  <div className="text-xs text-muted-foreground">CPL</div>
+                  <div className="text-3xl font-bold text-primary font-spartan">{metrics.leads.toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground font-medium font-spartan">Leads</div>
+                  <div className="text-lg font-semibold text-foreground mt-2 font-spartan">₹{metrics.cpl.toLocaleString()}</div>
+                  <div className="text-xs text-muted-foreground font-spartan">CPL</div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/95 backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover">
+              <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold text-secondary">{metrics.qualifiedLeads.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground font-medium">QL</div>
-                  <div className="text-lg font-semibold text-foreground mt-2">₹{metrics.cpql.toLocaleString()}</div>
-                  <div className="text-xs text-muted-foreground">CPQL</div>
+                  <div className="text-3xl font-bold text-secondary font-spartan">{metrics.qualifiedLeads.toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground font-medium font-spartan">QL</div>
+                  <div className="text-lg font-semibold text-foreground mt-2 font-spartan">₹{metrics.cpql.toLocaleString()}</div>
+                  <div className="text-xs text-muted-foreground font-spartan">CPQL</div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/95 backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover">
+              <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold text-accent">{metrics.siteVisits.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground font-medium">SV</div>
-                  <div className="text-lg font-semibold text-foreground mt-2">₹{metrics.cpsv.toLocaleString()}</div>
-                  <div className="text-xs text-muted-foreground">CPSV</div>
+                  <div className="text-3xl font-bold text-accent font-spartan">{metrics.siteVisits.toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground font-medium font-spartan">SV</div>
+                  <div className="text-lg font-semibold text-foreground mt-2 font-spartan">₹{metrics.cpsv.toLocaleString()}</div>
+                  <div className="text-xs text-muted-foreground font-spartan">CPSV</div>
                 </CardContent>
               </Card>
 
-              <Card className="bg-white/95 backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover">
+              <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
                 <CardContent className="p-6">
-                  <div className="text-3xl font-bold text-purple-brand">{metrics.bookings}</div>
-                  <div className="text-sm text-muted-foreground font-medium">Bookings</div>
-                  <div className="text-lg font-semibold text-foreground mt-2">₹{(metrics.cpb / 100000).toFixed(2)}L</div>
-                  <div className="text-xs text-muted-foreground">CPB</div>
+                  <div className="text-3xl font-bold text-purple-brand font-spartan">{metrics.bookings}</div>
+                  <div className="text-sm text-muted-foreground font-medium font-spartan">Bookings</div>
+                  <div className="text-lg font-semibold text-foreground mt-2 font-spartan">₹{(metrics.cpb / 100000).toFixed(2)}L</div>
+                  <div className="text-xs text-muted-foreground font-spartan">CPB</div>
                 </CardContent>
               </Card>
             </div>
 
             {/* Total Budget */}
-            <Card className="bg-gradient-to-r from-primary to-secondary text-white border-none shadow-2xl rounded-2xl card-hover">
+            <Card className="bg-gradient-to-r from-primary to-secondary text-white border-none shadow-2xl rounded-2xl card-hover mb-8">
               <CardContent className="p-8">
                 <div className="text-center">
-                  <div className="text-4xl md:text-5xl font-bold mb-2">
+                  <div className="text-4xl md:text-5xl font-bold mb-2 font-spartan">
                     ₹{metrics.totalBudget.toLocaleString('en-IN')}
                   </div>
-                  <div className="text-lg opacity-90">
+                  <div className="text-lg opacity-90 font-spartan">
                     Total Budget Required
                   </div>
                 </div>
               </CardContent>
             </Card>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+                <Calendar className="mr-2 h-5 w-5" />
+                Schedule a Call
+              </Button>
+              <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+                <Download className="mr-2 h-5 w-5" />
+                Download ROI Report
+              </Button>
+            </div>
 
             {/* Enhanced Charts */}
             <EnhancedCharts 
@@ -436,19 +494,70 @@ const LeadCalculator = () => {
           </div>
         </div>
 
-        {/* Partners Section */}
+        {/* Form Modal */}
+        {showForm && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <Card className="glass-card border-none shadow-2xl rounded-3xl w-full max-w-md form-slide-in">
+              <CardHeader>
+                <h3 className="text-2xl font-bold text-center text-foreground font-spartan">Unlock Your Growth Report</h3>
+                <p className="text-center text-muted-foreground font-spartan">Get personalized insights for your business</p>
+              </CardHeader>
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-foreground text-sm font-semibold mb-2 block font-spartan">Name</label>
+                    <Input
+                      type="text"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="Enter your name"
+                      className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-foreground text-sm font-semibold mb-2 block font-spartan">Mobile Number</label>
+                    <Input
+                      type="tel"
+                      value={formData.mobile}
+                      onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                      placeholder="Enter your mobile number"
+                      className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200"
+                    />
+                  </div>
+                  <div className="flex gap-3 pt-4">
+                    <Button
+                      onClick={() => setShowForm(false)}
+                      variant="outline"
+                      className="flex-1 border-2 border-muted text-muted-foreground hover:bg-muted rounded-xl h-12 transition-all duration-200 font-spartan"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      onClick={handleUnlockResults}
+                      disabled={!formData.name || !formData.mobile}
+                      className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold rounded-xl h-12 transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+                    >
+                      Unlock Results
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* Trust Section */}
         <div className="mt-16 mb-12">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-spartan">
               Trusted by Performance-Driven Brands
             </h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 items-center justify-items-center">
-            {/* Partner logos placeholder - replace with actual logos */}
             {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
               <div
                 key={i}
-                className="w-24 h-12 bg-white/20 rounded-lg partner-logo flex items-center justify-center text-white/60 text-xs font-medium"
+                className="w-24 h-12 bg-white/20 rounded-lg partner-logo flex items-center justify-center text-white/60 text-xs font-medium font-spartan"
               >
                 Logo {i}
               </div>
@@ -458,8 +567,20 @@ const LeadCalculator = () => {
 
         {/* Mobile Sticky CTA */}
         <div className="md:hidden sticky-cta">
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6 py-3 shadow-2xl">
-            Get Your Report
+          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 py-3 shadow-2xl font-spartan font-bold">
+            <Phone className="mr-2 h-4 w-4" />
+            Ready to Grow? Let's Talk 🚀
+          </Button>
+        </div>
+      </div>
+
+      {/* CTA Footer */}
+      <div className="bg-accent text-accent-foreground py-8 text-center">
+        <div className="container mx-auto px-4">
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
+          <Button className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+            <Phone className="mr-2 h-5 w-5" />
+            Book Free Strategy Call
           </Button>
         </div>
       </div>
