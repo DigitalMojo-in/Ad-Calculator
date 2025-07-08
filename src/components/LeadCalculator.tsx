@@ -95,12 +95,12 @@ const LeadCalculator = () => {
     }
     const leads = Math.round(baseLeads * locationMultiplier * bhkMultiplier * channelMultiplier * propertyMultiplier * launchMultiplier);  
     const qualifiedLeads = Math.round(leads * 0.3);
-    const siteVisits = Math.round(qualifiedLeads * 0.27);
+    const siteVisits = Math.round(qualifiedLeads * 0.2);
     const bookings = sellUnits;
     
-    const cpql = Math.round(cpl / 0.22);
     
     const totalBudget = leads * cpl;
+    const cpql = Math.round(totalBudget/qualifiedLeads);
     
     const cpsv = Math.round(totalBudget / siteVisits);
     const cpb = Math.round(cpsv * (siteVisits / bookings));
