@@ -232,14 +232,25 @@ const LeadCalculator = () => {
   return (
     <div className="min-h-screen hero-gradient relative">
       {/* Fixed Header with Logo */}
-      <header className="sticky top-0 z-40 bg-gradient-to-r from-primary/20 to-secondary/20 backdrop-blur-md border-b border-white/10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-center">
+      <header className="sticky top-0 z-40 bg-white/5 backdrop-blur-sm border-b border-white/5">
+        <div className="container mx-auto px-4 py-3">
+          <div className="flex items-center justify-between">
             <img 
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
               alt="Digital Mojo Logo" 
-              className="w-16 h-16 object-contain"
+              className="w-20 h-20 object-contain"
             />
+            <nav className="hidden md:flex items-center space-x-6">
+              <a href="#calculator" className="text-white hover:text-white/80 transition-colors font-spartan">Calculator</a>
+              <a href="#results-section" className="text-white hover:text-white/80 transition-colors font-spartan">Results</a>
+              <a href="#clients" className="text-white hover:text-white/80 transition-colors font-spartan">Clients</a>
+            </nav>
+            <Button 
+              onClick={handleBookCall}
+              className="bg-primary hover:bg-primary/90 text-white font-bold py-2 px-6 rounded-xl transition-all duration-300 font-spartan"
+            >
+              Book Now
+            </Button>
           </div>
         </div>
       </header>
@@ -251,7 +262,7 @@ const LeadCalculator = () => {
         <div className="text-center mb-16 max-w-6xl mx-auto">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
             Let's Show You Just How Far Your<br />
-            Growth Can Go <span className="text-yellow-brand">With Us</span>
+            Growth Can Go <span className="text-black">With Us</span>
           </h1>
           <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
             Data-driven insights. ROI that speaks. Let's build your growth story.
@@ -264,7 +275,7 @@ const LeadCalculator = () => {
         </div>
 
         {/* Calculator Section */}
-        <div className="max-w-4xl mx-auto mb-16">
+        <div id="calculator" className="max-w-4xl mx-auto mb-16">
           <Card className="glass-card border-none shadow-2xl rounded-3xl overflow-hidden">
             <CardContent className="p-8">
               {/* Sell Units - Primary Input */}
@@ -612,7 +623,7 @@ const LeadCalculator = () => {
         )}
 
         {/* Trust Section */}
-        <div className="mt-16 mb-12">
+        <div id="clients" className="mt-16 mb-12">
           <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-spartan">
               Trusted by Performance-Driven Brands
@@ -643,13 +654,13 @@ const LeadCalculator = () => {
       <div className="bg-accent text-accent-foreground py-8 text-center">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
-          <Button 
-            onClick={handleBookCall}
-            className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
-          >
-            <Phone className="mr-2 h-5 w-5" />
-            Book Free Strategy Call
-          </Button>
+            <Button 
+              onClick={handleBookCall}
+              className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+            >
+              <Phone className="mr-2 h-5 w-5" />
+              Book Now
+            </Button>
         </div>
       </div>
     </div>
