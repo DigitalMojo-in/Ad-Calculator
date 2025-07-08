@@ -170,7 +170,7 @@ const LeadCalculator = () => {
   const handleUnlockResults = async () => {
     if (!formData.name || !formData.mobile) return;
 
-    const webAppURL = "https://script.google.com/a/macros/digitalmojo.in/s/AKfycbwbOz97uHbAt0mVDqFuwBJSuNjdYzG7cdEqfeXDjibea6GxmboH2g7jbhz6ALf312dN/exec";
+    const webAppURL = "https://script.google.com/macros/s/AKfycby4z30q3yseF1v2PFON1YmcDV6eZ2QH_i-k6p8N4PNlGf3VybF-kgEr6h4qy3W_0C-3/exec";
 
     try {
       const response = await fetch(webAppURL, {
