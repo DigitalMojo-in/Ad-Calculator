@@ -162,47 +162,50 @@ const LeadCalculator = () => {
 
   const chartData = generateChartData();
 
-  const handleSellUnitsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 0;
-    setSellUnits(Math.max(1, value));
-  };
-
   const handleUnlockResults = async () => {
-    if (!formData.name || !formData.mobile) return;
+  if (!formData.name || !formData.mobile) {
+    alert("Please enter both name and mobile number.");
+    return;
+  }
 
-    const webAppURL = "https://script.google.com/macros/s/AKfycby4z30q3yseF1v2PFON1YmcDV6eZ2QH_i-k6p8N4PNlGf3VybF-kgEr6h4qy3W_0C-3/exec";
+  const webAppURL = "https://script.google.com/a/macros/digitalmojo.in/s/AKfycbwbOz97uHbAt0mVDqFuwBJSuNjdYzG7cdEqfeXDjibea6GxmboH2g7jbhz6ALf312dN/exec";
 
+  try {
+    const response = await fetch(webAppURL, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        phone: formData.mobile, // Make sure this matches your Google Script field
+      }),
+    });
+
+    let data;
     try {
-      const response = await fetch(webAppURL, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.mobile,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Form submitted successfully!");
-        setResultsUnlocked(true);
-        setShowForm(false);
-        // Smooth scroll to results
-        setTimeout(() => {
-          document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-      } else {
-        alert(`Submission failed: ${data.error || "Unknown error"}`);
-      }
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("An error occurred while submitting the form.");
+      data = await response.json();
+    } catch {
+      data = { error: "Invalid response from server" };
     }
-  };
+
+    if (response.ok) {
+      alert("Form submitted successfully!");
+      setResultsUnlocked(true);
+      setShowForm(false);
+      setTimeout(() => {
+        document.getElementById("results-section")?.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    } else {
+      alert(`Submission failed: ${data.error || "Unknown error occurred"}`);
+    }
+  } catch (error) {
+    console.error("Form submission error:", error);
+    alert("An unexpected error occurred while submitting the form.");
+  }
+};
+
 
   const handleViewResults = () => {
     setShowForm(true);
