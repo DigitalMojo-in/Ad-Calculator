@@ -169,20 +169,41 @@ const LeadCalculator = () => {
     setSellUnits(Math.max(1, value));
   };
 
-  const handleUnlockResults = () => {
-    if (formData.name && formData.mobile) {
+  const handleUnlockResults = async () => {
+    if (!formData.name || !formData.mobile) return;
+  
+    const webAppURL = "https://script.google.com/macros/s/AKfycbzrzBr_M-Bm0d_9DXEVy0rJlI6TxKL1_kPvl5I55oDo5VWU6gXu96YHXk4_WXVIJV8R/exec"; // Replace with actual URL
+  
+    try {
+      const response = await fetch(webAppURL, {
+        method: "POST",
+        mode: "no-cors", // Avoid CORS errors
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.mobile,
+        }),
+      });
+  
+      // Even if no-cors doesn't return JSON, we can still proceed
       setResultsUnlocked(true);
       setShowForm(false);
       toast({
         title: "We will call you back soon! 😊",
         description: "Thank you for your interest. Our team will reach out to you shortly.",
       });
-      // Smooth scroll to results
+  
       setTimeout(() => {
         document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
       }, 300);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Something went wrong. Please try again.");
     }
   };
+  
 
   const handleCTAClick = (actionType: string) => {
     toast({
