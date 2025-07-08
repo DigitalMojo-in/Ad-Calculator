@@ -270,25 +270,28 @@ const LeadCalculator = () => {
       <div className="container mx-auto px-4 py-8">
 
         {/* Hero Content */}
-        <div className="text-center mb-16 max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
+        <div className="text-center mb-20 max-w-6xl mx-auto px-4">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[0.9] font-spartan tracking-tight">
             Let's Show You Just How Far Your<br />
             Growth Can Go <span className="text-black">With Us</span>
           </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
+          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan mb-12">
             Data-driven insights. ROI that speaks. Let's build your growth story.
           </p>
           
           {/* Scroll Indicator */}
-          <div className="scroll-indicator mt-12">
+          <div className="scroll-indicator">
             <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
           </div>
         </div>
 
+        {/* Section Divider */}
+        <div className="section-divider"></div>
+
         {/* Calculator Section */}
-        <div id="calculator" className="max-w-4xl mx-auto mb-16">
+        <div id="calculator" className="max-w-4xl mx-auto mb-20">
           <Card className="glass-card border-none shadow-2xl rounded-3xl overflow-hidden">
-            <CardContent className="p-8">
+            <CardContent className="p-10">
               {/* Sell Units - Primary Input */}
               <div className="mb-8 text-center">
                 <label className="text-foreground text-lg font-bold mb-4 block font-spartan">Units to Sell</label>
@@ -626,19 +629,24 @@ const LeadCalculator = () => {
           </div>
         )}
 
+        {/* Section Divider */}
+        <div className="section-divider my-20"></div>
+
         {/* Trust Section */}
-        <div id="clients" className="mt-16 mb-12">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-spartan">
-              Trusted by Performance-Driven Brands
-            </h2>
-          </div>
-          <div className="flex justify-center">
-            <img 
-              src="/lovable-uploads/341259b0-c651-460f-a46a-1c5a0715b567.png"
-              alt="Trusted client logos including Jeevvashakti Realty, Om Sree, Saket Pranamam, Reliance Builders, Indraprastha, Kosaraju Realty and many more"
-              className="max-w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-            />
+        <div id="clients" className="my-20">
+          <div className="trusted-overlay rounded-3xl p-12 mx-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6 font-spartan">
+                Trusted by Performance-Driven Brands
+              </h2>
+            </div>
+            <div className="flex justify-center">
+              <img 
+                src="/lovable-uploads/341259b0-c651-460f-a46a-1c5a0715b567.png"
+                alt="Trusted client logos including Jeevvashakti Realty, Om Sree, Saket Pranamam, Reliance Builders, Indraprastha, Kosaraju Realty and many more"
+                className="max-w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+              />
+            </div>
           </div>
         </div>
 
@@ -655,14 +663,15 @@ const LeadCalculator = () => {
       </div>
 
       {/* CTA Footer */}
-      <div className="bg-accent text-accent-foreground py-8 text-center">
-        <div className="container mx-auto px-4">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
+      <div className="cta-gradient py-16 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent transform -skew-y-2"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <h3 className="text-3xl md:text-4xl font-bold mb-8 text-white font-spartan">Ready to Grow? Let's Talk 🚀</h3>
             <Button 
               onClick={handleBookCall}
-              className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+              className="bg-white text-accent hover:bg-white/90 animate-hover-bounce font-bold py-6 px-10 rounded-2xl text-xl transition-all duration-300 shadow-2xl font-spartan"
             >
-              <Phone className="mr-2 h-5 w-5" />
+              <Phone className="mr-3 h-6 w-6" />
               Book Now
             </Button>
         </div>
