@@ -43,14 +43,10 @@ All colors MUST be HSL.
 
     --radius: 0.5rem;
 
-    /* Modern gradient backgrounds */
-    --hero-gradient: radial-gradient(ellipse at bottom left, hsl(153, 75%, 32%) 0%, hsl(195, 95%, 44%) 100%);
-    --section-gradient: linear-gradient(135deg, hsl(153, 75%, 32%) 0%, hsl(195, 95%, 44%) 100%);
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --blur-overlay: rgba(255, 255, 255, 0.15);
-    --trusted-overlay: rgba(249, 231, 125, 0.1);
-    --cta-gradient: linear-gradient(135deg, hsl(30, 89%, 49%) 0%, hsl(274, 29%, 46%) 100%);
+    /* Gradient backgrounds */
+    --hero-gradient: rgb(240, 188, 0);
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --blur-overlay: rgba(255, 255, 255, 0.8);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -115,60 +111,22 @@ All colors MUST be HSL.
 
 .glass-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .blur-overlay {
   background: var(--blur-overlay);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
 }
 
 .card-hover {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .card-hover:hover {
-  transform: translateY(-8px) scale(1.02);
-  backdrop-filter: blur(25px);
-}
-
-.section-gradient {
-  background: var(--section-gradient);
-}
-
-.trusted-overlay {
-  background: var(--trusted-overlay);
-  backdrop-filter: blur(10px);
-}
-
-.cta-gradient {
-  background: var(--cta-gradient);
-}
-
-.animate-hover-bounce {
-  transition: transform 0.3s ease;
-}
-
-.animate-hover-bounce:hover {
-  transform: translateY(-2px) scale(1.05);
-}
-
-.section-divider {
-  height: 100px;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
-  position: relative;
-}
-
-.section-divider::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -8px rgba(30, 163, 79, 0.15);
 }
 
 .partner-logo {
