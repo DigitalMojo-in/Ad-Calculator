@@ -162,49 +162,7 @@ const LeadCalculator = () => {
 
   const chartData = generateChartData();
 
-  const handleUnlockResults = async () => {
-  if (!formData.name || !formData.mobile) {
-    alert("Please enter both name and mobile number.");
-    return;
-  }
-
-  const webAppURL = "https://script.google.com/a/macros/digitalmojo.in/s/AKfycbwbOz97uHbAt0mVDqFuwBJSuNjdYzG7cdEqfeXDjibea6GxmboH2g7jbhz6ALf312dN/exec";
-
-  try {
-    const response = await fetch(webAppURL, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        phone: formData.mobile, // Make sure this matches your Google Script field
-      }),
-    });
-
-    let data;
-    try {
-      data = await response.json();
-    } catch {
-      data = { error: "Invalid response from server" };
-    }
-
-    if (response.ok) {
-      alert("Form submitted successfully!");
-      setResultsUnlocked(true);
-      setShowForm(false);
-      setTimeout(() => {
-        document.getElementById("results-section")?.scrollIntoView({ behavior: "smooth" });
-      }, 300);
-    } else {
-      alert(`Submission failed: ${data.error || "Unknown error occurred"}`);
-    }
-  } catch (error) {
-    console.error("Form submission error:", error);
-    alert("An unexpected error occurred while submitting the form.");
-  }
-};
+ 
 
 
   const handleViewResults = () => {
