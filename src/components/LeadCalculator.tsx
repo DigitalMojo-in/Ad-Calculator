@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Plus, Minus, ChevronDown, Phone, Download, Calendar } from 'lucide-react';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
+import { useToast } from '@/hooks/use-toast';
 
 interface Metrics {
   leads: number;
@@ -25,6 +26,7 @@ interface UserFormData {
 }
 
 const LeadCalculator = () => {
+  const { toast } = useToast();
   const [propertyType, setPropertyType] = useState('Residential');
   const [launchType, setLaunchType] = useState('Launch');
   const [location, setLocation] = useState('Mumbai South');
@@ -171,11 +173,22 @@ const LeadCalculator = () => {
     if (formData.name && formData.mobile) {
       setResultsUnlocked(true);
       setShowForm(false);
+      toast({
+        title: "We will call you back soon! 😊",
+        description: "Thank you for your interest. Our team will reach out to you shortly.",
+      });
       // Smooth scroll to results
       setTimeout(() => {
         document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
       }, 300);
     }
+  };
+
+  const handleCTAClick = (actionType: string) => {
+    toast({
+      title: "We will call you back soon! 😊",
+      description: `Thank you for your interest in ${actionType}. Our team will reach out to you shortly.`,
+    });
   };
 
   const handleViewResults = () => {
@@ -189,7 +202,11 @@ const LeadCalculator = () => {
         {/* Header with Logo */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center">
-            <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded mr-3"></div>
+            <img 
+              src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
+              alt="Digital Mojo Logo" 
+              className="w-10 h-10 mr-3 object-contain"
+            />
             <span className="text-white font-bold text-lg font-spartan tracking-wide">Digital Mojo</span>
           </div>
         </div>
@@ -475,11 +492,18 @@ const LeadCalculator = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+              <Button 
+                onClick={() => handleCTAClick("scheduling a call")}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+              >
                 <Calendar className="mr-2 h-5 w-5" />
                 Schedule a Call
               </Button>
-              <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+              <Button 
+                onClick={() => handleCTAClick("downloading ROI report")}
+                variant="outline" 
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+              >
                 <Download className="mr-2 h-5 w-5" />
                 Download ROI Report
               </Button>
@@ -567,7 +591,10 @@ const LeadCalculator = () => {
 
         {/* Mobile Sticky CTA */}
         <div className="md:hidden sticky-cta">
-          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 py-3 shadow-2xl font-spartan font-bold">
+          <Button 
+            onClick={() => handleCTAClick("talking about growth")}
+            className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
+          >
             <Phone className="mr-2 h-4 w-4" />
             Ready to Grow? Let's Talk 🚀
           </Button>
@@ -578,7 +605,10 @@ const LeadCalculator = () => {
       <div className="bg-accent text-accent-foreground py-8 text-center">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
-          <Button className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+          <Button 
+            onClick={() => handleCTAClick("booking a free strategy call")}
+            className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+          >
             <Phone className="mr-2 h-5 w-5" />
             Book Free Strategy Call
           </Button>
