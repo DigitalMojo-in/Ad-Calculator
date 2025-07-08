@@ -553,15 +553,7 @@ const LeadCalculator = () => {
                 <Calendar className="mr-2 h-5 w-5" />
                 Schedule a Call
               </Button>
-              <Button 
-                onClick={() => handleCTAClick("downloading ROI report")}
-                variant="outline" 
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
-              >
-                <Download className="mr-2 h-5 w-5" />
-                Download ROI Report
-              </Button>
-            </div>
+                          </div>
 
             {/* Enhanced Charts */}
             <EnhancedCharts 
