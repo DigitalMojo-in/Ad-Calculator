@@ -167,14 +167,40 @@ const LeadCalculator = () => {
     setSellUnits(Math.max(1, value));
   };
 
-  const handleUnlockResults = () => {
-    if (formData.name && formData.mobile) {
-      setResultsUnlocked(true);
-      setShowForm(false);
-      // Smooth scroll to results
-      setTimeout(() => {
-        document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
+  const handleUnlockResults = async () => {
+    if (!formData.name || !formData.mobile) return;
+
+    const webAppURL = "https://script.google.com/a/macros/digitalmojo.in/s/AKfycbwbOz97uHbAt0mVDqFuwBJSuNjdYzG7cdEqfeXDjibea6GxmboH2g7jbhz6ALf312dN/exec";
+
+    try {
+      const response = await fetch(webAppURL, {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.mobile,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Form submitted successfully!");
+        setResultsUnlocked(true);
+        setShowForm(false);
+        // Smooth scroll to results
+        setTimeout(() => {
+          document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+      } else {
+        alert(`Submission failed: ${data.error || "Unknown error"}`);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("An error occurred while submitting the form.");
     }
   };
 
@@ -475,11 +501,18 @@ const LeadCalculator = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+              <Button 
+                onClick={handleViewResults}
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+              >
                 <Calendar className="mr-2 h-5 w-5" />
                 Schedule a Call
               </Button>
-              <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+              <Button 
+                onClick={handleViewResults}
+                variant="outline" 
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+              >
                 <Download className="mr-2 h-5 w-5" />
                 Download ROI Report
               </Button>
@@ -567,7 +600,10 @@ const LeadCalculator = () => {
 
         {/* Mobile Sticky CTA */}
         <div className="md:hidden sticky-cta">
-          <Button className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 py-3 shadow-2xl font-spartan font-bold">
+          <Button 
+            onClick={handleViewResults}
+            className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
+          >
             <Phone className="mr-2 h-4 w-4" />
             Ready to Grow? Let's Talk 🚀
           </Button>
@@ -578,7 +614,10 @@ const LeadCalculator = () => {
       <div className="bg-accent text-accent-foreground py-8 text-center">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
-          <Button className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan">
+          <Button 
+            onClick={handleViewResults}
+            className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+          >
             <Phone className="mr-2 h-5 w-5" />
             Book Free Strategy Call
           </Button>
