@@ -38,6 +38,7 @@ const LeadCalculator = () => {
   const [formData, setFormData] = useState<UserFormData>({ name: '', mobile: '' });
   const [resultsUnlocked, setResultsUnlocked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [viewResultsClicked, setViewResultsClicked] = useState(false);
 
   const [metrics, setMetrics] = useState<Metrics>({
     leads: 8333,
@@ -218,7 +219,10 @@ const LeadCalculator = () => {
   };
 
   const handleViewResults = () => {
-    setShowForm(true);
+    if (!viewResultsClicked) {
+      setViewResultsClicked(true);
+      setShowForm(true);
+    }
   };
 
   const handleBookCall = () => {
@@ -471,9 +475,10 @@ const LeadCalculator = () => {
               <div className="text-center mt-8">
                 <Button
                   onClick={handleViewResults}
-                  className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+                  disabled={viewResultsClicked}
+                  className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  View Results
+                  {viewResultsClicked ? "Results Requested" : "View Results"}
                 </Button>
               </div>
 
