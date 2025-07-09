@@ -347,7 +347,7 @@ const LeadCalculator = () => {
           <div className="hidden sm:block">
             <Button
               onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg"
+              className="bg-red-600 hover:bg-red-700 text-white font-black py-4 px-12 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-2xl animate-bounce"
             >
               Book Now
             </Button>
@@ -583,28 +583,28 @@ const LeadCalculator = () => {
             
             <CardContent className="p-6">
               <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
-                {/* Metrics Cards - Single Row */}
+                 {/* Metrics Cards - Single Row */}
                 <div className="grid grid-cols-4 gap-2 mb-6">
                   <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
-                    <div className="text-lg font-bold text-purple-600">{metrics.leads.toLocaleString()}</div>
+                    <div className="text-3xl font-bold text-yellow-600">{metrics.leads.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">Leads</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpl.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPL</div>
                   </Card>
                   <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
-                    <div className="text-lg font-bold text-purple-600">{metrics.qualifiedLeads.toLocaleString()}</div>
+                    <div className="text-3xl font-bold text-yellow-600">{metrics.qualifiedLeads.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">QL</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpql.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPQL</div>
                   </Card>
                   <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
-                    <div className="text-lg font-bold text-purple-600">{metrics.siteVisits.toLocaleString()}</div>
+                    <div className="text-3xl font-bold text-yellow-600">{metrics.siteVisits.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">SV</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpsv.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPSV</div>
                   </Card>
                   <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
-                    <div className="text-lg font-bold text-purple-600">{metrics.bookings.toLocaleString()}</div>
+                    <div className="text-3xl font-bold text-yellow-600">{metrics.bookings.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">Bookings</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpb.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPB</div>
@@ -628,13 +628,13 @@ const LeadCalculator = () => {
           </Card>
         </div>
 
-        {/* Schedule Call Button - Outside the boxes, center aligned */}
-        <div className="text-center mt-6">
+        {/* Schedule Call Button - Outside the boxes, center aligned - Desktop only */}
+        <div className="hidden lg:block text-center mt-6">
           <Button 
             onClick={() => handleCTAClick("scheduling a call")}
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-16 rounded-lg text-2xl transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
           >
-            <Calendar className="mr-2 h-4 w-4" />
+            <Calendar className="mr-2 h-6 w-6" />
             Schedule a Call
           </Button>
         </div>
