@@ -198,9 +198,9 @@ const LeadCalculator = () => {
         method: "POST",
         mode: "no-cors",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
+        body: new URLSearchParams({
           name: formData.name,
           phone: formData.mobile,
           email: formData.email,
@@ -260,13 +260,13 @@ const LeadCalculator = () => {
     const webAppURL = "https://script.google.com/macros/s/AKfycbzvY-cPO-fsMULjOLHsC-G47tePzt7EHUt2Uchlau8K3424HW9n7LG8Y-8HB_FOLkXX/exec";
   
     try {
-      await fetch(webAppURL, {
+      const response = await fetch(webAppURL, {
         method: "POST",
         mode: "no-cors",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
+        body: new URLSearchParams({
           name: formData.name,
           phone: formData.mobile,
           email: formData.email,
