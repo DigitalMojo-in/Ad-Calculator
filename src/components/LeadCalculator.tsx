@@ -191,7 +191,7 @@ const LeadCalculator = () => {
     if (!formData.name || !formData.mobile || !formData.email || !formData.organization) return;
     
     setIsLoading(true);
-    const webAppURL = "https://script.google.com/macros/s/AKfycbzrzBr_M-Bm0d_9DXEVy0rJlI6TxKL1_kPvl5I55oDo5VWU6gXu96YHXk4_WXVIJV8R/exec";
+    const webAppURL = "https://script.google.com/macros/s/AKfycbzvY-cPO-fsMULjOLHsC-G47tePzt7EHUt2Uchlau8K3424HW9n7LG8Y-8HB_FOLkXX/exec";
   
     try {
       const response = await fetch(webAppURL, {
@@ -257,7 +257,7 @@ const LeadCalculator = () => {
     if (!formData.name || !formData.mobile || !formData.email || !formData.organization) return;
     
     setIsLoading(true);
-    const webAppURL = "https://script.google.com/macros/s/AKfycbzrzBr_M-Bm0d_9DXEVy0rJlI6TxKL1_kPvl5I55oDo5VWU6gXu96YHXk4_WXVIJV8R/exec";
+    const webAppURL = "https://script.google.com/macros/s/AKfycbzvY-cPO-fsMULjOLHsC-G47tePzt7EHUt2Uchlau8K3424HW9n7LG8Y-8HB_FOLkXX/exec";
   
     try {
       await fetch(webAppURL, {
