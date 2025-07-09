@@ -235,34 +235,39 @@ const LeadCalculator = () => {
 
   return (
     <div className="min-h-screen hero-gradient relative">
-      {/* Fixed Header with Logo */}
-      <header className="sticky top-0 z-50 bg-black/30 backdrop-blur-lg shadow-md border-b border-white/10 transition-all duration-300">
-  <div className="container mx-auto px-6 py-3 flex items-center justify-between">
-    {/* Logo */}
-    <div className="flex items-center space-x-3">
-      <img 
-        src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
-        alt="Digital Mojo Logo" 
-        className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-md"
-      />
-      <span className="text-white font-bold text-xl sm:text-2xl font-spartan tracking-wide">Digital Mojo</span>
+  {/* Fixed Header with Logo */}
+  <header className="sticky top-0 z-50 bg-black/30 backdrop-blur-lg shadow-md border-b border-white/10 transition-all duration-300">
+    <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+      {/* Logo to far left with larger size */}
+      <div className="flex-1 flex items-center">
+        <img 
+          src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
+          alt="Digital Mojo Logo" 
+          className="w-28 h-28 object-contain drop-shadow-md mr-4"
+        />
+        <span className="text-white font-bold text-3xl sm:text-4xl font-spartan tracking-wide">Digital Mojo</span>
+      </div>
+
+      {/* Nav Links */}
+      <nav className="hidden md:flex items-center space-x-8 font-spartan flex-1 justify-center">
+        <a href="#calculator" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Calculator</a>
+        <a href="#results-section" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Results</a>
+        <a href="#clients" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Clients</a>
+      </nav>
+
+      {/* CTA Button */}
+      <div className="flex-1 flex justify-end">
+        <Button 
+          onClick={handleBookCall}
+          className="bg-gradient-to-r from-yellow-brand to-yellow-400 text-black font-bold py-3 px-8 rounded-full shadow-lg hover:scale-105 transition-transform duration-300 font-spartan text-lg"
+        >
+          Book Now
+        </Button>
+      </div>
     </div>
+  </header>
+</div>
 
-    {/* Nav Links */}
-    <nav className="hidden md:flex items-center space-x-8 font-spartan">
-      <a href="#calculator" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Calculator</a>
-      <a href="#results-section" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Results</a>
-      <a href="#clients" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Clients</a>
-    </nav>
-
-    {/* CTA Button */}
-    <Button 
-      onClick={handleBookCall}
-      className="bg-gradient-to-r from-yellow-brand to-yellow-400 text-black font-bold py-2 px-6 rounded-full shadow-lg hover:scale-105 transition-transform duration-300 font-spartan"
-    >
-      Book Now
-    </Button>
-  </div>
 </header>
 
 
