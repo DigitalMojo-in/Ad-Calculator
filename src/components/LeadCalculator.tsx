@@ -235,8 +235,7 @@ const LeadCalculator = () => {
 
   return (
     <div className="min-h-screen hero-gradient relative">
-  {/* Fixed Header with Logo */}
-  <header className="sticky top-0 z-50 bg-black/30 backdrop-blur-lg shadow-md border-b border-white/10 transition-all duration-300">
+      <header className="sticky top-0 z-50 bg-black/30 backdrop-blur-lg shadow-md border-b border-white/10 transition-all duration-300">
     <div className="container mx-auto px-6 py-3 flex items-center justify-between">
       {/* Logo to far left with larger size */}
       <div className="flex-1 flex items-center">
@@ -266,8 +265,6 @@ const LeadCalculator = () => {
       </div>
     </div>
   </header>
-</div>
-
 
 
       {/* Hero Section */}
