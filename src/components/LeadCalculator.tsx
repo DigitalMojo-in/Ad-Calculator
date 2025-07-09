@@ -774,7 +774,7 @@ const LeadCalculator = () => {
                     <div className="absolute inset-0 flex items-center justify-center bg-transparent">
                       <div className="flex items-center space-x-2 text-primary">
                         <Loader2 className="h-6 w-6 animate-spin" />
-                        <span className="font-semibold font-spartan">Processing your request...</span>
+                      
                       </div>
                     </div>
                   )}
