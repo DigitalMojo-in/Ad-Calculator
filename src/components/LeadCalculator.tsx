@@ -345,7 +345,7 @@ const LeadCalculator = () => {
       </header>
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-60 pb-8 sm:pt-32">
+      <div className="container mx-auto px-4 pt-32 pb-8 sm:pt-60">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
