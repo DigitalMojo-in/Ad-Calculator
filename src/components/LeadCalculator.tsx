@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X } from 'lucide-react';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
+import AnimatedBackground from './AnimatedBackground';
 import { useToast } from '@/hooks/use-toast';
 
 interface Metrics {
@@ -295,6 +296,9 @@ const LeadCalculator = () => {
 
   return (
     <div className="min-h-screen bg-yellow-400 relative">
+      {/* Animated Background */}
+      <AnimatedBackground />
+      
       {/* Enhanced Header - transparent at top, blurred on scroll */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
