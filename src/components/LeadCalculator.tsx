@@ -562,17 +562,7 @@ const LeadCalculator = () => {
                 )}
               </div>
 
-              {/* Schedule Call Button - Inside the form */}
-              <div className="mt-4">
-                <Button 
-                  onClick={() => handleCTAClick("scheduling a call")}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
-                >
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Schedule a Call
-                </Button>
-              </div>
-
+             
               <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
                 <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
               </div>
