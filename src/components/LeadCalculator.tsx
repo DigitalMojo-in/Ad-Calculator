@@ -297,60 +297,72 @@ const LeadCalculator = () => {
       : 'bg-transparent py-4'
   }`}
 >
-  <div className="container mx-auto px-6 flex items-center justify-between">
-    {/* Logo + Tagline - Responsive size */}
+  <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+    {/* Logo + Tagline */}
     <a href="#" className="flex items-center space-x-4 group">
       <img
         src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
         alt="Digital Mojo Logo"
         className={`transition-all duration-500 ease-in-out ${
-          isScrolled ? 'w-20 h-20' : 'w-32 h-32'
+          isScrolled ? 'w-12 h-12 sm:w-20 sm:h-20' : 'w-20 h-20 sm:w-40 sm:h-40'
         } object-contain drop-shadow-xl group-hover:scale-105`}
       />
-      <span className="hidden sm:inline text-yellow-brand/90 text-base sm:text-lg font-medium font-spartan tracking-widest">
+      <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
         Performance Marketing
       </span>
     </a>
 
-    {/* Navigation */}
-    <nav className="hidden md:flex items-center space-x-10 font-spartan">
+    {/* Desktop Navigation */}
+    <nav className="hidden md:flex items-center space-x-6 font-spartan">
       <a
         href="#calculator"
-        className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group"
+        className="text-white/90 hover:text-yellow-brand font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 relative group"
       >
         Calculator
         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
       </a>
       <a
         href="#results-section"
-        className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group"
+        className="text-white/90 hover:text-yellow-brand font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 relative group"
       >
         Results
         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
       </a>
       <a
         href="#clients"
-        className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group"
+        className="text-white/90 hover:text-yellow-brand font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 relative group"
       >
         Clients
         <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
       </a>
     </nav>
 
-    {/* CTA */}
-    <Button
-      onClick={handleBookCall}
-      className="bg-gradient-to-r from-yellow-brand via-yellow-400 to-yellow-brand text-black font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-yellow-brand/20 hover:scale-110 transition-all duration-300 font-spartan text-lg"
-    >
-      Book Now
-    </Button>
+    {/* CTA Button */}
+    <div className="hidden sm:block">
+      <Button
+        onClick={handleBookCall}
+        className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg"
+      >
+        Book Now
+      </Button>
+    </div>
+
+    {/* Mobile CTA Only */}
+    <div className="sm:hidden">
+      <Button
+        onClick={handleBookCall}
+        className="bg-yellow-brand text-black font-bold py-1 px-4 rounded-full text-sm"
+      >
+        Book
+      </Button>
+    </div>
   </div>
 </header>
 
 
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-40 pb-8">
+      <div className="container mx-auto px-4 pt-60 pb-8">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
