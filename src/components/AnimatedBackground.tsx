@@ -114,15 +114,26 @@ function FloatingShape({ position, shape, color, scale = 1 }: {
 
 // Main 3D Scene
 function Scene() {
-  const shapes = [
-    { position: [-4, 2, -2] as [number, number, number], shape: 'house' as const, color: '#FFA500' },
-    { position: [4, 1, -3] as [number, number, number], shape: 'chart' as const, color: '#32CD32' },
-    { position: [-3, -1, -1] as [number, number, number], shape: 'coin' as const, color: '#FFD700' },
-    { position: [3, 3, -4] as [number, number, number], shape: 'key' as const, color: '#87CEEB' },
-    { position: [-2, 3, -2] as [number, number, number], shape: 'building' as const, color: '#DDA0DD' },
-    { position: [2, -2, -3] as [number, number, number], shape: 'house' as const, color: '#FF6347' },
-    { position: [-4, -2, -4] as [number, number, number], shape: 'chart' as const, color: '#98FB98' },
-    { position: [4, -1, -2] as [number, number, number], shape: 'coin' as const, color: '#F0E68C' },
+  // Check if mobile viewport
+  const isMobile = window.innerWidth < 768;
+  
+  const shapes = isMobile ? [
+    // Fewer shapes for mobile performance
+    { position: [-2, 1, -2] as [number, number, number], shape: 'house' as const, color: '#FFA500', scale: 0.8 },
+    { position: [2, 0, -3] as [number, number, number], shape: 'chart' as const, color: '#32CD32', scale: 0.8 },
+    { position: [-1.5, -1, -1] as [number, number, number], shape: 'coin' as const, color: '#FFD700', scale: 0.8 },
+    { position: [1.5, 2, -4] as [number, number, number], shape: 'key' as const, color: '#87CEEB', scale: 0.8 },
+    { position: [0, -2, -3] as [number, number, number], shape: 'building' as const, color: '#DDA0DD', scale: 0.8 },
+  ] : [
+    // Full desktop experience
+    { position: [-4, 2, -2] as [number, number, number], shape: 'house' as const, color: '#FFA500', scale: 1 },
+    { position: [4, 1, -3] as [number, number, number], shape: 'chart' as const, color: '#32CD32', scale: 1 },
+    { position: [-3, -1, -1] as [number, number, number], shape: 'coin' as const, color: '#FFD700', scale: 1 },
+    { position: [3, 3, -4] as [number, number, number], shape: 'key' as const, color: '#87CEEB', scale: 1 },
+    { position: [-2, 3, -2] as [number, number, number], shape: 'building' as const, color: '#DDA0DD', scale: 1 },
+    { position: [2, -2, -3] as [number, number, number], shape: 'house' as const, color: '#FF6347', scale: 1 },
+    { position: [-4, -2, -4] as [number, number, number], shape: 'chart' as const, color: '#98FB98', scale: 1 },
+    { position: [4, -1, -2] as [number, number, number], shape: 'coin' as const, color: '#F0E68C', scale: 1 },
   ];
 
   return (
@@ -137,7 +148,7 @@ function Scene() {
           position={item.position}
           shape={item.shape}
           color={item.color}
-          scale={1}
+          scale={item.scale}
         />
       ))}
     </>
