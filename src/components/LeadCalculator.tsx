@@ -1055,14 +1055,14 @@ const LeadCalculator = () => {
       </div>
 
       {/* CTA Footer */}
-      <div className="bg-white text-accent-foreground py-8 text-center">
+      <div className="bg-white text-accent-black py-8 text-center">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
           <Button 
             onClick={handleBookCall}
             className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
           >
-            <Phone className="mr-2 h-5 w-5" />
+            <Phone className="hidden mr-2 h-5 w-5" />
             Book Now
           </Button>
         </div>
