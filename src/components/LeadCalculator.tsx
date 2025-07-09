@@ -332,13 +332,13 @@ const LeadCalculator = () => {
             </Button>
           </div>
 
-          {/* Mobile CTA Only */}
+          {/* Mobile CTA - Same Features as Desktop */}
           <div className="sm:hidden">
             <Button
               onClick={handleBookCall}
-              className="bg-yellow-brand text-black font-bold py-1 px-4 rounded-full text-sm"
+              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg animate-bounce"
             >
-              Book
+              Book Now
             </Button>
           </div>
         </div>
