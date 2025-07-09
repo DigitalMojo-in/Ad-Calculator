@@ -322,31 +322,6 @@ const LeadCalculator = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 font-spartan">
-            <a
-              href="#calculator"
-              className="text-white/90 hover:text-yellow-brand font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 relative group"
-            >
-              Calculator
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a
-              href="#results-section"
-              className="text-white/90 hover:text-yellow-brand font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 relative group"
-            >
-              Results
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a
-              href="#clients"
-              className="text-white/90 hover:text-yellow-brand font-semibold text-base sm:text-lg transition-all duration-300 hover:scale-105 relative group"
-            >
-              Clients
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </nav>
-
           {/* CTA Button */}
           <div className="hidden sm:block">
             <Button
