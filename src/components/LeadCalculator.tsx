@@ -314,7 +314,7 @@ const LeadCalculator = () => {
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-12 h-12 sm:w-20 sm:h-20' : 'w-20 h-20 sm:w-40 sm:h-40'
+                isScrolled ? 'w-20 h-20 sm:w-30 sm:h-30' : 'w-20 h-20 sm:w-40 sm:h-40'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
             <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
