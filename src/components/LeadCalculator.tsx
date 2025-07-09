@@ -294,7 +294,7 @@ const LeadCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen hero-gradient relative">
+    <div className="min-h-screen bg-yellow-400 relative">
       {/* Enhanced Header - transparent at top, blurred on scroll */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
@@ -384,257 +384,248 @@ const LeadCalculator = () => {
           </div>
         </div>
 
-        {/* Desktop Layout - Side by Side */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 max-w-7xl mx-auto mb-16">
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 max-w-7xl mx-auto mb-16">
           {/* Calculator Section */}
-          <div id="calculator" className="space-y-4">
-            <Card className="glass-card border-none shadow-xl rounded-2xl overflow-hidden">
-              <CardContent className="p-4">
-                 {/* Sell Units - Primary Input */}
-                 <div className="mb-4 text-center">
-                   <label className="text-foreground text-sm font-bold mb-2 block font-spartan">Units to Sell</label>
-                   <div className="flex items-center justify-center gap-2 max-w-sm mx-auto">
-                     <Button
-                       size="sm"
-                       variant="outline"
-                       className="h-8 w-8 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
-                       onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
-                     >
-                       <Minus className="h-3 w-3" />
-                     </Button>
-                     <Input
-                       type="number"
-                       value={sellUnits}
-                       onChange={handleSellUnitsChange}
-                       min="1"
-                       className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-2xl rounded-lg h-12 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                     />
-                     <Button
-                       size="sm"
-                       variant="outline"
-                       className="h-8 w-8 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
-                       onClick={() => setSellUnits(sellUnits + 1)}
-                     >
-                       <Plus className="h-3 w-3" />
-                     </Button>
-                   </div>
-                 </div>
-
-                 {/* Form Inputs */}
-                 <div className="space-y-2">
-                   {/* Property Type */}
-                   <div>
-                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Property Type</label>
-                     <Select value={propertyType} onValueChange={setPropertyType}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
-                         <SelectValue />
-                       </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="Residential">Residential</SelectItem>
-                        <SelectItem value="Commercial">Commercial</SelectItem>
-                        <SelectItem value="Senior Living">Senior Living</SelectItem>
-                        <SelectItem value="Plots">Plots</SelectItem>
-                        <SelectItem value="Shops cum Offices">Shops cum Offices</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                   {/* Launch Type */}
-                   <div>
-                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Launch Type</label>
-                     <Select value={launchType} onValueChange={setLaunchType}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="Teaser">Teaser</SelectItem>
-                        <SelectItem value="Launch">Launch</SelectItem>
-                        <SelectItem value="Sustenance">Sustenance</SelectItem>
-                        <SelectItem value="NRI">NRI</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                   {/* Location */}
-                   <div>
-                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Location</label>
-                     <Select value={location} onValueChange={setLocation}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
-                        <SelectItem value="Bangalore East">Bangalore East</SelectItem>
-                        <SelectItem value="Bangalore North">Bangalore North</SelectItem>
-                        <SelectItem value="Bangalore South">Bangalore South</SelectItem>
-                        <SelectItem value="Bangalore West">Bangalore West</SelectItem>
-                        <SelectItem value="Chennai Central">Chennai Central</SelectItem>
-                        <SelectItem value="Chennai East">Chennai East</SelectItem>
-                        <SelectItem value="Chennai North">Chennai North</SelectItem>
-                        <SelectItem value="Mumbai Central">Mumbai Central</SelectItem>
-                        <SelectItem value="Mumbai East">Mumbai East</SelectItem>
-                        <SelectItem value="Mumbai North">Mumbai North</SelectItem>
-                        <SelectItem value="Mumbai South">Mumbai South</SelectItem>
-                        <SelectItem value="Delhi NCR">Delhi NCR</SelectItem>
-                        <SelectItem value="Pune">Pune</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                   {/* Configuration */}
-                   <div>
-                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Configuration</label>
-                     <Select value={bhk} onValueChange={setBhk}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="1 RK">1 RK</SelectItem>
-                        <SelectItem value="1 BHK">1 BHK</SelectItem>
-                        <SelectItem value="2 BHK">2 BHK</SelectItem>
-                        <SelectItem value="3 BHK">3 BHK</SelectItem>
-                        <SelectItem value="4 BHK">4 BHK</SelectItem>
-                        <SelectItem value="5 BHK">5 BHK</SelectItem>
-                        <SelectItem value="Villa">Villa</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                   {/* Marketing Channels */}
-                   <div>
-                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Marketing Channels</label>
-                     <Select value={marketingChannels} onValueChange={setMarketingChannels}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="Google">Google Ads</SelectItem>
-                        <SelectItem value="Meta">Meta Ads</SelectItem>
-                        <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                   {/* Duration */}
-                   <div>
-                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Duration</label>
-                     <Select value={duration} onValueChange={setDuration}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="15 Days">15 Days</SelectItem>
-                        <SelectItem value="1 Month">1 Month</SelectItem>
-                        <SelectItem value="2 Months">2 Months</SelectItem>
-                        <SelectItem value="3 Months">3 Months</SelectItem>
-                        <SelectItem value="4 Months">4 Months</SelectItem>
-                        <SelectItem value="5 Months">5 Months</SelectItem>
-                        <SelectItem value="6 Months">6 Months</SelectItem>
-                        <SelectItem value="7 Months">7 Months</SelectItem>
-                        <SelectItem value="8 Months">8 Months</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+          <Card className="bg-white/95 backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden">
+            <CardHeader className="pb-4">
+              <h2 className="text-xl font-bold text-gray-900 text-center">Calculate Your Leads</h2>
+            </CardHeader>
+            <CardContent className="p-6">
+              {/* Sell Units - Primary Input */}
+              <div className="mb-6 text-center">
+                <label className="text-foreground text-lg font-bold mb-3 block font-spartan">Units to Sell</label>
+                <div className="flex items-center justify-center gap-3 max-w-sm mx-auto">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
+                    onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
+                  >
+                    <Minus className="h-4 w-4" />
+                  </Button>
+                  <Input
+                    type="number"
+                    value={sellUnits}
+                    onChange={handleSellUnitsChange}
+                    min="1"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-14 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                  />
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
+                    onClick={() => setSellUnits(sellUnits + 1)}
+                  >
+                    <Plus className="h-4 w-4" />
+                  </Button>
                 </div>
+              </div>
 
-                 {/* View Results Button with Loading Animation */}
-                 <div className="text-center mt-4 relative">
-                   <Button
-                     onClick={handleViewResults}
-                     className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                   >
-                     {viewResultsClicked ? "Results Requested" : "View Results"}
-                   </Button>
-                   
-                   {/* Loading Animation - Separate from Button */}
-                   {isViewResultsLoading && (
-                     <div className="absolute inset-0 flex items-center justify-center bg-transparent">
-                       <div className="flex items-center space-x-2 text-primary">
-                         <Loader2 className="h-6 w-6 animate-spin" />
-                         <span className="font-semibold font-spartan">Processing your request...</span>
-                       </div>
-                     </div>
-                   )}
-                 </div>
+              {/* Form Inputs */}
+              <div className="space-y-4">
+                {/* Property Type */}
+                <div>
+                  <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Property Type</label>
+                  <Select value={propertyType} onValueChange={setPropertyType}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                      <SelectValue />
+                    </SelectTrigger>
+                   <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                     <SelectItem value="Residential">Residential</SelectItem>
+                     <SelectItem value="Commercial">Commercial</SelectItem>
+                     <SelectItem value="Senior Living">Senior Living</SelectItem>
+                     <SelectItem value="Plots">Plots</SelectItem>
+                     <SelectItem value="Shops cum Offices">Shops cum Offices</SelectItem>
+                   </SelectContent>
+                 </Select>
+               </div>
 
-                <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
-                  <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                {/* Launch Type */}
+                <div>
+                  <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Launch Type</label>
+                  <Select value={launchType} onValueChange={setLaunchType}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                     <SelectValue />
+                   </SelectTrigger>
+                   <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                     <SelectItem value="Teaser">Teaser</SelectItem>
+                     <SelectItem value="Launch">Launch</SelectItem>
+                     <SelectItem value="Sustenance">Sustenance</SelectItem>
+                     <SelectItem value="NRI">NRI</SelectItem>
+                   </SelectContent>
+                 </Select>
+               </div>
+
+                {/* Location */}
+                <div>
+                  <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Location</label>
+                  <Select value={location} onValueChange={setLocation}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                     <SelectValue />
+                   </SelectTrigger>
+                   <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
+                     <SelectItem value="Bangalore East">Bangalore East</SelectItem>
+                     <SelectItem value="Bangalore North">Bangalore North</SelectItem>
+                     <SelectItem value="Bangalore South">Bangalore South</SelectItem>
+                     <SelectItem value="Bangalore West">Bangalore West</SelectItem>
+                     <SelectItem value="Chennai Central">Chennai Central</SelectItem>
+                     <SelectItem value="Chennai East">Chennai East</SelectItem>
+                     <SelectItem value="Chennai North">Chennai North</SelectItem>
+                     <SelectItem value="Mumbai Central">Mumbai Central</SelectItem>
+                     <SelectItem value="Mumbai East">Mumbai East</SelectItem>
+                     <SelectItem value="Mumbai North">Mumbai North</SelectItem>
+                     <SelectItem value="Mumbai South">Mumbai South</SelectItem>
+                     <SelectItem value="Delhi NCR">Delhi NCR</SelectItem>
+                     <SelectItem value="Pune">Pune</SelectItem>
+                   </SelectContent>
+                 </Select>
+               </div>
+
+                {/* Configuration */}
+                <div>
+                  <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Configuration</label>
+                  <Select value={bhk} onValueChange={setBhk}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                     <SelectValue />
+                   </SelectTrigger>
+                   <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                     <SelectItem value="1 RK">1 RK</SelectItem>
+                     <SelectItem value="1 BHK">1 BHK</SelectItem>
+                     <SelectItem value="2 BHK">2 BHK</SelectItem>
+                     <SelectItem value="3 BHK">3 BHK</SelectItem>
+                     <SelectItem value="4 BHK">4 BHK</SelectItem>
+                     <SelectItem value="5 BHK">5 BHK</SelectItem>
+                     <SelectItem value="Villa">Villa</SelectItem>
+                   </SelectContent>
+                 </Select>
+               </div>
+
+                {/* Marketing Channels */}
+                <div>
+                  <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Marketing Channels</label>
+                  <Select value={marketingChannels} onValueChange={setMarketingChannels}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                     <SelectValue />
+                   </SelectTrigger>
+                   <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                     <SelectItem value="Google">Google Ads</SelectItem>
+                     <SelectItem value="Meta">Meta Ads</SelectItem>
+                     <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
+                   </SelectContent>
+                 </Select>
+               </div>
+
+                {/* Duration */}
+                <div>
+                  <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Duration</label>
+                  <Select value={duration} onValueChange={setDuration}>
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                     <SelectValue />
+                   </SelectTrigger>
+                   <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                     <SelectItem value="15 Days">15 Days</SelectItem>
+                     <SelectItem value="1 Month">1 Month</SelectItem>
+                     <SelectItem value="2 Months">2 Months</SelectItem>
+                     <SelectItem value="3 Months">3 Months</SelectItem>
+                     <SelectItem value="4 Months">4 Months</SelectItem>
+                     <SelectItem value="5 Months">5 Months</SelectItem>
+                     <SelectItem value="6 Months">6 Months</SelectItem>
+                     <SelectItem value="7 Months">7 Months</SelectItem>
+                     <SelectItem value="8 Months">8 Months</SelectItem>
+                   </SelectContent>
+                 </Select>
+               </div>
+              </div>
+
+              {/* View Results Button with Loading Animation */}
+              <div className="text-center mt-6 relative">
+                <Button
+                  onClick={handleViewResults}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  {viewResultsClicked ? "Results Requested" : "View Results"}
+                </Button>
+                
+                {/* Loading Animation - Separate from Button */}
+                {isViewResultsLoading && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-transparent">
+                    <div className="flex items-center space-x-2 text-primary">
+                      <Loader2 className="h-6 w-6 animate-spin" />
+                      <span className="font-semibold font-spartan">Processing your request...</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Schedule Call Button */}
+              <div className="mt-4">
+                <Button 
+                  onClick={() => handleCTAClick("scheduling a call")}
+                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+                >
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Schedule a Call
+                </Button>
+              </div>
+
+              <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
+                <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
+              </div>
+            </CardContent>
+          </Card>
 
           {/* Desktop Results Section */}
-          <div id="results-section" className="relative">
+          <Card className="bg-white/95 backdrop-blur-lg border-none shadow-xl rounded-2xl relative">
             {!resultsUnlocked && (
-              <div className="absolute inset-0 z-20 blur-overlay rounded-3xl"></div>
+              <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
             )}
             
-            <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
-               {/* Metrics Cards */}
-               <div className="grid grid-cols-2 gap-3 mb-4">
-                 <Card className="glass-card border-none shadow-lg rounded-xl text-center card-hover">
-                   <CardContent className="p-3">
-                     <div className="text-2xl font-bold text-primary font-spartan">{metrics.leads.toLocaleString()}</div>
-                     <div className="text-xs text-muted-foreground font-medium font-spartan">Leads</div>
-                     <div className="text-sm font-semibold text-foreground mt-1 font-spartan">₹{metrics.cpl.toLocaleString()}</div>
-                     <div className="text-xs text-muted-foreground font-spartan">CPL</div>
-                   </CardContent>
-                 </Card>
+            <CardContent className="p-6">
+              <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
+                {/* Metrics Cards - Single Row */}
+                <div className="grid grid-cols-4 gap-2 mb-6">
+                  <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
+                    <div className="text-lg font-bold text-purple-600">{metrics.leads.toLocaleString()}</div>
+                    <div className="text-xs text-gray-600 font-medium">Leads</div>
+                    <div className="text-xs font-bold text-purple-700">₹{metrics.cpl.toLocaleString()}</div>
+                    <div className="text-xs text-gray-500">CPL</div>
+                  </Card>
+                  <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
+                    <div className="text-lg font-bold text-purple-600">{metrics.qualifiedLeads.toLocaleString()}</div>
+                    <div className="text-xs text-gray-600 font-medium">QL</div>
+                    <div className="text-xs font-bold text-purple-700">₹{metrics.cpql.toLocaleString()}</div>
+                    <div className="text-xs text-gray-500">CPQL</div>
+                  </Card>
+                  <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
+                    <div className="text-lg font-bold text-purple-600">{metrics.siteVisits.toLocaleString()}</div>
+                    <div className="text-xs text-gray-600 font-medium">SV</div>
+                    <div className="text-xs font-bold text-purple-700">₹{metrics.cpsv.toLocaleString()}</div>
+                    <div className="text-xs text-gray-500">CPSV</div>
+                  </Card>
+                  <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
+                    <div className="text-lg font-bold text-purple-600">{metrics.bookings.toLocaleString()}</div>
+                    <div className="text-xs text-gray-600 font-medium">Bookings</div>
+                    <div className="text-xs font-bold text-purple-700">₹{metrics.cpb.toLocaleString()}</div>
+                    <div className="text-xs text-gray-500">CPB</div>
+                  </Card>
+                </div>
 
-                 <Card className="glass-card border-none shadow-lg rounded-xl text-center card-hover">
-                   <CardContent className="p-3">
-                     <div className="text-2xl font-bold text-secondary font-spartan">{metrics.qualifiedLeads.toLocaleString()}</div>
-                     <div className="text-xs text-muted-foreground font-medium font-spartan">QL</div>
-                     <div className="text-sm font-semibold text-foreground mt-1 font-spartan">₹{metrics.cpql.toLocaleString()}</div>
-                     <div className="text-xs text-muted-foreground font-spartan">CPQL</div>
-                   </CardContent>
-                 </Card>
+                {/* Total Budget */}
+                <div className="text-center mb-6 p-4 bg-gray-50 rounded-lg">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Total Budget</h3>
+                  <p className="text-2xl font-bold text-blue-600">₹{metrics.totalBudget.toLocaleString()}</p>
+                </div>
 
-                 <Card className="glass-card border-none shadow-lg rounded-xl text-center card-hover">
-                   <CardContent className="p-3">
-                     <div className="text-2xl font-bold text-accent font-spartan">{metrics.siteVisits.toLocaleString()}</div>
-                     <div className="text-xs text-muted-foreground font-medium font-spartan">SV</div>
-                     <div className="text-sm font-semibold text-foreground mt-1 font-spartan">₹{metrics.cpsv.toLocaleString()}</div>
-                     <div className="text-xs text-muted-foreground font-spartan">CPSV</div>
-                   </CardContent>
-                 </Card>
-
-                 <Card className="glass-card border-none shadow-lg rounded-xl text-center card-hover">
-                   <CardContent className="p-3">
-                     <div className="text-2xl font-bold text-purple-brand font-spartan">{metrics.bookings}</div>
-                     <div className="text-xs text-muted-foreground font-medium font-spartan">Bookings</div>
-                     <div className="text-sm font-semibold text-foreground mt-1 font-spartan">₹{(metrics.cpb / 100000).toFixed(2)}L</div>
-                     <div className="text-xs text-muted-foreground font-spartan">CPB</div>
-                   </CardContent>
-                 </Card>
-               </div>
-
-               {/* Total Budget */}
-               <Card className="bg-gradient-to-r from-primary to-secondary text-white border-none shadow-2xl rounded-xl card-hover mb-4">
-                 <CardContent className="p-4">
-                   <div className="text-center">
-                     <div className="text-2xl font-bold mb-1 font-spartan">
-                       ₹{metrics.totalBudget.toLocaleString('en-IN')}
-                     </div>
-                     <div className="text-xs opacity-90 font-spartan">
-                       Total Budget Required
-                     </div>
-                   </div>
-                 </CardContent>
-               </Card>
-
-               {/* CTA Buttons */}
-               <div className="flex flex-col gap-2 justify-center">
-                 <Button 
-                   onClick={() => handleCTAClick("scheduling a call")}
-                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
-                 >
-                   <Calendar className="mr-2 h-4 w-4" />
-                   Schedule a Call
-                 </Button>
-               </div>
-            </div>
-          </div>
+                {/* Charts */}
+                <EnhancedCharts 
+                  metrics={metrics} 
+                  chartData={chartData} 
+                  duration={duration}
+                />
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Charts Section for Desktop */}
