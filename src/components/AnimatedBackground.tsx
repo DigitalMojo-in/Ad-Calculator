@@ -1,52 +1,7 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Text3D, Center, Float } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import * as THREE from 'three';
-
-// Individual floating icon component
-function FloatingIcon({ position, icon, color, scale = 1 }: { 
-  position: [number, number, number], 
-  icon: string, 
-  color: string,
-  scale?: number 
-}) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.1;
-      meshRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.3) * 0.1;
-    }
-  });
-
-  return (
-    <Float
-      speed={1.5}
-      rotationIntensity={0.2}
-      floatIntensity={0.5}
-      floatingRange={[0, 0.5]}
-    >
-      <mesh ref={meshRef} position={position} scale={scale}>
-        <Center>
-          <Text3D
-            font="/fonts/helvetiker_regular.typeface.json"
-            size={0.3}
-            height={0.05}
-            curveSegments={12}
-            bevelEnabled
-            bevelThickness={0.02}
-            bevelSize={0.01}
-            bevelOffset={0}
-            bevelSegments={5}
-          >
-            {icon}
-            <meshStandardMaterial color={color} />
-          </Text3D>
-        </Center>
-      </mesh>
-    </Float>
-  );
-}
 
 // Geometric shapes for marketing/real estate
 function FloatingShape({ position, shape, color, scale = 1 }: {
@@ -149,15 +104,17 @@ function FloatingShape({ position, shape, color, scale = 1 }: {
   };
 
   return (
-    <group ref={meshRef} position={position} scale={scale}>
-      {renderShape()}
-    </group>
+    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
+      <group ref={meshRef} position={position} scale={scale}>
+        {renderShape()}
+      </group>
+    </Float>
   );
 }
 
 // Main 3D Scene
 function Scene() {
-  const icons = useMemo(() => [
+  const shapes = [
     { position: [-4, 2, -2] as [number, number, number], shape: 'house' as const, color: '#FFA500' },
     { position: [4, 1, -3] as [number, number, number], shape: 'chart' as const, color: '#32CD32' },
     { position: [-3, -1, -1] as [number, number, number], shape: 'coin' as const, color: '#FFD700' },
@@ -166,21 +123,21 @@ function Scene() {
     { position: [2, -2, -3] as [number, number, number], shape: 'house' as const, color: '#FF6347' },
     { position: [-4, -2, -4] as [number, number, number], shape: 'chart' as const, color: '#98FB98' },
     { position: [4, -1, -2] as [number, number, number], shape: 'coin' as const, color: '#F0E68C' },
-  ], []);
+  ];
 
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={0.8} />
-      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#ffd700" />
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ffd700" />
       
-      {icons.map((item, index) => (
+      {shapes.map((item, index) => (
         <FloatingShape
           key={index}
           position={item.position}
           shape={item.shape}
           color={item.color}
-          scale={0.8}
+          scale={1}
         />
       ))}
     </>
@@ -190,7 +147,7 @@ function Scene() {
 // Main Component
 const AnimatedBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 -z-10 opacity-20">
+    <div className="fixed inset-0 z-0 opacity-60 pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 60 }}
         style={{ background: 'transparent' }}
