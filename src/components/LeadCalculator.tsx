@@ -237,7 +237,7 @@ const LeadCalculator = () => {
   };
 
   const handleViewResults = async () => {
-    if (!viewResultsClicked) {
+    if (!resultsUnlocked) {
       setViewResultsClicked(true);
       setIsViewResultsLoading(true);
       
@@ -250,7 +250,7 @@ const LeadCalculator = () => {
   };
 
   const handleBookCall = () => {
-    setShowBookModal(true);
+    setShowForm(true);
   };
 
   const handleBookModalSubmit = async () => {
@@ -523,7 +523,7 @@ const LeadCalculator = () => {
                   onClick={handleViewResults}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  {viewResultsClicked ? "Results Requested" : "View Results"}
+                  {resultsUnlocked ? "Results Unlocked" : "View Results"}
                 </Button>
                 
                 {/* Loading Animation - Separate from Button */}
@@ -600,7 +600,7 @@ const LeadCalculator = () => {
         {/* Schedule Call Button - Outside the boxes, center aligned - Desktop only */}
         <div className="hidden lg:block text-center mt-6">
           <Button 
-            onClick={() => handleCTAClick("scheduling a call")}
+            onClick={handleBookCall}
             className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-16 rounded-lg text-2xl transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
           >
             <Calendar className="mr-2 h-6 w-6" />
@@ -766,7 +766,7 @@ const LeadCalculator = () => {
                     onClick={handleViewResults}
                     className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    {viewResultsClicked ? "Results Requested" : "View Results"}
+                    {resultsUnlocked ? "Results Unlocked" : "View Results"}
                   </Button>
                   
                   {/* Loading Animation - Separate from Button */}
@@ -854,7 +854,7 @@ const LeadCalculator = () => {
               {/* CTA Buttons */}
               <div className="flex flex-col gap-4 justify-center mb-8">
                 <Button 
-                  onClick={() => handleCTAClick("scheduling a call")}
+                  onClick={handleBookCall}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
                 >
                   <Calendar className="mr-2 h-5 w-5" />
