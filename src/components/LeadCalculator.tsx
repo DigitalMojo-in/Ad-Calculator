@@ -385,48 +385,48 @@ const LeadCalculator = () => {
         </div>
 
         {/* Desktop Layout - Side by Side */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 max-w-6xl mx-auto mb-16">
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 max-w-7xl mx-auto mb-16">
           {/* Calculator Section */}
-          <div id="calculator">
+          <div id="calculator" className="space-y-4">
             <Card className="glass-card border-none shadow-xl rounded-2xl overflow-hidden">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                  {/* Sell Units - Primary Input */}
-                 <div className="mb-6 text-center">
-                   <label className="text-foreground text-base font-bold mb-3 block font-spartan">Units to Sell</label>
-                   <div className="flex items-center justify-center gap-3 max-w-md mx-auto">
+                 <div className="mb-4 text-center">
+                   <label className="text-foreground text-sm font-bold mb-2 block font-spartan">Units to Sell</label>
+                   <div className="flex items-center justify-center gap-2 max-w-sm mx-auto">
                      <Button
                        size="sm"
                        variant="outline"
-                       className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
+                       className="h-8 w-8 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
                        onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
                      >
-                       <Minus className="h-4 w-4" />
+                       <Minus className="h-3 w-3" />
                      </Button>
                      <Input
                        type="number"
                        value={sellUnits}
                        onChange={handleSellUnitsChange}
                        min="1"
-                       className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-16 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                       className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-2xl rounded-lg h-12 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                      />
                      <Button
                        size="sm"
                        variant="outline"
-                       className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
+                       className="h-8 w-8 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
                        onClick={() => setSellUnits(sellUnits + 1)}
                      >
-                       <Plus className="h-4 w-4" />
+                       <Plus className="h-3 w-3" />
                      </Button>
                    </div>
                  </div>
 
                  {/* Form Inputs */}
-                 <div className="space-y-3">
+                 <div className="space-y-2">
                    {/* Property Type */}
                    <div>
-                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Property Type</label>
+                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Property Type</label>
                      <Select value={propertyType} onValueChange={setPropertyType}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
                          <SelectValue />
                        </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -441,9 +441,9 @@ const LeadCalculator = () => {
 
                    {/* Launch Type */}
                    <div>
-                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Launch Type</label>
+                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Launch Type</label>
                      <Select value={launchType} onValueChange={setLaunchType}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -457,9 +457,9 @@ const LeadCalculator = () => {
 
                    {/* Location */}
                    <div>
-                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Location</label>
+                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Location</label>
                      <Select value={location} onValueChange={setLocation}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
@@ -482,9 +482,9 @@ const LeadCalculator = () => {
 
                    {/* Configuration */}
                    <div>
-                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Configuration</label>
+                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Configuration</label>
                      <Select value={bhk} onValueChange={setBhk}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -501,9 +501,9 @@ const LeadCalculator = () => {
 
                    {/* Marketing Channels */}
                    <div>
-                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Marketing Channels</label>
+                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Marketing Channels</label>
                      <Select value={marketingChannels} onValueChange={setMarketingChannels}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -516,9 +516,9 @@ const LeadCalculator = () => {
 
                    {/* Duration */}
                    <div>
-                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Duration</label>
+                     <label className="text-foreground text-xs font-semibold mb-1 block font-spartan">Duration</label>
                      <Select value={duration} onValueChange={setDuration}>
-                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-10 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -536,25 +536,25 @@ const LeadCalculator = () => {
                   </div>
                 </div>
 
-                {/* View Results Button with Loading Animation */}
-                <div className="text-center mt-8 relative">
-                  <Button
-                    onClick={handleViewResults}
-                    className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-                  >
-                    {viewResultsClicked ? "Results Requested" : "View Results"}
-                  </Button>
-                  
-                  {/* Loading Animation - Separate from Button */}
-                  {isViewResultsLoading && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-transparent">
-                      <div className="flex items-center space-x-2 text-primary">
-                        <Loader2 className="h-6 w-6 animate-spin" />
-                        <span className="font-semibold font-spartan">Processing your request...</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
+                 {/* View Results Button with Loading Animation */}
+                 <div className="text-center mt-4 relative">
+                   <Button
+                     onClick={handleViewResults}
+                     className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                   >
+                     {viewResultsClicked ? "Results Requested" : "View Results"}
+                   </Button>
+                   
+                   {/* Loading Animation - Separate from Button */}
+                   {isViewResultsLoading && (
+                     <div className="absolute inset-0 flex items-center justify-center bg-transparent">
+                       <div className="flex items-center space-x-2 text-primary">
+                         <Loader2 className="h-6 w-6 animate-spin" />
+                         <span className="font-semibold font-spartan">Processing your request...</span>
+                       </div>
+                     </div>
+                   )}
+                 </div>
 
                 <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
                   <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
@@ -570,69 +570,69 @@ const LeadCalculator = () => {
             )}
             
             <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
-              {/* Metrics Cards */}
-              <div className="grid grid-cols-2 gap-4 mb-4">
-                <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
-                  <CardContent className="p-4">
-                    <div className="text-4xl font-bold text-primary font-spartan">{metrics.leads.toLocaleString()}</div>
-                    <div className="text-sm text-muted-foreground font-medium font-spartan">Leads</div>
-                    <div className="text-lg font-semibold text-foreground mt-2 font-spartan">₹{metrics.cpl.toLocaleString()}</div>
-                    <div className="text-xs text-muted-foreground font-spartan">CPL</div>
-                  </CardContent>
-                </Card>
+               {/* Metrics Cards */}
+               <div className="grid grid-cols-2 gap-3 mb-4">
+                 <Card className="glass-card border-none shadow-lg rounded-xl text-center card-hover">
+                   <CardContent className="p-3">
+                     <div className="text-2xl font-bold text-primary font-spartan">{metrics.leads.toLocaleString()}</div>
+                     <div className="text-xs text-muted-foreground font-medium font-spartan">Leads</div>
+                     <div className="text-sm font-semibold text-foreground mt-1 font-spartan">₹{metrics.cpl.toLocaleString()}</div>
+                     <div className="text-xs text-muted-foreground font-spartan">CPL</div>
+                   </CardContent>
+                 </Card>
 
-                <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
-                  <CardContent className="p-4">
-                    <div className="text-4xl font-bold text-secondary font-spartan">{metrics.qualifiedLeads.toLocaleString()}</div>
-                    <div className="text-sm text-muted-foreground font-medium font-spartan">QL</div>
-                    <div className="text-lg font-semibold text-foreground mt-2 font-spartan">₹{metrics.cpql.toLocaleString()}</div>
-                    <div className="text-xs text-muted-foreground font-spartan">CPQL</div>
-                  </CardContent>
-                </Card>
+                 <Card className="glass-card border-none shadow-lg rounded-xl text-center card-hover">
+                   <CardContent className="p-3">
+                     <div className="text-2xl font-bold text-secondary font-spartan">{metrics.qualifiedLeads.toLocaleString()}</div>
+                     <div className="text-xs text-muted-foreground font-medium font-spartan">QL</div>
+                     <div className="text-sm font-semibold text-foreground mt-1 font-spartan">₹{metrics.cpql.toLocaleString()}</div>
+                     <div className="text-xs text-muted-foreground font-spartan">CPQL</div>
+                   </CardContent>
+                 </Card>
 
-                <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
-                  <CardContent className="p-4">
-                    <div className="text-4xl font-bold text-accent font-spartan">{metrics.siteVisits.toLocaleString()}</div>
-                    <div className="text-sm text-muted-foreground font-medium font-spartan">SV</div>
-                    <div className="text-lg font-semibold text-foreground mt-2 font-spartan">₹{metrics.cpsv.toLocaleString()}</div>
-                    <div className="text-xs text-muted-foreground font-spartan">CPSV</div>
-                  </CardContent>
-                </Card>
+                 <Card className="glass-card border-none shadow-lg rounded-xl text-center card-hover">
+                   <CardContent className="p-3">
+                     <div className="text-2xl font-bold text-accent font-spartan">{metrics.siteVisits.toLocaleString()}</div>
+                     <div className="text-xs text-muted-foreground font-medium font-spartan">SV</div>
+                     <div className="text-sm font-semibold text-foreground mt-1 font-spartan">₹{metrics.cpsv.toLocaleString()}</div>
+                     <div className="text-xs text-muted-foreground font-spartan">CPSV</div>
+                   </CardContent>
+                 </Card>
 
-                <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
-                  <CardContent className="p-4">
-                    <div className="text-4xl font-bold text-purple-brand font-spartan">{metrics.bookings}</div>
-                    <div className="text-sm text-muted-foreground font-medium font-spartan">Bookings</div>
-                    <div className="text-lg font-semibold text-foreground mt-2 font-spartan">₹{(metrics.cpb / 100000).toFixed(2)}L</div>
-                    <div className="text-xs text-muted-foreground font-spartan">CPB</div>
-                  </CardContent>
-                </Card>
-              </div>
+                 <Card className="glass-card border-none shadow-lg rounded-xl text-center card-hover">
+                   <CardContent className="p-3">
+                     <div className="text-2xl font-bold text-purple-brand font-spartan">{metrics.bookings}</div>
+                     <div className="text-xs text-muted-foreground font-medium font-spartan">Bookings</div>
+                     <div className="text-sm font-semibold text-foreground mt-1 font-spartan">₹{(metrics.cpb / 100000).toFixed(2)}L</div>
+                     <div className="text-xs text-muted-foreground font-spartan">CPB</div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-              {/* Total Budget */}
-              <Card className="bg-gradient-to-r from-primary to-secondary text-white border-none shadow-2xl rounded-2xl card-hover mb-8">
-                <CardContent className="p-6">
-                  <div className="text-center">
-                    <div className="text-3xl md:text-4xl font-bold mb-2 font-spartan">
-                      ₹{metrics.totalBudget.toLocaleString('en-IN')}
-                    </div>
-                    <div className="text-sm opacity-90 font-spartan">
-                      Total Budget Required
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+               {/* Total Budget */}
+               <Card className="bg-gradient-to-r from-primary to-secondary text-white border-none shadow-2xl rounded-xl card-hover mb-4">
+                 <CardContent className="p-4">
+                   <div className="text-center">
+                     <div className="text-2xl font-bold mb-1 font-spartan">
+                       ₹{metrics.totalBudget.toLocaleString('en-IN')}
+                     </div>
+                     <div className="text-xs opacity-90 font-spartan">
+                       Total Budget Required
+                     </div>
+                   </div>
+                 </CardContent>
+               </Card>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col gap-3 justify-center">
-                <Button 
-                  onClick={() => handleCTAClick("scheduling a call")}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-lg text-sm transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
-                >
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Schedule a Call
-                </Button>
-              </div>
+               {/* CTA Buttons */}
+               <div className="flex flex-col gap-2 justify-center">
+                 <Button 
+                   onClick={() => handleCTAClick("scheduling a call")}
+                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg text-sm transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+                 >
+                   <Calendar className="mr-2 h-4 w-4" />
+                   Schedule a Call
+                 </Button>
+               </div>
             </div>
           </div>
         </div>
@@ -802,7 +802,7 @@ const LeadCalculator = () => {
                 <div className="text-center mt-8 relative">
                   <Button
                     onClick={handleViewResults}
-                    className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     {viewResultsClicked ? "Results Requested" : "View Results"}
                   </Button>
@@ -893,7 +893,7 @@ const LeadCalculator = () => {
               <div className="flex flex-col gap-4 justify-center mb-8">
                 <Button 
                   onClick={() => handleCTAClick("scheduling a call")}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
                 >
                   <Calendar className="mr-2 h-5 w-5" />
                   Schedule a Call
@@ -958,7 +958,7 @@ const LeadCalculator = () => {
                   <Button
                     onClick={handleUnlockResults}
                     disabled={!formData.name || !formData.mobile || !formData.email || !formData.organization || isLoading}
-                    className="w-full bg-yellow-brand hover:bg-yellow-brand/90 text-black font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
                   >
                     {isLoading ? (
                       <>
@@ -1021,7 +1021,7 @@ const LeadCalculator = () => {
                   <Button
                     onClick={handleBookModalSubmit}
                     disabled={!formData.name || !formData.mobile || !formData.email || !formData.organization || isLoading}
-                    className="w-full bg-yellow-brand hover:bg-yellow-brand/90 text-black font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
                   >
                     {isLoading ? (
                       <>
@@ -1046,26 +1046,34 @@ const LeadCalculator = () => {
           {/* Desktop Grid Layout */}
           <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
             {Array.from({ length: 37 }, (_, i) => (
-              <img
+              <div 
                 key={i}
-                src={`./client-logo/logo-${i + 1}.png`}
-                alt={`Client Logo ${i + 1}`}
-                className="h-16 w-auto object-contain"
-              />
+                className="group p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 h-20 w-28 flex items-center justify-center filter grayscale hover:grayscale-0"
+              >
+                <img
+                  src={`./client-logo/logo-${i + 1}.png`}
+                  alt={`Client Logo ${i + 1}`}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
             ))}
           </div>
 
           {/* Mobile Infinite Scroll */}
           <div className="md:hidden overflow-hidden whitespace-nowrap px-2 py-4">
-            <div className="inline-flex space-x-6 animate-scroll-slow">
+            <div className="inline-flex space-x-4 animate-scroll-slow">
               {[...Array(2)].flatMap(() => (
                 Array.from({ length: 37 }, (_, i) => (
-                  <img
+                  <div 
                     key={`loop-${i}-${Math.random()}`}
-                    src={`./client-logo/logo-${i + 1}.png`}
-                    alt={`Client Logo ${i + 1}`}
-                    className="h-12 w-auto object-contain"
-                  />
+                    className="p-3 bg-white rounded-lg shadow-md h-16 w-20 flex items-center justify-center filter grayscale"
+                  >
+                    <img
+                      src={`./client-logo/logo-${i + 1}.png`}
+                      alt={`Client Logo ${i + 1}`}
+                      className="h-8 w-auto object-contain"
+                    />
+                  </div>
                 ))
               ))}
             </div>
@@ -1076,7 +1084,7 @@ const LeadCalculator = () => {
         <div className="md:hidden sticky-cta">
           <Button 
             onClick={handleBookCall}
-            className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
+            className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
           >
             <Phone className="mr-2 h-4 w-4" />
             Ready to Grow? Let's Talk 🚀
@@ -1090,7 +1098,7 @@ const LeadCalculator = () => {
           <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
           <Button 
             onClick={handleBookCall}
-            className="bg-white text-accent hover:bg-white/90 font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
           >
             <Phone className="mr-2 h-5 w-5" />
             Book Now
