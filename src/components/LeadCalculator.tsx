@@ -385,50 +385,50 @@ const LeadCalculator = () => {
         </div>
 
         {/* Desktop Layout - Side by Side */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 max-w-7xl mx-auto mb-16">
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 max-w-6xl mx-auto mb-16">
           {/* Calculator Section */}
           <div id="calculator">
-            <Card className="glass-card border-none shadow-2xl rounded-3xl overflow-hidden">
-              <CardContent className="p-8">
-                {/* Sell Units - Primary Input */}
-                <div className="mb-8 text-center">
-                  <label className="text-foreground text-lg font-bold mb-4 block font-spartan">Units to Sell</label>
-                  <div className="flex items-center justify-center gap-4 max-w-md mx-auto">
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="h-12 w-12 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-                      onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
-                    >
-                      <Minus className="h-5 w-5" />
-                    </Button>
-                    <Input
-                      type="number"
-                      value={sellUnits}
-                      onChange={handleSellUnitsChange}
-                      min="1"
-                      className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-4xl rounded-xl h-20 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                    />
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="h-12 w-12 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
-                      onClick={() => setSellUnits(sellUnits + 1)}
-                    >
-                      <Plus className="h-5 w-5" />
-                    </Button>
-                  </div>
-                </div>
+            <Card className="glass-card border-none shadow-xl rounded-2xl overflow-hidden">
+              <CardContent className="p-6">
+                 {/* Sell Units - Primary Input */}
+                 <div className="mb-6 text-center">
+                   <label className="text-foreground text-base font-bold mb-3 block font-spartan">Units to Sell</label>
+                   <div className="flex items-center justify-center gap-3 max-w-md mx-auto">
+                     <Button
+                       size="sm"
+                       variant="outline"
+                       className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
+                       onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
+                     >
+                       <Minus className="h-4 w-4" />
+                     </Button>
+                     <Input
+                       type="number"
+                       value={sellUnits}
+                       onChange={handleSellUnitsChange}
+                       min="1"
+                       className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-16 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                     />
+                     <Button
+                       size="sm"
+                       variant="outline"
+                       className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
+                       onClick={() => setSellUnits(sellUnits + 1)}
+                     >
+                       <Plus className="h-4 w-4" />
+                     </Button>
+                   </div>
+                 </div>
 
-                {/* Form Inputs */}
-                <div className="space-y-4">
-                  {/* Property Type */}
-                  <div>
-                    <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Property Type</label>
-                    <Select value={propertyType} onValueChange={setPropertyType}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
-                        <SelectValue />
-                      </SelectTrigger>
+                 {/* Form Inputs */}
+                 <div className="space-y-3">
+                   {/* Property Type */}
+                   <div>
+                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Property Type</label>
+                     <Select value={propertyType} onValueChange={setPropertyType}>
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
+                         <SelectValue />
+                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                         <SelectItem value="Residential">Residential</SelectItem>
                         <SelectItem value="Commercial">Commercial</SelectItem>
@@ -439,11 +439,11 @@ const LeadCalculator = () => {
                     </Select>
                   </div>
 
-                  {/* Launch Type */}
-                  <div>
-                    <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Launch Type</label>
-                    <Select value={launchType} onValueChange={setLaunchType}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                   {/* Launch Type */}
+                   <div>
+                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Launch Type</label>
+                     <Select value={launchType} onValueChange={setLaunchType}>
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -455,11 +455,11 @@ const LeadCalculator = () => {
                     </Select>
                   </div>
 
-                  {/* Location */}
-                  <div>
-                    <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Location</label>
-                    <Select value={location} onValueChange={setLocation}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                   {/* Location */}
+                   <div>
+                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Location</label>
+                     <Select value={location} onValueChange={setLocation}>
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
@@ -480,11 +480,11 @@ const LeadCalculator = () => {
                     </Select>
                   </div>
 
-                  {/* Configuration */}
-                  <div>
-                    <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Configuration</label>
-                    <Select value={bhk} onValueChange={setBhk}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                   {/* Configuration */}
+                   <div>
+                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Configuration</label>
+                     <Select value={bhk} onValueChange={setBhk}>
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -499,11 +499,11 @@ const LeadCalculator = () => {
                     </Select>
                   </div>
 
-                  {/* Marketing Channels */}
-                  <div>
-                    <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Marketing Channels</label>
-                    <Select value={marketingChannels} onValueChange={setMarketingChannels}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                   {/* Marketing Channels */}
+                   <div>
+                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Marketing Channels</label>
+                     <Select value={marketingChannels} onValueChange={setMarketingChannels}>
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -514,11 +514,11 @@ const LeadCalculator = () => {
                     </Select>
                   </div>
 
-                  {/* Duration */}
-                  <div>
-                    <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Duration</label>
-                    <Select value={duration} onValueChange={setDuration}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                   {/* Duration */}
+                   <div>
+                     <label className="text-foreground text-xs font-semibold mb-2 block font-spartan">Duration</label>
+                     <Select value={duration} onValueChange={setDuration}>
+                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-sm transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -624,17 +624,26 @@ const LeadCalculator = () => {
               </Card>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col gap-4 justify-center">
+              <div className="flex flex-col gap-3 justify-center">
                 <Button 
                   onClick={() => handleCTAClick("scheduling a call")}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3 px-6 rounded-lg text-sm transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
                 >
-                  <Calendar className="mr-2 h-5 w-5" />
+                  <Calendar className="mr-2 h-4 w-4" />
                   Schedule a Call
                 </Button>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Charts Section for Desktop */}
+        <div className="hidden lg:block max-w-6xl mx-auto mb-16">
+          {resultsUnlocked && (
+            <div className="fade-in">
+              <EnhancedCharts chartData={chartData} metrics={metrics} duration={duration} />
+            </div>
+          )}
         </div>
 
         {/* Mobile Layout */}
