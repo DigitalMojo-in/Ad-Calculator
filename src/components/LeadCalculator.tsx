@@ -290,55 +290,67 @@ const LeadCalculator = () => {
   return (
     <div className="min-h-screen hero-gradient relative">
       {/* Enhanced Header - transparent at top, blurred on scroll */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-        isScrolled 
-          ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20' 
-          : 'bg-transparent'
-      }`}>
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          {/* Enhanced Logo Section - enlarged and left-aligned */}
-          <div className="flex items-center space-x-4">
-            <img 
-              src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
-              alt="Digital Mojo Logo" 
-              className="w-14 h-14 sm:w-16 sm:h-16 object-contain drop-shadow-2xl transition-transform duration-300 hover:scale-110"
-            />
-            <div className="flex flex-col">
-              <span className="text-white font-black text-2xl sm:text-3xl font-spartan tracking-tight leading-none">Digital Mojo</span>
-              <span className="text-yellow-brand/90 text-xs sm:text-sm font-medium font-spartan tracking-wider">Performance Marketing</span>
-            </div>
-          </div>
+      <header
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+    isScrolled
+      ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
+      : 'bg-transparent py-4'
+  }`}
+>
+  <div className="container mx-auto px-6 flex items-center justify-between">
+    {/* Logo + Tagline - Responsive size */}
+    <a href="#" className="flex items-center space-x-4 group">
+      <img
+        src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
+        alt="Digital Mojo Logo"
+        className={`transition-all duration-500 ease-in-out ${
+          isScrolled ? 'w-20 h-20' : 'w-32 h-32'
+        } object-contain drop-shadow-xl group-hover:scale-105`}
+      />
+      <span className="hidden sm:inline text-yellow-brand/90 text-base sm:text-lg font-medium font-spartan tracking-widest">
+        Performance Marketing
+      </span>
+    </a>
 
-          {/* Enhanced Nav Links */}
-          <nav className="hidden md:flex items-center space-x-10 font-spartan">
-            <a href="#calculator" className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group">
-              Calculator
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#results-section" className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group">
-              Results
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#clients" className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group">
-              Clients
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </nav>
+    {/* Navigation */}
+    <nav className="hidden md:flex items-center space-x-10 font-spartan">
+      <a
+        href="#calculator"
+        className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group"
+      >
+        Calculator
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a
+        href="#results-section"
+        className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group"
+      >
+        Results
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a
+        href="#clients"
+        className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group"
+      >
+        Clients
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </nav>
 
-          {/* Enhanced CTA Button */}
-          <Button 
-            onClick={handleBookCall}
-            className="bg-gradient-to-r from-yellow-brand via-yellow-400 to-yellow-brand text-black font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-yellow-brand/20 hover:scale-110 transition-all duration-300 font-spartan text-lg relative overflow-hidden group"
-          >
-            <span className="relative z-10">Book Now</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </Button>
-        </div>
-      </header>
+    {/* CTA */}
+    <Button
+      onClick={handleBookCall}
+      className="bg-gradient-to-r from-yellow-brand via-yellow-400 to-yellow-brand text-black font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-yellow-brand/20 hover:scale-110 transition-all duration-300 font-spartan text-lg"
+    >
+      Book Now
+    </Button>
+  </div>
+</header>
+
 
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-24 pb-8">
+      <div className="container mx-auto px-4 pt-40 pb-8">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
@@ -763,24 +775,42 @@ const LeadCalculator = () => {
             </Card>
           </div>
         )}
+        <div id="clients" className="w-full px-4 md:px-10 py-12">
+  <div className="text-center mb-10">
+    <h2 className="text-3xl md:text-5xl font-bold text-white font-spartan">
+      Trusted by Performance-Driven Brands
+    </h2>
+  </div>
 
-        {/* Trust Section */}
-        <div id="clients" className="mt-16 mb-12">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-spartan">
-              Trusted by Performance-Driven Brands
-            </h2>
-          </div>
-          <div className="flex justify-center">
-            <img 
-              src="/lovable-uploads/341259b0-c651-460f-a46a-1c5a0715b567.png"
-              alt="Trusted client logos including Jeevvashakti Realty, Om Sree, Saket Pranamam, Reliance Builders, Indraprastha, Kosaraju Realty and many more"
-              className="max-w-full h-auto opacity-90 hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-            />
-          </div>
-        </div>
+  {/* Desktop Grid Layout */}
+  <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
+    {Array.from({ length: 37 }, (_, i) => (
+      <img
+        key={i}
+        src={`./client-logo/logo-${i + 1}.png`}
+        alt={`Client Logo ${i + 1}`}
+        className="h-16 w-auto object-contain"
+      />
+    ))}
+  </div>
 
-        {/* Mobile Sticky CTA */}
+  {/* Mobile Infinite Scroll */}
+  <div className="md:hidden overflow-hidden whitespace-nowrap px-2 py-4">
+    <div className="inline-flex space-x-6 animate-scroll-slow">
+      {[...Array(2)].flatMap(() => (
+        Array.from({ length: 37 }, (_, i) => (
+          <img
+            key={`loop-${i}-${Math.random()}`}
+            src={`./client-logo/logo-${i + 1}.png`}
+            alt={`Client Logo ${i + 1}`}
+            className="h-12 w-auto object-contain"
+          />
+        ))
+      ))}
+    </div>
+  </div>
+</div>       
+ {/* Mobile Sticky CTA */}
         <div className="md:hidden sticky-cta">
           <Button 
             onClick={handleBookCall}
