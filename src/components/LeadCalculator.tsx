@@ -243,7 +243,7 @@ const LeadCalculator = () => {
       <img 
         src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
         alt="Digital Mojo Logo" 
-        className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-md"
+        className="w-20 h-20 sm:w-12 sm:h-12 object-contain drop-shadow-md"
       />
       <span className="text-white font-bold text-xl sm:text-2xl font-spartan tracking-wide">Digital Mojo</span>
     </div>
