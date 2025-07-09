@@ -558,7 +558,7 @@ const LeadCalculator = () => {
                 )}
               </div>
 
-              {/* Schedule Call Button */}
+              {/* Schedule Call Button - Inside the form */}
               <div className="mt-4">
                 <Button 
                   onClick={() => handleCTAClick("scheduling a call")}
@@ -628,13 +628,15 @@ const LeadCalculator = () => {
           </Card>
         </div>
 
-        {/* Charts Section for Desktop */}
-        <div className="hidden lg:block max-w-6xl mx-auto mb-16">
-          {resultsUnlocked && (
-            <div className="fade-in">
-              <EnhancedCharts chartData={chartData} metrics={metrics} duration={duration} />
-            </div>
-          )}
+        {/* Schedule Call Button - Outside the boxes, center aligned */}
+        <div className="text-center mt-6">
+          <Button 
+            onClick={() => handleCTAClick("scheduling a call")}
+            className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+          >
+            <Calendar className="mr-2 h-4 w-4" />
+            Schedule a Call
+          </Button>
         </div>
 
         {/* Mobile Layout */}
