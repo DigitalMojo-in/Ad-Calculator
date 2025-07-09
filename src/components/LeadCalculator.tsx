@@ -268,7 +268,6 @@ const LeadCalculator = () => {
   </header>
 </div>
 
-</header>
 
 
       {/* Hero Section */}
