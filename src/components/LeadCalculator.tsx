@@ -39,9 +39,6 @@ const LeadCalculator = () => {
   const [resultsUnlocked, setResultsUnlocked] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [viewResultsClicked, setViewResultsClicked] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showBookModal, setShowBookModal] = useState(false);
-  const [isViewResultsLoading, setIsViewResultsLoading] = useState(false);
 
   const [metrics, setMetrics] = useState<Metrics>({
     leads: 8333,
@@ -127,16 +124,6 @@ const LeadCalculator = () => {
     calculateMetrics();
   }, [propertyType, launchType, location, bhk, marketingChannels, sellUnits, duration]);
 
-  // Scroll handler for header transparency
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Generate chart data based on duration and strategy
   const generateChartData = () => {
     const durationMap: { [key: string]: number } = {
@@ -203,7 +190,7 @@ const LeadCalculator = () => {
         }),
       });
   
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Show loading for better UX
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Show loading for better UX
       
       setResultsUnlocked(true);
       setShowForm(false);
@@ -231,114 +218,56 @@ const LeadCalculator = () => {
     });
   };
 
-  const handleViewResults = async () => {
+  const handleViewResults = () => {
     if (!viewResultsClicked) {
       setViewResultsClicked(true);
-      setIsViewResultsLoading(true);
-      
-      // Show loading animation for 2 seconds
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setIsViewResultsLoading(false);
       setShowForm(true);
     }
   };
 
   const handleBookCall = () => {
-    setShowBookModal(true);
-  };
-
-  const handleBookModalSubmit = async () => {
-    if (!formData.name || !formData.mobile) return;
-    
-    setIsLoading(true);
-    const webAppURL = "https://script.google.com/macros/s/AKfycbzrzBr_M-Bm0d_9DXEVy0rJlI6TxKL1_kPvl5I55oDo5VWU6gXu96YHXk4_WXVIJV8R/exec";
-  
-    try {
-      await fetch(webAppURL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          phone: formData.mobile,
-        }),
-      });
-  
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      setResultsUnlocked(true);
-      setShowBookModal(false);
-      setIsLoading(false);
-      toast({
-        title: "We will call you back soon! 😊",
-        description: "Thank you for your interest. Our team will reach out to you shortly.",
-      });
-  
-      setTimeout(() => {
-        document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
-    } catch (error) {
-      setIsLoading(false);
-      console.error("Error submitting form:", error);
-      alert("Something went wrong. Please try again.");
+    if (!resultsUnlocked) {
+      setShowForm(true);
+    } else {
+      handleCTAClick("booking a free strategy call");
     }
   };
 
   return (
     <div className="min-h-screen hero-gradient relative">
-      {/* Enhanced Header - transparent at top, blurred on scroll */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-        isScrolled 
-          ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20' 
-          : 'bg-transparent'
-      }`}>
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          {/* Enhanced Logo Section - enlarged and left-aligned */}
-          <div className="flex items-center space-x-4">
-            <img 
-              src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
-              alt="Digital Mojo Logo" 
-              className="w-14 h-14 sm:w-16 sm:h-16 object-contain drop-shadow-2xl transition-transform duration-300 hover:scale-110"
-            />
-            <div className="flex flex-col">
-              <span className="text-white font-black text-2xl sm:text-3xl font-spartan tracking-tight leading-none">Digital Mojo</span>
-              <span className="text-yellow-brand/90 text-xs sm:text-sm font-medium font-spartan tracking-wider">Performance Marketing</span>
-            </div>
-          </div>
+      {/* Fixed Header with Logo */}
+      <header className="sticky top-0 z-50 bg-black/30 backdrop-blur-lg shadow-md border-b border-white/10 transition-all duration-300">
+  <div className="container mx-auto px-6 py-3 flex items-center justify-between">
+    {/* Logo */}
+    <div className="flex items-center space-x-3">
+      <img 
+        src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png" 
+        alt="Digital Mojo Logo" 
+        className="w-10 h-10 sm:w-12 sm:h-12 object-contain drop-shadow-md"
+      />
+      <span className="text-white font-bold text-xl sm:text-2xl font-spartan tracking-wide">Digital Mojo</span>
+    </div>
 
-          {/* Enhanced Nav Links */}
-          <nav className="hidden md:flex items-center space-x-10 font-spartan">
-            <a href="#calculator" className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group">
-              Calculator
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#results-section" className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group">
-              Results
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#clients" className="text-white/90 hover:text-yellow-brand font-semibold text-lg transition-all duration-300 hover:scale-105 relative group">
-              Clients
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-yellow-brand transition-all duration-300 group-hover:w-full"></span>
-            </a>
-          </nav>
+    {/* Nav Links */}
+    <nav className="hidden md:flex items-center space-x-8 font-spartan">
+      <a href="#calculator" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Calculator</a>
+      <a href="#results-section" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Results</a>
+      <a href="#clients" className="text-white/90 hover:text-yellow-brand font-medium transition duration-200">Clients</a>
+    </nav>
 
-          {/* Enhanced CTA Button */}
-          <Button 
-            onClick={handleBookCall}
-            className="bg-gradient-to-r from-yellow-brand via-yellow-400 to-yellow-brand text-black font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-yellow-brand/20 hover:scale-110 transition-all duration-300 font-spartan text-lg relative overflow-hidden group"
-          >
-            <span className="relative z-10">Book Now</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-yellow-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </Button>
-        </div>
-      </header>
+    {/* CTA Button */}
+    <Button 
+      onClick={handleBookCall}
+      className="bg-gradient-to-r from-yellow-brand to-yellow-400 text-black font-bold py-2 px-6 rounded-full shadow-lg hover:scale-105 transition-transform duration-300 font-spartan"
+    >
+      Book Now
+    </Button>
+  </div>
+</header>
 
 
-      {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-24 pb-8">
+      {/* Hero Section */}
+      <div className="container mx-auto px-4 py-8">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
@@ -542,25 +471,14 @@ const LeadCalculator = () => {
                 </div>
               </div>
 
-              {/* View Results Button with Loading Animation */}
-              <div className="text-center mt-8 relative">
+              {/* View Results Button */}
+              <div className="text-center mt-8">
                 <Button
                   onClick={handleViewResults}
-                  disabled={viewResultsClicked}
                   className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {viewResultsClicked ? "Results Requested" : "View Results"}
                 </Button>
-                
-                {/* Loading Animation - Separate from Button */}
-                {isViewResultsLoading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-transparent">
-                    <div className="flex items-center space-x-2 text-primary">
-                      <Loader2 className="h-6 w-6 animate-spin" />
-                      <span className="font-semibold font-spartan">Processing your request...</span>
-                    </div>
-                  </div>
-                )}
               </div>
 
               <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
@@ -699,63 +617,6 @@ const LeadCalculator = () => {
                           Processing...
                         </>
                       ) : resultsUnlocked ? "Book" : "Unlock Results"}
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
-
-        {/* Book Now Modal */}
-        {showBookModal && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <Card className="glass-card border-none shadow-2xl rounded-3xl w-full max-w-md form-slide-in">
-              <CardHeader>
-                <h3 className="text-2xl font-bold text-center text-foreground font-spartan">Book Your Free Strategy Call</h3>
-                <p className="text-center text-muted-foreground font-spartan">Let's discuss your growth goals and unlock your results</p>
-              </CardHeader>
-              <CardContent className="p-6">
-                <div className="space-y-4">
-                  <div>
-                    <label className="text-foreground text-sm font-semibold mb-2 block font-spartan">Name</label>
-                    <Input
-                      type="text"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Enter your name"
-                      className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-foreground text-sm font-semibold mb-2 block font-spartan">Mobile Number</label>
-                    <Input
-                      type="tel"
-                      value={formData.mobile}
-                      onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                      placeholder="Enter your mobile number"
-                      className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-12 transition-all duration-200"
-                    />
-                  </div>
-                  <div className="flex gap-3 pt-4">
-                    <Button
-                      onClick={() => setShowBookModal(false)}
-                      variant="outline"
-                      className="flex-1 border-2 border-muted text-muted-foreground hover:bg-muted rounded-xl h-12 transition-all duration-200 font-spartan"
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      onClick={handleBookModalSubmit}
-                      disabled={!formData.name || !formData.mobile || isLoading}
-                      className="flex-1 bg-gradient-to-r from-yellow-brand to-yellow-400 text-black font-bold rounded-xl h-12 transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50"
-                    >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Booking...
-                        </>
-                      ) : "Book Call & See Results"}
                     </Button>
                   </div>
                 </div>
