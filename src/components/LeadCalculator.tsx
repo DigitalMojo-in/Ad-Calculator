@@ -475,6 +475,7 @@ const LeadCalculator = () => {
               <div className="text-center mt-8">
                 <Button
                   onClick={handleViewResults}
+                  //disabled={viewResultsClicked}
                   className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                   {viewResultsClicked ? "Results Requested" : "View Results"}
