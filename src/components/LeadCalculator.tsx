@@ -314,7 +314,7 @@ const LeadCalculator = () => {
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-30 h-20 sm:w-30 sm:h-30' : 'w-30 h-30 sm:w-40 sm:h-40'
+                isScrolled ? 'w-20 h-20 sm:w-30 sm:h-30' : 'w-30 h-30 sm:w-40 sm:h-40'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
             <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
@@ -345,7 +345,7 @@ const LeadCalculator = () => {
       </header>
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-32 pb-8 sm:pt-60">
+      <div className="container mx-auto px-4 pt-24 pb-8 sm:pt-60">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
