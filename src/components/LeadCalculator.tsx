@@ -1055,7 +1055,7 @@ const LeadCalculator = () => {
       </div>
 
       {/* CTA Footer */}
-      <div className="bg-accent text-accent-foreground py-8 text-center">
+      <div className="bg-white text-accent-foreground py-8 text-center">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
           <Button 
