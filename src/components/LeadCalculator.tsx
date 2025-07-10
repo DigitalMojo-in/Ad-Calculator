@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X, TrendingUp, BarChart3, Users, Target } from 'lucide-react';
+import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X, TrendingUp, BarChart3, Users, Target, Sun, Moon, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import luxuryBannerBg from '@/assets/luxury-banner-bg.jpg';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
@@ -306,78 +306,86 @@ const LeadCalculator = () => {
     }
   };
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   return (
-    <div className="min-h-screen bg-yellow-400 relative">
-      {/* Animated Background */}
-      <AnimatedBackground />
+    <div className="min-h-screen" style={{ backgroundColor: '#f0bc00' }}>
       
-      {/* Enhanced Header - transparent at top, blurred on scroll */}
+      {/* Sticky Theme Toggle - Left Wall */}
+      <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
+        <Button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          variant="ghost"
+          size="sm"
+          className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 p-3 rounded-full shadow-lg"
+        >
+          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
+      </div>
+
+      {/* Sticky Get In Touch - Right Wall */}
+      <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
+        <Button
+          onClick={handleBookCall}
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 font-spartan transform -rotate-90 origin-center"
+        >
+          Get In Touch
+        </Button>
+      </div>
+
+      {/* Simplified Header - Only Logo */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out ${
           isScrolled
-            ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
-            : 'bg-transparent py-4'
+            ? 'bg-black/40 backdrop-blur-xl py-1'
+            : 'bg-transparent py-2'
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-          {/* Logo + Tagline */}
-          <a href="#" className="flex items-center space-x-3 group">
+        <div className="flex justify-center px-2">
+          <a href="#" className="flex items-center group">
             <img
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-30 h-30 sm:w-40 sm:h-40'
-              } object-contain drop-shadow-xl group-hover:scale-105`}
+                isScrolled ? 'w-12 h-12' : 'w-16 h-16'
+              } object-contain group-hover:scale-105`}
             />
           </a>
-
-          {/* CTA Button */}
-          <div className="sm:block">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
-            >
-              Book Now
-            </Button>
-          </div>
-
-          {/* Mobile CTA - Same Features as Desktop */}
-          <div className="sm:hidden">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg animate-bounce"
-            >
-              Book Now
-            </Button>
-          </div>
         </div>
       </header>
 
-      {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-40 pb-8 sm:pt-50">
+      {/* Hero Section - Reduced padding */}
+      <div className="mx-auto px-1 pt-16 pb-2 sm:pt-20">
 
-        {/* Hero Content */}
-        <div className="text-center mb-16 max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-            <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Let's Show You
-            </span>
-            <br />
-            Just How Far Your Growth Can Go <span className="text-black">With Us</span>
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
-            Data-driven insights. ROI that speaks. Let's build your growth story.
-          </p>
+        {/* Hero Content - Reduced margins */}
+        <div className="flex flex-col lg:flex-row items-center justify-between mb-8 max-w-6xl mx-auto gap-4">
+          {/* Left side - Text */}
+          <div className="flex-1 text-center lg:text-left">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
+              <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Let's Show You
+              </span>
+              <br />
+              Just How Far Your Growth Can Go <span className="text-black">With Us</span>
+            </h1>
+            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-spartan">
+              Data-driven insights. ROI that speaks. Let's build your growth story.
+            </p>
+            
+          </div>
           
-          
-          {/* Scroll Indicator */}
-          <div className="scroll-indicator mt-12">
-            <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
+          {/* Right side - Image */}
+          <div className="flex-1 flex justify-center lg:justify-end">
+            <img
+              src="./lovable-uploads/img.png"
+              alt="Business Growth Calculator"
+              className="w-full max-w-md lg:max-w-lg h-auto "
+            />
           </div>
         </div>
 
-        {/* Desktop Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 max-w-7xl mx-auto mb-16">
+        {/* Desktop Layout - Reduced margins */}
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4 max-w-7xl mx-auto mb-8">
           {/* Calculator Section */}
           <Card className="bg-white/95 backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden">
             <CardHeader className="pb-4">
