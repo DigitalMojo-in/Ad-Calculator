@@ -321,17 +321,15 @@ const LeadCalculator = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo + Tagline */}
-          <a href="#" className="flex items-center space-x-2 group">
+          <a href="#" className="flex items-center space-x-3 group">
             <img
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-16 h-16 sm:w-20 sm:h-20' : 'w-20 h-20 sm:w-28 sm:h-28'
+                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
-            <span className={`text-white font-bold font-spartan transition-all duration-500 ${
-              isScrolled ? 'text-sm sm:text-base' : 'text-base sm:text-lg'
-            }`}>
+            <span className="text-white font-bold text-lg font-spartan hidden sm:block">
               Performance Marketing
             </span>
           </a>
@@ -363,69 +361,32 @@ const LeadCalculator = () => {
 
         {/* Hero Content */}
         <div className="flex flex-col lg:flex-row items-center justify-between mb-16 max-w-6xl mx-auto gap-8">
-          {/* Mobile: Background image with overlay text - Enhanced styling */}
-          <div className="lg:hidden w-full relative min-h-[450px] rounded-2xl overflow-hidden shadow-2xl border border-white/20">
+          {/* Left side - Text */}
+          <div className="flex-1 text-center lg:text-left">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
+              <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Let's Show You
+              </span>
+              <br />
+              Just How Far Your Growth Can Go <span className="text-black">With Us</span>
+            </h1>
+            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-spartan">
+              Data-driven insights. ROI that speaks. Let's build your growth story.
+            </p>
+            
+            {/* Scroll Indicator - Only show on mobile */}
+            <div className="scroll-indicator mt-12 lg:hidden">
+              <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
+            </div>
+          </div>
+          
+          {/* Right side - Image */}
+          <div className="flex-1 flex justify-center lg:justify-end">
             <img
               src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
               alt="Business Growth Calculator"
-              className="absolute inset-0 w-full h-full object-cover opacity-20"
+              className="w-full max-w-md lg:max-w-lg h-auto object-contain drop-shadow-2xl"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/60 via-black/40 to-pink-900/60"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
-            <div className="relative z-10 flex flex-col items-center justify-center h-full p-8 text-center">
-              <h1 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight font-spartan">
-                <span className="block bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-300 bg-clip-text text-transparent drop-shadow-lg">
-                  Let's Show You
-                </span>
-                <span className="block text-white text-2xl md:text-3xl mt-2">
-                  Just How Far Your Growth Can Go 
-                </span>
-                <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent text-xl md:text-2xl mt-1">
-                  With Us
-                </span>
-              </h1>
-              <p className="text-white/90 text-lg max-w-sm mx-auto leading-relaxed font-spartan mb-4">
-                Data-driven insights. ROI that speaks. Let's build your growth story.
-              </p>
-              
-              {/* Enhanced visual elements */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
-                <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
-                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-              </div>
-              
-              {/* Scroll Indicator */}
-              <div className="scroll-indicator">
-                <ChevronDown className="h-6 w-6 text-white/70 mx-auto" />
-              </div>
-            </div>
-          </div>
-
-          {/* Desktop: Side by side layout */}
-          <div className="hidden lg:flex w-full items-center justify-between gap-8">
-            {/* Left side - Text */}
-            <div className="flex-1 text-left">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-                <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Let's Show You
-                </span>
-                <br />
-                Just How Far Your Growth Can Go <span className="text-black">With Us</span>
-              </h1>
-              <p className="text-white/90 text-lg md:text-xl max-w-2xl leading-relaxed font-spartan">
-                Data-driven insights. ROI that speaks. Let's build your growth story.
-              </p>
-            </div>
-            
-            {/* Right side - Image */}
-            <div className="flex-1 flex justify-end">
-              <img
-                src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
-                alt="Business Growth Calculator"
-                className="w-full max-w-lg h-auto object-contain drop-shadow-2xl"
-              />
-            </div>
           </div>
         </div>
 
