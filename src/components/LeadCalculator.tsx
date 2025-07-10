@@ -328,7 +328,7 @@ const LeadCalculator = () => {
               onClick={handleBookCall}
               className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
             >
-              Learn More
+              Book Now
             </Button>
           </div>
 
@@ -338,14 +338,14 @@ const LeadCalculator = () => {
               onClick={handleBookCall}
               className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg animate-bounce"
             >
-              Learn More
+              Book Now
             </Button>
           </div>
         </div>
       </header>
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-24 pb-8 sm:pt-60">
+      <div className="container mx-auto px-4 pt-30 pb-8 sm:pt-60">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
@@ -1063,7 +1063,7 @@ const LeadCalculator = () => {
             className=" bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
           >
             <Phone className=" mr-2 h-5 w-5" />
-            Learn More
+            Book Now
           </Button>
         </div>
       </div>
