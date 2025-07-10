@@ -329,6 +329,9 @@ const LeadCalculator = () => {
                 isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
+            <span className="text-white font-bold text-lg font-spartan hidden sm:block">
+              Performance Marketing
+            </span>
           </a>
 
           {/* CTA Button */}
@@ -357,22 +360,33 @@ const LeadCalculator = () => {
       <div className="container mx-auto px-4 pt-40 pb-8 sm:pt-50">
 
         {/* Hero Content */}
-        <div className="text-center mb-16 max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-            <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Let's Show You
-            </span>
-            <br />
-            Just How Far Your Growth Can Go <span className="text-black">With Us</span>
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
-            Data-driven insights. ROI that speaks. Let's build your growth story.
-          </p>
+        <div className="flex flex-col lg:flex-row items-center justify-between mb-16 max-w-6xl mx-auto gap-8">
+          {/* Left side - Text */}
+          <div className="flex-1 text-center lg:text-left">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
+              <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Let's Show You
+              </span>
+              <br />
+              Just How Far Your Growth Can Go <span className="text-black">With Us</span>
+            </h1>
+            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-spartan">
+              Data-driven insights. ROI that speaks. Let's build your growth story.
+            </p>
+            
+            {/* Scroll Indicator - Only show on mobile */}
+            <div className="scroll-indicator mt-12 lg:hidden">
+              <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
+            </div>
+          </div>
           
-          
-          {/* Scroll Indicator */}
-          <div className="scroll-indicator mt-12">
-            <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
+          {/* Right side - Image */}
+          <div className="flex-1 flex justify-center lg:justify-end">
+            <img
+              src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
+              alt="Business Growth Calculator"
+              className="w-full max-w-md lg:max-w-lg h-auto object-contain drop-shadow-2xl"
+            />
           </div>
         </div>
 
