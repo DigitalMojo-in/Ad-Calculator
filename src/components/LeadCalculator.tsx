@@ -363,29 +363,41 @@ const LeadCalculator = () => {
 
         {/* Hero Content */}
         <div className="flex flex-col lg:flex-row items-center justify-between mb-16 max-w-6xl mx-auto gap-8">
-          {/* Mobile: Background image with overlay text */}
-          <div className="lg:hidden w-full relative min-h-[400px] rounded-3xl overflow-hidden">
+          {/* Mobile: Background image with overlay text - Enhanced styling */}
+          <div className="lg:hidden w-full relative min-h-[450px] rounded-2xl overflow-hidden shadow-2xl border border-white/20">
             <img
               src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
               alt="Business Growth Calculator"
-              className="absolute inset-0 w-full h-full object-cover opacity-30"
+              className="absolute inset-0 w-full h-full object-cover opacity-20"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-            <div className="relative z-10 flex flex-col items-center justify-center h-full p-6 text-center">
-              <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight font-spartan drop-shadow-2xl">
-                <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/60 via-black/40 to-pink-900/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20"></div>
+            <div className="relative z-10 flex flex-col items-center justify-center h-full p-8 text-center">
+              <h1 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight font-spartan">
+                <span className="block bg-gradient-to-r from-yellow-300 via-pink-300 to-purple-300 bg-clip-text text-transparent drop-shadow-lg">
                   Let's Show You
                 </span>
-                <br />
-                Just How Far Your Growth Can Go <span className="text-white">With Us</span>
+                <span className="block text-white text-2xl md:text-3xl mt-2">
+                  Just How Far Your Growth Can Go 
+                </span>
+                <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent text-xl md:text-2xl mt-1">
+                  With Us
+                </span>
               </h1>
-              <p className="text-white text-base max-w-xs mx-auto leading-relaxed font-spartan drop-shadow-lg">
+              <p className="text-white/90 text-lg max-w-sm mx-auto leading-relaxed font-spartan mb-4">
                 Data-driven insights. ROI that speaks. Let's build your growth story.
               </p>
               
+              {/* Enhanced visual elements */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-2 h-2 bg-yellow-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+              </div>
+              
               {/* Scroll Indicator */}
-              <div className="scroll-indicator mt-8">
-                <ChevronDown className="h-6 w-6 text-white/70 mx-auto animate-bounce" />
+              <div className="scroll-indicator">
+                <ChevronDown className="h-6 w-6 text-white/70 mx-auto" />
               </div>
             </div>
           </div>
