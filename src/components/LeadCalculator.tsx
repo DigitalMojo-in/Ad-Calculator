@@ -301,50 +301,49 @@ const LeadCalculator = () => {
       
       {/* Enhanced Header - transparent at top, blurred on scroll */}
       <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-        isScrolled
-          ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
-          : 'bg-transparent py-4'
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-        {/* Logo + Tagline */}
-        <a href="#" className="flex items-center space-x-4 group">
-          <img
-            src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
-            alt="Digital Mojo Logo"
-            className={`transition-all duration-500 ease-in-out object-contain drop-shadow-xl group-hover:scale-105 ${
-              isScrolled
-                ? 'w-16 h-16 sm:w-20 sm:h-20'
-                : 'w-24 h-24 sm:w-40 sm:h-40'
-            }`}
-          />
-          <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
-            Performance Marketing
-          </span>
-        </a>
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+          isScrolled
+            ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
+            : 'bg-transparent py-4'
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+          {/* Logo + Tagline */}
+          <a href="#" className="flex items-center space-x-4 group">
+            <img
+              src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
+              alt="Digital Mojo Logo"
+              className={`transition-all duration-500 ease-in-out ${
+                isScrolled ? 'w-20 h-20 sm:w-30 sm:h-30' : 'w-30 h-30 sm:w-40 sm:h-40'
+              } object-contain drop-shadow-xl group-hover:scale-105`}
+            />
+            <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
+              Performance Marketing
+            </span>
+          </a>
 
-        {/* CTA Button */}
-        <div className="hidden sm:block">
-          <Button
-            onClick={handleBookCall}
-            className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg"
-          >
-            Book Now
-          </Button>
-        </div>
+          {/* CTA Button */}
+          <div className="hidden sm:block">
+            <Button
+              onClick={handleBookCall}
+              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
+            >
+              Learn More
+            </Button>
+          </div>
 
-        {/* Mobile CTA */}
-        <div className="sm:hidden">
-          <Button
-            onClick={handleBookCall}
-            className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-6 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-sm"
-          >
-            Book Now
-          </Button>
+          {/* Mobile CTA - Same Features as Desktop */}
+          <div className="sm:hidden">
+            <Button
+              onClick={handleBookCall}
+              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg animate-bounce"
+            >
+              Learn More
+            </Button>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
       {/* Hero Section - Add top padding for fixed header */}
       <div className="container mx-auto px-4 pt-24 pb-8 sm:pt-60">
 
@@ -1064,7 +1063,7 @@ const LeadCalculator = () => {
             className=" bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
           >
             <Phone className=" mr-2 h-5 w-5" />
-            Book Now
+            Learn More
           </Button>
         </div>
       </div>
