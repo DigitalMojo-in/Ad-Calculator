@@ -571,17 +571,17 @@ const LeadCalculator = () => {
                     <div className="text-3xl font-bold text-yellow-600">{metrics.leads.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">Leads</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpl.toLocaleString()}</div>
-                    <div className="text-xs text-gray-500">CPL</div>
+                    <div className="text-xs text-gray-500">Cost Per Lead</div>
                   </Card>
                   <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
                     <div className="text-3xl font-bold text-yellow-600">{metrics.qualifiedLeads.toLocaleString()}</div>
-                    <div className="text-xs text-gray-600 font-medium">QL</div>
+                    <div className="text-xs text-gray-600 font-medium">Quality Leads</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpql.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPQL</div>
                   </Card>
                   <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
                     <div className="text-3xl font-bold text-yellow-600">{metrics.siteVisits.toLocaleString()}</div>
-                    <div className="text-xs text-gray-600 font-medium">SV</div>
+                    <div className="text-xs text-gray-600 font-medium">Site Visit</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpsv.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPSV</div>
                   </Card>
