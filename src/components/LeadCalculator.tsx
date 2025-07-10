@@ -299,7 +299,8 @@ const LeadCalculator = () => {
       {/* Animated Background */}
       <AnimatedBackground />
       
-     <header
+      {/* Enhanced Header - transparent at top, blurred on scroll */}
+      <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
         isScrolled
           ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
@@ -308,36 +309,36 @@ const LeadCalculator = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
         {/* Logo + Tagline */}
-        <a href="#" className="flex items-center space-x-3 group">
+        <a href="#" className="flex items-center space-x-4 group">
           <img
             src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
             alt="Digital Mojo Logo"
-            className={`transition-all duration-500 ease-in-out ${
+            className={`transition-all duration-500 ease-in-out object-contain drop-shadow-xl group-hover:scale-105 ${
               isScrolled
-                ? 'w-16 h-16 sm:w-24 sm:h-24'
-                : 'w-20 h-20 sm:w-28 sm:h-28'
-            } object-contain drop-shadow-xl group-hover:scale-105`}
+                ? 'w-16 h-16 sm:w-20 sm:h-20'
+                : 'w-24 h-24 sm:w-40 sm:h-40'
+            }`}
           />
           <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
             Performance Marketing
           </span>
         </a>
 
-        {/* CTA Button for Desktop */}
+        {/* CTA Button */}
         <div className="hidden sm:block">
           <Button
             onClick={handleBookCall}
-            className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
+            className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg"
           >
             Book Now
           </Button>
         </div>
 
-        {/* CTA Button for Mobile */}
+        {/* Mobile CTA */}
         <div className="sm:hidden">
           <Button
             onClick={handleBookCall}
-            className="bg-red-600 hover:bg-red-700 text-white font-black py-2 px-6 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-base animate-bounce"
+            className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-6 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-sm"
           >
             Book Now
           </Button>
