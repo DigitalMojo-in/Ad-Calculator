@@ -1,61 +1,68 @@
 import React, { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Sphere, Sparkles, Float, Environment } from '@react-three/drei';
+import { Float, Stars } from '@react-three/drei';
 import * as THREE from 'three';
 
-const FloatingGem: React.FC = () => {
-  const ref = useRef<THREE.Mesh>(null);
+function RealEstateIcon({ geometry, color, position }: { geometry: JSX.Element, color: string, position: [number, number, number] }) {
+  const meshRef = useRef<THREE.Mesh>(null);
 
-  useFrame((state) => {
-    if (ref.current) {
-      ref.current.rotation.y = state.clock.elapsedTime * 0.2;
-      ref.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.1) * 0.2;
+  useFrame(({ clock }) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y = clock.getElapsedTime() * 0.2;
+      meshRef.current.position.y = position[1] + Math.sin(clock.getElapsedTime()) * 0.2;
     }
   });
 
   return (
-    <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
-      <mesh ref={ref} scale={1.6} position={[0, 0, 0]}>
-        <icosahedronGeometry args={[1, 1]} />
-        <meshStandardMaterial
-          color={'#FFD700'}
-          roughness={0.1}
-          metalness={1}
-          emissive={'#FFC107'}
-          emissiveIntensity={0.2}
-        />
+    <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
+      <mesh ref={meshRef} position={position}>
+        {geometry}
+        <meshStandardMaterial color={color} metalness={0.7} roughness={0.2} />
       </mesh>
     </Float>
   );
-};
+}
 
-const Scene: React.FC = () => {
+function Scene() {
   return (
     <>
-      <ambientLight intensity={0.3} />
-      <pointLight position={[5, 5, 5]} intensity={1.5} />
-      <Sparkles
-        count={50}
-        speed={0.3}
-        scale={[6, 6, 6]}
-        size={2}
-        color={'#ffffff'}
-        opacity={0.8}
+      <ambientLight intensity={0.6} />
+      <directionalLight position={[5, 5, 5]} intensity={1} />
+      <Stars radius={30} depth={60} count={2000} factor={4} saturation={0} fade speed={2} />
+
+      {/* Floating Real Estate Related Icons */}
+      <RealEstateIcon
+        geometry={<boxGeometry args={[0.8, 0.6, 0.8]} />} // House Block
+        color="#D4AF37"
+        position={[-2, 0, -5]}
       />
-      <Environment preset="city" />
-      <FloatingGem />
+      <RealEstateIcon
+        geometry={<cylinderGeometry args={[0.3, 0.3, 0.1, 32]} />} // Coin
+        color="#FFD700"
+        position={[0, 1, -4]}
+      />
+      <RealEstateIcon
+        geometry={<coneGeometry args={[0.5, 1, 4]} />} // Roof
+        color="#8B0000"
+        position={[2, 0.5, -6]}
+      />
+      <RealEstateIcon
+        geometry={<torusGeometry args={[0.4, 0.1, 16, 100]} />} // Key ring
+        color="#B0C4DE"
+        position={[-1, -1, -4]}
+      />
     </>
   );
-};
+}
 
-const LuxuryAnimatedBackground: React.FC = () => {
+const RealEstateAnimatedBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse at center, #0f0f0f, #000000)' }}>
-      <Canvas camera={{ position: [0, 0, 6], fov: 60 }}>
+    <div className="fixed inset-0 z-0 opacity-50 pointer-events-none">
+      <Canvas camera={{ position: [0, 0, 7], fov: 50 }} style={{ background: 'transparent' }}>
         <Scene />
       </Canvas>
     </div>
   );
 };
 
-export default LuxuryAnimatedBackground;
+export default RealEstateAnimatedBackground;
