@@ -3,62 +3,164 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Minimal classy real estate floating building block
-function FloatingBuilding({ position, color, scale = 1 }) {
+// Geometric shapes for marketing/real estate
+function FloatingShape({ position, shape, color, scale = 1 }: {
+  position: [number, number, number],
+  shape: 'house' | 'chart' | 'coin' | 'key' | 'building',
+  color: string,
+  scale?: number
+}) {
   const meshRef = useRef<THREE.Group>(null);
-
+  
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.1;
-      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.3) * 0.15;
+      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3;
+      meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 0.5) * 0.2;
     }
   });
 
+  const renderShape = () => {
+    switch (shape) {
+      case 'house':
+        return (
+          <group>
+            {/* House base */}
+            <mesh position={[0, -0.1, 0]}>
+              <boxGeometry args={[0.4, 0.3, 0.4]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* House roof */}
+            <mesh position={[0, 0.1, 0]} rotation={[0, Math.PI/4, 0]}>
+              <coneGeometry args={[0.3, 0.2, 4]} />
+              <meshStandardMaterial color="#8B4513" />
+            </mesh>
+          </group>
+        );
+      
+      case 'chart':
+        return (
+          <group>
+            <mesh position={[-0.1, -0.1, 0]}>
+              <boxGeometry args={[0.05, 0.2, 0.05]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            <mesh position={[0, 0, 0]}>
+              <boxGeometry args={[0.05, 0.3, 0.05]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            <mesh position={[0.1, 0.05, 0]}>
+              <boxGeometry args={[0.05, 0.4, 0.05]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+          </group>
+        );
+      
+      case 'coin':
+        return (
+          <mesh>
+            <cylinderGeometry args={[0.15, 0.15, 0.03, 16]} />
+            <meshStandardMaterial color={color} metalness={0.8} roughness={0.2} />
+          </mesh>
+        );
+      
+      case 'key':
+        return (
+          <group>
+            {/* Key shaft */}
+            <mesh position={[0.1, 0, 0]}>
+              <boxGeometry args={[0.3, 0.05, 0.05]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            {/* Key head */}
+            <mesh position={[-0.1, 0, 0]}>
+              <cylinderGeometry args={[0.08, 0.08, 0.05, 8]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+          </group>
+        );
+      
+      case 'building':
+        return (
+          <group>
+            <mesh position={[0, 0, 0]}>
+              <boxGeometry args={[0.2, 0.6, 0.2]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+            <mesh position={[0.25, -0.1, 0]}>
+              <boxGeometry args={[0.15, 0.4, 0.15]} />
+              <meshStandardMaterial color={color} />
+            </mesh>
+          </group>
+        );
+      
+      default:
+        return (
+          <mesh>
+            <sphereGeometry args={[0.1]} />
+            <meshStandardMaterial color={color} />
+          </mesh>
+        );
+    }
+  };
+
   return (
-    <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.3}>
+    <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.5}>
       <group ref={meshRef} position={position} scale={scale}>
-        <mesh>
-          <boxGeometry args={[0.2, 0.6, 0.2]} />
-          <meshStandardMaterial color={color} />
-        </mesh>
-        <mesh position={[0.25, -0.2, 0]}>
-          <boxGeometry args={[0.15, 0.4, 0.15]} />
-          <meshStandardMaterial color={color} />
-        </mesh>
+        {renderShape()}
       </group>
     </Float>
   );
 }
 
+// Main 3D Scene
 function Scene() {
+  // Check if mobile viewport
   const isMobile = window.innerWidth < 768;
-  const buildings = isMobile
-    ? [
-        { position: [-1, 0.3, -1], color: '#ffffff33', scale: 0.8 },
-        { position: [1, -0.5, -2], color: '#ffffff44', scale: 0.8 },
-      ]
-    : [
-        { position: [-2, 1.2, -3], color: '#ffffff22', scale: 1 },
-        { position: [2, -0.6, -4], color: '#ffffff33', scale: 1 },
-        { position: [1.5, 2, -5], color: '#ffffff55', scale: 1 },
-      ];
+  
+  const shapes = isMobile ? [
+    // Fewer shapes for mobile performance
+    { position: [-2, 1, -2] as [number, number, number], shape: 'house' as const, color: '#FFA500', scale: 0.8 },
+    { position: [2, 0, -3] as [number, number, number], shape: 'chart' as const, color: '#32CD32', scale: 0.8 },
+    { position: [-1.5, -1, -1] as [number, number, number], shape: 'coin' as const, color: '#FFD700', scale: 0.8 },
+    { position: [1.5, 2, -4] as [number, number, number], shape: 'key' as const, color: '#87CEEB', scale: 0.8 },
+    { position: [0, -2, -3] as [number, number, number], shape: 'building' as const, color: '#DDA0DD', scale: 0.8 },
+  ] : [
+    // Full desktop experience
+    { position: [-4, 2, -2] as [number, number, number], shape: 'house' as const, color: '#FFA500', scale: 1 },
+    { position: [4, 1, -3] as [number, number, number], shape: 'chart' as const, color: '#32CD32', scale: 1 },
+    { position: [-3, -1, -1] as [number, number, number], shape: 'coin' as const, color: '#FFD700', scale: 1 },
+    { position: [3, 3, -4] as [number, number, number], shape: 'key' as const, color: '#87CEEB', scale: 1 },
+    { position: [-2, 3, -2] as [number, number, number], shape: 'building' as const, color: '#DDA0DD', scale: 1 },
+    { position: [2, -2, -3] as [number, number, number], shape: 'house' as const, color: '#FF6347', scale: 1 },
+    { position: [-4, -2, -4] as [number, number, number], shape: 'chart' as const, color: '#98FB98', scale: 1 },
+    { position: [4, -1, -2] as [number, number, number], shape: 'coin' as const, color: '#F0E68C', scale: 1 },
+  ];
 
   return (
     <>
-      <ambientLight intensity={0.4} />
-      <pointLight position={[10, 10, 10]} intensity={0.7} color={'#ffcc88'} />
-      {buildings.map((b, i) => (
-        <FloatingBuilding key={i} position={b.position} color={b.color} scale={b.scale} />
+      <ambientLight intensity={0.6} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#ffd700" />
+      
+      {shapes.map((item, index) => (
+        <FloatingShape
+          key={index}
+          position={item.position}
+          shape={item.shape}
+          color={item.color}
+          scale={item.scale}
+        />
       ))}
     </>
   );
 }
 
+// Main Component
 const AnimatedBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none">
+    <div className="fixed inset-0 z-0 opacity-60 pointer-events-none">
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 65 }}
+        camera={{ position: [0, 0, 5], fov: 60 }}
         style={{ background: 'transparent' }}
       >
         <Scene />
