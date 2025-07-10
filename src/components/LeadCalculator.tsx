@@ -326,9 +326,17 @@ const LeadCalculator = () => {
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
+                isScrolled ? 'w-12 h-12 sm:w-16 sm:h-16' : 'w-20 h-20 sm:w-24 sm:h-24'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
+            <div className="flex flex-col">
+              <span className="text-white text-base sm:text-xl font-bold font-spartan tracking-wide">
+                Digital Mojo
+              </span>
+              <span className="text-yellow-brand/90 text-xs sm:text-sm font-medium font-spartan tracking-widest">
+                Performance Marketing
+              </span>
+            </div>
           </a>
 
           {/* CTA Button */}
@@ -354,40 +362,58 @@ const LeadCalculator = () => {
       </header>
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-40 pb-8 sm:pt-50">
+      <div className="container mx-auto px-4 pt-32 pb-8 sm:pt-40">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
-          <section className="w-full pt-40 pb-20 bg-yellow-400 overflow-hidden">
-      <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-12">
-        {/* Left: Hero Text */}
-        <div className="lg:w-1/2 text-center lg:text-left">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-            <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Let's Show You
-            </span>
-            <br />
-            Just How Far Your Growth Can Go <span className="text-black">With Us</span>
+            Let's Show You Just How Far Your<br />
+            Growth Can Go <span className="text-black">With Us</span>
           </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-xl leading-relaxed font-spartan">
+          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
             Data-driven insights. ROI that speaks. Let's build your growth story.
           </p>
-        </div>
-
-        {/* Right: Hero Image */}
-        <div className="lg:w-1/2 flex justify-center lg:justify-end">
-          <Image
-            src="/path-to-your-banner-image.jpg" // replace with your actual image path
-            alt="Hero Illustration"
-            width={600}
-            height={600}
-            className="rounded-xl drop-shadow-xl"
-          />
-        </div>
-      </div>
-    </section>
-
           
+          {/* Luxury Banner Section */}
+          <div 
+            className="relative mt-12 rounded-2xl overflow-hidden shadow-2xl mx-auto max-w-4xl"
+            style={{
+              backgroundImage: `url(${luxuryBannerBg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
+            <div className="relative z-10 p-8 md:p-12 text-left">
+              <div className="flex items-center space-x-8">
+                <div className="flex space-x-6">
+                  <div className="flex items-center space-x-2 text-gold-400">
+                    <TrendingUp className="h-6 w-6 animate-pulse" />
+                    <span className="text-sm font-semibold">📈 Growth</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gold-400">
+                    <BarChart3 className="h-6 w-6 animate-pulse" />
+                    <span className="text-sm font-semibold">📊 Analytics</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gold-400">
+                    <Users className="h-6 w-6 animate-pulse" />
+                    <span className="text-sm font-semibold">👥 Leads</span>
+                  </div>
+                  <div className="flex items-center space-x-2 text-gold-400">
+                    <Target className="h-6 w-6 animate-pulse" />
+                    <span className="text-sm font-semibold">🎯 ROI</span>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-white text-2xl md:text-3xl font-bold mt-4 mb-2">
+                Premium Performance Marketing 💎
+              </h3>
+              <p className="text-gold-400 text-lg">
+                Where Strategy Meets Success ✨
+              </p>
+            </div>
+          </div>
           
           {/* Scroll Indicator */}
           <div className="scroll-indicator mt-12">
@@ -420,7 +446,7 @@ const LeadCalculator = () => {
                     value={sellUnits}
                     onChange={handleSellUnitsChange}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-6xl rounded-lg h-20 w-32 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-5xl rounded-lg h-16 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
                     size="sm"
@@ -590,17 +616,17 @@ const LeadCalculator = () => {
                     <div className="text-3xl font-bold text-yellow-600">{metrics.leads.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">Leads</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpl.toLocaleString()}</div>
-                    <div className="text-xs text-gray-500">Cost Per Lead</div>
+                    <div className="text-xs text-gray-500">CPL</div>
                   </Card>
                   <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
                     <div className="text-3xl font-bold text-yellow-600">{metrics.qualifiedLeads.toLocaleString()}</div>
-                    <div className="text-xs text-gray-600 font-medium">Quality Leads</div>
+                    <div className="text-xs text-gray-600 font-medium">QL</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpql.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPQL</div>
                   </Card>
                   <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
                     <div className="text-3xl font-bold text-yellow-600">{metrics.siteVisits.toLocaleString()}</div>
-                    <div className="text-xs text-gray-600 font-medium">Site Visit</div>
+                    <div className="text-xs text-gray-600 font-medium">SV</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpsv.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPSV</div>
                   </Card>
