@@ -326,7 +326,7 @@ const LeadCalculator = () => {
           <div className="hidden sm:block">
             <Button
               onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-4 px-12 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-2xl animate-bounce"
+              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
             >
               Book Now
             </Button>
