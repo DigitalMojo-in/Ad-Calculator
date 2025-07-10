@@ -3,8 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X, TrendingUp, BarChart3, Users, Target } from 'lucide-react';
-import luxuryBannerBg from '@/assets/luxury-banner-bg.jpg';
+import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X } from 'lucide-react';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
 import AnimatedBackground from './AnimatedBackground';
@@ -46,7 +45,6 @@ const LeadCalculator = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showBookModal, setShowBookModal] = useState(false);
   const [isViewResultsLoading, setIsViewResultsLoading] = useState(false);
-  const [hideStickyCTA, setHideStickyCTA] = useState(false);
 
   const [metrics, setMetrics] = useState<Metrics>({
     leads: 8333,
@@ -132,20 +130,10 @@ const LeadCalculator = () => {
     calculateMetrics();
   }, [propertyType, launchType, location, bhk, marketingChannels, sellUnits, duration]);
 
-  // Scroll handler for header transparency and sticky CTA visibility
+  // Scroll handler for header transparency
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      // Hide sticky CTA when footer is visible (on mobile)
-      const footer = document.querySelector('#footer');
-      if (footer && window.innerWidth < 768) {
-        const footerRect = footer.getBoundingClientRect();
-        const isFooterVisible = footerRect.top < window.innerHeight + 100;
-        setHideStickyCTA(isFooterVisible);
-      } else {
-        setHideStickyCTA(false);
-      }
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -321,14 +309,17 @@ const LeadCalculator = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo + Tagline */}
-          <a href="#" className="flex items-center space-x-3 group">
+          <a href="#" className="flex items-center space-x-4 group">
             <img
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
+                isScrolled ? 'w-20 h-20 sm:w-30 sm:h-30' : 'w-30 h-30 sm:w-45 sm:h-45'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
+            <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
+              Performance Marketing
+            </span>
           </a>
 
           {/* CTA Button */}
@@ -354,21 +345,17 @@ const LeadCalculator = () => {
       </header>
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-32 pb-8 sm:pt-40">
+      <div className="container mx-auto px-4 pt-24 pb-8 sm:pt-60">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-            <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Let's Show You
-            </span>
-            <br />
-            Just How Far Your Growth Can Go <span className="text-black">With Us</span>
+            Let's Show You Just How Far Your<br />
+            Growth Can Go <span className="text-black">With Us</span>
           </h1>
           <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
             Data-driven insights. ROI that speaks. Let's build your growth story.
           </p>
-          
           
           {/* Scroll Indicator */}
           <div className="scroll-indicator mt-12">
@@ -401,7 +388,7 @@ const LeadCalculator = () => {
                     value={sellUnits}
                     onChange={handleSellUnitsChange}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-6xl rounded-lg h-20 w-32 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-14 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
                     size="sm"
@@ -640,12 +627,12 @@ const LeadCalculator = () => {
                       <Minus className="h-5 w-5" />
                     </Button>
                     <Input
-                       type="number"
-                       value={sellUnits}
-                       onChange={handleSellUnitsChange}
-                       min="1"
-                       className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-5xl rounded-xl h-24 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                     />
+                      type="number"
+                      value={sellUnits}
+                      onChange={handleSellUnitsChange}
+                      min="1"
+                      className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-4xl rounded-xl h-20 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    />
                     <Button
                       size="lg"
                       variant="outline"
@@ -1056,7 +1043,7 @@ const LeadCalculator = () => {
         </div>       
         
         {/* Mobile Sticky CTA */}
-        <div className={`md:hidden sticky-cta transition-all duration-300 ${hideStickyCTA ? 'opacity-0 pointer-events-none translate-y-4' : 'opacity-100'}`}>
+        <div className="md:hidden sticky-cta">
           <Button 
             onClick={handleBookCall}
             className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
@@ -1068,7 +1055,7 @@ const LeadCalculator = () => {
       </div>
 
       {/* CTA Footer */}
-      <div id="footer" className="bg-white text-accent-black py-8 text-center">
+      <div className="bg-white text-accent-black py-8 text-center">
         <div className="container mx-auto px-4">
           <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
           <Button 
