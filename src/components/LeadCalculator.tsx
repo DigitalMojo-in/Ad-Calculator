@@ -358,6 +358,10 @@ const LeadCalculator = () => {
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
+          <section className="w-full pt-40 pb-20 bg-yellow-400 overflow-hidden">
+      <div className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between gap-12">
+        {/* Left: Hero Text */}
+        <div className="lg:w-1/2 text-center lg:text-left">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
             <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Let's Show You
@@ -365,9 +369,24 @@ const LeadCalculator = () => {
             <br />
             Just How Far Your Growth Can Go <span className="text-black">With Us</span>
           </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
+          <p className="text-white/90 text-lg md:text-xl max-w-xl leading-relaxed font-spartan">
             Data-driven insights. ROI that speaks. Let's build your growth story.
           </p>
+        </div>
+
+        {/* Right: Hero Image */}
+        <div className="lg:w-1/2 flex justify-center lg:justify-end">
+          <Image
+            src="/path-to-your-banner-image.jpg" // replace with your actual image path
+            alt="Hero Illustration"
+            width={600}
+            height={600}
+            className="rounded-xl drop-shadow-xl"
+          />
+        </div>
+      </div>
+    </section>
+
           
           
           {/* Scroll Indicator */}
