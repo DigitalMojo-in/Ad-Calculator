@@ -301,7 +301,7 @@ const LeadCalculator = () => {
       
       {/* Enhanced Header - transparent at top, blurred on scroll */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
           isScrolled
             ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
             : 'bg-transparent py-4'
@@ -313,7 +313,7 @@ const LeadCalculator = () => {
             <img
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
-              className={`transition-all duration-500 ease-in-out ${
+              className={`transition-all duration-300 ease-in-out ${
                 isScrolled ? 'w-20 h-20 sm:w-30 sm:h-30' : 'w-25 h-25 sm:w-40 sm:h-40'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
