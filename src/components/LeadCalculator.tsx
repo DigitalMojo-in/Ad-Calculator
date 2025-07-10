@@ -326,17 +326,9 @@ const LeadCalculator = () => {
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-12 h-12 sm:w-16 sm:h-16' : 'w-20 h-20 sm:w-24 sm:h-24'
+                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
-            <div className="flex flex-col">
-              <span className="text-white text-base sm:text-xl font-bold font-spartan tracking-wide">
-                Digital Mojo
-              </span>
-              <span className="text-yellow-brand/90 text-xs sm:text-sm font-medium font-spartan tracking-widest">
-                Performance Marketing
-              </span>
-            </div>
           </a>
 
           {/* CTA Button */}
@@ -367,53 +359,16 @@ const LeadCalculator = () => {
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-            Let's Show You Just How Far Your<br />
-            Growth Can Go <span className="text-black">With Us</span>
+            <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Let's Show You
+            </span>
+            <br />
+            Just How Far Your Growth Can Go <span className="text-black">With Us</span>
           </h1>
           <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
             Data-driven insights. ROI that speaks. Let's build your growth story.
           </p>
           
-          {/* Luxury Banner Section */}
-          <div 
-            className="relative mt-12 rounded-2xl overflow-hidden shadow-2xl mx-auto max-w-4xl"
-            style={{
-              backgroundImage: `url(${luxuryBannerBg})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent"></div>
-            <div className="relative z-10 p-8 md:p-12 text-left">
-              <div className="flex items-center space-x-8">
-                <div className="flex space-x-6">
-                  <div className="flex items-center space-x-2 text-gold-400">
-                    <TrendingUp className="h-6 w-6 animate-pulse" />
-                    <span className="text-sm font-semibold">📈 Growth</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-gold-400">
-                    <BarChart3 className="h-6 w-6 animate-pulse" />
-                    <span className="text-sm font-semibold">📊 Analytics</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-gold-400">
-                    <Users className="h-6 w-6 animate-pulse" />
-                    <span className="text-sm font-semibold">👥 Leads</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-gold-400">
-                    <Target className="h-6 w-6 animate-pulse" />
-                    <span className="text-sm font-semibold">🎯 ROI</span>
-                  </div>
-                </div>
-              </div>
-              <h3 className="text-white text-2xl md:text-3xl font-bold mt-4 mb-2">
-                Premium Performance Marketing 💎
-              </h3>
-              <p className="text-gold-400 text-lg">
-                Where Strategy Meets Success ✨
-              </p>
-            </div>
-          </div>
           
           {/* Scroll Indicator */}
           <div className="scroll-indicator mt-12">
@@ -446,7 +401,7 @@ const LeadCalculator = () => {
                     value={sellUnits}
                     onChange={handleSellUnitsChange}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-5xl rounded-lg h-16 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-6xl rounded-lg h-20 w-32 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
                     size="sm"
