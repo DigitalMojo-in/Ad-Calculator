@@ -361,32 +361,57 @@ const LeadCalculator = () => {
 
         {/* Hero Content */}
         <div className="flex flex-col lg:flex-row items-center justify-between mb-16 max-w-6xl mx-auto gap-8">
-          {/* Left side - Text */}
-          <div className="flex-1 text-center lg:text-left">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-              <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Let's Show You
-              </span>
-              <br />
-              Just How Far Your Growth Can Go <span className="text-black">With Us</span>
-            </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-spartan">
-              Data-driven insights. ROI that speaks. Let's build your growth story.
-            </p>
-            
-            {/* Scroll Indicator - Only show on mobile */}
-            <div className="scroll-indicator mt-12 lg:hidden">
-              <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
-            </div>
-          </div>
-          
-          {/* Right side - Image */}
-          <div className="flex-1 flex justify-center lg:justify-end">
+          {/* Mobile: Background image with overlay text */}
+          <div className="lg:hidden w-full relative min-h-[400px] rounded-3xl overflow-hidden">
             <img
               src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
               alt="Business Growth Calculator"
-              className="w-full max-w-md lg:max-w-lg h-auto object-contain drop-shadow-2xl"
+              className="absolute inset-0 w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"></div>
+            <div className="relative z-10 flex flex-col items-center justify-center h-full p-6 text-center">
+              <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight font-spartan">
+                <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Let's Show You
+                </span>
+                <br />
+                Just How Far Your Growth Can Go <span className="text-white">With Us</span>
+              </h1>
+              <p className="text-white/90 text-base max-w-xs mx-auto leading-relaxed font-spartan">
+                Data-driven insights. ROI that speaks. Let's build your growth story.
+              </p>
+              
+              {/* Scroll Indicator */}
+              <div className="scroll-indicator mt-8">
+                <ChevronDown className="h-6 w-6 text-white/70 mx-auto" />
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: Side by side layout */}
+          <div className="hidden lg:flex w-full items-center justify-between gap-8">
+            {/* Left side - Text */}
+            <div className="flex-1 text-left">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
+                <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  Let's Show You
+                </span>
+                <br />
+                Just How Far Your Growth Can Go <span className="text-black">With Us</span>
+              </h1>
+              <p className="text-white/90 text-lg md:text-xl max-w-2xl leading-relaxed font-spartan">
+                Data-driven insights. ROI that speaks. Let's build your growth story.
+              </p>
+            </div>
+            
+            {/* Right side - Image */}
+            <div className="flex-1 flex justify-end">
+              <img
+                src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
+                alt="Business Growth Calculator"
+                className="w-full max-w-lg h-auto object-contain drop-shadow-2xl"
+              />
+            </div>
           </div>
         </div>
 
