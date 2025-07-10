@@ -388,7 +388,7 @@ const LeadCalculator = () => {
                     value={sellUnits}
                     onChange={handleSellUnitsChange}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-60 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-20 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
                     size="sm"
