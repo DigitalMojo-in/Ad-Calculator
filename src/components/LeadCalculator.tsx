@@ -319,15 +319,15 @@ const LeadCalculator = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo + Tagline */}
-          <a href="#" className="flex items-center space-x-3 group">
+          <a href="#" className="flex items-center space-x-2 group">
             <img
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
+                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-40 sm:h-40'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
-            <div className="text-white font-bold text-lg font-spartan">
+            <div className="text-white font-bold  font-spartan">
               <span className="hidden sm:block">Performance Marketing</span>
               <span className="sm:hidden">Performance Marketing</span>
             </div>
@@ -378,9 +378,9 @@ const LeadCalculator = () => {
           {/* Right side - Image */}
           <div className="flex-1 flex justify-center lg:justify-end">
             <img
-              src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
+              src="./lovable-uploads/img.png"
               alt="Business Growth Calculator"
-              className="w-full max-w-md lg:max-w-lg h-auto object-contain drop-shadow-2xl"
+              className="w-full max-w-md lg:max-w-lg h-auto "
             />
           </div>
         </div>
