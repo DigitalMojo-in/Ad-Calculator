@@ -313,7 +313,7 @@ const LeadCalculator = () => {
         src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
         alt="Digital Mojo Logo"
         className={`transition-all duration-500 ease-in-out ${
-          isScrolled ? 'w-16 h-16 sm:w-24 sm:h-24' : 'w-25 h-25 sm:w-32 sm:h-32'
+          isScrolled ? 'w-16 h-16 sm:w-24 sm:h-24' : 'w-20 h-20 sm:w-40 sm:h-40'
         } object-contain drop-shadow-xl group-hover:scale-105`}
       />
       {isScrolled && (
@@ -388,7 +388,7 @@ const LeadCalculator = () => {
                     value={sellUnits}
                     onChange={handleSellUnitsChange}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-14 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-30 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
                     size="sm"
