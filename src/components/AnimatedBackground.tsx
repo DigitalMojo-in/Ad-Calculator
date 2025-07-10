@@ -1,68 +1,53 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Float, Stars } from '@react-three/drei';
 import * as THREE from 'three';
+import { useRef } from 'react';
 
-function RealEstateIcon({ geometry, color, position }: { geometry: JSX.Element, color: string, position: [number, number, number] }) {
+function Building({ position, height, color }: { position: [number, number, number]; height: number; color: string }) {
   const meshRef = useRef<THREE.Mesh>(null);
-
-  useFrame(({ clock }) => {
+  useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y = clock.getElapsedTime() * 0.2;
-      meshRef.current.position.y = position[1] + Math.sin(clock.getElapsedTime()) * 0.2;
+      meshRef.current.rotation.y += 0.001;
     }
   });
-
   return (
-    <Float speed={1} rotationIntensity={0.5} floatIntensity={1}>
-      <mesh ref={meshRef} position={position}>
-        {geometry}
-        <meshStandardMaterial color={color} metalness={0.7} roughness={0.2} />
-      </mesh>
-    </Float>
+    <mesh ref={meshRef} position={position}>
+      <boxGeometry args={[0.5, height, 0.5]} />
+      <meshStandardMaterial color={color} />
+    </mesh>
   );
 }
 
 function Scene() {
+  const buildings = Array.from({ length: 30 }, (_, i) => ({
+    position: [
+      (Math.random() - 0.5) * 20,
+      Math.random() * 2 - 1,
+      (Math.random() - 0.5) * 20,
+    ] as [number, number, number],
+    height: Math.random() * 3 + 1,
+    color: `hsl(${Math.random() * 40 + 30}, 100%, 70%)`,
+  }));
+
   return (
     <>
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
-      <Stars radius={30} depth={60} count={2000} factor={4} saturation={0} fade speed={2} />
-
-      {/* Floating Real Estate Related Icons */}
-      <RealEstateIcon
-        geometry={<boxGeometry args={[0.8, 0.6, 0.8]} />} // House Block
-        color="#D4AF37"
-        position={[-2, 0, -5]}
-      />
-      <RealEstateIcon
-        geometry={<cylinderGeometry args={[0.3, 0.3, 0.1, 32]} />} // Coin
-        color="#FFD700"
-        position={[0, 1, -4]}
-      />
-      <RealEstateIcon
-        geometry={<coneGeometry args={[0.5, 1, 4]} />} // Roof
-        color="#8B0000"
-        position={[2, 0.5, -6]}
-      />
-      <RealEstateIcon
-        geometry={<torusGeometry args={[0.4, 0.1, 16, 100]} />} // Key ring
-        color="#B0C4DE"
-        position={[-1, -1, -4]}
-      />
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[10, 10, 5]} intensity={1} />
+      {buildings.map((b, i) => (
+        <Building key={i} position={b.position} height={b.height} color={b.color} />
+      ))}
     </>
   );
 }
 
-const RealEstateAnimatedBackground: React.FC = () => {
+const AnimatedBuildingBackground: React.FC = () => {
   return (
-    <div className="fixed inset-0 z-0 opacity-50 pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 7], fov: 50 }} style={{ background: 'transparent' }}>
+    <div className="fixed inset-0 z-0 pointer-events-none">
+      <Canvas camera={{ position: [0, 5, 15], fov: 50 }} style={{ background: 'transparent' }}>
         <Scene />
       </Canvas>
     </div>
   );
 };
 
-export default RealEstateAnimatedBackground;
+export default AnimatedBuildingBackground;
