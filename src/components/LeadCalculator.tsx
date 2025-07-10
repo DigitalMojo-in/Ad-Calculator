@@ -321,15 +321,17 @@ const LeadCalculator = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           {/* Logo + Tagline */}
-          <a href="#" className="flex items-center space-x-3 group">
+          <a href="#" className="flex items-center space-x-2 group">
             <img
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
+                isScrolled ? 'w-16 h-16 sm:w-20 sm:h-20' : 'w-20 h-20 sm:w-28 sm:h-28'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
-            <span className="text-white font-bold text-lg font-spartan hidden sm:block">
+            <span className={`text-white font-bold font-spartan transition-all duration-500 ${
+              isScrolled ? 'text-sm sm:text-base' : 'text-base sm:text-lg'
+            }`}>
               Performance Marketing
             </span>
           </a>
@@ -366,24 +368,24 @@ const LeadCalculator = () => {
             <img
               src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
               alt="Business Growth Calculator"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
             <div className="relative z-10 flex flex-col items-center justify-center h-full p-6 text-center">
-              <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight font-spartan">
+              <h1 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight font-spartan drop-shadow-2xl">
                 <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Let's Show You
                 </span>
                 <br />
                 Just How Far Your Growth Can Go <span className="text-white">With Us</span>
               </h1>
-              <p className="text-white/90 text-base max-w-xs mx-auto leading-relaxed font-spartan">
+              <p className="text-white text-base max-w-xs mx-auto leading-relaxed font-spartan drop-shadow-lg">
                 Data-driven insights. ROI that speaks. Let's build your growth story.
               </p>
               
               {/* Scroll Indicator */}
               <div className="scroll-indicator mt-8">
-                <ChevronDown className="h-6 w-6 text-white/70 mx-auto" />
+                <ChevronDown className="h-6 w-6 text-white/70 mx-auto animate-bounce" />
               </div>
             </div>
           </div>
