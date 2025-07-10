@@ -357,17 +357,30 @@ const LeadCalculator = () => {
       <div className="container mx-auto px-4 pt-40 pb-8 sm:pt-50">
 
         {/* Hero Content */}
-        <div className="text-center mb-16 max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-            <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Let's Show You
-            </span>
-            <br />
-            Just How Far Your Growth Can Go <span className="text-black">With Us</span>
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
-            Data-driven insights. ROI that speaks. Let's build your growth story.
-          </p>
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-between max-w-7xl mx-auto px-6 py-24 gap-12">
+  {/* Text Section */}
+  <div className="lg:w-1/2 text-center lg:text-left">
+    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
+      <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+        Let's Show You
+      </span>
+      <br />
+      Just How Far Your Growth Can Go <span className="text-black">With Us</span>
+    </h1>
+    <p className="text-white/90 text-lg md:text-xl max-w-xl leading-relaxed font-spartan">
+      Data-driven insights. ROI that speaks. Let's build your growth story.
+    </p>
+  </div>
+
+  {/* Image Section */}
+  <div className="lg:w-1/2 flex justify-center">
+    <img
+      src="/path-to-your-banner-image.jpg" // replace this with the correct path
+      alt="Real Estate Calculator Collage"
+      className="w-full max-w-md object-contain drop-shadow-xl"
+    />
+  </div>
+</div>
           
           
           {/* Scroll Indicator */}
