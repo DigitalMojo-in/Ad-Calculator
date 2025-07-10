@@ -308,8 +308,6 @@ const LeadCalculator = () => {
 
   return (
     <div className="min-h-screen bg-yellow-400 relative">
-      {/* Animated Background */}
-      <AnimatedBackground />
       
       {/* Enhanced Header - transparent at top, blurred on scroll */}
       <header
@@ -329,9 +327,10 @@ const LeadCalculator = () => {
                 isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
-            <span className="text-white font-bold text-lg font-spartan hidden sm:block">
-              Performance Marketing
-            </span>
+            <div className="text-white font-bold text-lg font-spartan">
+              <span className="hidden sm:block">Performance Marketing</span>
+              <span className="sm:hidden">Performance Marketing</span>
+            </div>
           </a>
 
           {/* CTA Button */}
@@ -374,10 +373,6 @@ const LeadCalculator = () => {
               Data-driven insights. ROI that speaks. Let's build your growth story.
             </p>
             
-            {/* Scroll Indicator - Only show on mobile */}
-            <div className="scroll-indicator mt-12 lg:hidden">
-              <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
-            </div>
           </div>
           
           {/* Right side - Image */}
