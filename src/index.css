@@ -30,6 +30,8 @@ All colors MUST be HSL.
 
     --purple-brand: 274 29% 46%; /* Purple #754c9b */
     --yellow-brand: 48 100% 47%; /* Yellow #f0bc00 */
+    --gold-400: 45 100% 65%; /* Gold for luxury banner */
+    --gold-500: 43 96% 56%; /* Deeper gold */
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
@@ -75,6 +77,8 @@ All colors MUST be HSL.
     --accent-foreground: 0 0% 100%;
     --purple-brand: 274 29% 46%; /* Purple #754c9b */
     --yellow-brand: 48 100% 47%; /* Yellow #f0bc00 */
+    --gold-400: 45 100% 65%; /* Gold for luxury banner */
+    --gold-500: 43 96% 56%; /* Deeper gold */
     
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;

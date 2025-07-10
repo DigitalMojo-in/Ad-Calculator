@@ -56,6 +56,10 @@ export default {
         'green-brand': '#1ea34f',
         'blue-brand': '#06aed7',
         'orange-brand': '#eb7311',
+        'gold': {
+          400: 'hsl(var(--gold-400))',
+          500: 'hsl(var(--gold-500))'
+        },
         sidebar: {
           DEFAULT: 'hsl(var(--sidebar-background))',
           foreground: 'hsl(var(--sidebar-foreground))',

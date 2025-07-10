@@ -130,10 +130,24 @@ const LeadCalculator = () => {
     calculateMetrics();
   }, [propertyType, launchType, location, bhk, marketingChannels, sellUnits, duration]);
 
-  // Scroll handler for header transparency
+  // Scroll handler for header transparency and sticky CTA
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Hide sticky CTA when footer is visible on mobile
+      const footer = document.querySelector('.bg-white.text-accent-black');
+      if (footer) {
+        const footerRect = footer.getBoundingClientRect();
+        const stickyElement = document.querySelector('.sticky-cta');
+        if (stickyElement) {
+          if (footerRect.top <= window.innerHeight) {
+            (stickyElement as HTMLElement).style.display = 'none';
+          } else {
+            (stickyElement as HTMLElement).style.display = 'block';
+          }
+        }
+      }
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -314,7 +328,7 @@ const LeadCalculator = () => {
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-30 sm:h-30' : 'w-30 h-30 sm:w-40 sm:h-40'
+                isScrolled ? 'w-6 h-6 sm:w-30 sm:h-30' : 'w-6 h-6 sm:w-40 sm:h-40'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
             <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
@@ -345,7 +359,7 @@ const LeadCalculator = () => {
       </header>
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-30 pb-8 sm:pt-60">
+      <div className="container mx-auto px-4 pt-20 pb-8 sm:pt-60">
 
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
@@ -357,9 +371,31 @@ const LeadCalculator = () => {
             Data-driven insights. ROI that speaks. Let's build your growth story.
           </p>
           
+          {/* Luxury Banner Section */}
+          <div className="mt-8 mb-8 relative">
+            <div className="bg-gradient-to-r from-gold-500/20 via-gold-400/30 to-gold-500/20 backdrop-blur-sm border border-gold-400/50 rounded-2xl p-6 mx-auto max-w-4xl shadow-2xl">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-white">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-gold-400 rounded-full animate-pulse"></div>
+                  <span className="text-sm md:text-base font-medium">Proven ROI</span>
+                </div>
+                <div className="hidden md:block w-px h-6 bg-gold-400/50"></div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-gold-400 rounded-full animate-pulse delay-200"></div>
+                  <span className="text-sm md:text-base font-medium">Expert Strategy</span>
+                </div>
+                <div className="hidden md:block w-px h-6 bg-gold-400/50"></div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-gold-400 rounded-full animate-pulse delay-400"></div>
+                  <span className="text-sm md:text-base font-medium">Premium Support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
           {/* Scroll Indicator */}
           <div className="scroll-indicator mt-12">
-            <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
+            <ChevronDown className="h-8 w-8 text-white/70 mx-auto animate-bounce" />
           </div>
         </div>
 
@@ -388,7 +424,7 @@ const LeadCalculator = () => {
                     value={sellUnits}
                     onChange={handleSellUnitsChange}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-14 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-5xl rounded-lg h-14 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
                     size="sm"
@@ -885,7 +921,7 @@ const LeadCalculator = () => {
                 >
                   <X className="h-4 w-4" />
                 </Button>
-                <h3 className="text-2xl font-bold text-center text-black font-spartan">Want A Call Back</h3>
+                <h3 className="text-2xl font-bold text-center text-black font-spartan">Fill Details to Unlock</h3>
               </CardHeader>
               <CardContent className="p-6 pt-0">
                 <div className="space-y-4">
