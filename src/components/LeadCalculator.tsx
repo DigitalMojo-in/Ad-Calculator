@@ -299,54 +299,54 @@ const LeadCalculator = () => {
       {/* Animated Background */}
       <AnimatedBackground />
       
-      {/* Enhanced Header - transparent at top, blurred on scroll */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-          isScrolled
-            ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
-            : 'bg-transparent py-4'
-        }`}
+     <header
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+    isScrolled
+      ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
+      : 'bg-transparent py-4'
+  }`}
+>
+  <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
+    {/* Logo + Tagline */}
+    <a href="#" className="flex items-center space-x-4 group">
+      <img
+        src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
+        alt="Digital Mojo Logo"
+        className={`transition-all duration-500 ease-in-out ${
+          isScrolled ? 'w-16 h-16 sm:w-24 sm:h-24' : 'w-20 h-20 sm:w-40 sm:h-40'
+        } object-contain drop-shadow-xl group-hover:scale-105`}
+      />
+      {isScrolled && (
+        <span className="inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
+          Performance Marketing
+        </span>
+      )}
+    </a>
+
+    {/* CTA Button */}
+    <div className="hidden sm:block">
+      <Button
+        onClick={handleBookCall}
+        className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
       >
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-          {/* Logo + Tagline */}
-          <a href="#" className="flex items-center space-x-4 group">
-            <img
-              src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
-              alt="Digital Mojo Logo"
-              className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-30 sm:h-30' : 'w-25 h-25 sm:w-40 sm:h-40'
-              } object-contain drop-shadow-xl group-hover:scale-105`}
-            />
-            <span className="hidden sm:inline text-yellow-brand/90 text-sm sm:text-lg font-medium font-spartan tracking-widest">
-              Performance Marketing
-            </span>
-          </a>
+        Book Now
+      </Button>
+    </div>
 
-          {/* CTA Button */}
-          <div className="hidden sm:block">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
-            >
-              Book Now
-            </Button>
-          </div>
+    {/* Mobile CTA - Visible always for spacing */}
+    <div className="sm:hidden">
+      <Button
+        onClick={handleBookCall}
+        className="bg-red-600 hover:bg-red-700 text-white font-black py-2 px-6 rounded-full shadow-2xl hover:shadow-red-400/30 transition-all duration-300 font-spartan text-base"
+      >
+        Book Now
+      </Button>
+    </div>
+  </div>
+</header>
 
-          {/* Mobile CTA - Same Features as Desktop */}
-          <div className="sm:hidden">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg animate-bounce"
-            >
-              Book Now
-            </Button>
-          </div>
-        </div>
-      </header>
-
-      {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-24 pb-8 sm:pt-60">
-
+{/* Hero Section - Mobile spacing optimized */}
+<div className="container mx-auto px-4 pt-32 sm:pt-60 pb-8">
         {/* Hero Content */}
         <div className="text-center mb-16 max-w-6xl mx-auto">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
@@ -388,7 +388,7 @@ const LeadCalculator = () => {
                     value={sellUnits}
                     onChange={handleSellUnitsChange}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-14 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-lg h-30 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
                     size="sm"
@@ -631,7 +631,7 @@ const LeadCalculator = () => {
                       value={sellUnits}
                       onChange={handleSellUnitsChange}
                       min="1"
-                      className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-4xl rounded-xl h-20 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                      className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-4xl rounded-xl h-50 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     />
                     <Button
                       size="lg"
