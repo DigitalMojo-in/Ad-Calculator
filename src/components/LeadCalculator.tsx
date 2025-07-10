@@ -356,25 +356,36 @@ const LeadCalculator = () => {
       {/* Hero Section - Add top padding for fixed header */}
       <div className="container mx-auto px-4 pt-40 pb-8 sm:pt-50">
 
-        {/* Hero Content */}
-        <div className="text-center mb-16 max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-            <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Let's Show You
-            </span>
-            <br />
-            Just How Far Your Growth Can Go <span className="text-black">With Us</span>
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
-            Data-driven insights. ROI that speaks. Let's build your growth story.
-          </p>
-          
-          
-          {/* Scroll Indicator */}
-          <div className="scroll-indicator mt-12">
-            <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
-          </div>
+        <section
+      className="relative min-h-screen w-full flex items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage: "url('/path-to-your-banner-image.jpg')", // Replace with actual image path
+      }}
+    >
+      <div className="absolute inset-0 bg-black/30 backdrop-blur-sm z-0" />
+
+      <div className="relative z-10 text-center px-4 sm:px-6 max-w-6xl mx-auto">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
+          <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Let's Show You
+          </span>
+          <br />
+          Just How Far Your Growth Can Go{' '}
+          <span className="text-black bg-white px-2 rounded-lg shadow-md inline-block">
+            With Us
+          </span>
+        </h1>
+
+        <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
+          Data-driven insights. ROI that speaks. Let's build your growth story.
+        </p>
+
+        {/* Scroll Indicator */}
+        <div className="scroll-indicator mt-12">
+          <ChevronDown className="h-8 w-8 text-white/70 mx-auto animate-bounce" />
         </div>
+      </div>
+    </section>
 
         {/* Desktop Layout */}
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 max-w-7xl mx-auto mb-16">
