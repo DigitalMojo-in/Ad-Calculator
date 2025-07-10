@@ -311,88 +311,54 @@ const LeadCalculator = () => {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#f0bc00' }}>
       
-      {/* Enhanced Header - transparent at top, blurred on scroll */}
+      {/* Sticky Theme Toggle - Left Wall */}
+      <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
+        <Button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          variant="ghost"
+          size="sm"
+          className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 p-3 rounded-full shadow-lg"
+        >
+          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
+      </div>
+
+      {/* Sticky Get In Touch - Right Wall */}
+      <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
+        <Button
+          onClick={handleBookCall}
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 font-spartan transform -rotate-90 origin-center"
+        >
+          Get In Touch
+        </Button>
+      </div>
+
+      {/* Simplified Header - Only Logo */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out ${
           isScrolled
-            ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-1'
+            ? 'bg-black/40 backdrop-blur-xl py-1'
             : 'bg-transparent py-2'
         }`}
       >
-        <div className="mx-auto px-2 sm:px-4 flex items-center justify-between">
-          {/* Logo + Tagline - Positioned at exact left */}
-          <a href="#" className="flex items-center space-x-2 group">
+        <div className="flex justify-center px-2">
+          <a href="#" className="flex items-center group">
             <img
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-12 h-12 sm:w-16 sm:h-16' : 'w-16 h-16 sm:w-20 sm:h-20'
+                isScrolled ? 'w-12 h-12' : 'w-16 h-16'
               } object-contain group-hover:scale-105`}
             />
-            <div className="text-white font-bold text-sm sm:text-base font-spartan">
-              <span className="block">Performance Marketing</span>
-            </div>
           </a>
-
-          {/* Center Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Home</a>
-            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">About Us</a>
-            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Services</a>
-            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Clients</a>
-            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Consultation</a>
-            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Careers</a>
-            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Blog</a>
-            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Contact Us</a>
-          </nav>
-
-          {/* Right side buttons */}
-          <div className="flex items-center space-x-2">
-            {/* Dark/Light Mode Toggle */}
-            <Button
-              onClick={() => setIsDarkMode(!isDarkMode)}
-              variant="ghost"
-              size="sm"
-              className="text-white hover:bg-white/20 p-2"
-            >
-              {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </Button>
-
-            {/* Follow Us Button */}
-            <div className="flex items-center space-x-1">
-              <span className="text-white text-sm font-spartan hidden sm:block">Follow Us</span>
-              <div className="flex space-x-1">
-                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-1">
-                  <Facebook className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-1">
-                  <Instagram className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-1">
-                  <Twitter className="h-4 w-4" />
-                </Button>
-                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-1">
-                  <Linkedin className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-
-            {/* Get In Touch Button */}
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm transition-all duration-300 font-spartan"
-            >
-              Get In Touch
-            </Button>
-          </div>
         </div>
       </header>
 
-      {/* Hero Section - Add top padding for fixed header */}
-      <div className="mx-auto px-2 pt-24 pb-4 sm:pt-28">
+      {/* Hero Section - Reduced padding */}
+      <div className="mx-auto px-1 pt-16 pb-2 sm:pt-20">
 
-        {/* Hero Content */}
-        <div className="flex flex-col lg:flex-row items-center justify-between mb-16 max-w-6xl mx-auto gap-8">
+        {/* Hero Content - Reduced margins */}
+        <div className="flex flex-col lg:flex-row items-center justify-between mb-8 max-w-6xl mx-auto gap-4">
           {/* Left side - Text */}
           <div className="flex-1 text-center lg:text-left">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
@@ -418,8 +384,8 @@ const LeadCalculator = () => {
           </div>
         </div>
 
-        {/* Desktop Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 max-w-7xl mx-auto mb-16">
+        {/* Desktop Layout - Reduced margins */}
+        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4 max-w-7xl mx-auto mb-8">
           {/* Calculator Section */}
           <Card className="bg-white/95 backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden">
             <CardHeader className="pb-4">
