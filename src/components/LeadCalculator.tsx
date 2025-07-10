@@ -307,7 +307,7 @@ const LeadCalculator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-yellow-400 relative">
       {/* Animated Background */}
       <AnimatedBackground />
       
@@ -329,7 +329,7 @@ const LeadCalculator = () => {
                 isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-32 sm:h-32'
               } object-contain drop-shadow-xl group-hover:scale-105`}
             />
-            <span className="text-white font-bold text-lg font-spartan">
+            <span className="text-white font-bold text-lg font-spartan hidden sm:block">
               Performance Marketing
             </span>
           </a>
@@ -385,7 +385,7 @@ const LeadCalculator = () => {
             <img
               src="/lovable-uploads/9c460a79-1d3c-4c9d-8496-328214db49f2.png"
               alt="Business Growth Calculator"
-              className="w-full max-w-md lg:max-w-lg h-auto object-contain"
+              className="w-full max-w-md lg:max-w-lg h-auto object-contain drop-shadow-2xl"
             />
           </div>
         </div>
