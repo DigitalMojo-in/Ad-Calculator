@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X, TrendingUp, BarChart3, Users, Target } from 'lucide-react';
+import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X, TrendingUp, BarChart3, Users, Target, Sun, Moon, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 import luxuryBannerBg from '@/assets/luxury-banner-bg.jpg';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
@@ -306,57 +306,90 @@ const LeadCalculator = () => {
     }
   };
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   return (
-    <div className="min-h-screen bg-yellow-400 relative">
+    <div className="min-h-screen" style={{ backgroundColor: '#f0bc00' }}>
       
       {/* Enhanced Header - transparent at top, blurred on scroll */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
           isScrolled
-            ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
-            : 'bg-transparent py-4'
+            ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-1'
+            : 'bg-transparent py-2'
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-          {/* Logo + Tagline */}
+        <div className="mx-auto px-2 sm:px-4 flex items-center justify-between">
+          {/* Logo + Tagline - Positioned at exact left */}
           <a href="#" className="flex items-center space-x-2 group">
             <img
               src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
               alt="Digital Mojo Logo"
               className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-40 sm:h-40'
-              } object-contain drop-shadow-xl group-hover:scale-105`}
+                isScrolled ? 'w-12 h-12 sm:w-16 sm:h-16' : 'w-16 h-16 sm:w-20 sm:h-20'
+              } object-contain group-hover:scale-105`}
             />
-            <div className="text-white font-bold  font-spartan">
-              <span className="hidden sm:block">Performance Marketing</span>
-              <span className="sm:hidden">Performance Marketing</span>
+            <div className="text-white font-bold text-sm sm:text-base font-spartan">
+              <span className="block">Performance Marketing</span>
             </div>
           </a>
 
-          {/* CTA Button */}
-          <div className="hidden sm:block">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
-            >
-              Book Now
-            </Button>
-          </div>
+          {/* Center Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Home</a>
+            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">About Us</a>
+            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Services</a>
+            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Clients</a>
+            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Consultation</a>
+            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Careers</a>
+            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Blog</a>
+            <a href="#" className="text-white hover:text-yellow-200 transition-colors text-sm font-spartan">Contact Us</a>
+          </nav>
 
-          {/* Mobile CTA - Same Features as Desktop */}
-          <div className="sm:hidden">
+          {/* Right side buttons */}
+          <div className="flex items-center space-x-2">
+            {/* Dark/Light Mode Toggle */}
+            <Button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              variant="ghost"
+              size="sm"
+              className="text-white hover:bg-white/20 p-2"
+            >
+              {isDarkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </Button>
+
+            {/* Follow Us Button */}
+            <div className="flex items-center space-x-1">
+              <span className="text-white text-sm font-spartan hidden sm:block">Follow Us</span>
+              <div className="flex space-x-1">
+                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-1">
+                  <Facebook className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-1">
+                  <Instagram className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-1">
+                  <Twitter className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 p-1">
+                  <Linkedin className="h-4 w-4" />
+                </Button>
+              </div>
+            </div>
+
+            {/* Get In Touch Button */}
             <Button
               onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg animate-bounce"
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded text-sm transition-all duration-300 font-spartan"
             >
-              Book Now
+              Get In Touch
             </Button>
           </div>
         </div>
       </header>
 
       {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-40 pb-8 sm:pt-50">
+      <div className="mx-auto px-2 pt-24 pb-4 sm:pt-28">
 
         {/* Hero Content */}
         <div className="flex flex-col lg:flex-row items-center justify-between mb-16 max-w-6xl mx-auto gap-8">
