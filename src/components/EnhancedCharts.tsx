@@ -26,9 +26,9 @@ const COLORS = ['#ec4899', '#8b5cf6', '#f59e0b'];
 const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, duration }) => {
   // Data for donut chart showing conversion funnel (without bookings)
   const conversionData = [
-    { name: 'Leads', value: metrics.leads, color: '#1ea34f' },
-    { name: 'Qualified Leads', value: metrics.qualifiedLeads, color: '#06aed7' },
-    { name: 'Site Visits', value: metrics.siteVisits, color: '#eb7311' }
+    { name: 'Leads', value: metrics.leads, color: '#ec4899' },
+    { name: 'Qualified Leads', value: metrics.qualifiedLeads, color: '#8b5cf6' },
+    { name: 'Site Visits', value: metrics.siteVisits, color: '#f59e0b' }
   ];
 
   // Generate proper time-series data based on the duration and metrics
@@ -63,10 +63,10 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
       const percentage = ((data.value / total) * 100).toFixed(1);
       
       return (
-        <div className="bg-white backdrop-blur-lg border border-gray-200 rounded-lg p-3 text-gray-800 shadow-lg">
+        <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg p-3 text-white">
           <p className="font-semibold">{data.name}</p>
           <p className="text-lg">{data.value.toLocaleString()}</p>
-          <p className="text-sm text-gray-600">{percentage}% of total</p>
+          <p className="text-sm text-gray-300">{percentage}% of total</p>
         </div>
       );
     }
@@ -74,23 +74,24 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
   };
 
   return (
-    <div className="space-y-4">
-      {/* Conversion Funnel Donut Chart */}
-      <Card className="bg-white/95 backdrop-blur-lg border-none shadow-lg rounded-2xl card-hover">
-        <CardHeader>
-          <h3 className="text-lg font-bold text-foreground text-center">Conversion Funnel</h3>
-        </CardHeader>
-        <CardContent className="p-4">
-          <div className="flex items-center gap-4">
-            <div className="h-48 flex-1">
+    <div className="space-y-6">
+      {/* Donut Charts Row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Conversion Funnel Donut Chart */}
+        <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+          <CardHeader>
+            <h3 className="text-lg font-bold text-white text-center">Conversion Funnel</h3>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={conversionData}
                     cx="50%"
                     cy="50%"
-                    innerRadius={40}
-                    outerRadius={80}
+                    innerRadius={60}
+                    outerRadius={100}
                     paddingAngle={2}
                     dataKey="value"
                     animationDuration={1500}
@@ -103,101 +104,115 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-wrap justify-center gap-4 mt-4">
               {conversionData.map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div 
                     className="w-3 h-3 rounded-full" 
                     style={{ backgroundColor: item.color }}
                   />
-                  <span className="text-foreground text-sm font-medium">{item.name}</span>
+                  <span className="text-white text-sm">{item.name}</span>
                 </div>
               ))}
             </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      {/* Performance Trend Chart */}
-      <Card className="bg-white/95 backdrop-blur-lg border-none shadow-lg rounded-2xl card-hover">
-        <CardHeader>
-          <h3 className="text-lg font-bold text-foreground text-center">
-            Performance Trend Over {duration}
-          </h3>
-        </CardHeader>
-        <CardContent className="p-4">
-          <div className="h-48">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={enhancedChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <XAxis 
-                  dataKey="month" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: '#6b7280', fontSize: 12 }} 
-                />
-                <YAxis 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: '#6b7280', fontSize: 12 }} 
-                />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(255, 255, 255, 0.95)', 
-                    border: 'none',
-                    borderRadius: '12px',
-                    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
-                    color: '#374151'
-                  }}
-                />
-                <Legend 
-                  wrapperStyle={{ color: '#374151' }}
-                />
-                
-                <Line
-                  type="monotone"
-                  dataKey="leads"
-                  stroke="#1ea34f"
-                  strokeWidth={3}
-                  dot={{ fill: '#1ea34f', strokeWidth: 2, r: 4 }}
-                  name="Leads"
-                  animationBegin={0}
-                  animationDuration={2000}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="qualifiedLeads"
-                  stroke="#06aed7"
-                  strokeWidth={3}
-                  dot={{ fill: '#06aed7', strokeWidth: 2, r: 4 }}
-                  name="Qualified Leads"
-                  animationBegin={500}
-                  animationDuration={2000}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="siteVisits"
-                  stroke="#eb7311"
-                  strokeWidth={3}
-                  dot={{ fill: '#eb7311', strokeWidth: 2, r: 4 }}
-                  name="Site Visits"
-                  animationBegin={1000}
-                  animationDuration={2000}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="bookings"
-                  stroke="#754c9b"
-                  strokeWidth={3}
-                  dot={{ fill: '#754c9b', strokeWidth: 2, r: 4 }}
-                  name="Bookings"
-                  animationBegin={1500}
-                  animationDuration={2000}
-                />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
-        </CardContent>
-      </Card>
+        {/* Enhanced Timeline Chart with CPL and gradients */}
+        <Card className="bg-white/10 backdrop-blur-lg border-white/20">
+          <CardHeader>
+            <h3 className="text-lg font-bold text-white text-center">
+              Performance Trend Over {duration}
+            </h3>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart data={enhancedChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                  <defs>
+                    <linearGradient id="leadsGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#ec4899" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#ec4899" stopOpacity={0.05}/>
+                    </linearGradient>
+                    <linearGradient id="siteVisitsGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.05}/>
+                    </linearGradient>
+                    <linearGradient id="bookingsGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#10b981" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#10b981" stopOpacity={0.05}/>
+                    </linearGradient>
+                    <linearGradient id="cplGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="#fbbf24" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#fbbf24" stopOpacity={0.05}/>
+                    </linearGradient>
+                  </defs>
+                  <XAxis 
+                    dataKey="month" 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fill: '#d1d5db', fontSize: 12 }} 
+                  />
+                  <YAxis 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fill: '#d1d5db', fontSize: 12 }} 
+                  />
+                  <Tooltip 
+                    contentStyle={{ 
+                      backgroundColor: 'rgba(255, 255, 255, 0.1)', 
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderRadius: '8px',
+                      backdropFilter: 'blur(10px)',
+                      color: 'white'
+                    }}
+                  />
+                  <Legend 
+                    wrapperStyle={{ color: 'white' }}
+                  />
+                  
+                  <Area
+                    type="monotone"
+                    dataKey="leads"
+                    stroke="#ec4899"
+                    strokeWidth={3}
+                    fill="url(#leadsGradient)"
+                    name="Leads"
+                    animationDuration={1500}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="siteVisits"
+                    stroke="#f59e0b"
+                    strokeWidth={3}
+                    fill="url(#siteVisitsGradient)"
+                    name="Site Visits"
+                    animationDuration={1500}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="bookings"
+                    stroke="#10b981"
+                    strokeWidth={3}
+                    fill="url(#bookingsGradient)"
+                    name="Bookings"
+                    animationDuration={1500}
+                  />
+                  <Area
+                    type="monotone"
+                    dataKey="cpl"
+                    stroke="#fbbf24"
+                    strokeWidth={3}
+                    fill="url(#cplGradient)"
+                    name="CPL"
+                    animationDuration={1500}
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
