@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X, Sun, Moon } from 'lucide-react';
 import luxuryBannerBg from '@/assets/luxury-banner-bg.jpg';
+import digitalMojoLogo from '@/assets/digital-mojo-logo.png';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
 import AnimatedBackground from './AnimatedBackground';
@@ -200,12 +201,26 @@ const LeadCalculator = () => {
     setShowForm(true);
   };
 
-  const chartData = [
-    { name: 'Leads', value: metrics.leads, color: '#f0bc00' },
-    { name: 'Qualified', value: metrics.qualifiedLeads, color: '#c63aa0' },
-    { name: 'Site Visits', value: metrics.siteVisits, color: '#814ae7' },
-    { name: 'Bookings', value: metrics.bookings, color: '#4f46e5' }
-  ];
+  // Generate time-series data for the trend chart
+  const generateTimeSeriesData = () => {
+    const timePoints = duration === '3 Months' ? 3 : duration === '6 Months' ? 6 : 12;
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    
+    return Array.from({ length: timePoints }, (_, i) => {
+      const monthIndex = (new Date().getMonth() + i) % 12;
+      const baseVariation = 0.8 + (Math.random() * 0.4); // 0.8 to 1.2 variation
+      
+      return {
+        month: monthNames[monthIndex],
+        leads: Math.round(metrics.leads * baseVariation / timePoints),
+        siteVisits: Math.round(metrics.siteVisits * baseVariation / timePoints),
+        bookings: Math.round(metrics.bookings * baseVariation / timePoints),
+        cpl: Math.round(metrics.cpl * (0.9 + Math.random() * 0.2)) // CPL varies slightly
+      };
+    });
+  };
+
+  const chartData = generateTimeSeriesData();
 
   return (
     <div className={`min-h-screen px-0 transition-colors duration-300 ${isDarkMode ? 'bg-black' : ''}`} style={{ backgroundColor: isDarkMode ? '#000000' : '#f0bc00' }}>
@@ -216,7 +231,11 @@ const LeadCalculator = () => {
           onClick={() => setIsDarkMode(!isDarkMode)}
           variant="ghost"
           size="sm"
-          className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 p-3 rounded-full shadow-lg"
+          className={`backdrop-blur-md p-3 rounded-full shadow-lg transition-all duration-300 ${
+            isDarkMode 
+              ? 'bg-yellow-400 text-black hover:bg-yellow-300' 
+              : 'bg-black text-white hover:bg-gray-800'
+          }`}
         >
           {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </Button>
@@ -228,7 +247,11 @@ const LeadCalculator = () => {
           onClick={() => setIsDarkMode(!isDarkMode)}
           variant="ghost"
           size="sm"
-          className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 p-3 rounded-full shadow-lg"
+          className={`backdrop-blur-md p-3 rounded-full shadow-lg transition-all duration-300 ${
+            isDarkMode 
+              ? 'bg-yellow-400 text-black hover:bg-yellow-300' 
+              : 'bg-black text-white hover:bg-gray-800'
+          }`}
         >
           {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
         </Button>
@@ -255,18 +278,19 @@ const LeadCalculator = () => {
           <div className="flex items-center space-x-4">
             <a href="#" className="flex items-center group">
               <img
-                src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
+                src={digitalMojoLogo}
                 alt="Digital Mojo Logo"
                 className="w-24 h-24 sm:w-40 sm:h-40 object-contain group-hover:scale-105 transition-all duration-500 ease-in-out"
               />
             </a>
             
-            {/* Performance Marketing Text */}
-            <div className="hidden sm:block">
-              <h3 className={`text-xl md:text-2xl font-bold font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>
-                Performance Marketing
-              </h3>
-            </div>
+          </div>
+          
+          {/* Performance Marketing Text - Centered */}
+          <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2">
+            <h3 className={`text-xl md:text-2xl font-bold font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>
+              Performance Marketing
+            </h3>
           </div>
 
           {/* Desktop CTA - Made Bigger */}
@@ -755,8 +779,8 @@ const LeadCalculator = () => {
             </Card>
           </div>
 
-          {/* Aesthetic Divider between Mobile Calculator and Results */}
-          <div className="w-full my-8">
+          {/* Aesthetic Divider between Mobile Calculator and Results - Mobile Only */}
+          <div className="lg:hidden w-full my-8">
             <div className="flex items-center justify-center">
               <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
               <div className={`mx-4 text-xl ${isDarkMode ? 'text-white/40' : 'text-gray-600/50'}`}>◊</div>
