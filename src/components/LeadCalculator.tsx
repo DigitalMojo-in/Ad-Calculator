@@ -309,119 +309,136 @@ const LeadCalculator = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#f0bc00' }}>
+    <div className="min-h-screen px-0" style={{ backgroundColor: '#f0bc00' }}>
       
       {/* Sticky Theme Toggle - Left Wall */}
-      <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
-        <Button
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          variant="ghost"
-          size="sm"
-          className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 p-3 rounded-full shadow-lg"
-        >
-          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-        </Button>
-      </div>
+  <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
+    <Button
+      onClick={() => setIsDarkMode(!isDarkMode)}
+      variant="ghost"
+      size="sm"
+      className="bg-white/20 backdrop-blur-md text-white hover:bg-white/30 p-3 rounded-full shadow-lg"
+    >
+      {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+    </Button>
+  </div>
 
-      {/* Sticky Get In Touch - Right Wall */}
-      <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50">
+  {/* Sticky Get In Touch - Right Wall */}
+  <div className="hidden sm:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
+    <Button
+      onClick={handleBookCall}
+      className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-5 rounded-full shadow-lg transition-all duration-300 font-spartan transform -rotate-90 origin-center"
+    >
+      Get In Touch
+    </Button>
+  </div>
+
+  {/* Header */}
+  <header className="top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out bg-transparent py-4">
+    <div className="flex justify-between items-center px-4 sm:px-8">
+      <a href="#" className="flex items-center group">
+        <img
+          src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
+          alt="Digital Mojo Logo"
+          className="w-24 h-24 sm:w-40 sm:h-40 object-contain group-hover:scale-105 transition-all duration-500 ease-in-out"
+        />
+      </a>
+
+      {/* Desktop CTA */}
+      <div className="hidden sm:block">
         <Button
           onClick={handleBookCall}
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 font-spartan transform -rotate-90 origin-center"
+          className="bg-red-600 hover:bg-red-700 text-white font-black py-3 sm:px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
         >
-          Get In Touch
+          Book Now
         </Button>
       </div>
 
-      {/* Simplified Header - Only Logo */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out ${
-          isScrolled
-            ? 'bg-black/40 backdrop-blur-xl py-1'
-            : 'bg-transparent py-2'
-        }`}
-      >
-        <div className="flex justify-center px-2">
-          <a href="#" className="flex items-center group">
-            <img
-              src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
-              alt="Digital Mojo Logo"
-              className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-12 h-12' : 'w-16 h-16'
-              } object-contain group-hover:scale-105`}
-            />
-          </a>
+      {/* Mobile CTA */}
+      <div className="block sm:hidden">
+        <Button
+          onClick={handleBookCall}
+          className="bg-red-600 hover:bg-red-700 text-white font-black py-2 px-4 rounded-full shadow-md transition-all duration-300 font-spartan text-sm"
+        >
+          Book Now
+        </Button>
+      </div>
+    </div>
+  </header>
+
+  {/* Hero Section */}
+  <div className="w-full px-4 sm:px-10 xl:px-24 mt-10 lg:mt-16">
+    <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-4">
+      {/* Left - Text Block */}
+      <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
+        <div className="pt-6 pb-10 sm:pb-20">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] font-black text-white leading-tight font-spartan mb-4">
+            Know Every
+            <span className="text-black text-[5rem] md:text-[6rem] xl:text-[6.5rem] font-extrabold align-middle leading-none px-2">
+              ₹
+            </span>
+            Before You Invest
+            <span className="text-white text-5xl md:text-6xl xl:text-7xl px-2 font-thin">—</span>
+            <br />
+            <span className="text-[#c63aa0]">
+              Calculate <span className="text-[#814ae7]">Your Ad Plan.</span>
+            </span>
+          </h1>
+
+          <p className="text-white/90 text-lg md:text-xl leading-relaxed font-spartan">
+            Data-driven insights. ROI that speaks. Let’s build your growth story.
+          </p>
         </div>
-      </header>
+      </div>
 
-      {/* Hero Section - Reduced padding */}
-      <div className="mx-auto px-1 pt-16 pb-2 sm:pt-20">
+      {/* Right - Image */}
+      <div className="flex-[1.6] flex justify-center lg:justify-end mt-6 lg:mt-0 px-4 sm:px-6 lg:px-8 xl:px-10">
+        <img
+          src="./lovable-uploads/img.png"
+          alt="Business Growth Calculator"
+          className="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-[40rem] h-auto scale-[1.2] transition-transform duration-300"
+        />
+      </div>
+    </div>
+  </div>
 
-        {/* Hero Content - Reduced margins */}
-        <div className="flex flex-col lg:flex-row items-center justify-between mb-8 max-w-6xl mx-auto gap-4">
-          {/* Left side - Text */}
-          <div className="flex-1 text-center lg:text-left">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-              <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Let's Show You
-              </span>
-              <br />
-              Just How Far Your Growth Can Go <span className="text-black">With Us</span>
-            </h1>
-            <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-spartan">
-              Data-driven insights. ROI that speaks. Let's build your growth story.
-            </p>
-            
+  {/* Calculator Section */}
+  <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-16 mx-0 lg:ml-24 mt-12 lg:mt-20 mb-12 max-w-2xl">
+
+    <div className="grid lg:grid-cols-2 gap-8">
+      <Card className="bg-white/95 backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden">
+        <CardHeader className="pb-4">
+          <h2 className="text-xl font-bold text-gray-900 text-center">Calculate Your Leads</h2>
+        </CardHeader>
+        <CardContent className="p-6">
+          <div className="mb-6 text-center">
+            <label className="text-foreground text-lg font-bold mb-3 block font-spartan">Units to Sell</label>
+            <div className="flex items-center justify-center gap-3 max-w-sm mx-auto">
+              <Button
+                size="sm"
+                variant="outline"
+                className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
+                onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
+              >
+                <Minus className="h-4 w-4" />
+              </Button>
+              <Input
+                type="number"
+                value={sellUnits}
+                onChange={handleSellUnitsChange}
+                min="1"
+                className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-6xl rounded-lg h-20 w-32 transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              />
+              <Button
+                size="sm"
+                variant="outline"
+                className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
+                onClick={() => setSellUnits(sellUnits + 1)}
+              >
+                <Plus className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
-          
-          {/* Right side - Image */}
-          <div className="flex-1 flex justify-center lg:justify-end">
-            <img
-              src="./lovable-uploads/img.png"
-              alt="Business Growth Calculator"
-              className="w-full max-w-md lg:max-w-lg h-auto "
-            />
-          </div>
-        </div>
-
-        {/* Desktop Layout - Reduced margins */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-4 max-w-7xl mx-auto mb-8">
-          {/* Calculator Section */}
-          <Card className="bg-white/95 backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden">
-            <CardHeader className="pb-4">
-              <h2 className="text-xl font-bold text-gray-900 text-center">Calculate Your Leads</h2>
-            </CardHeader>
-            <CardContent className="p-6">
-              {/* Sell Units - Primary Input */}
-              <div className="mb-6 text-center">
-                <label className="text-foreground text-lg font-bold mb-3 block font-spartan">Units to Sell</label>
-                <div className="flex items-center justify-center gap-3 max-w-sm mx-auto">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
-                    onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
-                  >
-                    <Minus className="h-4 w-4" />
-                  </Button>
-                  <Input
-                    type="number"
-                    value={sellUnits}
-                    onChange={handleSellUnitsChange}
-                    min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-6xl rounded-lg h-20 w-32 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                  />
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-lg transition-all duration-200"
-                    onClick={() => setSellUnits(sellUnits + 1)}
-                  >
-                    <Plus className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-
               {/* Form Inputs */}
               <div className="space-y-4">
                 {/* Property Type */}
