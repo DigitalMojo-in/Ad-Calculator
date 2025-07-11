@@ -270,7 +270,7 @@ const LeadCalculator = () => {
             height: '56px'
           }}
         >
-          Get In Touch
+          FREE Strategy Call
         </Button>
       </div>
 
@@ -280,7 +280,7 @@ const LeadCalculator = () => {
     <div className="flex items-center space-x-0">
       <a href="#" className="flex items-center group">
         <img
-          src="./lovable-uploads/DMMM.png"
+          src="./lovable-uploads/DMM.png"
           alt="Digital Mojo Logo"
           className="w-28 h-28 sm:w-40 sm:h-40 object-contain group-hover:scale-105 transition-all duration-500 ease-in-out"
         />
@@ -417,7 +417,7 @@ const LeadCalculator = () => {
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                      <SelectItem value="Residential">Residential</SelectItem>
                      <SelectItem value="Commercial">Commercial</SelectItem>
-                     <SelectItem value="Senior Living">Senior Living</SelectItem>
+                     {/* <SelectItem value="Senior Living">Senior Living</SelectItem> */}
                      <SelectItem value="Plots">Plots</SelectItem>
                      <SelectItem value="Shops cum Offices">Shops cum Offices</SelectItem>
                    </SelectContent>
@@ -512,7 +512,7 @@ const LeadCalculator = () => {
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl text-">
-                     <SelectItem value="15 Days">15 Days</SelectItem>
+                     {/* <SelectItem value="15 Days">15 Days</SelectItem> */}
                      <SelectItem value="1 Month">1 Month</SelectItem>
                      <SelectItem value="2 Months">2 Months</SelectItem>
                      <SelectItem value="3 Months">3 Months</SelectItem>
@@ -532,7 +532,7 @@ const LeadCalculator = () => {
                   onClick={handleViewResults}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  {resultsUnlocked ? "Results Unlocked" : "View Results"}
+                  {resultsUnlocked ? "Results Unlocked" : "Visualize Your Growth"}
                 </Button>
               </div>
 
@@ -602,7 +602,7 @@ const LeadCalculator = () => {
             className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-16 rounded-lg text-2xl transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
           >
             <Calendar className="mr-2 h-6 w-6" />
-            Schedule a Call
+            FREE Strategy Call
           </Button>
         </div>
 
@@ -773,7 +773,7 @@ const LeadCalculator = () => {
                     onClick={handleViewResults}
                     className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
-                    {resultsUnlocked ? "Results Unlocked" : "View Results"}
+                    {resultsUnlocked ? "Results Unlocked" : "Visualize Your Growth"}
                   </Button>
                   
                   {/* Loading Animation - Separate from Button */}
@@ -903,6 +903,22 @@ const LeadCalculator = () => {
                 <h3 className="text-2xl font-bold text-center font-spartan text-black">Unlock Your Results</h3>
               </CardHeader>
               <CardContent className="p-6 pt-0">
+              {!formData.name || !formData.mobile || !formData.email || !formData.organization ? (
+      <div className="flex flex-col items-center justify-center space-y-4 py-10 animate-fadeIn">
+      {/* 👇 Replace spinner with GIF here */}
+      <img
+        src="./lovable-uploads/amicat-wow.gif"
+        alt="Loading..."
+        className="w-20 h-20 object-contain"
+      />
+        <div className="text-gray-600 font-spartan text-base text-center">
+          We’re getting everything ready for you...
+          <br/>
+          Untill Then Please Fill the Form
+        </div>
+      </div>
+    ) : null}
+
                 <div className="space-y-4">
                   <Input
                     type="text"
@@ -929,7 +945,7 @@ const LeadCalculator = () => {
                     type="text"
                     value={formData.organization}
                     onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="Your Organization"
+                    placeholder="Your Organization/Project/Website"
                     className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                   />
                   <Button
@@ -937,7 +953,7 @@ const LeadCalculator = () => {
                     disabled={!formData.name || !formData.mobile || !formData.email || !formData.organization || isUnlockLoading}
                     className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
                   >
-                    {isUnlockLoading ? "Unlocking..." : "Unlock Results"}
+                    {isUnlockLoading ? "Unlocking..." : "Unlock Calculator"}
                   </Button>
                   
                   {/* Loading Bar Animation */}
