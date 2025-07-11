@@ -3,12 +3,14 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X, TrendingUp, BarChart3, Users, Target } from 'lucide-react';
+import { Plus, Minus, ChevronDown, Phone, Download, Calendar, Loader2, X, Sun, Moon } from 'lucide-react';
 import luxuryBannerBg from '@/assets/luxury-banner-bg.jpg';
+import digitalMojoLogo from '@/assets/digital-mojo-logo.png';
 import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
 import AnimatedBackground from './AnimatedBackground';
 import { useToast } from '@/hooks/use-toast';
+import { Separator } from '@/components/ui/separator';
 
 interface Metrics {
   leads: number;
@@ -31,6 +33,7 @@ interface UserFormData {
 
 const LeadCalculator = () => {
   const { toast } = useToast();
+  
   const [propertyType, setPropertyType] = useState('Residential');
   const [launchType, setLaunchType] = useState('Launch');
   const [location, setLocation] = useState('Mumbai South');
@@ -47,6 +50,9 @@ const LeadCalculator = () => {
   const [showBookModal, setShowBookModal] = useState(false);
   const [isViewResultsLoading, setIsViewResultsLoading] = useState(false);
   const [hideStickyCTA, setHideStickyCTA] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [showUnlockDialog, setShowUnlockDialog] = useState(false);
+  const [isUnlockLoading, setIsUnlockLoading] = useState(false);
 
   const [metrics, setMetrics] = useState<Metrics>({
     leads: 8333,
@@ -61,10 +67,7 @@ const LeadCalculator = () => {
   });
 
   const calculateMetrics = () => {
-    // Get actual CPL from the data based on location and BHK
     const actualCPL = getCPLForLocation(location, bhk);
-    
-    // Base calculations with realistic multipliers based on form inputs
     const baseLeads = sellUnits * 167;
     const locationMultiplier = location.includes('Mumbai') ? 1.5 : 
                              location.includes('Delhi') ? 1.3 :
@@ -84,7 +87,6 @@ const LeadCalculator = () => {
     const channelMultiplier = marketingChannels.includes('Google') ? 1.3 : 
                              marketingChannels.includes('+') ? 1.1 : 1.0;
     
-                             
     const cplMult = marketingChannels.includes('+') ? 0 : 257;
     const propertyMultiplier = propertyType === 'Villa' ? 1.5 :
                               propertyType === 'Commercial' ? 1.3 :
@@ -95,8 +97,6 @@ const LeadCalculator = () => {
                             launchType === 'Sustenance' ? 0.9 :
                             launchType === 'NRI' ? 1.2 : 1.0;
     
-    
-    // Use constant CPL as specified
     let cpl = marketingChannels.includes('+')? actualCPL:
                 marketingChannels.includes('Google') ? actualCPL+cplMult : actualCPL-cplMult;
     cpl=Math.round(cpl*locationMultiplier);
@@ -107,7 +107,6 @@ const LeadCalculator = () => {
     const qualifiedLeads = Math.round(leads * 0.3);
     const siteVisits = Math.round(qualifiedLeads * 0.2);
     const bookings = sellUnits;
-    
     
     const totalBudget = leads * cpl;
     const cpql = Math.round(totalBudget/qualifiedLeads);
@@ -132,12 +131,10 @@ const LeadCalculator = () => {
     calculateMetrics();
   }, [propertyType, launchType, location, bhk, marketingChannels, sellUnits, duration]);
 
-  // Scroll handler for header transparency and sticky CTA visibility
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
-      // Hide sticky CTA when footer is visible (on mobile)
       const footer = document.querySelector('#footer');
       if (footer && window.innerWidth < 768) {
         const footerRect = footer.getBoundingClientRect();
@@ -152,57 +149,10 @@ const LeadCalculator = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Generate chart data based on duration and strategy
-  const generateChartData = () => {
-    const durationMap: { [key: string]: number } = {
-      '15 Days': 0.5,
-      '1 Month': 1,
-      '2 Months': 2,
-      '3 Months': 3,
-      '4 Months': 4,
-      '5 Months': 5,
-      '6 Months': 6,
-      '7 Months': 7,
-      '8 Months': 8
-    };
-    
-    const monthCount = durationMap[duration] || 6;
-    const marketingMultiplier = marketingChannels.includes('+') ? 1.1 : 
-                               marketingChannels.includes('Google') ? 1.2 : 1.0;
-    
-    const chartData = [];
-    // Ensure at least 2 data points for chart rendering
-    const timePoints = Math.max(Math.ceil(monthCount), 2);
-    
-    for (let i = 1; i <= timePoints; i++) {
-      const baseProgress = i / timePoints;
-      const adjustedProgress = Math.pow(baseProgress, 0.7) * marketingMultiplier;
-      
-      const timeLabel = monthCount < 1 ? `Week ${i}` : `Month ${i}`;
-      
-      chartData.push({
-        month: timeLabel,
-        leads: Math.round(metrics.leads * Math.min(adjustedProgress, 1)),
-        qualifiedLeads: Math.round(metrics.qualifiedLeads * Math.min(adjustedProgress, 1)),
-        siteVisits: Math.round(metrics.siteVisits * Math.min(adjustedProgress, 1)),
-        bookings: Math.round(metrics.bookings * Math.min(adjustedProgress, 1))
-      });
-    }
-    
-    return chartData;
-  };
-
-  const chartData = generateChartData();
-
-  const handleSellUnitsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 0;
-    setSellUnits(Math.max(1, value));
-  };
-
   const handleUnlockResults = async () => {
     if (!formData.name || !formData.mobile || !formData.email || !formData.organization) return;
     
-    setIsLoading(true);
+    setIsUnlockLoading(true);
     const webAppURL = "https://script.google.com/macros/s/AKfycbzvY-cPO-fsMULjOLHsC-G47tePzt7EHUt2Uchlau8K3424HW9n7LG8Y-8HB_FOLkXX/exec";
   
     try {
@@ -220,11 +170,12 @@ const LeadCalculator = () => {
         }),
       });
   
-      await new Promise(resolve => setTimeout(resolve, 1000)); // Show loading for better UX
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Show loading for better UX
       
       setResultsUnlocked(true);
+      setShowUnlockDialog(false);
       setShowForm(false);
-      setIsLoading(false);
+      setIsUnlockLoading(false);
       toast({
         title: "We will call you back soon! 😊",
         description: "Thank you for your interest. Our team will reach out to you shortly.",
@@ -234,30 +185,15 @@ const LeadCalculator = () => {
         document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
       }, 300);
     } catch (error) {
-      setIsLoading(false);
+      setIsUnlockLoading(false);
       console.error("Error submitting form:", error);
       alert("Something went wrong. Please try again.");
     }
   };
-  
-
-  const handleCTAClick = (actionType: string) => {
-    toast({
-      title: "We will call you back soon! 😊",
-      description: `Thank you for your interest in ${actionType}. Our team will reach out to you shortly.`,
-    });
-  };
 
   const handleViewResults = async () => {
     if (!resultsUnlocked) {
-      setViewResultsClicked(true);
-      setIsViewResultsLoading(true);
-      
-      // Show loading animation for 2 seconds
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      setIsViewResultsLoading(false);
-      setShowForm(true);
+      setShowUnlockDialog(true);
     }
   };
 
@@ -265,87 +201,113 @@ const LeadCalculator = () => {
     setShowForm(true);
   };
 
-  const handleBookModalSubmit = async () => {
-    if (!formData.name || !formData.mobile || !formData.email || !formData.organization) return;
+  // Generate time-series data for the trend chart
+  const generateTimeSeriesData = () => {
+    const timePoints = duration === '3 Months' ? 3 : duration === '6 Months' ? 6 : 12;
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
-    setIsLoading(true);
-    const webAppURL = "https://script.google.com/macros/s/AKfycbzvY-cPO-fsMULjOLHsC-G47tePzt7EHUt2Uchlau8K3424HW9n7LG8Y-8HB_FOLkXX/exec";
-  
-    try {
-      const response = await fetch(webAppURL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          name: formData.name,
-          phone: formData.mobile,
-          email: formData.email,
-          organization: formData.organization,
-        }),
-      });
-  
-      await new Promise(resolve => setTimeout(resolve, 1000));
+    return Array.from({ length: timePoints }, (_, i) => {
+      const monthIndex = (new Date().getMonth() + i) % 12;
+      const baseVariation = 0.8 + (Math.random() * 0.4); // 0.8 to 1.2 variation
       
-      setResultsUnlocked(true);
-      setShowBookModal(false);
-      setIsLoading(false);
-      toast({
-        title: "We will call you back soon! 😊",
-        description: "Thank you for your interest. Our team will reach out to you shortly.",
-      });
-  
-      setTimeout(() => {
-        document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
-    } catch (error) {
-      setIsLoading(false);
-      console.error("Error submitting form:", error);
-      alert("Something went wrong. Please try again.");
-    }
+      return {
+        month: monthNames[monthIndex],
+        leads: Math.round(metrics.leads * baseVariation / timePoints),
+        siteVisits: Math.round(metrics.siteVisits * baseVariation / timePoints),
+        bookings: Math.round(metrics.bookings * baseVariation / timePoints),
+        cpl: Math.round(metrics.cpl * (0.9 + Math.random() * 0.2)) // CPL varies slightly
+      };
+    });
   };
 
-  return (
-    <div className="min-h-screen bg-yellow-400 relative">
-      {/* Animated Background */}
-      <AnimatedBackground />
-      
-      {/* Enhanced Header - transparent at top, blurred on scroll */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
-          isScrolled
-            ? 'bg-black/60 backdrop-blur-xl shadow-2xl border-b border-white/20 py-2'
-            : 'bg-transparent py-4'
-        }`}
-      >
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-          {/* Logo + Tagline */}
-          <a href="#" className="flex items-center space-x-3 group">
-            <img
-              src="/lovable-uploads/afedbe6c-a3e2-418c-a2ca-bc16fc85bb8f.png"
-              alt="Digital Mojo Logo"
-              className={`transition-all duration-500 ease-in-out ${
-                isScrolled ? 'w-20 h-20 sm:w-24 sm:h-24' : 'w-28 h-28 sm:w-40 sm:h-40'
-              } object-contain drop-shadow-xl group-hover:scale-105`}
-            />
-          </a>
+  const chartData = generateTimeSeriesData();
 
-          {/* CTA Button */}
-          <div className=" sm:block">
+  return (
+    <div className={`min-h-screen px-0 transition-colors duration-300 ${isDarkMode ? 'bg-black' : ''}`} style={{ backgroundColor: isDarkMode ? '#000000' : '#f0bc00' }}>
+      
+      {/* Desktop Theme Toggle - Left Wall */}
+      <div className="hidden sm:block fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
+        <Button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          variant="ghost"
+          size="sm"
+          className={`backdrop-blur-md p-3 rounded-full shadow-lg transition-all duration-300 ${
+            isDarkMode 
+              ? 'bg-yellow-400 text-black hover:bg-yellow-300' 
+              : 'bg-black text-white hover:bg-gray-800'
+          }`}
+        >
+          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
+      </div>
+
+      {/* Mobile Theme Toggle - Bottom Left Corner */}
+      <div className="sm:hidden fixed bottom-4 left-4 z-50">
+        <Button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          variant="ghost"
+          size="sm"
+          className={`backdrop-blur-md p-3 rounded-full shadow-lg transition-all duration-300 ${
+            isDarkMode 
+              ? 'bg-yellow-400 text-black hover:bg-yellow-300' 
+              : 'bg-black text-white hover:bg-gray-800'
+          }`}
+        >
+          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+        </Button>
+      </div>
+
+      {/* Sticky Get In Touch - Right Wall - Updated with pill shape */}
+      <div className="hidden sm:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
+        <Button
+          onClick={handleBookCall}
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-full shadow-xl transition-all duration-300 font-spartan transform -rotate-90 origin-center whitespace-nowrap"
+          style={{ 
+            borderRadius: '50px',
+            minWidth: '140px',
+            height: '56px'
+          }}
+        >
+          Get In Touch
+        </Button>
+      </div>
+
+      {/* Header */}
+      <header className="top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out bg-transparent py-4">
+        <div className="flex justify-between items-center px-4 sm:px-8">
+          <div className="flex items-center space-x-4">
+            <a href="#" className="flex items-center group">
+              <img
+                src={digitalMojoLogo}
+                alt="Digital Mojo Logo"
+                className="w-24 h-24 sm:w-40 sm:h-40 object-contain group-hover:scale-105 transition-all duration-500 ease-in-out"
+              />
+            </a>
+            
+          </div>
+          
+          {/* Performance Marketing Text - Centered */}
+          <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2">
+            <h3 className={`text-xl md:text-2xl font-bold font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>
+              Performance Marketing
+            </h3>
+          </div>
+
+          {/* Desktop CTA - Made Bigger */}
+          <div className="hidden sm:block">
             <Button
               onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-lg"
+              className="bg-red-600 hover:bg-red-700 text-white font-black py-4 px-12 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-xl"
             >
               Book Now
             </Button>
           </div>
 
-          {/* Mobile CTA - Same Features as Desktop */}
-          <div className="sm:hidden">
+          {/* Mobile CTA - Made Bigger */}
+          <div className="block sm:hidden">
             <Button
               onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-8 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 transition-all duration-300 font-spartan text-lg animate-bounce"
+              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-6 rounded-full shadow-md transition-all duration-300 font-spartan text-base"
             >
               Book Now
             </Button>
@@ -353,38 +315,59 @@ const LeadCalculator = () => {
         </div>
       </header>
 
-      {/* Hero Section - Add top padding for fixed header */}
-      <div className="container mx-auto px-4 pt-40 pb-8 sm:pt-50">
+      {/* Hero Section */}
+      <div className="w-full px-4 sm:px-10 xl:px-24 mt-10 lg:mt-16">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-4">
+          {/* Left - Text Block */}
+          <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
+            <div className="pt-6 pb-10 sm:pb-20">
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] font-black leading-tight font-spartan mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>
+                Know Every
+                <span className={`text-[5rem] md:text-[6rem] xl:text-[6.5rem] font-extrabold align-middle leading-none px-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>
+                  ₹
+                </span>
+                Before You Invest
+                <span className={`text-5xl md:text-6xl xl:text-7xl px-2 font-thin transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>—</span>
+                <br />
+                <span className="text-[#c63aa0]">
+                  Calculate <span className="text-[#814ae7]">Your Ad Plan.</span>
+                </span>
+              </h1>
 
-        {/* Hero Content */}
-        <div className="text-center mb-16 max-w-6xl mx-auto">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-6 leading-tight font-spartan">
-            <span className="relative bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Let's Show You
-            </span>
-            <br />
-            Just How Far Your Growth Can Go <span className="text-black">With Us</span>
-          </h1>
-          <p className="text-white/90 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-spartan">
-            Data-driven insights. ROI that speaks. Let's build your growth story.
-          </p>
-          
-          
-          {/* Scroll Indicator */}
-          <div className="scroll-indicator mt-12">
-            <ChevronDown className="h-8 w-8 text-white/70 mx-auto" />
+              <p className={`text-lg md:text-xl leading-relaxed font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-white/90'}`}>
+                Data-driven insights. ROI that speaks. Let's build your growth story.
+              </p>
+            </div>
+          </div>
+
+          {/* Right - Image */}
+          <div className="flex-[1.6] flex justify-center lg:justify-end mt-6 lg:mt-0 px-4 sm:px-6 lg:px-8 xl:px-10">
+            <img
+              src="./lovable-uploads/img.png"
+              alt="Business Growth Calculator"
+              className="w-full max-w-md sm:max-w-lg lg:max-w-xl xl:max-w-[40rem] h-auto scale-[1.2] transition-transform duration-300"
+            />
           </div>
         </div>
+      </div>
 
-        {/* Desktop Layout */}
-        <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 max-w-7xl mx-auto mb-16">
-          {/* Calculator Section */}
-          <Card className="bg-white/95 backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden">
+      {/* Aesthetic Divider after Hero */}
+      <div className="w-full px-4 sm:px-10 xl:px-24 my-8">
+        <div className="flex items-center justify-center">
+          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
+          <div className={`mx-4 text-2xl ${isDarkMode ? 'text-white/40' : 'text-white/50'}`}>✦</div>
+          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
+        </div>
+      </div>
+
+      {/* Calculator Section - Always Light Mode */}
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-24 mt-12 lg:mt-20 mb-12">
+        <div className="hidden lg:grid lg:grid-cols-2 gap-8 max-w-none">
+          <Card className="backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden bg-white/95">
             <CardHeader className="pb-4">
-              <h2 className="text-xl font-bold text-gray-900 text-center">Calculate Your Leads</h2>
+              <h2 className="text-xl font-bold text-center text-gray-900">Calculate Your Leads</h2>
             </CardHeader>
             <CardContent className="p-6">
-              {/* Sell Units - Primary Input */}
               <div className="mb-6 text-center">
                 <label className="text-foreground text-lg font-bold mb-3 block font-spartan">Units to Sell</label>
                 <div className="flex items-center justify-center gap-3 max-w-sm mx-auto">
@@ -399,9 +382,9 @@ const LeadCalculator = () => {
                   <Input
                     type="number"
                     value={sellUnits}
-                    onChange={handleSellUnitsChange}
+                    onChange={(e) => setSellUnits(Math.max(1, parseInt(e.target.value) || 0))}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-6xl rounded-lg h-20 w-32 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-6xl rounded-lg h-20 w-32 transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
                     size="sm"
@@ -413,7 +396,6 @@ const LeadCalculator = () => {
                   </Button>
                 </div>
               </div>
-
               {/* Form Inputs */}
               <div className="space-y-4">
                 {/* Property Type */}
@@ -538,54 +520,43 @@ const LeadCalculator = () => {
                 >
                   {resultsUnlocked ? "Results Unlocked" : "View Results"}
                 </Button>
-                
-                {/* Loading Animation - Separate from Button */}
-                {isViewResultsLoading && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-transparent">
-                    <div className="flex items-center space-x-2 text-primary">
-                      <Loader2 className="h-6 w-6 animate-spin" />
-                     
-                    </div>
-                  </div>
-                )}
               </div>
 
-             
-              <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
+              <div className="text-xs pt-6 border-t mt-6 font-spartan text-muted-foreground border-border">
                 <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
               </div>
             </CardContent>
           </Card>
 
-          {/* Desktop Results Section */}
-          <Card className="bg-white/95 backdrop-blur-lg border-none shadow-xl rounded-2xl relative">
+          {/* Desktop Results Section - Always Light Mode */}
+          <Card className="backdrop-blur-lg border-none shadow-xl rounded-2xl relative bg-white/95">
             {!resultsUnlocked && (
               <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
             )}
             
             <CardContent className="p-6">
               <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
-                 {/* Metrics Cards - Single Row */}
+                {/* Metrics Cards - Single Row */}
                 <div className="grid grid-cols-4 gap-2 mb-6">
-                  <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
+                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2 bg-white">
                     <div className="text-3xl font-bold text-yellow-600">{metrics.leads.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">Leads</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpl.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">Cost Per Lead</div>
                   </Card>
-                  <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
+                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2 bg-white">
                     <div className="text-3xl font-bold text-yellow-600">{metrics.qualifiedLeads.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">Quality Leads</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpql.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPQL</div>
                   </Card>
-                  <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
+                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2 bg-white">
                     <div className="text-3xl font-bold text-yellow-600">{metrics.siteVisits.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">Site Visit</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpsv.toLocaleString()}</div>
                     <div className="text-xs text-gray-500">CPSV</div>
                   </Card>
-                  <Card className="bg-white/95 backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2">
+                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2 bg-white">
                     <div className="text-3xl font-bold text-yellow-600">{metrics.bookings.toLocaleString()}</div>
                     <div className="text-xs text-gray-600 font-medium">Bookings</div>
                     <div className="text-xs font-bold text-purple-700">₹{metrics.cpb.toLocaleString()}</div>
@@ -621,11 +592,20 @@ const LeadCalculator = () => {
           </Button>
         </div>
 
-        {/* Mobile Layout */}
+        {/* Aesthetic Divider after Desktop Calculator */}
+        <div className="hidden lg:block w-full my-12">
+          <div className="flex items-center justify-center">
+            <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
+            <div className={`mx-6 text-3xl ${isDarkMode ? 'text-white/40' : 'text-gray-600/50'}`}>⬢</div>
+            <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
+          </div>
+        </div>
+
+        {/* Mobile Layout - Always Light Mode */}
         <div className="lg:hidden max-w-4xl mx-auto mb-16">
           {/* Calculator Section */}
           <div id="calculator">
-            <Card className="glass-card border-none shadow-2xl rounded-3xl overflow-hidden mb-8">
+            <Card className="backdrop-blur-lg border-none shadow-2xl rounded-3xl overflow-hidden mb-8 bg-white">
               <CardContent className="p-8">
                 {/* Sell Units - Primary Input */}
                 <div className="mb-8 text-center">
@@ -642,7 +622,7 @@ const LeadCalculator = () => {
                     <Input
                        type="number"
                        value={sellUnits}
-                       onChange={handleSellUnitsChange}
+                       onChange={(e) => setSellUnits(Math.max(1, parseInt(e.target.value) || 0))}
                        min="1"
                        className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-5xl rounded-xl h-24 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                      />
@@ -787,7 +767,6 @@ const LeadCalculator = () => {
                     <div className="absolute inset-0 flex items-center justify-center bg-transparent">
                       <div className="flex items-center space-x-2 text-primary">
                         <Loader2 className="h-6 w-6 animate-spin" />
-                      
                       </div>
                     </div>
                   )}
@@ -800,16 +779,25 @@ const LeadCalculator = () => {
             </Card>
           </div>
 
-          {/* Mobile Results Section - Single Line Cards */}
+          {/* Aesthetic Divider between Mobile Calculator and Results - Mobile Only */}
+          <div className="lg:hidden w-full my-8">
+            <div className="flex items-center justify-center">
+              <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
+              <div className={`mx-4 text-xl ${isDarkMode ? 'text-white/40' : 'text-gray-600/50'}`}>◊</div>
+              <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
+            </div>
+          </div>
+
+          {/* Mobile Results Section - Always Light Mode */}
           <div id="results-section-mobile" className="relative">
             {!resultsUnlocked && (
-              <div className="absolute inset-0 z-20 blur-overlay rounded-3xl"></div>
+              <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
             )}
             
             <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
               {/* Mobile Metrics Cards - Single Line */}
               <div className="grid grid-cols-1 gap-3 mb-6">
-                <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
+                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover bg-white">
                   <CardContent className="p-4 flex items-center justify-between">
                     <div>
                       <div className="text-sm text-muted-foreground font-medium font-spartan">Leads</div>
@@ -819,7 +807,7 @@ const LeadCalculator = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
+                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover bg-white">
                   <CardContent className="p-4 flex items-center justify-between">
                     <div>
                       <div className="text-sm text-muted-foreground font-medium font-spartan">Qualified Leads</div>
@@ -829,7 +817,7 @@ const LeadCalculator = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
+                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover bg-white">
                   <CardContent className="p-4 flex items-center justify-between">
                     <div>
                       <div className="text-sm text-muted-foreground font-medium font-spartan">Site Visits</div>
@@ -839,7 +827,7 @@ const LeadCalculator = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="glass-card border-none shadow-lg rounded-2xl text-center card-hover">
+                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover bg-white">
                   <CardContent className="p-4 flex items-center justify-between">
                     <div>
                       <div className="text-sm text-muted-foreground font-medium font-spartan">Bookings</div>
@@ -851,7 +839,7 @@ const LeadCalculator = () => {
               </div>
 
               {/* Total Budget */}
-              <Card className="bg-gradient-to-r from-primary to-secondary text-white border-none shadow-2xl rounded-2xl card-hover mb-8">
+              <Card className="backdrop-blur-lg border-none shadow-2xl rounded-2xl card-hover mb-8 bg-gradient-to-r from-primary to-secondary text-white">
                 <CardContent className="p-6">
                   <div className="text-center">
                     <div className="text-4xl md:text-5xl font-bold mb-2 font-spartan">
@@ -885,10 +873,80 @@ const LeadCalculator = () => {
           </div>
         </div>
 
+        {/* Unlock Results Dialog */}
+        {showUnlockDialog && (
+          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <Card className="border-none shadow-2xl rounded-3xl w-full max-w-md form-slide-in bg-white">
+              <CardHeader className="relative">
+                <Button
+                  onClick={() => setShowUnlockDialog(false)}
+                  variant="ghost"
+                  size="sm"
+                  className="absolute right-2 top-2 h-8 w-8 p-0 rounded-full bg-yellow-brand text-black hover:bg-yellow-brand/80"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+                <h3 className="text-2xl font-bold text-center font-spartan text-black">Unlock Your Results</h3>
+              </CardHeader>
+              <CardContent className="p-6 pt-0">
+                <div className="space-y-4">
+                  <Input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Your Name"
+                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
+                  />
+                  <Input
+                    type="tel"
+                    value={formData.mobile}
+                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                    placeholder="Phone Number"
+                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
+                  />
+                  <Input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="Your Email"
+                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
+                  />
+                  <Input
+                    type="text"
+                    value={formData.organization}
+                    onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+                    placeholder="Your Organization"
+                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
+                  />
+                  <Button
+                    onClick={handleUnlockResults}
+                    disabled={!formData.name || !formData.mobile || !formData.email || !formData.organization || isUnlockLoading}
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
+                  >
+                    {isUnlockLoading ? "Unlocking..." : "Unlock Results"}
+                  </Button>
+                  
+                  {/* Loading Bar Animation */}
+                  {isUnlockLoading && (
+                    <div className="mt-4">
+                      <div className="text-sm text-center mb-2 font-spartan text-gray-600">
+                        Calculating your results...
+                      </div>
+                      <div className="w-full rounded-full h-2 bg-gray-200">
+                        <div className="bg-red-600 h-2 rounded-full animate-pulse" style={{ width: '100%', animation: 'loading 2s ease-in-out' }}></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
         {/* Form Modal */}
         {showForm && (
           <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <Card className="bg-white border-none shadow-2xl rounded-3xl w-full max-w-md form-slide-in">
+            <Card className="border-none shadow-2xl rounded-3xl w-full max-w-md form-slide-in bg-white">
               <CardHeader className="relative">
                 <Button
                   onClick={() => setShowForm(false)}
@@ -898,7 +956,7 @@ const LeadCalculator = () => {
                 >
                   <X className="h-4 w-4" />
                 </Button>
-                <h3 className="text-2xl font-bold text-center text-black font-spartan">Want A Call Back</h3>
+                <h3 className="text-2xl font-bold text-center font-spartan text-black">Want A Call Back</h3>
               </CardHeader>
               <CardContent className="p-6 pt-0">
                 <div className="space-y-4">
@@ -907,28 +965,28 @@ const LeadCalculator = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Your Name"
-                    className="bg-gray-100 border-0 text-gray-600 rounded-xl h-12 placeholder:text-gray-500 font-spartan"
+                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                   />
                   <Input
                     type="tel"
                     value={formData.mobile}
                     onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                     placeholder="Phone Number"
-                    className="bg-gray-100 border-0 text-gray-600 rounded-xl h-12 placeholder:text-gray-500 font-spartan"
+                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                   />
                   <Input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="Your Email"
-                    className="bg-gray-100 border-0 text-gray-600 rounded-xl h-12 placeholder:text-gray-500 font-spartan"
+                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                   />
                   <Input
                     type="text"
                     value={formData.organization}
                     onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
                     placeholder="Your Organization"
-                    className="bg-gray-100 border-0 text-gray-600 rounded-xl h-12 placeholder:text-gray-500 font-spartan"
+                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                   />
                   <Button
                     onClick={handleUnlockResults}
@@ -948,68 +1006,14 @@ const LeadCalculator = () => {
           </div>
         )}
 
-        {/* Book Now Modal */}
-        {showBookModal && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <Card className="bg-white border-none shadow-2xl rounded-3xl w-full max-w-md form-slide-in">
-              <CardHeader className="relative">
-                <Button
-                  onClick={() => setShowBookModal(false)}
-                  variant="ghost"
-                  size="sm"
-                  className="absolute right-2 top-2 h-8 w-8 p-0 rounded-full bg-yellow-brand text-black hover:bg-yellow-brand/80"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-                <h3 className="text-2xl font-bold text-center text-black font-spartan">Want A Call Back</h3>
-              </CardHeader>
-              <CardContent className="p-6 pt-0">
-                <div className="space-y-4">
-                  <Input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Your Name"
-                    className="bg-gray-100 border-0 text-gray-600 rounded-xl h-12 placeholder:text-gray-500 font-spartan"
-                  />
-                  <Input
-                    type="tel"
-                    value={formData.mobile}
-                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                    placeholder="Phone Number"
-                    className="bg-gray-100 border-0 text-gray-600 rounded-xl h-12 placeholder:text-gray-500 font-spartan"
-                  />
-                  <Input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="Your Email"
-                    className="bg-gray-100 border-0 text-gray-600 rounded-xl h-12 placeholder:text-gray-500 font-spartan"
-                  />
-                  <Input
-                    type="text"
-                    value={formData.organization}
-                    onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="Your Organization"
-                    className="bg-gray-100 border-0 text-gray-600 rounded-xl h-12 placeholder:text-gray-500 font-spartan"
-                  />
-                  <Button
-                    onClick={handleBookModalSubmit}
-                    disabled={!formData.name || !formData.mobile || !formData.email || !formData.organization || isLoading}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
-                  >
-                    {isLoading ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Booking...
-                      </>
-                    ) : "Submit"}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+        {/* Aesthetic Divider before Clients Section */}
+        <div className="w-full my-16">
+          <div className="flex items-center justify-center">
+            <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
+            <div className={`mx-6 text-4xl ${isDarkMode ? 'text-white/40' : 'text-white/50'}`}>✧</div>
+            <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
           </div>
-        )}
+        </div>
 
         <div id="clients" className="w-full px-4 md:px-10 py-12">
           <div className="text-center mb-10">
@@ -1064,6 +1068,15 @@ const LeadCalculator = () => {
             <Phone className="mr-2 h-4 w-4" />
             Ready to Grow? Let's Talk 🚀
           </Button>
+        </div>
+      </div>
+
+      {/* Aesthetic Divider before Footer */}
+      <div className="w-full mb-8">
+        <div className="flex items-center justify-center">
+          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
+          <div className={`mx-6 text-3xl ${isDarkMode ? 'text-white/40' : 'text-gray-600/50'}`}>❋</div>
+          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
         </div>
       </div>
 
