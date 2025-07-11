@@ -1,8 +1,13 @@
-
 import React from 'react';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip, LineChart, Line, XAxis, YAxis, Legend,  Area, AreaChart } from 'recharts';
+import {
+  Card, CardContent, CardHeader,
+} from '@/components/ui/card';
+import {
+  PieChart, Pie, Cell, ResponsiveContainer, Tooltip,
+  AreaChart, Area, Line, XAxis, YAxis, Legend,
+} from 'recharts';
 
+/* ---------- interfaces ---------------------------------- */
 interface Metrics {
   leads: number;
   qualifiedLeads: number;
@@ -14,84 +19,52 @@ interface Metrics {
   cpb: number;
   totalBudget: number;
 }
-
 interface EnhancedChartsProps {
   metrics: Metrics;
   chartData: any[];
   duration: string;
 }
 
-const COLORS = ['#ec4899', '#8b5cf6', '#f59e0b'];
-
-const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, duration }) => {
-  // Data for donut chart showing conversion funnel (without bookings)
+/* --------------------------------------------------------- */
+const EnhancedCharts: React.FC<EnhancedChartsProps> = ({
+  metrics, chartData, duration,
+}) => {
+  /* ► Conversion-funnel data for donut */
   const conversionData = [
-    { name: 'Leads', value: metrics.leads, color: '#1ea34f' },
+    { name: 'Leads',           value: metrics.leads,          color: '#1ea34f' },
     { name: 'Qualified Leads', value: metrics.qualifiedLeads, color: '#06aed7' },
-    { name: 'Site Visits', value: metrics.siteVisits, color: '#eb7311' }
+    { name: 'Site Visits',     value: metrics.siteVisits,     color: '#eb7311' },
   ];
 
-  // Generate realistic time-series data based on duration
-  const generateTimeSeriesData = () => {
-    const periods = parseInt(duration.split(' ')[0]);
-    const timeUnit = duration.includes('Month') ? 'Month' : duration.includes('Week') ? 'Week' : 'Day';
-    
-    const data = [];
-    
-    for (let i = 1; i <= periods; i++) {
-      // Calculate growth factor (starts low, grows over time)
-      const growthFactor = i / periods;
-      
-      // Generate leads with growth trend
-      const leads = Math.round((metrics.leads * 0.3) + (metrics.leads * 0.7 * growthFactor));
-      
-      // Site visits grow faster than leads
-      const siteVisits = Math.round((metrics.siteVisits * 0.2) + (metrics.siteVisits * 0.8 * growthFactor));
-      
-      // Bookings grow slower, more conservative
-      const bookings = Math.round((metrics.bookings * 0.4) + (metrics.bookings * 0.6 * growthFactor));
-      
-      // CPL decreases over time as campaigns optimize (inverse growth)
-      const cpl = Math.round(metrics.cpl * (1.3 - (0.3 * growthFactor)));
-      
-      data.push({
-        month: `${timeUnit} ${i}`,
-        leads,
-        siteVisits,
-        bookings,
-        cpl
-      });
-    }
-    
-    return data;
-  };
+  /* ► Freeze CPL at same value for every point */
+  const trendData = chartData.map((d) => ({
+    ...d,
+    cpl: metrics.cpl,
+  }));
 
-  const enhancedChartData = generateTimeSeriesData();
-
-  // Custom tooltip for donut chart
+  /* ► Donut-chart tooltip */
   const CustomDonutTooltip = ({ active, payload }: any) => {
-    if (active && payload && payload.length) {
-      const data = payload[0];
-      const total = conversionData.reduce((sum, item) => sum + item.value, 0);
-      const percentage = ((data.value / total) * 100).toFixed(1);
-      
-      return (
-        <div className="bg-white backdrop-blur-lg border border-gray-200 rounded-lg p-3 text-gray-800 shadow-lg">
-          <p className="font-semibold">{data.name}</p>
-          <p className="text-lg">{data.value.toLocaleString()}</p>
-          <p className="text-sm text-gray-600">{percentage}% of total</p>
-        </div>
-      );
-    }
-    return null;
+    if (!active || !payload?.length) return null;
+    const d = payload[0];
+    const total = conversionData.reduce((s, v) => s + v.value, 0);
+    const pct = ((d.value / total) * 100).toFixed(1);
+
+    return (
+      <div className="bg-white/95 backdrop-blur p-3 rounded-lg shadow-lg border text-gray-800">
+        <p className="font-semibold">{d.name}</p>
+        <p className="text-lg">{d.value.toLocaleString()}</p>
+        <p className="text-sm text-gray-600">{pct}% of total</p>
+      </div>
+    );
   };
 
+  /* ======================================================== */
   return (
     <div className="space-y-4">
-      {/* Conversion Funnel Donut Chart */}
-      <Card className="bg-white/95 backdrop-blur-lg border-none shadow-lg rounded-2xl card-hover">
+      {/* ---------- Donut / conversion funnel ------------- */}
+      <Card className="bg-white/95 backdrop-blur-lg shadow-lg rounded-2xl border-none card-hover">
         <CardHeader>
-          <h3 className="text-lg font-bold text-foreground text-center">Conversion Funnel</h3>
+          <h3 className="text-lg font-bold text-center">Conversion&nbsp;Funnel</h3>
         </CardHeader>
         <CardContent className="p-4">
           <div className="flex items-center gap-4">
@@ -106,24 +79,21 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
                     outerRadius={80}
                     paddingAngle={2}
                     dataKey="value"
-                    animationDuration={1500}
                   >
-                    {conversionData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    {conversionData.map((e, i) => (
+                      <Cell key={i} fill={e.color} />
                     ))}
                   </Pie>
                   <Tooltip content={<CustomDonutTooltip />} />
                 </PieChart>
               </ResponsiveContainer>
             </div>
+            {/* Legend dots */}
             <div className="flex flex-col gap-3">
-              {conversionData.map((item, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <div 
-                    className="w-3 h-3 rounded-full" 
-                    style={{ backgroundColor: item.color }}
-                  />
-                  <span className="text-foreground text-sm font-medium">{item.name}</span>
+              {conversionData.map((d, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <span className="block w-3 h-3 rounded-full" style={{ background: d.color }} />
+                  <span className="text-sm">{d.name}</span>
                 </div>
               ))}
             </div>
@@ -131,85 +101,64 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
         </CardContent>
       </Card>
 
-      {/* Performance Trend Chart */}
-      <Card className="bg-white/95 backdrop-blur-lg border-none shadow-lg rounded-2xl card-hover">
+      {/* ---------- Performance trend -------------------- */}
+      <Card className="bg-white/95 backdrop-blur-lg shadow-lg rounded-2xl border-none card-hover">
         <CardHeader>
-          <h3 className="text-lg font-bold text-foreground text-center">
-            Performance Trend Over {duration}
+          <h3 className="text-lg font-bold text-center">
+            Performance Trend&nbsp;Over&nbsp;{duration}
           </h3>
         </CardHeader>
+
         <CardContent className="p-4">
-          <div className="h-64">
+          <div className="h-56">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={enhancedChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-                <XAxis 
-                  dataKey="month" 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: '#6b7280', fontSize: 12 }} 
-                />
-                <YAxis 
-                  axisLine={false} 
-                  tickLine={false} 
-                  tick={{ fill: '#6b7280', fontSize: 12 }} 
-                />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: 'rgba(255, 255, 255, 0.95)', 
-                    border: 'none',
-                    borderRadius: '12px',
-                    boxShadow: '0 10px 40px rgba(0, 0, 0, 0.1)',
-                    color: '#374151'
+              <AreaChart data={trendData} margin={{ top: 20, right: 30, left: 8, bottom: 5 }}>
+                {/* gradients for the filled areas */}
+                <defs>
+                  <linearGradient id="gLeads" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#1ea34f" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#1ea34f" stopOpacity={0.05} />
+                  </linearGradient>
+                  <linearGradient id="gVisits" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#eb7311" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#eb7311" stopOpacity={0.05} />
+                  </linearGradient>
+                  <linearGradient id="gBook" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#754c9b" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#754c9b" stopOpacity={0.05} />
+                  </linearGradient>
+                </defs>
+
+                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fill:'#6b7280', fontSize:12 }} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fill:'#6b7280', fontSize:12 }} />
+                <Tooltip
+                  contentStyle={{
+                    background:'rgba(255,255,255,.95)',
+                    borderRadius:12,
+                    border:'none',
+                    boxShadow:'0 10px 40px rgba(0,0,0,.1)',
+                    color:'#374151',
                   }}
                 />
-                <Legend 
-                  wrapperStyle={{ color: '#374151' }}
-                />
-                
-                <Line
-                  type="monotone"
-                  dataKey="leads"
-                  stroke="#1ea34f"
-                  strokeWidth={3}
-                  name="Leads"
-                  dot={{ fill: '#1ea34f', strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: '#1ea34f', strokeWidth: 2 }}
-                  animationDuration={2000}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="siteVisits"
-                  stroke="#eb7311"
-                  strokeWidth={3}
-                  name="Site Visits"
-                  dot={{ fill: '#eb7311', strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: '#eb7311', strokeWidth: 2 }}
-                  animationDuration={2000}
-                  animationBegin={500}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="bookings"
-                  stroke="#754c9b"
-                  strokeWidth={3}
-                  name="Bookings"
-                  dot={{ fill: '#754c9b', strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: '#754c9b', strokeWidth: 2 }}
-                  animationDuration={2000}
-                  animationBegin={1000}
-                />
+                <Legend iconType="circle" wrapperStyle={{ color:'#374151' }} />
+
+                {/* Filled Areas */}
+                <Area type="monotone" dataKey="leads"      stroke="#1ea34f" strokeWidth={3} fill="url(#gLeads)"  name="Leads"       />
+                <Area type="monotone" dataKey="siteVisits" stroke="#eb7311" strokeWidth={3} fill="url(#gVisits)" name="Site Visits"/>
+                <Area type="monotone" dataKey="bookings"   stroke="#754c9b" strokeWidth={3} fill="url(#gBook)"   name="Bookings"   />
+
+                {/* Constant CPL line */}
                 <Line
                   type="monotone"
                   dataKey="cpl"
                   stroke="#f0bc00"
                   strokeWidth={3}
-                  name="CPL"
-                  dot={{ fill: '#f0bc00', strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, stroke: '#f0bc00', strokeWidth: 2 }}
-                  animationDuration={2000}
-                  animationBegin={1500}
+                  strokeDasharray="6 5"
+                  dot={false}
+                  isAnimationActive={false}
+                  name={`CPL (₹${metrics.cpl.toLocaleString()})`}
                 />
-              </LineChart>
+              </AreaChart>
             </ResponsiveContainer>
           </div>
         </CardContent>
