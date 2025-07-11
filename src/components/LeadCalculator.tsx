@@ -215,7 +215,7 @@ const LeadCalculator = () => {
         leads: Math.round(metrics.leads * baseVariation / timePoints),
         siteVisits: Math.round(metrics.siteVisits * baseVariation / timePoints),
         bookings: Math.round(metrics.bookings * baseVariation / timePoints),
-        cpl: Math.round(metrics.cpl * (0.9 + Math.random() * 0.2)) // CPL varies slightly
+        cpl: metrics.cpl
       };
     });
   };
@@ -223,6 +223,7 @@ const LeadCalculator = () => {
   const chartData = generateTimeSeriesData();
 
   return (
+    
     <div className={`min-h-screen px-0 transition-colors duration-300 ${isDarkMode ? 'bg-black' : ''}`} style={{ backgroundColor: isDarkMode ? '#000000' : '#f0bc00' }}>
       
       {/* Desktop Theme Toggle - Left Wall */}
@@ -263,6 +264,7 @@ const LeadCalculator = () => {
           onClick={handleBookCall}
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-full shadow-xl transition-all duration-300 font-spartan transform -rotate-90 origin-center whitespace-nowrap"
           style={{ 
+            fontSize:'25px',
             borderRadius: '50px',
             minWidth: '140px',
             height: '56px'
@@ -274,65 +276,70 @@ const LeadCalculator = () => {
 
       {/* Header */}
       <header className="top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out bg-transparent py-4">
-        <div className="flex justify-between items-center px-4 sm:px-8">
-          <div className="flex items-center space-x-4">
-            <a href="#" className="flex items-center group">
-              <img
-                src={digitalMojoLogo}
-                alt="Digital Mojo Logo"
-                className="w-24 h-24 sm:w-40 sm:h-40 object-contain group-hover:scale-105 transition-all duration-500 ease-in-out"
-              />
-            </a>
-            
-          </div>
-          
-          {/* Performance Marketing Text - Centered */}
-          <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2">
-            <h3 className={`text-xl md:text-2xl font-bold font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>
-              Performance Marketing
-            </h3>
-          </div>
+  <div className="flex justify-between items-center px-4 sm:px-8 ">
+    <div className="flex items-center space-x-0">
+      <a href="#" className="flex items-center group">
+        <img
+          src="./lovable-uploads/DMMM.png"
+          alt="Digital Mojo Logo"
+          className="w-28 h-28 sm:w-40 sm:h-40 object-contain group-hover:scale-105 transition-all duration-500 ease-in-out"
+        />
+      </a>
+    </div>
 
-          {/* Desktop CTA - Made Bigger */}
-          <div className="hidden sm:block">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-4 px-12 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-xl"
-            >
-              Book Now
-            </Button>
-          </div>
+   
 
-          {/* Mobile CTA - Made Bigger */}
-          <div className="block sm:hidden">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-6 rounded-full shadow-md transition-all duration-300 font-spartan text-base"
-            >
-              Book Now
-            </Button>
-          </div>
-        </div>
-      </header>
+    {/* Desktop CTA */}
+    <div className="hidden sm:flex  justify-start pl-100"> {/* Added flex and padding-left */}
+  <Button
+    onClick={handleBookCall}
+    className="bg-red-600 hover:bg-red-700 text-white font-black py-5 px-16 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-2xl"
+  >
+    Book Now
+  </Button>
+</div>
+
+
+    {/* Mobile CTA */}
+    <div className="block sm:hidden">
+      <Button
+        onClick={handleBookCall}
+        className="bg-red-600 hover:bg-red-700 text-white font-black py-3 px-6 rounded-full shadow-md transition-all duration-300 font-spartan text-base"
+      >
+        Book Now
+      </Button>
+    </div>
+  </div>
+</header>
+
 
       {/* Hero Section */}
-      <div className="w-full px-4 sm:px-10 xl:px-24 mt-10 lg:mt-16">
+      <div className="w-full px-10 sm:px-20 xl:px-24 mt-1 sm:mt-4 lg:mt-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-4">
           {/* Left - Text Block */}
           <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
-            <div className="pt-6 pb-10 sm:pb-20">
-              <h1 className={`text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] font-black leading-tight font-spartan mb-4 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>
-                Know Every
-                <span className={`text-[5rem] md:text-[6rem] xl:text-[6.5rem] font-extrabold align-middle leading-none px-2 transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-black'}`}>
-                  ₹
-                </span>
-                Before You Invest
-                <span className={`text-5xl md:text-6xl xl:text-7xl px-2 font-thin transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>—</span>
-                <br />
-                <span className="text-[#c63aa0]">
-                  Calculate <span className="text-[#814ae7]">Your Ad Plan.</span>
-                </span>
-              </h1>
+            <div className="pt-6 pb-25 sm:pb-20">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] font-black leading-tight font-spartan mb-4 transition-colors duration-300 text-white relative">
+  <div className="flex items-baseline gap-2 flex-wrap">
+    <span className="text-white">Know Every</span>
+    <span 
+      className="text-[7rem] md:text-[12rem] font-extrabold leading-none font-spartan" 
+      style={{ color: isDarkMode ? '#f0bc00' : '#000000' }}
+    >
+      ₹
+    </span>
+  </div>
+  <div className="text-white">
+    Before You Invest 
+  </div>
+    <br/>
+  <div className="text-white">
+    Calculate Your <br/>
+    <span className="text-[#000000]"
+    style={{ color: isDarkMode ? '#f0bc00' : '#000000' }}>
+      Ad Plan.</span>
+  </div>
+</h1>
 
               <p className={`text-lg md:text-xl leading-relaxed font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-white/90'}`}>
                 Data-driven insights. ROI that speaks. Let's build your growth story.
@@ -384,7 +391,8 @@ const LeadCalculator = () => {
                     value={sellUnits}
                     onChange={(e) => setSellUnits(Math.max(1, parseInt(e.target.value) || 0))}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-6xl rounded-lg h-20 w-32 transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-extrabold text-[5rem] rounded-lg h-20 w-32 transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    style={{fontSize: '2rem'}}
                   />
                   <Button
                     size="sm"
@@ -402,7 +410,8 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Property Type</label>
                   <Select value={propertyType} onValueChange={setPropertyType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    style={{fontSize: '1.5rem'}}>
                       <SelectValue />
                     </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -419,10 +428,11 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Launch Type</label>
                   <Select value={launchType} onValueChange={setLaunchType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    style={{fontSize: '1.5rem'}}>
                      <SelectValue />
                    </SelectTrigger>
-                   <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                   <SelectContent className="bg-background border-border rounded-xl shadow-xl ">
                      <SelectItem value="Teaser">Teaser</SelectItem>
                      <SelectItem value="Launch">Launch</SelectItem>
                      <SelectItem value="Sustenance">Sustenance</SelectItem>
@@ -435,7 +445,8 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Location</label>
                   <Select value={location} onValueChange={setLocation}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    style={{fontSize: '1.5rem'}}>
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
@@ -460,7 +471,8 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Configuration</label>
                   <Select value={bhk} onValueChange={setBhk}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    style={{fontSize: '1.5rem'}}>
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -479,7 +491,8 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Marketing Channels</label>
                   <Select value={marketingChannels} onValueChange={setMarketingChannels}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    style={{fontSize: '1.5rem'}}>
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -494,10 +507,11 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Duration</label>
                   <Select value={duration} onValueChange={setDuration}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    style={{fontSize: '1.5rem'}}>
                      <SelectValue />
                    </SelectTrigger>
-                   <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                   <SelectContent className="bg-background border-border rounded-xl shadow-xl text-">
                      <SelectItem value="15 Days">15 Days</SelectItem>
                      <SelectItem value="1 Month">1 Month</SelectItem>
                      <SelectItem value="2 Months">2 Months</SelectItem>
@@ -567,7 +581,7 @@ const LeadCalculator = () => {
                 {/* Total Budget */}
                 <div className="text-center mb-6 p-4 bg-gray-50 rounded-lg">
                   <h3 className="text-lg font-bold text-gray-900 mb-2">Total Budget</h3>
-                  <p className="text-2xl font-bold text-blue-600">₹{metrics.totalBudget.toLocaleString()}</p>
+                  <p className="text-5xl font-bold text-blue-600">₹{metrics.totalBudget.toLocaleString()}</p>
                 </div>
 
                 {/* Charts */}
@@ -646,7 +660,7 @@ const LeadCalculator = () => {
                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                      <SelectContent className="bg-background text-7 border-border rounded-xl shadow-xl">
                         <SelectItem value="Residential">Residential</SelectItem>
                         <SelectItem value="Commercial">Commercial</SelectItem>
                         <SelectItem value="Senior Living">Senior Living</SelectItem>
@@ -660,7 +674,7 @@ const LeadCalculator = () => {
                   <div>
                     <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Launch Type</label>
                     <Select value={launchType} onValueChange={setLaunchType}>
-                      <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                      <SelectTrigger className="bg-background text-7 border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
@@ -780,7 +794,7 @@ const LeadCalculator = () => {
           </div>
 
           {/* Aesthetic Divider between Mobile Calculator and Results - Mobile Only */}
-          <div className="lg:hidden w-full my-8">
+          <div className=" sm:hidden lg:hidden w-full my-8">
             <div className="flex items-center justify-center">
               <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
               <div className={`mx-4 text-xl ${isDarkMode ? 'text-white/40' : 'text-gray-600/50'}`}>◊</div>
@@ -1007,7 +1021,7 @@ const LeadCalculator = () => {
         )}
 
         {/* Aesthetic Divider before Clients Section */}
-        <div className="w-full my-16">
+        <div className="sm:hidden w-full my-16">
           <div className="flex items-center justify-center">
             <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
             <div className={`mx-6 text-4xl ${isDarkMode ? 'text-white/40' : 'text-white/50'}`}>✧</div>
@@ -1024,7 +1038,7 @@ const LeadCalculator = () => {
 
           {/* Desktop Grid Layout */}
           <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
-            {Array.from({ length: 37 }, (_, i) => (
+            {Array.from({ length: 36 }, (_, i) => (
               <div 
                 key={i}
                 className="group p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 h-20 w-28 flex items-center justify-center filter grayscale hover:grayscale-0"
