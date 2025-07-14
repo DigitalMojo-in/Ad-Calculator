@@ -358,7 +358,6 @@ const LeadCalculator = () => {
       <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost per Lead (CPL)</span></li>
       <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost per Site Visit (CPV)</span></li>
       <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost per Booking (CPB)</span></li>
-      <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost per Sq. Ft. Sold</span></li>
     </ul>
 
     {/* Mobile-only CTA button */}
