@@ -346,7 +346,7 @@ const LeadCalculator = () => {
       – Cost per sq. ft. sold
     </p>
   </div>
-</div>
+
 
 
             <Button
