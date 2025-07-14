@@ -664,9 +664,9 @@ const LeadCalculator = () => {
 
   {/* Bookings Card */}
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl  text-black">{metrics.bookings.toLocaleString()}</div>
+    <div className="text-xl font-bold text-black">{metrics.bookings.toLocaleString()}</div>
     <div className="text-sm text-gray-600 font-medium mb-2">Bookings</div>
-    <div className="text-1xl font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
+    <div className="text-1xl  text-black">₹{metrics.cpb.toLocaleString()}</div>
     <div className="text-sm text-gray-500 group relative cursor-help">
       CPB
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
