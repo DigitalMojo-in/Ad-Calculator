@@ -1258,8 +1258,8 @@ const LeadCalculator = () => {
 
         <div id="clients" className="w-full px-4 md:px-10 py-12">
           <div className="text-center mb-10">
-            <h2 className={text-3xl md:text-5xl font-bold text-white font-spartan">
-              <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>Partnered</span> with brands that demand Results
+            <h2 className="text-3xl md:text-5xl font-bold text-white font-spartan">
+              Partnered with brands that demand Results
             </h2>
           </div>
 
