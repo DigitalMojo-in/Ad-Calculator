@@ -376,7 +376,7 @@ const LeadCalculator = () => {
 
 
           {/* Right - Image */}
-          <div className="hidden flex-[1.6] flex justify-center lg:justify-end mt-6 lg:mt-0 px-4 sm:px-6 lg:px-8 xl:px-10">
+          <div className=" flex-[1.6] flex justify-center lg:justify-end mt-6 lg:mt-0 px-4 sm:px-6 lg:px-8 xl:px-10">
             <img
               src="./lovable-uploads/img.png"
               alt="Business Growth Calculator"
@@ -623,58 +623,60 @@ const LeadCalculator = () => {
               <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
                 {/* Metrics Cards - Single Row */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-  {/* Leads Card */}
-  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl font-bold text-black">{metrics.leads.toLocaleString()}</div>
-    <div className="text-sm text-gray-600 font-medium mb-2">Leads</div>
-    <div className="text-2xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
-    <div className="text-sm text-gray-500 group relative cursor-help">
-      CPL
-      <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
-        Cost Per Lead
-      </span>
-    </div>
-  </Card>
-
-  {/* Qualified Leads Card */}
-  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl font-bold text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
-    <div className="text-sm text-gray-600 font-medium mb-2">Qualified</div>
-    <div className="text-2xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
-    <div className="text-sm text-gray-500 group relative cursor-help">
-      CPQL
-      <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
-        Cost Per Qualified Lead
-      </span>
-    </div>
-  </Card>
-
-  {/* Site Visits Card */}
-  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl font-bold text-black">{metrics.siteVisits.toLocaleString()}</div>
-    <div className="text-sm text-gray-600 font-medium mb-2">Site Visits</div>
-    <div className="text-2xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
-    <div className="text-sm text-gray-500 group relative cursor-help">
-      CPSV
-      <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
-        Cost Per Site Visit
-      </span>
-    </div>
-  </Card>
-
-  {/* Bookings Card */}
-  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl font-bold text-black">{metrics.bookings.toLocaleString()}</div>
-    <div className="text-sm text-gray-600 font-medium mb-2">Bookings</div>
-    <div className="text-2xl font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
-    <div className="text-sm text-gray-500 group relative cursor-help">
-      CPB
-      <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
-        Cost Per Booking
-      </span>
-    </div>
-  </Card>
+  {/* Card Template */}
+  {[
+    {
+      label: 'Leads',
+      value: metrics.leads,
+      cost: metrics.cpl,
+      abbr: 'CPL',
+      full: 'Cost Per Lead'
+    },
+    {
+      label: 'Qualified',
+      value: metrics.qualifiedLeads,
+      cost: metrics.cpql,
+      abbr: 'CPQL',
+      full: 'Cost Per Qualified Lead'
+    },
+    {
+      label: 'Site Visits',
+      value: metrics.siteVisits,
+      cost: metrics.cpsv,
+      abbr: 'CPSV',
+      full: 'Cost Per Site Visit'
+    },
+    {
+      label: 'Bookings',
+      value: metrics.bookings,
+      cost: metrics.cpb,
+      abbr: 'CPB',
+      full: 'Cost Per Booking'
+    }
+  ].map(({ label, value, cost, abbr, full }, index) => (
+    <Card
+      key={index}
+      className="backdrop-blur-lg border-none shadow-md rounded-lg text-center px-4 py-5 bg-white"
+    >
+      <div className="flex flex-col items-center">
+        <div className="text-[1.25rem] font-extrabold text-black leading-tight">
+          {value.toLocaleString()}
+        </div>
+        <div className="text-sm text-gray-600 font-medium mb-2">{label}</div>
+        <div className="text-[1.75rem] font-black text-black leading-none truncate w-full overflow-hidden">
+          ₹{cost.toLocaleString()}
+        </div>
+        <div className="text-sm text-gray-500 group relative cursor-help mt-1">
+          {abbr}
+          <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
+            {full}
+          </span>
+        </div>
+      </div>
+    </Card>
+  ))}
 </div>
+
 
 
                 {/* Total Budget */}
