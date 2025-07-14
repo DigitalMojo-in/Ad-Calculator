@@ -325,55 +325,53 @@ const LeadCalculator = () => {
       <div className="w-full px-10 sm:px-20 xl:px-24 mt-1 sm:mt-4 lg:mt-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-4">
           {/* Left - Text Block */}
-          <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
+          <div className="flex-1 mx-auto lg:mx-0 max-w-2xl px-4 sm:px-6 lg:px-0">
   <div className="pt-6 pb-20">
-    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight font-spartan mb-4 transition-colors duration-300 text-white relative">
+    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight font-spartan mb-6 transition-colors duration-300">
       <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
-        Your Ideal Real Estate Marketing Budget — Calculated.
+        Stop Guessing. Start Selling — Smarter.
       </span>
     </h1>
 
-    <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-black/90'}`}>
-      No more guesswork. Use data that’s helped over 
-      <span className={`mx-1 ${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>172+ real estate projects</span> 
-      boost sales faster and smarter.
+    <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-5 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-black/90'}`}>
+      Trusted by over <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>172+ real estate projects</span> to unlock better sales with better planning.
     </p>
 
     <p className={`text-base md:text-lg leading-relaxed font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
-      Simply enter how many units you want to sell — and instantly discover:
+      Just tell us how many flats you want to sell, and we'll instantly reveal:
     </p>
 
-    <ul className={`grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-4 mb-10 font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
-  <li className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
-    <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Ideal marketing budget</span> based on proven benchmarks
-  </li>
-  <li className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
-    Estimated <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Lead (CPL)</span>
-  </li>
-  <li className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
-    Projected <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Site Visit (CPV)</span>
-  </li>
-  <li className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
-    Average <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Booking (CPB)</span>
-  </li>
-  <li className="md:col-span-2 relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
-    And even your <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Sq. Ft. Sold</span>
-  </li>
-</ul>
+    <ul className={`grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-5 mb-10 font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
+      {[
+        ['Ideal marketing budget', 'based on proven benchmarks'],
+        ['Cost Per Lead (CPL)', 'estimated from campaign performance'],
+        ['Cost Per Site Visit (CPV)', 'based on conversion averages'],
+        ['Cost Per Booking (CPB)', 'for realistic ROI calculation'],
+        ['Cost Per Sq. Ft. Sold', 'to benchmark your profit ratio'],
+      ].map(([title, subtitle], index) => (
+        <li
+          key={index}
+          className={`relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current ${
+            index === 4 ? 'md:col-span-2' : ''
+          }`}
+        >
+          <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>{title}</span> — {subtitle}
+        </li>
+      ))}
+    </ul>
 
-
+    {/* Mobile-only CTA button */}
     <Button
-  onClick={() =>
-    document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })
-  }
-  className={`block sm:hidden text-lg border-2 border-white bg-transparent text-white font-bold py-2 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-black font-spartan shadow-lg leading-none`}
->
-  Calculate Now
-</Button>
-
-
+      onClick={() =>
+        document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })
+      }
+      className={`block sm:hidden text-lg border-2 border-white bg-transparent text-white font-bold py-3 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-black font-spartan shadow-lg leading-none`}
+    >
+      Calculate Now
+    </Button>
   </div>
 </div>
+
 
 
 
