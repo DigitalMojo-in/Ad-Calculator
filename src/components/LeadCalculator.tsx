@@ -376,7 +376,7 @@ const LeadCalculator = () => {
 
 
           {/* Right - Image */}
-          <div className=" flex-[1.6] flex justify-center lg:justify-end mt-6 lg:mt-0 px-4 sm:px-6 lg:px-8 xl:px-10">
+          <div className=" hidden lg:flex flex-[1.6] flex justify-center lg:justify-end mt-6 lg:mt-0 px-4 sm:px-6 lg:px-8 xl:px-10">
             <img
               src="./lovable-uploads/img.png"
               alt="Business Growth Calculator"
