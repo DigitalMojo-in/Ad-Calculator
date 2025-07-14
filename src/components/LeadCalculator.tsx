@@ -607,25 +607,25 @@ const LeadCalculator = () => {
                     <div className="text-1xl font-bold text-black">{metrics.leads.toLocaleString()}</div>
                     <div className="text-sm text-gray-600 font-medium mb-2">Leads</div>
                     <div className="text-3xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">Cost Per Leads</div>
+                    <div className="text-sm text-gray-500">Cost Per Lead</div>
                   </Card>
                   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
                     <div className="text-1xl font-bold text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
                     <div className="text-sm text-gray-600 font-medium mb-2">Qualified Leads</div>
                     <div className="text-3xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">CPQL</div>
+                    <div className="text-sm text-gray-500">Cost Per Qualified Lead</div>
                   </Card>
                   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-                    <div className="text-3xl font-bold text-black">{metrics.siteVisits.toLocaleString()}</div>
+                    <div className="text-1xl font-bold text-black">{metrics.siteVisits.toLocaleString()}</div>
                     <div className="text-sm text-gray-600 font-medium mb-2">Site Visits</div>
-                    <div className="text-2xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">CPSV</div>
+                    <div className="text-3xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">Cost Per Site Visit</div>
                   </Card>
                   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-                    <div className="text-3xl font-bold text-black">{metrics.bookings.toLocaleString()}</div>
+                    <div className="text-1xl font-bold text-black">{metrics.bookings.toLocaleString()}</div>
                     <div className="text-sm text-gray-600 font-medium mb-2">Bookings</div>
-                    <div className="text-2xl font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">CPB</div>
+                    <div className="text-3xl font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">Cost Per Booking</div>
                   </Card>
                 </div>
 
