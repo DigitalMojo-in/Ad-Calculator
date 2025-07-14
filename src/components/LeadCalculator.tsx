@@ -345,9 +345,6 @@ const LeadCalculator = () => {
       – Cost per booking (CPB)<br/>
       – Cost per sq. ft. sold
     </p>
-  </div>
-
-
 
             <Button
               onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
