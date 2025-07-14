@@ -441,6 +441,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                     style={{fontSize: '1.5rem'}}>
                       <SelectValue />
+                       <SelectValue placeholder="-SELECT-" />
                     </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                      <SelectItem value="select">-SELECT-</SelectItem>
