@@ -627,7 +627,16 @@ const LeadCalculator = () => {
           {/* Desktop Results Section - Always Light Mode */}
           <Card className="backdrop-blur-lg border-none shadow-xl rounded-2xl relative bg-white/95">
             {!resultsUnlocked && (
-              <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
+              <>
+                <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
+                <div className="absolute inset-0 z-30 flex items-center justify-center">
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in">
+                    <p className="text-gray-800 font-bold text-center font-spartan text-lg">
+                      Fill in the data to know your ad spend
+                    </p>
+                  </div>
+                </div>
+              </>
             )}
             
             <CardContent className="p-6">
@@ -636,9 +645,9 @@ const LeadCalculator = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
   {/* Leads Card */}
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl  text-black">{metrics.leads.toLocaleString()}</div>
+    <div className="text-xl text-black">{metrics.leads.toLocaleString()}</div>
     <div className="text-sm text-gray-500 font-medium mb-2">Leads</div>
-    <div className="text-3xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
+    <div className="text-4xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
     <div className="text-sm text-gray-600 group relative cursor-help">
       CPL
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
@@ -649,9 +658,9 @@ const LeadCalculator = () => {
 
   {/* Qualified Leads Card */}
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl  text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
+    <div className="text-xl text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
     <div className="text-sm text-gray-500 font-medium mb-2">Qualified</div>
-    <div className="text-3xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
+    <div className="text-4xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
     <div className="text-sm text-gray-600 group relative cursor-help">
       CPQL
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
@@ -662,9 +671,9 @@ const LeadCalculator = () => {
 
   {/* Site Visits Card */}
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl  text-black">{metrics.siteVisits.toLocaleString()}</div>
+    <div className="text-xl text-black">{metrics.siteVisits.toLocaleString()}</div>
     <div className="text-sm text-gray-500 font-medium mb-2">Site Visits</div>
-    <div className="text-3xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
+    <div className="text-4xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
     <div className="text-sm text-gray-600 group relative cursor-help">
       CPSV
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
@@ -675,9 +684,9 @@ const LeadCalculator = () => {
 
   {/* Bookings Card */}
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-    <div className="text-xl  text-black">{metrics.bookings.toLocaleString()}</div>
+    <div className="text-xl text-black">{metrics.bookings.toLocaleString()}</div>
     <div className="text-sm text-gray-500 font-medium mb-2">Bookings</div>
-    <div className="text-3xl  font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
+    <div className="text-4xl font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
     <div className="text-sm text-gray-600 group relative cursor-help">
       CPB
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
@@ -954,13 +963,22 @@ const LeadCalculator = () => {
             </div>
           </div>
 
-          {/* Mobile Results Section - Always Light Mode */}
-          <div id="results-section-mobile" className="relative">
-            {!resultsUnlocked && (
+        {/* Mobile Results Section - Always Light Mode */}
+        <div id="results-section-mobile" className="relative">
+          {!resultsUnlocked && (
+            <>
               <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
-            )}
-            
-            <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
+              <div className="absolute inset-0 z-30 flex items-center justify-center">
+                <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in">
+                  <p className="text-gray-800 font-bold text-center font-spartan">
+                    Fill in the data to know your ad spend
+                  </p>
+                </div>
+              </div>
+            </>
+          )}
+          
+          <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
               {/* Mobile Metrics Cards - Three Section Layout */}
               <div className="grid grid-cols-1 gap-4 mb-6">
                 <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
@@ -972,8 +990,9 @@ const LeadCalculator = () => {
                       <div className="p-4 flex items-center justify-center bg-gray-50">
                         <span className="text-3xl font-bold text-black font-spartan">{metrics.leads.toLocaleString()}</span>
                       </div>
-                      <div className="p-4 flex items-center justify-center bg-gray-100 rounded-r-2xl">
+                      <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
                         <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpl.toLocaleString()}</span>
+                        <span className="text-xs text-gray-500 font-spartan">CPL</span>
                       </div>
                     </div>
                   </CardContent>
@@ -988,8 +1007,9 @@ const LeadCalculator = () => {
                       <div className="p-4 flex items-center justify-center bg-gray-50">
                         <span className="text-3xl font-bold text-black font-spartan">{metrics.qualifiedLeads.toLocaleString()}</span>
                       </div>
-                      <div className="p-4 flex items-center justify-center bg-gray-100 rounded-r-2xl">
+                      <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
                         <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpql.toLocaleString()}</span>
+                        <span className="text-xs text-gray-500 font-spartan">CPQL</span>
                       </div>
                     </div>
                   </CardContent>
@@ -1004,8 +1024,9 @@ const LeadCalculator = () => {
                       <div className="p-4 flex items-center justify-center bg-gray-50">
                         <span className="text-3xl font-bold text-black font-spartan">{metrics.siteVisits.toLocaleString()}</span>
                       </div>
-                      <div className="p-4 flex items-center justify-center bg-gray-100 rounded-r-2xl">
+                      <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
                         <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpsv.toLocaleString()}</span>
+                        <span className="text-xs text-gray-500 font-spartan">CPSV</span>
                       </div>
                     </div>
                   </CardContent>
@@ -1020,8 +1041,9 @@ const LeadCalculator = () => {
                       <div className="p-4 flex items-center justify-center bg-gray-50">
                         <span className="text-3xl font-bold text-black font-spartan">{metrics.bookings}</span>
                       </div>
-                      <div className="p-4 flex items-center justify-center bg-gray-100 rounded-r-2xl">
+                      <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
                         <span className="text-sm font-medium text-black font-spartan">₹{(metrics.cpb / 100000).toFixed(2)}L</span>
+                        <span className="text-xs text-gray-500 font-spartan">CPB</span>
                       </div>
                     </div>
                   </CardContent>
@@ -1043,7 +1065,7 @@ const LeadCalculator = () => {
               </Card>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col gap-4 justify-center mb-8">
+              <div className="flex flex-col gap-4 justify-center mb-8 mt-8">
                 <Button 
                   onClick={handleBookCall}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
@@ -1241,21 +1263,22 @@ const LeadCalculator = () => {
             </h2>
           </div>
 
-          {/* Desktop Grid Layout */}
-          <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
-            {Array.from({ length: 36 }, (_, i) => (
-              <div 
-                key={i}
-                className="group p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 h-20 w-28 flex items-center justify-center filter grayscale hover:grayscale-0"
-              >
-                <img
-                  src={`./client-logo/logo-${i + 1}.png`}
-                  alt={`Client Logo ${i + 1}`}
-                  className="h-12 w-auto object-contain"
-                />
-              </div>
-            ))}
+      {/* Desktop Grid Layout */}
+      <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
+        {Array.from({ length: 36 }, (_, i) => (
+          <div 
+            key={i}
+            className="group p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 h-20 w-28 flex items-center justify-center filter grayscale hover:grayscale-0 animate-fade-in"
+            style={{ animationDelay: `${i * 0.05}s` }}
+          >
+            <img
+              src={`./client-logo/logo-${i + 1}.png`}
+              alt={`Client Logo ${i + 1}`}
+              className="h-12 w-auto object-contain"
+            />
           </div>
+        ))}
+      </div>
 
           {/* Mobile Infinite Scroll */}
           <div className="md:hidden overflow-hidden whitespace-nowrap px-2 py-4">
