@@ -604,15 +604,15 @@ const LeadCalculator = () => {
                 {/* Metrics Cards - Single Row */}
                 <div className="grid grid-cols-4 gap-3 mb-6">
                   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-                    <div className="text-3xl font-bold text-black">{metrics.leads.toLocaleString()}</div>
+                    <div className="text-1xl font-bold text-black">{metrics.leads.toLocaleString()}</div>
                     <div className="text-sm text-gray-600 font-medium mb-2">Leads</div>
-                    <div className="text-2xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">CPL</div>
+                    <div className="text-3xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">Cost Per Leads</div>
                   </Card>
                   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-                    <div className="text-3xl font-bold text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
+                    <div className="text-1xl font-bold text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
                     <div className="text-sm text-gray-600 font-medium mb-2">Qualified Leads</div>
-                    <div className="text-2xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
+                    <div className="text-3xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
                     <div className="text-sm text-gray-500">CPQL</div>
                   </Card>
                   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
