@@ -343,7 +343,7 @@ const LeadCalculator = () => {
       Simply enter how many units you want to sell — and instantly discover:
     </p>
 
-    <ul className={`list-disc pl-6 mt-4 mb-8 text-base md:text-lg font-spartan space-y-2 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
+    <ul className={`grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-4 mb-10 font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
       <li>
         <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Ideal marketing budget</span> based on proven benchmarks
       </li>
@@ -356,21 +356,20 @@ const LeadCalculator = () => {
       <li>
         Average <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Booking (CPB)</span>
       </li>
-      <li>
+      <li className="md:col-span-2">
         And even your <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Sq. Ft. Sold</span>
       </li>
     </ul>
 
     <Button
       onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
-      className={`hidden border-2 font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan ${
-        'bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-bold'
-      }`}
+      className={`block text-lg sm:text-xl bg-white text-black hover:bg-yellow-400 hover:text-black font-bold py-4 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan shadow-lg`}
     >
       Calculate Now
     </Button>
   </div>
 </div>
+
 
 
           {/* Right - Image */ }
@@ -791,18 +790,52 @@ const LeadCalculator = () => {
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
                         <SelectItem value="Bangalore East">Bangalore East</SelectItem>
-                        <SelectItem value="Bangalore North">Bangalore North</SelectItem>
-                        <SelectItem value="Bangalore South">Bangalore South</SelectItem>
-                        <SelectItem value="Bangalore West">Bangalore West</SelectItem>
-                        <SelectItem value="Chennai Central">Chennai Central</SelectItem>
-                        <SelectItem value="Chennai East">Chennai East</SelectItem>
-                        <SelectItem value="Chennai North">Chennai North</SelectItem>
-                        <SelectItem value="Mumbai Central">Mumbai Central</SelectItem>
-                        <SelectItem value="Mumbai East">Mumbai East</SelectItem>
-                        <SelectItem value="Mumbai North">Mumbai North</SelectItem>
-                        <SelectItem value="Mumbai South">Mumbai South</SelectItem>
-                        <SelectItem value="Delhi NCR">Delhi NCR</SelectItem>
-                        <SelectItem value="Pune">Pune</SelectItem>
+                      <SelectItem value="Bangalore North">Bangalore North</SelectItem>
+                      <SelectItem value="Bangalore South">Bangalore South</SelectItem>
+                      <SelectItem value="Bangalore West">Bangalore West</SelectItem>
+                      <SelectItem value="Chennai Central">Chennai Central</SelectItem>
+                      <SelectItem value="Chennai East">Chennai East</SelectItem>
+                      <SelectItem value="Chennai North">Chennai North</SelectItem>
+                      <SelectItem value="Chennai Outer East">Chennai Outer East</SelectItem>
+                      <SelectItem value="Chennai Outer North">Chennai Outer North</SelectItem>
+                      <SelectItem value="Chennai Outer South">Chennai Outer South</SelectItem>
+                      <SelectItem value="Chennai Outer West">Chennai Outer West</SelectItem>
+                      <SelectItem value="Chennai South">Chennai South</SelectItem>
+                      <SelectItem value="Chennai Suburb">Chennai Suburb</SelectItem>
+                      <SelectItem value="Chennai West">Chennai West</SelectItem>
+                      <SelectItem value="Delhi NCR">Delhi NCR</SelectItem>
+                      <SelectItem value="Delhi">Delhi</SelectItem>
+                      <SelectItem value="Greater Noida">Greater Noida</SelectItem>
+                      <SelectItem value="Gujarat - Ahmedabad">Gujarat - Ahmedabad</SelectItem>
+                      <SelectItem value="Gujarat - Rajkot">Gujarat - Rajkot</SelectItem>
+                      <SelectItem value="Gujarat - Surat">Gujarat - Surat</SelectItem>
+                      <SelectItem value="Gujarat - Vadodra">Gujarat - Vadodra</SelectItem>
+                      <SelectItem value="Gurugram">Gurugram</SelectItem>
+                      <SelectItem value="Hyderabad East">Hyderabad East</SelectItem>
+                      <SelectItem value="Hyderabad North">Hyderabad North</SelectItem>
+                      <SelectItem value="Hyderabad South">Hyderabad South</SelectItem>
+                      <SelectItem value="Hyderabad West">Hyderabad West</SelectItem>
+                      <SelectItem value="Kolkata Central">Kolkata Central</SelectItem>
+                      <SelectItem value="Kolkata East">Kolkata East</SelectItem>
+                      <SelectItem value="Kolkata New">Kolkata New</SelectItem>
+                      <SelectItem value="Kolkata North">Kolkata North</SelectItem>
+                      <SelectItem value="Kolkata South">Kolkata South</SelectItem>
+                      <SelectItem value="Kolkata West">Kolkata West</SelectItem>
+                      <SelectItem value="Lucknow">Lucknow</SelectItem>
+                      <SelectItem value="Mangalore">Mangalore</SelectItem>
+                      <SelectItem value="Mumbai Central">Mumbai Central</SelectItem>
+                      <SelectItem value="Mumbai East">Mumbai East</SelectItem>
+                      <SelectItem value="Mumbai North">Mumbai North</SelectItem>
+                      <SelectItem value="Mumbai South">Mumbai South</SelectItem>
+                      <SelectItem value="Nashik">Nashik</SelectItem>
+                      <SelectItem value="New Delhi Central">New Delhi Central</SelectItem>
+                      <SelectItem value="New Delhi East">New Delhi East</SelectItem>
+                      <SelectItem value="New Delhi North">New Delhi North</SelectItem>
+                      <SelectItem value="New Delhi South">New Delhi South</SelectItem>
+                      <SelectItem value="New Delhi West">New Delhi West</SelectItem>
+                      <SelectItem value="Noida">Noida</SelectItem>
+                      <SelectItem value="Noida Central">Noida Central</SelectItem>
+                      <SelectItem value="Pune">Pune</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -815,14 +848,23 @@ const LeadCalculator = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="1 RK">1 RK</SelectItem>
-                        <SelectItem value="1 BHK">1 BHK</SelectItem>
-                        <SelectItem value="2 BHK">2 BHK</SelectItem>
-                        <SelectItem value="3 BHK">3 BHK</SelectItem>
-                        <SelectItem value="4 BHK">4 BHK</SelectItem>
-                        <SelectItem value="5 BHK">5 BHK</SelectItem>
-                        <SelectItem value="Villa">Villa</SelectItem>
-                      </SelectContent>
+      {propertyType === "Plots" ? (
+        <>
+          <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
+          <SelectItem value="Plot Size 2000 Sq - 4000 Sq">Plot Size 2000 Sq - 4000 Sq</SelectItem>
+        </>
+      ) : (
+        <>
+          <SelectItem value="1 RK">1 RK</SelectItem>
+          <SelectItem value="1 BHK">1 BHK</SelectItem>
+          <SelectItem value="2 BHK">2 BHK</SelectItem>
+          <SelectItem value="3 BHK">3 BHK</SelectItem>
+          <SelectItem value="4 BHK">4 BHK</SelectItem>
+          <SelectItem value="5 BHK">5 BHK</SelectItem>
+          <SelectItem value="Villa">Villa</SelectItem>
+        </>
+      )}
+    </SelectContent>
                     </Select>
                   </div>
 
