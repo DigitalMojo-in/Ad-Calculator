@@ -627,7 +627,7 @@ const LeadCalculator = () => {
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
     <div className="text-xl  text-black">{metrics.leads.toLocaleString()}</div>
     <div className="text-sm text-gray-500 font-medium mb-2">Leads</div>
-    <div className="text-xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
+    <div className="text-3xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
     <div className="text-sm text-gray-600 group relative cursor-help">
       CPL
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
@@ -640,7 +640,7 @@ const LeadCalculator = () => {
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
     <div className="text-xl  text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
     <div className="text-sm text-gray-500 font-medium mb-2">Qualified</div>
-    <div className="text-xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
+    <div className="text-3xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
     <div className="text-sm text-gray-600 group relative cursor-help">
       CPQL
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
@@ -653,7 +653,7 @@ const LeadCalculator = () => {
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
     <div className="text-xl  text-black">{metrics.siteVisits.toLocaleString()}</div>
     <div className="text-sm text-gray-500 font-medium mb-2">Site Visits</div>
-    <div className="text-xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
+    <div className="text-3xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
     <div className="text-sm text-gray-600 group relative cursor-help">
       CPSV
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
@@ -666,7 +666,7 @@ const LeadCalculator = () => {
   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
     <div className="text-xl  text-black">{metrics.bookings.toLocaleString()}</div>
     <div className="text-sm text-gray-500 font-medium mb-2">Bookings</div>
-    <div className="text-2xl  font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
+    <div className="text-3xl  font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
     <div className="text-sm text-gray-600 group relative cursor-help">
       CPB
       <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
