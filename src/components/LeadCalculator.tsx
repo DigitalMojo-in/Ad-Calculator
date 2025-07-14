@@ -326,7 +326,7 @@ const LeadCalculator = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-4">
           {/* Left - Text Block */}
           <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
-  <div className="pt-6 pb-25 sm:pb-20">
+  <div className="pt-6 pb-20">
     <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight font-spartan mb-4 transition-colors duration-300 text-white relative">
       <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
         Your Ideal Real Estate Marketing Budget — Calculated.
@@ -334,14 +334,16 @@ const LeadCalculator = () => {
     </h1>
 
     <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-black/90'}`}>
-      No more guesswork. Use data that’s helped over <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>172+ real estate projects</span> boost sales faster and smarter.
+      No more guesswork. Use data that’s helped over 
+      <span className={`mx-1 ${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>172+ real estate projects</span> 
+      boost sales faster and smarter.
     </p>
 
     <p className={`text-base md:text-lg leading-relaxed font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
       Simply enter how many units you want to sell — and instantly discover:
     </p>
 
-    <ul className={`list-disc pl-6 mt-4 text-base md:text-lg font-spartan space-y-2 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
+    <ul className={`list-disc pl-6 mt-4 mb-8 text-base md:text-lg font-spartan space-y-2 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
       <li>
         <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Ideal marketing budget</span> based on proven benchmarks
       </li>
@@ -359,14 +361,19 @@ const LeadCalculator = () => {
       </li>
     </ul>
 
-            <Button
-              onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-bold pt- 5 py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan"
-            >
-              Calculate Now
-            </Button>
-            </div>
-          </div>
+    <Button
+      onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
+      className={`border-2 font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan ${
+        isDarkMode 
+          ? 'border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black' 
+          : 'border-black text-black hover:bg-black hover:text-white'
+      }`}
+    >
+      Calculate Now
+    </Button>
+  </div>
+</div>
+
 
           {/* Right - Image */}
           <div className="flex-[1.6] flex justify-center lg:justify-end mt-6 lg:mt-0 px-4 sm:px-6 lg:px-8 xl:px-10">
