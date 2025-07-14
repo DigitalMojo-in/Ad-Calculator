@@ -1265,7 +1265,7 @@ const LeadCalculator = () => {
 
       {/* Desktop Grid Layout */}
       <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
-        {Array.from({ length: 38 }, (_, i) => (
+        {Array.from({ length: 36 }, (_, i) => (
           <div 
             key={i}
             className="group p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 h-20 w-28 flex items-center justify-center filter grayscale hover:grayscale-0 animate-fade-in"
