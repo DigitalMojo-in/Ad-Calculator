@@ -616,9 +616,7 @@ const LeadCalculator = () => {
               </div>
 
               <div className="text-xs pt-6 border-t mt-6 font-spartan text-muted-foreground border-border">
-                <p><strong>Disclaimer:</strong> What you see is based on past wins. What you get with us? Possibly even bigger.
-
-</p>
+                <p><strong>Disclaimer:</strong> What you see is based on past wins. What you get with us? Possibly even bigger.</p>
               </div>
             </CardContent>
           </Card>
@@ -947,7 +945,7 @@ const LeadCalculator = () => {
                 </div>
 
                 <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
-                  <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
+                  <p><strong>Disclaimer:</strong> What you see is based on past wins. What you get with us? Possibly even bigger. </p>
                 </div>
               </CardContent>
             </Card>
@@ -1110,7 +1108,7 @@ const LeadCalculator = () => {
       />
       <div className="text-gray-600 font-spartan text-base text-center">
         We’re getting everything ready for you...<br />
-        Until then, please fill the form
+        Fill the form to see your growth plan instantly
       </div>
     </div>
   ) : null}
@@ -1166,6 +1164,11 @@ const LeadCalculator = () => {
     </Button>
 
     {/* Optional error message */}
+    {formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && (
+  <div className="text-red-600 text-sm text-center font-spartan">
+    Please enter a valid email address.
+  </div>
+)}
     {formData.email.includes('@gmail.com') && (
       <div className="text-red-600 text-sm text-center font-spartan">
         Sorry, Gmail addresses are not accepted. Please use a work email.
