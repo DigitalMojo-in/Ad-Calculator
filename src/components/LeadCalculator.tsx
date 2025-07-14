@@ -265,7 +265,7 @@ const LeadCalculator = () => {
       </div>
 
       {/* Sticky Get In Touch - Right Wall - Attached to wall */}
-      <div className="hidden sm:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
+      <div className="hidden sm:block fixed right-[-2px] top-1/2 transform -translate-y-1/2 z-50">
         <Button
           onClick={handleBookCall}
           className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-8 rounded-l-full shadow-2xl transition-all duration-300 font-spartan transform -rotate-90 origin-center whitespace-nowrap"
