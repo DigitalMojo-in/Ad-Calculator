@@ -362,8 +362,10 @@ const LeadCalculator = () => {
     </ul>
 
     <Button
-      onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
-      className={`block text-lg sm:text-xl bg-white text-black hover:bg-yellow-400 hover:text-black font-bold py-4 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan shadow-lg`}
+      onClick={() => document.getElementById('calculator')?.scrollIntoView({ behavior: 'smooth' })}
+      className={hidden border-2 font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan ${
+        'bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-bold'
+      }}
     >
       Calculate Now
     </Button>
@@ -384,7 +386,7 @@ const LeadCalculator = () => {
       </div>
 
       {/* Aesthetic Divider after Hero */}
-      <div className="w-full px-4 sm:px-10 xl:px-24 my-8">
+      <div className="w-full px-4 sm:px-10 xl:px-24 my-8" id="calculator">
         <div className="flex items-center justify-center">
           <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
           <div className={`mx-4 text-2xl ${isDarkMode ? 'text-white/40' : 'text-white/50'}`}>✦</div>
