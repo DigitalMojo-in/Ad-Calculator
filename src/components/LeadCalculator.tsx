@@ -444,7 +444,6 @@ const LeadCalculator = () => {
                        <SelectValue placeholder="-SELECT-" />
                     </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                     <SelectItem value="select">-SELECT-</SelectItem>
                      <SelectItem value="Residential">Residential</SelectItem>
                      <SelectItem value="Commercial">Commercial</SelectItem>
                      {/* <SelectItem value="Senior Living">Senior Living</SelectItem> */}
@@ -461,9 +460,10 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                     style={{fontSize: '1.5rem'}}>
                      <SelectValue />
+                      <SelectValue placeholder="-SELECT-" />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl ">
-                     <SelectItem value="select">-SELECT-</SelectItem>
+                     
                      <SelectItem value="Teaser">Pre-Launch</SelectItem>
                      <SelectItem value="Launch">Launch</SelectItem>
                      <SelectItem value="Sustenance">On-Going</SelectItem>
@@ -479,9 +479,10 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                     style={{fontSize: '1.5rem'}}>
                      <SelectValue />
+                      <SelectValue placeholder="-SELECT-" />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
-                      <SelectItem value="select">-SELECT-</SelectItem>
+                      
                       <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
@@ -540,17 +541,18 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                     style={{fontSize: '1.5rem'}}>
                      <SelectValue />
+                      <SelectValue placeholder="-SELECT-" />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
       {propertyType === "Plots" ? (
         <>
-          <SelectItem value="select">-SELECT-</SelectItem>
+          
           <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
           <SelectItem value="Plot Size 2000 Sq - 4000 Sq">Plot Size 2000 Sq - 4000 Sq</SelectItem>
         </>
       ) : (
         <>
-          <SelectItem value="select">-SELECT-</SelectItem>
+          
           <SelectItem value="1 RK">1 RK</SelectItem>
           <SelectItem value="1 BHK">1 BHK</SelectItem>
           <SelectItem value="2 BHK">2 BHK</SelectItem>
@@ -571,9 +573,10 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                     style={{fontSize: '1.5rem'}}>
                      <SelectValue />
+                      <SelectValue placeholder="-SELECT-" />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                     <SelectItem value="select">-SELECT-</SelectItem>
+                     
                      <SelectItem value="Google">Google Ads</SelectItem>
                      <SelectItem value="Meta">Meta Ads</SelectItem>
                      <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
@@ -588,9 +591,10 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                     style={{fontSize: '1.5rem'}}>
                      <SelectValue />
+                      <SelectValue placeholder="-SELECT-" />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl text-">
-                     <SelectItem value="select">-SELECT-</SelectItem>
+                     
                      {/* <SelectItem value="15 Days">15 Days</SelectItem> */}
                      <SelectItem value="1 Month">1 Month</SelectItem>
                      <SelectItem value="2 Months">2 Months</SelectItem>
@@ -775,9 +779,10 @@ const LeadCalculator = () => {
                     <Select value={propertyType} onValueChange={setPropertyType}>
                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                         <SelectValue />
+                        <SelectValue placeholder="-SELECT-" />
                       </SelectTrigger>
                       <SelectContent className="bg-background text-7 border-border rounded-xl shadow-xl">
-                        <SelectItem value="select">-SELECT-</SelectItem>
+                        
                         <SelectItem value="Residential">Residential</SelectItem>
                         <SelectItem value="Commercial">Commercial</SelectItem>
                         <SelectItem value="Plots">Plots</SelectItem>
@@ -792,9 +797,10 @@ const LeadCalculator = () => {
                     <Select value={launchType} onValueChange={setLaunchType}>
                       <SelectTrigger className="bg-background text-7 border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                         <SelectValue />
+                        <SelectValue placeholder="-SELECT-" />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="select">-SELECT-</SelectItem>
+                        
                         <SelectItem value="Teaser">Pre-Launch</SelectItem>
                         <SelectItem value="Launch">Launch</SelectItem>
                         <SelectItem value="Sustenance">On-Going</SelectItem>
@@ -809,9 +815,10 @@ const LeadCalculator = () => {
                     <Select value={location} onValueChange={setLocation}>
                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                         <SelectValue />
+                        <SelectValue placeholder="-SELECT-" />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
-                        <SelectItem value="select">-SELECT-</SelectItem>
+                        
                         <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
@@ -869,17 +876,18 @@ const LeadCalculator = () => {
                     <Select value={bhk} onValueChange={setBhk}>
                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                         <SelectValue />
+                        <SelectValue placeholder="-SELECT-" />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
       {propertyType === "Plots" ? (
         <>
-          <SelectItem value="select">-SELECT-</SelectItem>
+          
           <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
           <SelectItem value="Plot Size 2000 Sq - 4000 Sq">Plot Size 2000 Sq - 4000 Sq</SelectItem>
         </>
       ) : (
         <>
-          <SelectItem value="select">-SELECT-</SelectItem>
+          
           <SelectItem value="1 RK">1 RK</SelectItem>
           <SelectItem value="1 BHK">1 BHK</SelectItem>
           <SelectItem value="2 BHK">2 BHK</SelectItem>
@@ -899,9 +907,10 @@ const LeadCalculator = () => {
                     <Select value={marketingChannels} onValueChange={setMarketingChannels}>
                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                         <SelectValue />
+                        <SelectValue placeholder="-SELECT-" />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="select">-SELECT-</SelectItem>
+                        
                         <SelectItem value="Google">Google Ads</SelectItem>
                         <SelectItem value="Meta">Meta Ads</SelectItem>
                         <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
@@ -915,9 +924,10 @@ const LeadCalculator = () => {
                     <Select value={duration} onValueChange={setDuration}>
                       <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                         <SelectValue />
+                        <SelectValue placeholder="-SELECT-" />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="select">-SELECT-</SelectItem>
+                        
                         <SelectItem value="1 Month">1 Month</SelectItem>
                         <SelectItem value="2 Months">2 Months</SelectItem>
                         <SelectItem value="3 Months">3 Months</SelectItem>
