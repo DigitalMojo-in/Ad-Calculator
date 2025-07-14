@@ -615,32 +615,60 @@ const LeadCalculator = () => {
             <CardContent className="p-6">
               <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
                 {/* Metrics Cards - Single Row */}
-                <div className="grid grid-cols-4 gap-3 mb-6">
-                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-                    <div className="text-1xl font-bold text-black">{metrics.leads.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600 font-medium mb-2">Leads</div>
-                    <div className="text-3xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">Cost Per Lead</div>
-                  </Card>
-                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-                    <div className="text-1xl font-bold text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600 font-medium mb-2">Qualified Leads</div>
-                    <div className="text-3xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">Cost Per Qualified Lead</div>
-                  </Card>
-                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-                    <div className="text-1xl font-bold text-black">{metrics.siteVisits.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600 font-medium mb-2">Site Visits</div>
-                    <div className="text-3xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">Cost Per Site Visit</div>
-                  </Card>
-                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
-                    <div className="text-1xl font-bold text-black">{metrics.bookings.toLocaleString()}</div>
-                    <div className="text-sm text-gray-600 font-medium mb-2">Bookings</div>
-                    <div className="text-3xl font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500">Cost Per Booking</div>
-                  </Card>
-                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+  {/* Leads Card */}
+  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
+    <div className="text-xl font-bold text-black">{metrics.leads.toLocaleString()}</div>
+    <div className="text-sm text-gray-600 font-medium mb-2">Leads</div>
+    <div className="text-2xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
+    <div className="text-sm text-gray-500 group relative cursor-help">
+      CPL
+      <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
+        Cost Per Lead
+      </span>
+    </div>
+  </Card>
+
+  {/* Qualified Leads Card */}
+  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
+    <div className="text-xl font-bold text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
+    <div className="text-sm text-gray-600 font-medium mb-2">Qualified</div>
+    <div className="text-2xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
+    <div className="text-sm text-gray-500 group relative cursor-help">
+      CPQL
+      <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
+        Cost Per Qualified Lead
+      </span>
+    </div>
+  </Card>
+
+  {/* Site Visits Card */}
+  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
+    <div className="text-xl font-bold text-black">{metrics.siteVisits.toLocaleString()}</div>
+    <div className="text-sm text-gray-600 font-medium mb-2">Site Visits</div>
+    <div className="text-2xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
+    <div className="text-sm text-gray-500 group relative cursor-help">
+      CPSV
+      <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
+        Cost Per Site Visit
+      </span>
+    </div>
+  </Card>
+
+  {/* Bookings Card */}
+  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
+    <div className="text-xl font-bold text-black">{metrics.bookings.toLocaleString()}</div>
+    <div className="text-sm text-gray-600 font-medium mb-2">Bookings</div>
+    <div className="text-2xl font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
+    <div className="text-sm text-gray-500 group relative cursor-help">
+      CPB
+      <span className="absolute z-10 hidden group-hover:block bg-black text-white text-xs font-medium rounded-md px-2 py-1 left-1/2 -translate-x-1/2 mt-1 whitespace-nowrap">
+        Cost Per Booking
+      </span>
+    </div>
+  </Card>
+</div>
+
 
                 {/* Total Budget */}
                 <div className="text-center mb-6 p-4 bg-gray-50 rounded-lg">
@@ -727,7 +755,6 @@ const LeadCalculator = () => {
                       <SelectContent className="bg-background text-7 border-border rounded-xl shadow-xl">
                         <SelectItem value="Residential">Residential</SelectItem>
                         <SelectItem value="Commercial">Commercial</SelectItem>
-                        <SelectItem value="Senior Living">Senior Living</SelectItem>
                         <SelectItem value="Plots">Plots</SelectItem>
                         <SelectItem value="Shops cum Offices">Shops cum Offices</SelectItem>
                       </SelectContent>
