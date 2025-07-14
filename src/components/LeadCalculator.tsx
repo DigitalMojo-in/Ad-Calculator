@@ -322,29 +322,39 @@ const LeadCalculator = () => {
 
 
       {/* Hero Section */}
-      <div className="w-full px-10 sm:px-20 xl:px-24 mt-1 sm:mt-4 lg:mt-12">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-4">
-          {/* Left - Text Block */}
-          <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
+      <<div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
   <div className="pt-6 pb-25 sm:pb-20">
     <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight font-spartan mb-4 transition-colors duration-300 text-white relative">
-      <span className={`${isDarkMode ? 'text-yellow-400' : 'text-white'}`}>
+      <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
         Your Ideal Real Estate Marketing Budget — Calculated.
       </span>
     </h1>
 
-    <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-white/90'}`}>
-      No more guesswork. Use insights that powered 172+ real estate campaigns to faster, smarter sales.
+    <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-black/90'}`}>
+      No more guesswork. Use data that’s helped over <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>172+ real estate projects</span> boost sales faster and smarter.
     </p>
 
-    <p className={`text-base md:text-lg leading-relaxed font-spartan mb-8 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-white/80'}`}>
-      Just tell us how many units you want to sell and get instant estimates for:<br/>
-      – Your ideal ad budget<br/>
-      – Cost per lead (CPL)<br/>
-      – Cost per site visit (CPV)<br/>
-      – Cost per booking (CPB)<br/>
-      – Cost per sq. ft. sold
+    <p className={`text-base md:text-lg leading-relaxed font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
+      Simply enter how many units you want to sell — and instantly discover:
     </p>
+
+    <ul className={`list-disc pl-6 mt-4 text-base md:text-lg font-spartan space-y-2 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
+      <li>
+        <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Ideal marketing budget</span> based on proven benchmarks
+      </li>
+      <li>
+        Estimated <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Lead (CPL)</span>
+      </li>
+      <li>
+        Projected <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Site Visit (CPV)</span>
+      </li>
+      <li>
+        Average <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Booking (CPB)</span>
+      </li>
+      <li>
+        And even your <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Sq. Ft. Sold</span>
+      </li>
+    </ul>
 
             <Button
               onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
