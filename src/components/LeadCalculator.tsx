@@ -325,39 +325,40 @@ const LeadCalculator = () => {
       <div className="w-full px-10 sm:px-20 xl:px-24 mt-1 sm:mt-4 lg:mt-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-4">
           {/* Left - Text Block */}
-          <div className="flex-1 mx-auto lg:mx-0 max-w-2xl px-4 sm:px-6 lg:px-0">
+          <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
   <div className="pt-6 pb-20">
-    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight font-spartan mb-6 transition-colors duration-300">
-      <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
-        Stop Guessing. Start Selling — Smarter.
-      </span>
+    <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] font-black leading-tight font-spartan mb-6 transition-colors duration-300">
+      <div className="flex items-baseline gap-2 flex-wrap">
+        <span className={`${isDarkMode ? 'text-white' : 'text-black'}`}>Plan Every</span>
+        <span
+          className="text-[7rem] md:text-[10rem] font-extrabold leading-none font-spartan"
+          style={{ color: isDarkMode ? '#f0bc00' : '#000000' }}
+        >
+          ₹
+        </span>
+      </div>
+      <div className={`${isDarkMode ? 'text-white' : 'text-black'}`}>
+        Before You Spend.
+      </div>
+      <br />
     </h1>
 
     <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-5 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-black/90'}`}>
-      Trusted by over <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>172+ real estate projects</span> to unlock better sales with better planning.
+      Stop guessing. Start planning with data that’s helped
+      <span className={`mx-1 ${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>172+ real estate projects</span>
+      sell faster.
     </p>
 
     <p className={`text-base md:text-lg leading-relaxed font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
-      Just tell us how many flats you want to sell, and we'll instantly reveal:
+      Just enter how many units you want to sell — and instantly see:
     </p>
 
-    <ul className={`grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-5 mb-10 font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
-      {[
-        ['Ideal marketing budget', 'based on proven benchmarks'],
-        ['Cost Per Lead (CPL)', 'estimated from campaign performance'],
-        ['Cost Per Site Visit (CPV)', 'based on conversion averages'],
-        ['Cost Per Booking (CPB)', 'for realistic ROI calculation'],
-        ['Cost Per Sq. Ft. Sold', 'to benchmark your profit ratio'],
-      ].map(([title, subtitle], index) => (
-        <li
-          key={index}
-          className={`relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current ${
-            index === 4 ? 'md:col-span-2' : ''
-          }`}
-        >
-          <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>{title}</span> — {subtitle}
-        </li>
-      ))}
+    <ul className={`list-disc pl-6 mt-4 mb-8 text-base md:text-lg font-spartan space-y-2 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
+      <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Ideal digital marketing budget</span></li>
+      <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost per Lead (CPL)</span></li>
+      <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost per Site Visit (CPV)</span></li>
+      <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost per Booking (CPB)</span></li>
+      <li><span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost per Sq. Ft. Sold</span></li>
     </ul>
 
     {/* Mobile-only CTA button */}
