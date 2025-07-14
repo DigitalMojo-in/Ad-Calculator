@@ -344,29 +344,33 @@ const LeadCalculator = () => {
     </p>
 
     <ul className={`grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 mt-4 mb-10 font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-black/80'}`}>
-      <li>
-        <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Ideal marketing budget</span> based on proven benchmarks
-      </li>
-      <li>
-        Estimated <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Lead (CPL)</span>
-      </li>
-      <li>
-        Projected <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Site Visit (CPV)</span>
-      </li>
-      <li>
-        Average <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Booking (CPB)</span>
-      </li>
-      <li className="md:col-span-2">
-        And even your <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Sq. Ft. Sold</span>
-      </li>
-    </ul>
+  <li className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
+    <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Ideal marketing budget</span> based on proven benchmarks
+  </li>
+  <li className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
+    Estimated <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Lead (CPL)</span>
+  </li>
+  <li className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
+    Projected <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Site Visit (CPV)</span>
+  </li>
+  <li className="relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
+    Average <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Booking (CPB)</span>
+  </li>
+  <li className="md:col-span-2 relative pl-6 before:content-['•'] before:absolute before:left-0 before:top-1 before:text-xl before:font-bold before:text-current">
+    And even your <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black font-semibold'}`}>Cost Per Sq. Ft. Sold</span>
+  </li>
+</ul>
+
 
     <Button
-      onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
-      className={`block text-lg sm:text-xl bg-white text-black hover:bg-yellow-400 hover:text-black font-bold py-4 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan shadow-lg`}
-    >
-      Calculate Now
-    </Button>
+  onClick={() =>
+    document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })
+  }
+  className={`block text-lg sm:text-xl border-2 border-white bg-transparent text-white font-bold py-5 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-black font-spartan shadow-lg`}
+>
+  Calculate Now
+</Button>
+
   </div>
 </div>
 
@@ -605,7 +609,9 @@ const LeadCalculator = () => {
               </div>
 
               <div className="text-xs pt-6 border-t mt-6 font-spartan text-muted-foreground border-border">
-                <p><strong>Disclaimer:</strong> The data presented is based on past experience and is provided for informational purposes only.</p>
+                <p><strong>Disclaimer:</strong> What you see is based on past wins. What you get with us? Possibly even bigger.
+
+</p>
               </div>
             </CardContent>
           </Card>
@@ -1271,7 +1277,7 @@ const LeadCalculator = () => {
             className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
           >
             <Phone className="mr-2 h-4 w-4" />
-            Ready to Grow? Let's Talk 🚀
+            The clock’s ticking.⏰ Let’s turn inventory into income.
           </Button>
         </div>
       </div>
