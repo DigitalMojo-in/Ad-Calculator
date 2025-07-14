@@ -264,16 +264,18 @@ const LeadCalculator = () => {
         </Button>
       </div>
 
-      {/* Sticky Get In Touch - Right Wall - Updated with pill shape */}
+      {/* Sticky Get In Touch - Right Wall - Attached to wall */}
       <div className="hidden sm:block fixed right-0 top-1/2 transform -translate-y-1/2 z-50">
         <Button
           onClick={handleBookCall}
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-full shadow-xl transition-all duration-300 font-spartan transform -rotate-90 origin-center whitespace-nowrap"
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-8 rounded-l-full shadow-2xl transition-all duration-300 font-spartan transform -rotate-90 origin-center whitespace-nowrap"
           style={{ 
-            fontSize:'25px',
-            borderRadius: '50px',
-            minWidth: '140px',
-            height: '56px'
+            fontSize:'20px',
+            borderTopRightRadius: '0px',
+            borderBottomRightRadius: '0px',
+            minWidth: '180px',
+            height: '60px',
+            marginRight: '0px'
           }}
         >
           FREE Strategy Call
@@ -325,31 +327,31 @@ const LeadCalculator = () => {
           {/* Left - Text Block */}
           <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
             <div className="pt-6 pb-25 sm:pb-20">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.5rem] font-black leading-tight font-spartan mb-4 transition-colors duration-300 text-white relative">
-  <div className="flex items-baseline gap-2 flex-wrap">
-    <span className="text-white">Know Every</span>
-    <span 
-      className="text-[7rem] md:text-[12rem] font-extrabold leading-none font-spartan" 
-      style={{ color: isDarkMode ? '#f0bc00' : '#000000' }}
-    >
-      ₹
-    </span>
-  </div>
-  <div className="text-white">
-    Before You Invest 
-  </div>
-    <br/>
-  <div className="text-white">
-    Calculate Your <br/>
-    <span className="text-[#000000]"
-    style={{ color: isDarkMode ? '#f0bc00' : '#000000' }}>
-      Ad Plan.</span>
-  </div>
-</h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight font-spartan mb-4 transition-colors duration-300 text-white relative">
+              <span className={`${isDarkMode ? 'text-yellow-400' : 'text-white'}`}>
+                The ideal digital marketing budget
+              </span>
+            </h1>
 
-              <p className={`text-lg md:text-xl leading-relaxed font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-white/90'}`}>
-                Data-driven insights. ROI that speaks. Let's build your growth story.
-              </p>
+            <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-white/90'}`}>
+              Stop guessing. Start planning with data that's helped 172+ real estate projects sell faster.
+            </p>
+
+            <p className={`text-base md:text-lg leading-relaxed font-spartan mb-8 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-white/80'}`}>
+              Enter how many flats you want to sell, and instantly see:<br/>
+              – The ideal digital marketing budget<br/>
+              – Cost per lead (CPL)<br/>
+              – Cost per site visit (CPV)<br/>
+              – Cost per booking (CPB)<br/>
+              – Cost per sq. ft. sold
+            </p>
+
+            <Button
+              onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan"
+            >
+              Calculate Now
+            </Button>
             </div>
           </div>
 
@@ -600,30 +602,30 @@ const LeadCalculator = () => {
             <CardContent className="p-6">
               <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
                 {/* Metrics Cards - Single Row */}
-                <div className="grid grid-cols-4 gap-2 mb-6">
-                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2 bg-white">
-                    <div className="text-3xl font-bold text-yellow-600">{metrics.leads.toLocaleString()}</div>
-                    <div className="text-xs text-gray-600 font-medium">Leads</div>
-                    <div className="text-xs font-bold text-purple-700">₹{metrics.cpl.toLocaleString()}</div>
-                    <div className="text-xs text-gray-500">Cost Per Lead</div>
+                <div className="grid grid-cols-4 gap-3 mb-6">
+                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
+                    <div className="text-3xl font-bold text-black">{metrics.leads.toLocaleString()}</div>
+                    <div className="text-sm text-gray-600 font-medium mb-2">Leads</div>
+                    <div className="text-2xl font-bold text-black">₹{metrics.cpl.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">CPL</div>
                   </Card>
-                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2 bg-white">
-                    <div className="text-3xl font-bold text-yellow-600">{metrics.qualifiedLeads.toLocaleString()}</div>
-                    <div className="text-xs text-gray-600 font-medium">Quality Leads</div>
-                    <div className="text-xs font-bold text-purple-700">₹{metrics.cpql.toLocaleString()}</div>
-                    <div className="text-xs text-gray-500">CPQL</div>
+                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
+                    <div className="text-3xl font-bold text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
+                    <div className="text-sm text-gray-600 font-medium mb-2">Qualified Leads</div>
+                    <div className="text-2xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">CPQL</div>
                   </Card>
-                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2 bg-white">
-                    <div className="text-3xl font-bold text-yellow-600">{metrics.siteVisits.toLocaleString()}</div>
-                    <div className="text-xs text-gray-600 font-medium">Site Visit</div>
-                    <div className="text-xs font-bold text-purple-700">₹{metrics.cpsv.toLocaleString()}</div>
-                    <div className="text-xs text-gray-500">CPSV</div>
+                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
+                    <div className="text-3xl font-bold text-black">{metrics.siteVisits.toLocaleString()}</div>
+                    <div className="text-sm text-gray-600 font-medium mb-2">Site Visits</div>
+                    <div className="text-2xl font-bold text-black">₹{metrics.cpsv.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">CPSV</div>
                   </Card>
-                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-2 bg-white">
-                    <div className="text-3xl font-bold text-yellow-600">{metrics.bookings.toLocaleString()}</div>
-                    <div className="text-xs text-gray-600 font-medium">Bookings</div>
-                    <div className="text-xs font-bold text-purple-700">₹{metrics.cpb.toLocaleString()}</div>
-                    <div className="text-xs text-gray-500">CPB</div>
+                  <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
+                    <div className="text-3xl font-bold text-black">{metrics.bookings.toLocaleString()}</div>
+                    <div className="text-sm text-gray-600 font-medium mb-2">Bookings</div>
+                    <div className="text-2xl font-bold text-black">₹{metrics.cpb.toLocaleString()}</div>
+                    <div className="text-sm text-gray-500">CPB</div>
                   </Card>
                 </div>
 
@@ -858,58 +860,82 @@ const LeadCalculator = () => {
             )}
             
             <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
-              {/* Mobile Metrics Cards - Single Line */}
-              <div className="grid grid-cols-1 gap-3 mb-6">
-                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover bg-white">
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <div>
-                      <div className="text-sm text-muted-foreground font-medium font-spartan">Leads</div>
-                      <div className="text-xs text-muted-foreground font-spartan">CPL: ₹{metrics.cpl.toLocaleString()}</div>
+              {/* Mobile Metrics Cards - Three Section Layout */}
+              <div className="grid grid-cols-1 gap-4 mb-6">
+                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
+                  <CardContent className="p-0">
+                    <div className="grid grid-cols-3">
+                      <div className="bg-pink-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
+                        <span className="text-sm font-bold font-spartan">Leads</span>
+                      </div>
+                      <div className="p-4 flex items-center justify-center bg-gray-50">
+                        <span className="text-3xl font-bold text-black font-spartan">{metrics.leads.toLocaleString()}</span>
+                      </div>
+                      <div className="p-4 flex items-center justify-center bg-gray-100 rounded-r-2xl">
+                        <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpl.toLocaleString()}</span>
+                      </div>
                     </div>
-                    <div className="text-5xl font-bold text-primary font-spartan">{metrics.leads.toLocaleString()}</div>
                   </CardContent>
                 </Card>
 
-                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover bg-white">
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <div>
-                      <div className="text-sm text-muted-foreground font-medium font-spartan">Qualified Leads</div>
-                      <div className="text-xs text-muted-foreground font-spartan">CPQL: ₹{metrics.cpql.toLocaleString()}</div>
+                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
+                  <CardContent className="p-0">
+                    <div className="grid grid-cols-3">
+                      <div className="bg-purple-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
+                        <span className="text-sm font-bold font-spartan">Qualified</span>
+                      </div>
+                      <div className="p-4 flex items-center justify-center bg-gray-50">
+                        <span className="text-3xl font-bold text-black font-spartan">{metrics.qualifiedLeads.toLocaleString()}</span>
+                      </div>
+                      <div className="p-4 flex items-center justify-center bg-gray-100 rounded-r-2xl">
+                        <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpql.toLocaleString()}</span>
+                      </div>
                     </div>
-                    <div className="text-5xl font-bold text-secondary font-spartan">{metrics.qualifiedLeads.toLocaleString()}</div>
                   </CardContent>
                 </Card>
 
-                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover bg-white">
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <div>
-                      <div className="text-sm text-muted-foreground font-medium font-spartan">Site Visits</div>
-                      <div className="text-xs text-muted-foreground font-spartan">CPSV: ₹{metrics.cpsv.toLocaleString()}</div>
+                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
+                  <CardContent className="p-0">
+                    <div className="grid grid-cols-3">
+                      <div className="bg-orange-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
+                        <span className="text-sm font-bold font-spartan">Site Visits</span>
+                      </div>
+                      <div className="p-4 flex items-center justify-center bg-gray-50">
+                        <span className="text-3xl font-bold text-black font-spartan">{metrics.siteVisits.toLocaleString()}</span>
+                      </div>
+                      <div className="p-4 flex items-center justify-center bg-gray-100 rounded-r-2xl">
+                        <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpsv.toLocaleString()}</span>
+                      </div>
                     </div>
-                    <div className="text-5xl font-bold text-accent font-spartan">{metrics.siteVisits.toLocaleString()}</div>
                   </CardContent>
                 </Card>
 
-                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl text-center card-hover bg-white">
-                  <CardContent className="p-4 flex items-center justify-between">
-                    <div>
-                      <div className="text-sm text-muted-foreground font-medium font-spartan">Bookings</div>
-                      <div className="text-xs text-muted-foreground font-spartan">CPB: ₹{(metrics.cpb / 100000).toFixed(2)}L</div>
+                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
+                  <CardContent className="p-0">
+                    <div className="grid grid-cols-3">
+                      <div className="bg-green-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
+                        <span className="text-sm font-bold font-spartan">Bookings</span>
+                      </div>
+                      <div className="p-4 flex items-center justify-center bg-gray-50">
+                        <span className="text-3xl font-bold text-black font-spartan">{metrics.bookings}</span>
+                      </div>
+                      <div className="p-4 flex items-center justify-center bg-gray-100 rounded-r-2xl">
+                        <span className="text-sm font-medium text-black font-spartan">₹{(metrics.cpb / 100000).toFixed(2)}L</span>
+                      </div>
                     </div>
-                    <div className="text-5xl font-bold text-purple-brand font-spartan">{metrics.bookings}</div>
                   </CardContent>
                 </Card>
               </div>
 
               {/* Total Budget */}
-              <Card className="backdrop-blur-lg border-none shadow-2xl rounded-2xl card-hover mb-8 bg-gradient-to-r from-primary to-secondary text-white">
-                <CardContent className="p-6">
-                  <div className="text-center">
-                    <div className="text-4xl md:text-5xl font-bold mb-2 font-spartan">
-                      ₹{metrics.totalBudget.toLocaleString('en-IN')}
+              <Card className="backdrop-blur-lg border-none shadow-2xl rounded-2xl bg-white">
+                <CardContent className="p-0">
+                  <div className="grid grid-cols-3">
+                    <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-l-2xl flex items-center justify-center">
+                      <span className="text-sm font-bold font-spartan text-center">Total Budget</span>
                     </div>
-                    <div className="text-lg opacity-90 font-spartan">
-                      Total Budget Required
+                    <div className="col-span-2 p-6 flex items-center justify-center bg-gray-50 rounded-r-2xl">
+                      <span className="text-4xl font-bold text-black font-spartan">₹{metrics.totalBudget.toLocaleString('en-IN')}</span>
                     </div>
                   </div>
                 </CardContent>
