@@ -1285,7 +1285,7 @@ const LeadCalculator = () => {
             className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
           >
             <Phone className="mr-2 h-4 w-4" />
-            The clock’s ticking.⏰ Let’s turn inventory into income.
+            Ready To Talk? CLICK ME!
           </Button>
         </div>
       </div>
