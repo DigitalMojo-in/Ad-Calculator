@@ -326,25 +326,28 @@ const LeadCalculator = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6 xl:gap-4">
           {/* Left - Text Block */}
           <div className="flex-1 mx-auto lg:mx-0 max-w-2xl">
-            <div className="pt-6 pb-25 sm:pb-20">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight font-spartan mb-4 transition-colors duration-300 text-white relative">
-              <span className={`${isDarkMode ? 'text-yellow-400' : 'text-white'}`}>
-                The ideal digital marketing budget
-              </span>
-            </h1>
+  <div className="pt-6 pb-25 sm:pb-20">
+    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight font-spartan mb-4 transition-colors duration-300 text-white relative">
+      <span className={`${isDarkMode ? 'text-yellow-400' : 'text-white'}`}>
+        Your Ideal Real Estate Marketing Budget — Calculated.
+      </span>
+    </h1>
 
-            <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-white/90'}`}>
-              Stop guessing. Start planning with data that's helped 172+ real estate projects sell faster.
-            </p>
+    <p className={`text-lg md:text-xl leading-relaxed font-spartan mb-6 transition-colors duration-300 ${isDarkMode ? 'text-white/90' : 'text-white/90'}`}>
+      No more guesswork. Use insights that powered 172+ real estate campaigns to faster, smarter sales.
+    </p>
 
-            <p className={`text-base md:text-lg leading-relaxed font-spartan mb-8 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-white/80'}`}>
-              Enter how many flats you want to sell, and instantly see:<br/>
-              – The ideal digital marketing budget<br/>
-              – Cost per lead (CPL)<br/>
-              – Cost per site visit (CPV)<br/>
-              – Cost per booking (CPB)<br/>
-              – Cost per sq. ft. sold
-            </p>
+    <p className={`text-base md:text-lg leading-relaxed font-spartan mb-8 transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-white/80'}`}>
+      Just tell us how many units you want to sell and get instant estimates for:<br/>
+      – Your ideal ad budget<br/>
+      – Cost per lead (CPL)<br/>
+      – Cost per site visit (CPV)<br/>
+      – Cost per booking (CPB)<br/>
+      – Cost per sq. ft. sold
+    </p>
+  </div>
+</div>
+
 
             <Button
               onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
