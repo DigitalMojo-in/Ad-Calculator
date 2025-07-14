@@ -363,7 +363,9 @@ const LeadCalculator = () => {
 
     <Button
       onClick={() => document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })}
-      className={`block text-lg sm:text-xl bg-white text-black hover:bg-yellow-400 hover:text-black font-bold py-4 px-10 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan shadow-lg`}
+      className={hidden border-2 font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 font-spartan ${
+        'bg-transparent border-2 border-white text-white hover:bg-white hover:text-black font-bold'
+      }}
     >
       Calculate Now
     </Button>
