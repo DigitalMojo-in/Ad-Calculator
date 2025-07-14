@@ -67,7 +67,10 @@ const LeadCalculator = () => {
   });
 
   const calculateMetrics = () => {
+    // Get actual CPL from the data based on location and BHK
     const actualCPL = getCPLForLocation(location, bhk);
+    
+    // Base calculations with realistic multipliers based on form inputs
     const baseLeads = sellUnits * 167;
     const locationMultiplier = location.includes('Mumbai') ? 1.5 : 
                              location.includes('Delhi') ? 1.3 :
@@ -87,6 +90,7 @@ const LeadCalculator = () => {
     const channelMultiplier = marketingChannels.includes('Google') ? 1.3 : 
                              marketingChannels.includes('+') ? 1.1 : 1.0;
     
+                             
     const cplMult = marketingChannels.includes('+') ? 0 : 257;
     const propertyMultiplier = propertyType === 'Villa' ? 1.5 :
                               propertyType === 'Commercial' ? 1.3 :
@@ -97,9 +101,11 @@ const LeadCalculator = () => {
                             launchType === 'Sustenance' ? 0.9 :
                             launchType === 'NRI' ? 1.2 : 1.0;
     
+    
+    // Use actual CPL from data
     let cpl = marketingChannels.includes('+')? actualCPL:
                 marketingChannels.includes('Google') ? actualCPL+cplMult : actualCPL-cplMult;
-    cpl=Math.round(cpl*locationMultiplier);
+    cpl=Math.round(cpl);
     if(cpl<300){
       cpl=cpl+200;
     }
@@ -433,9 +439,9 @@ const LeadCalculator = () => {
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl ">
-                     <SelectItem value="Teaser">Teaser</SelectItem>
+                     <SelectItem value="Teaser">Pre-Launch</SelectItem>
                      <SelectItem value="Launch">Launch</SelectItem>
-                     <SelectItem value="Sustenance">Sustenance</SelectItem>
+                     <SelectItem value="Sustenance">On-Going</SelectItem>
                      <SelectItem value="NRI">NRI</SelectItem>
                    </SelectContent>
                  </Select>
@@ -450,19 +456,53 @@ const LeadCalculator = () => {
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
-                     <SelectItem value="Bangalore East">Bangalore East</SelectItem>
-                     <SelectItem value="Bangalore North">Bangalore North</SelectItem>
-                     <SelectItem value="Bangalore South">Bangalore South</SelectItem>
-                     <SelectItem value="Bangalore West">Bangalore West</SelectItem>
-                     <SelectItem value="Chennai Central">Chennai Central</SelectItem>
-                     <SelectItem value="Chennai East">Chennai East</SelectItem>
-                     <SelectItem value="Chennai North">Chennai North</SelectItem>
-                     <SelectItem value="Mumbai Central">Mumbai Central</SelectItem>
-                     <SelectItem value="Mumbai East">Mumbai East</SelectItem>
-                     <SelectItem value="Mumbai North">Mumbai North</SelectItem>
-                     <SelectItem value="Mumbai South">Mumbai South</SelectItem>
-                     <SelectItem value="Delhi NCR">Delhi NCR</SelectItem>
-                     <SelectItem value="Pune">Pune</SelectItem>
+                      <SelectItem value="Bangalore East">Bangalore East</SelectItem>
+                      <SelectItem value="Bangalore North">Bangalore North</SelectItem>
+                      <SelectItem value="Bangalore South">Bangalore South</SelectItem>
+                      <SelectItem value="Bangalore West">Bangalore West</SelectItem>
+                      <SelectItem value="Chennai Central">Chennai Central</SelectItem>
+                      <SelectItem value="Chennai East">Chennai East</SelectItem>
+                      <SelectItem value="Chennai North">Chennai North</SelectItem>
+                      <SelectItem value="Chennai Outer East">Chennai Outer East</SelectItem>
+                      <SelectItem value="Chennai Outer North">Chennai Outer North</SelectItem>
+                      <SelectItem value="Chennai Outer South">Chennai Outer South</SelectItem>
+                      <SelectItem value="Chennai Outer West">Chennai Outer West</SelectItem>
+                      <SelectItem value="Chennai South">Chennai South</SelectItem>
+                      <SelectItem value="Chennai Suburb">Chennai Suburb</SelectItem>
+                      <SelectItem value="Chennai West">Chennai West</SelectItem>
+                      <SelectItem value="Delhi NCR">Delhi NCR</SelectItem>
+                      <SelectItem value="Delhi">Delhi</SelectItem>
+                      <SelectItem value="Greater Noida">Greater Noida</SelectItem>
+                      <SelectItem value="Gujarat - Ahmedabad">Gujarat - Ahmedabad</SelectItem>
+                      <SelectItem value="Gujarat - Rajkot">Gujarat - Rajkot</SelectItem>
+                      <SelectItem value="Gujarat - Surat">Gujarat - Surat</SelectItem>
+                      <SelectItem value="Gujarat - Vadodra">Gujarat - Vadodra</SelectItem>
+                      <SelectItem value="Gurugram">Gurugram</SelectItem>
+                      <SelectItem value="Hyderabad East">Hyderabad East</SelectItem>
+                      <SelectItem value="Hyderabad North">Hyderabad North</SelectItem>
+                      <SelectItem value="Hyderabad South">Hyderabad South</SelectItem>
+                      <SelectItem value="Hyderabad West">Hyderabad West</SelectItem>
+                      <SelectItem value="Kolkata Central">Kolkata Central</SelectItem>
+                      <SelectItem value="Kolkata East">Kolkata East</SelectItem>
+                      <SelectItem value="Kolkata New">Kolkata New</SelectItem>
+                      <SelectItem value="Kolkata North">Kolkata North</SelectItem>
+                      <SelectItem value="Kolkata South">Kolkata South</SelectItem>
+                      <SelectItem value="Kolkata West">Kolkata West</SelectItem>
+                      <SelectItem value="Lucknow">Lucknow</SelectItem>
+                      <SelectItem value="Mangalore">Mangalore</SelectItem>
+                      <SelectItem value="Mumbai Central">Mumbai Central</SelectItem>
+                      <SelectItem value="Mumbai East">Mumbai East</SelectItem>
+                      <SelectItem value="Mumbai North">Mumbai North</SelectItem>
+                      <SelectItem value="Mumbai South">Mumbai South</SelectItem>
+                      <SelectItem value="Nashik">Nashik</SelectItem>
+                      <SelectItem value="New Delhi Central">New Delhi Central</SelectItem>
+                      <SelectItem value="New Delhi East">New Delhi East</SelectItem>
+                      <SelectItem value="New Delhi North">New Delhi North</SelectItem>
+                      <SelectItem value="New Delhi South">New Delhi South</SelectItem>
+                      <SelectItem value="New Delhi West">New Delhi West</SelectItem>
+                      <SelectItem value="Noida">Noida</SelectItem>
+                      <SelectItem value="Noida Central">Noida Central</SelectItem>
+                      <SelectItem value="Pune">Pune</SelectItem>
                    </SelectContent>
                  </Select>
                </div>
@@ -476,14 +516,23 @@ const LeadCalculator = () => {
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                     <SelectItem value="1 RK">1 RK</SelectItem>
-                     <SelectItem value="1 BHK">1 BHK</SelectItem>
-                     <SelectItem value="2 BHK">2 BHK</SelectItem>
-                     <SelectItem value="3 BHK">3 BHK</SelectItem>
-                     <SelectItem value="4 BHK">4 BHK</SelectItem>
-                     <SelectItem value="5 BHK">5 BHK</SelectItem>
-                     <SelectItem value="Villa">Villa</SelectItem>
-                   </SelectContent>
+      {propertyType === "Plots" ? (
+        <>
+          <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
+          <SelectItem value="Plot Size 2000 Sq - 4000 Sq">Plot Size 2000 Sq - 4000 Sq</SelectItem>
+        </>
+      ) : (
+        <>
+          <SelectItem value="1 RK">1 RK</SelectItem>
+          <SelectItem value="1 BHK">1 BHK</SelectItem>
+          <SelectItem value="2 BHK">2 BHK</SelectItem>
+          <SelectItem value="3 BHK">3 BHK</SelectItem>
+          <SelectItem value="4 BHK">4 BHK</SelectItem>
+          <SelectItem value="5 BHK">5 BHK</SelectItem>
+          <SelectItem value="Villa">Villa</SelectItem>
+        </>
+      )}
+    </SelectContent>
                  </Select>
                </div>
 
@@ -903,72 +952,85 @@ const LeadCalculator = () => {
                 <h3 className="text-2xl font-bold text-center font-spartan text-black">Unlock Your Results</h3>
               </CardHeader>
               <CardContent className="p-6 pt-0">
-              {!formData.name || !formData.mobile || !formData.email || !formData.organization ? (
-      <div className="flex flex-col items-center justify-center space-y-4 py-10 animate-fadeIn">
-      {/* 👇 Replace spinner with GIF here */}
+  {/* Loader */}
+  {!formData.name || !formData.mobile || !formData.email || !formData.organization ? (
+    <div className="flex flex-col items-center justify-center space-y-4 py-10 animate-fadeIn">
       <img
         src="./lovable-uploads/amicat-wow.gif"
         alt="Loading..."
         className="w-20 h-20 object-contain"
       />
-        <div className="text-gray-600 font-spartan text-base text-center">
-          We’re getting everything ready for you...
-          <br/>
-          Untill Then Please Fill the Form
-        </div>
+      <div className="text-gray-600 font-spartan text-base text-center">
+        We’re getting everything ready for you...<br />
+        Until then, please fill the form
       </div>
-    ) : null}
+    </div>
+  ) : null}
 
-                <div className="space-y-4">
-                  <Input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Your Name"
-                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
-                  />
-                  <Input
-                    type="tel"
-                    value={formData.mobile}
-                    onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-                    placeholder="Phone Number"
-                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
-                  />
-                  <Input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="Your Email"
-                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
-                  />
-                  <Input
-                    type="text"
-                    value={formData.organization}
-                    onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="Your Organization/Project/Website"
-                    className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
-                  />
-                  <Button
-                    onClick={handleUnlockResults}
-                    disabled={!formData.name || !formData.mobile || !formData.email || !formData.organization || isUnlockLoading}
-                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
-                  >
-                    {isUnlockLoading ? "Unlocking..." : "Unlock Calculator"}
-                  </Button>
-                  
-                  {/* Loading Bar Animation */}
-                  {isUnlockLoading && (
-                    <div className="mt-4">
-                      <div className="text-sm text-center mb-2 font-spartan text-gray-600">
-                        Calculating your results...
-                      </div>
-                      <div className="w-full rounded-full h-2 bg-gray-200">
-                        <div className="bg-red-600 h-2 rounded-full animate-pulse" style={{ width: '100%', animation: 'loading 2s ease-in-out' }}></div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </CardContent>
+  {/* Form */}
+  <div className="space-y-4">
+    <Input
+      type="text"
+      value={formData.name}
+      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+      placeholder="Your Name"
+      className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
+    />
+
+    <Input
+      type="tel"
+      value={formData.mobile}
+      onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+      placeholder="Phone Number"
+      className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
+    />
+
+    <Input
+      type="email"
+      value={formData.email}
+      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+      placeholder="Your Email"
+      className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
+    />
+
+    <Input
+      type="text"
+      value={formData.organization}
+      onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+      placeholder="Your Organization/Project/Website"
+      className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
+    />
+
+    <Button
+      onClick={handleUnlockResults}
+      disabled={
+        !formData.name ||
+        !formData.mobile ||
+        !/^[6-9]\d{9}$/.test(formData.mobile) || // Validates Indian mobile numbers
+        !formData.email ||
+        formData.email.includes('@gmail.com') || // Rejects Gmail
+        !formData.organization ||
+        isUnlockLoading
+      }
+      className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
+    >
+      {isUnlockLoading ? "Unlocking..." : "Unlock Calculator"}
+    </Button>
+
+    {/* Optional error message */}
+    {formData.email.includes('@gmail.com') && (
+      <div className="text-red-600 text-sm text-center font-spartan">
+        Sorry, Gmail addresses are not accepted. Please use a work email.
+      </div>
+    )}
+    {!/^[6-9]\d{9}$/.test(formData.mobile) && formData.mobile && (
+      <div className="text-red-600 text-sm text-center font-spartan">
+        Please enter a valid 10-digit mobile number.
+      </div>
+    )}
+  </div>
+</CardContent>
+
             </Card>
           </div>
         )}
