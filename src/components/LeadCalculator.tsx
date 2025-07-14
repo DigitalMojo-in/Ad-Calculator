@@ -366,10 +366,11 @@ const LeadCalculator = () => {
   onClick={() =>
     document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })
   }
-  className={`block text-lg sm:text-xl border-2 border-white bg-transparent text-white font-bold py-5 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-black font-spartan shadow-lg`}
+  className={`block sm:hidden text-lg border-2 border-white bg-transparent text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-black font-spartan shadow-lg leading-none`}
 >
   Calculate Now
 </Button>
+
 
   </div>
 </div>
@@ -522,7 +523,14 @@ const LeadCalculator = () => {
                       <SelectItem value="New Delhi East">New Delhi East</SelectItem>
                       <SelectItem value="New Delhi North">New Delhi North</SelectItem>
                       <SelectItem value="New Delhi South">New Delhi South</SelectItem>
-                      <SelectItem value="New Delhi West">New Delhi West</SelectItem>
+                      <SelectItem value="New Delhi West">N<Button
+  onClick={() =>
+    document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })
+  }
+  className={`block text-lg sm:text-xl border-2 border-white bg-transparent text-white font-bold py-5 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-black font-spartan shadow-lg`}
+>
+  Calculate Now
+</Button>ew Delhi West</SelectItem>
                       <SelectItem value="Noida">Noida</SelectItem>
                       <SelectItem value="Noida Central">Noida Central</SelectItem>
                       <SelectItem value="Pune">Pune</SelectItem>
@@ -1294,7 +1302,7 @@ const LeadCalculator = () => {
       {/* CTA Footer */}
       <div id="footer" className="bg-white text-accent-black py-8 text-center">
         <div className="container mx-auto px-4">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">Ready to Grow? Let's Talk 🚀</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">The clock’s ticking.⏰ Let’s turn inventory into income.</h3>
           <Button 
             onClick={handleBookCall}
             className=" bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
