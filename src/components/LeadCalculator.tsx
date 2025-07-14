@@ -443,6 +443,7 @@ const LeadCalculator = () => {
                       <SelectValue />
                     </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                     <SelectItem>-SELECT-</SelectItem>
                      <SelectItem value="Residential">Residential</SelectItem>
                      <SelectItem value="Commercial">Commercial</SelectItem>
                      {/* <SelectItem value="Senior Living">Senior Living</SelectItem> */}
@@ -461,6 +462,7 @@ const LeadCalculator = () => {
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl ">
+                     <SelectItem>-SELECT-</SelectItem>
                      <SelectItem value="Teaser">Pre-Launch</SelectItem>
                      <SelectItem value="Launch">Launch</SelectItem>
                      <SelectItem value="Sustenance">On-Going</SelectItem>
@@ -478,6 +480,7 @@ const LeadCalculator = () => {
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
+                      <SelectItem>-SELECT-</SelectItem>
                       <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
@@ -521,14 +524,7 @@ const LeadCalculator = () => {
                       <SelectItem value="New Delhi East">New Delhi East</SelectItem>
                       <SelectItem value="New Delhi North">New Delhi North</SelectItem>
                       <SelectItem value="New Delhi South">New Delhi South</SelectItem>
-                      <SelectItem value="New Delhi West">N<Button
-  onClick={() =>
-    document.getElementById('results-section-mobile')?.scrollIntoView({ behavior: 'smooth' })
-  }
-  className={`block text-lg sm:text-xl border-2 border-white bg-transparent text-white font-bold py-5 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-white hover:text-black font-spartan shadow-lg`}
->
-  Calculate Now
-</Button>ew Delhi West</SelectItem>
+                      <SelectItem value="New Delhi West">New Delhi West</SelectItem>
                       <SelectItem value="Noida">Noida</SelectItem>
                       <SelectItem value="Noida Central">Noida Central</SelectItem>
                       <SelectItem value="Pune">Pune</SelectItem>
@@ -547,11 +543,13 @@ const LeadCalculator = () => {
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
       {propertyType === "Plots" ? (
         <>
+          <SelectItem>-SELECT-</SelectItem>
           <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
           <SelectItem value="Plot Size 2000 Sq - 4000 Sq">Plot Size 2000 Sq - 4000 Sq</SelectItem>
         </>
       ) : (
         <>
+          <SelectItem>-SELECT-</SelectItem>
           <SelectItem value="1 RK">1 RK</SelectItem>
           <SelectItem value="1 BHK">1 BHK</SelectItem>
           <SelectItem value="2 BHK">2 BHK</SelectItem>
@@ -574,6 +572,7 @@ const LeadCalculator = () => {
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                     <SelectItem>-SELECT-</SelectItem>
                      <SelectItem value="Google">Google Ads</SelectItem>
                      <SelectItem value="Meta">Meta Ads</SelectItem>
                      <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
@@ -590,6 +589,7 @@ const LeadCalculator = () => {
                      <SelectValue />
                    </SelectTrigger>
                    <SelectContent className="bg-background border-border rounded-xl shadow-xl text-">
+                     <SelectItem>-SELECT-</SelectItem>
                      {/* <SelectItem value="15 Days">15 Days</SelectItem> */}
                      <SelectItem value="1 Month">1 Month</SelectItem>
                      <SelectItem value="2 Months">2 Months</SelectItem>
@@ -776,6 +776,7 @@ const LeadCalculator = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background text-7 border-border rounded-xl shadow-xl">
+                        <SelectItem>-SELECT-</SelectItem>
                         <SelectItem value="Residential">Residential</SelectItem>
                         <SelectItem value="Commercial">Commercial</SelectItem>
                         <SelectItem value="Plots">Plots</SelectItem>
@@ -792,9 +793,10 @@ const LeadCalculator = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="Teaser">Teaser</SelectItem>
+                        <SelectItem>-SELECT-</SelectItem>
+                        <SelectItem value="Teaser">Pre-Launch</SelectItem>
                         <SelectItem value="Launch">Launch</SelectItem>
-                        <SelectItem value="Sustenance">Sustenance</SelectItem>
+                        <SelectItem value="Sustenance">On-Going</SelectItem>
                         <SelectItem value="NRI">NRI</SelectItem>
                       </SelectContent>
                     </Select>
@@ -808,6 +810,7 @@ const LeadCalculator = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
+                        <SelectItem>-SELECT-</SelectItem>
                         <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
@@ -869,11 +872,13 @@ const LeadCalculator = () => {
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
       {propertyType === "Plots" ? (
         <>
+          <SelectItem>-SELECT-</SelectItem>
           <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
           <SelectItem value="Plot Size 2000 Sq - 4000 Sq">Plot Size 2000 Sq - 4000 Sq</SelectItem>
         </>
       ) : (
         <>
+          <SelectItem>-SELECT-</SelectItem>
           <SelectItem value="1 RK">1 RK</SelectItem>
           <SelectItem value="1 BHK">1 BHK</SelectItem>
           <SelectItem value="2 BHK">2 BHK</SelectItem>
@@ -895,6 +900,7 @@ const LeadCalculator = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                        <SelectItem>-SELECT-</SelectItem>
                         <SelectItem value="Google">Google Ads</SelectItem>
                         <SelectItem value="Meta">Meta Ads</SelectItem>
                         <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
@@ -910,7 +916,7 @@ const LeadCalculator = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                        <SelectItem value="15 Days">15 Days</SelectItem>
+                        <SelectItem>-SELECT-</SelectItem>
                         <SelectItem value="1 Month">1 Month</SelectItem>
                         <SelectItem value="2 Months">2 Months</SelectItem>
                         <SelectItem value="3 Months">3 Months</SelectItem>
