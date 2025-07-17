@@ -817,7 +817,7 @@ const LeadCalculator = () => {
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
                 <img 
-  src="/arrow-doodle.png" 
+  src="/lovable-uploads/arrow.png" 
   alt="arrow" 
   className="absolute left-[50%] top-[53%] w-24 rotate-[15deg] -translate-x-1/2 z-10 pointer-events-none"
 />
