@@ -566,7 +566,7 @@ const LeadCalculator = () => {
 <div className="lg:hidden flex flex-row items-center justify-between max-w-4xl mx-auto px-4 py-8 pt-0 gap-4">
 
   {/* Text Section */}
-  <div className="w-1/2 pr-2 -mt-[150px]">
+  <div className="w-1/2 pr-2 -mt-[120px]">
   <h1 className="text-2xl font-black font-spartan leading-tight transition-colors duration-300">
     <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
       Get benchmarks in seconds
