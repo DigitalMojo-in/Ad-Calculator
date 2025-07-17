@@ -582,7 +582,7 @@ const LeadCalculator = () => {
   <img 
     src="./lovable-uploads/img.png" 
     alt="Benchmark" 
-    className="w-full h-auto object-contain scale-150"
+    className="w-full h-auto object-contain scale-125"
   />
 </div>
 
