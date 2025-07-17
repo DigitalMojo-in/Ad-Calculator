@@ -208,13 +208,6 @@ const LeadCalculator = () => {
     setShowForm(true);
   };
 
-  const scrollToInputs = () => {
-    const inputSection = document.getElementById('calculator-inputs');
-    if (inputSection) {
-      inputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   const generateTimeSeriesData = () => {
     const timePoints = duration === '3 Months' ? 3 : duration === '6 Months' ? 6 : 12;
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -328,9 +321,13 @@ const LeadCalculator = () => {
   </h1>
 
   <p className={`mt-2 text-lg md:text-xl lg:text-2xl font-spartan leading-relaxed text-center sm:text-left transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
-    CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India's top developers.</span>
+    CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India’s top developers.</span>
   </p>
 </div>
+
+
+
+
 
               {/* Desktop Image moved here */}
               <div className="mt-8 flex justify-end pr-50 sm:pr-10">
@@ -340,15 +337,16 @@ const LeadCalculator = () => {
     className="w-full max-w-2xl h-auto transform scale-110 sm:scale-125 transition-transform duration-300"
   />
 </div>
+`
             </div>
           </div>
 
-          {/* Right - Calculator - Moved up */}
-          <Card className="backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden bg-white/95 h-fit -mt-16">
-            <CardHeader className="pb-2">
+          {/* Right - Calculator */}
+          <Card className="backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden bg-white/95 h-fit">
+            <CardHeader className="pb-4">
               <h2 className="text-xl font-bold text-center text-gray-900">Calculate Your Leads</h2>
             </CardHeader>
-            <CardContent className="p-6" id="calculator-inputs">
+            <CardContent className="p-6">
               <div className="mb-6 text-center">
                 <label className="text-foreground text-lg font-bold mb-3 block font-spartan">Units to Sell</label>
                 <div className="flex items-center justify-center gap-3 max-w-sm mx-auto">
@@ -389,7 +387,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                       <SelectItem value="Residential">Residential</SelectItem>
                       <SelectItem value="Commercial">Commercial</SelectItem>
                       <SelectItem value="Plots">Plots</SelectItem>
@@ -406,7 +404,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                       <SelectItem value="Teaser">Pre-Launch</SelectItem>
                       <SelectItem value="Launch">Launch</SelectItem>
                       <SelectItem value="Sustenance">On-Going</SelectItem>
@@ -423,7 +421,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl max-h-60">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
                       <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
@@ -483,7 +481,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                       {propertyType === "Plots" ? (
                         <>
                           <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
@@ -512,7 +510,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                       <SelectItem value="Google">Google Ads</SelectItem>
                       <SelectItem value="Meta">Meta Ads</SelectItem>
                       <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
@@ -528,7 +526,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                       <SelectItem value="1 Month">1 Month</SelectItem>
                       <SelectItem value="2 Months">2 Months</SelectItem>
                       <SelectItem value="3 Months">3 Months</SelectItem>
@@ -563,65 +561,68 @@ const LeadCalculator = () => {
         {/* Mobile Layout - Stack */}
         <div className="lg:hidden max-w-4xl mx-auto">
 
-          {/* Mobile Hero Section - Adjusted layout */}
-          <div className="lg:hidden flex flex-col max-w-4xl mx-auto px-4 py-4 gap-4">
-            
-            {/* Heading moved up and enlarged */}
-            <div className="w-full text-center mb-2">
-              <h1 className="text-3xl font-black font-spartan leading-tight transition-colors duration-300">
-                <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
-                  Get benchmarks in seconds
-                </span>
-              </h1>
-              <p className={`mt-2 text-base font-spartan leading-relaxed ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
-                CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India's top developers.</span>
-              </p>
-            </div>
+          {/* Mobile Hero Section */}
+          {/* Mobile Layout - Text Left, Image Right */}
+<div className="lg:hidden flex flex-row items-center justify-between max-w-4xl mx-auto px-4 py-8 pt-0 gap-4">
 
-            {/* Image Section - Made larger */}
-            <div className="w-full flex justify-center mb-4">
-              <img 
-                src="./lovable-uploads/img.png" 
-                alt="Benchmark" 
-                className="w-full max-w-sm h-auto object-contain transform scale-125"
-              />
-            </div>
-          </div>
+  {/* Text Section */}
+  <div className="w-1/2 pr-2 ">
+  <h1 className="text-2xl font-black font-spartan leading-tight transition-colors duration-300">
+    <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
+      Get benchmarks in seconds
+    </span>
+  </h1>
+  <p className={`mt-3 text-base font-spartan leading-relaxed ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
+    CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India’s top developers.</span>
+  </p>
+</div>
 
-          {/* Mobile Calculator - Moved up and reduced input size */}
-          <Card className="backdrop-blur-lg border-none shadow-2xl rounded-3xl overflow-hidden mb-8 bg-white -mt-8">
-            <CardContent className="p-6" id="calculator-inputs-mobile">
-              {/* Sell Units - Primary Input with smaller box */}
-              <div className="mb-6 text-center">
-                <label className="text-foreground text-lg font-bold mb-3 block font-spartan">Units to Sell</label>
-                <div className="flex items-center justify-center gap-3 max-w-xs mx-auto">
+{/* Image Section */}
+<div className="w-1/2 pl-2">
+  <img 
+    src="./lovable-uploads/img.png" 
+    alt="Benchmark" 
+    className="w-full h-auto object-contain scale-150c"
+  />
+</div>
+
+</div>
+
+
+          {/* Mobile Calculator - First Fold */}
+          <Card className="backdrop-blur-lg border-none shadow-2xl rounded-3xl overflow-hidden mb-8 bg-white">
+            <CardContent className="p-8">
+              {/* Sell Units - Primary Input */}
+              <div className="mb-8 text-center">
+                <label className="text-foreground text-lg font-bold mb-4 block font-spartan">Units to Sell</label>
+                <div className="flex items-center justify-center gap-4 max-w-md mx-auto">
                   <Button
-                    size="sm"
+                    size="lg"
                     variant="outline"
-                    className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
+                    className="h-12 w-12 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
                     onClick={() => setSellUnits(Math.max(1, sellUnits - 1))}
                   >
-                    <Minus className="h-4 w-4" />
+                    <Minus className="h-5 w-5" />
                   </Button>
                   <Input
                     type="number"
                     value={sellUnits}
                     onChange={(e) => setSellUnits(Math.max(1, parseInt(e.target.value) || 0))}
                     min="1"
-                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-3xl rounded-xl h-16 w-20 transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                    className="bg-background border-2 border-secondary hover:border-primary focus:border-primary text-foreground text-center font-bold text-5xl rounded-xl h-24 text-center transition-all duration-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                   />
                   <Button
-                    size="sm"
+                    size="lg"
                     variant="outline"
-                    className="h-10 w-10 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
+                    className="h-12 w-12 p-0 border-2 border-secondary hover:border-primary hover:bg-primary/10 rounded-xl transition-all duration-200"
                     onClick={() => setSellUnits(sellUnits + 1)}
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus className="h-5 w-5" />
                   </Button>
                 </div>
               </div>
 
-              {/* Two Column Layout for Other Inputs with white dropdowns */}
+              {/* Two Column Layout for Other Inputs */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Property Type */}
                 <div>
@@ -630,7 +631,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background text-7 border-border rounded-xl shadow-xl">
                       <SelectItem value="Residential">Residential</SelectItem>
                       <SelectItem value="Commercial">Commercial</SelectItem>
                       <SelectItem value="Plots">Plots</SelectItem>
@@ -643,10 +644,10 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Launch Type</label>
                   <Select value={launchType} onValueChange={setLaunchType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-background text-7 border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                       <SelectItem value="Teaser">Pre-Launch</SelectItem>
                       <SelectItem value="Launch">Launch</SelectItem>
                       <SelectItem value="Sustenance">On-Going</SelectItem>
@@ -662,7 +663,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl max-h-60">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
                       <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
@@ -721,7 +722,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                       {propertyType === "Plots" ? (
                         <>
                           <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
@@ -749,7 +750,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
                       <SelectItem value="Google">Google Ads</SelectItem>
                       <SelectItem value="Meta">Meta Ads</SelectItem>
                       <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
@@ -764,7 +765,8 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                      
                       <SelectItem value="1 Month">1 Month</SelectItem>
                       <SelectItem value="2 Months">2 Months</SelectItem>
                       <SelectItem value="3 Months">3 Months</SelectItem>
@@ -815,39 +817,10 @@ const LeadCalculator = () => {
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
-                  <div className="relative">
-                    {/* Doodled Arrow SVG */}
-                    <svg 
-                      className="absolute -top-20 -left-32 w-32 h-20 transform rotate-12" 
-                      viewBox="0 0 120 80" 
-                      fill="none" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path 
-                        d="M10 70 Q30 50 50 60 Q70 70 90 50 Q100 40 110 45" 
-                        stroke="#ef4444" 
-                        strokeWidth="3" 
-                        fill="none" 
-                        strokeLinecap="round"
-                        strokeDasharray="2 4"
-                      />
-                      <path 
-                        d="M105 40 L110 45 L105 50" 
-                        stroke="#ef4444" 
-                        strokeWidth="3" 
-                        fill="none" 
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                    
-                    <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in">
-                      <Button
-                        onClick={scrollToInputs}
-                        className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-2 rounded-lg font-spartan"
-                      >
-                        Fill in the data to know your ad spend
-                      </Button>
-                    </div>
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in">
+                    <p className="text-gray-800 font-bold text-center font-spartan text-lg">
+                      Fill in the data to know your ad spend
+                    </p>
                   </div>
                 </div>
               </>
@@ -930,44 +903,10 @@ const LeadCalculator = () => {
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
-                  <div className="relative">
-                    {/* Mobile Doodled Arrow SVG */}
-                    <svg 
-                      className="absolute -top-16 -left-24 w-24 h-16 transform rotate-45" 
-                      viewBox="0 0 80 60" 
-                      fill="none" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path 
-                        d="M10 50 Q25 35 40 45 Q55 55 70 40" 
-                        stroke="#ef4444" 
-                        strokeWidth="2" 
-                        fill="none" 
-                        strokeLinecap="round"
-                        strokeDasharray="2 3"
-                      />
-                      <path 
-                        d="M65 35 L70 40 L65 45" 
-                        stroke="#ef4444" 
-                        strokeWidth="2" 
-                        fill="none" 
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                    
-                    <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in">
-                      <Button
-                        onClick={() => {
-                          const inputSection = document.getElementById('calculator-inputs-mobile');
-                          if (inputSection) {
-                            inputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                          }
-                        }}
-                        className="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-lg font-spartan text-sm"
-                      >
-                        Fill in the data to know your ad spend
-                      </Button>
-                    </div>
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in">
+                    <p className="text-gray-800 font-bold text-center font-spartan">
+                      Fill in the data to know your ad spend
+                    </p>
                   </div>
                 </div>
               </>
@@ -1058,8 +997,8 @@ const LeadCalculator = () => {
                 </CardContent>
               </Card>
 
-              {/* CTA Buttons with better spacing */}
-              <div className="flex flex-col gap-4 justify-center mb-8 mt-12">
+              {/* CTA Buttons */}
+              <div className="flex flex-col gap-4 justify-center mb-8 mt-8">
                 <Button
                   onClick={handleBookCall}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
@@ -1379,6 +1318,7 @@ const LeadCalculator = () => {
     </div>
   </div>
 </div>
+
 
     </div>
   );
