@@ -595,7 +595,7 @@ const LeadCalculator = () => {
               {/* Sell Units - Primary Input */}
               <div className="mb-8 text-center">
                 <label className="text-foreground text-lg font-bold mb-4 block font-spartan">Units to Sell</label>
-                <div className="flex items-center justify-center gap-2 max-w-sm mx-auto px-4 py-2">
+                <div className="flex items-center justify-center gap-4 max-w-md mx-auto">
                   <Button
                     size="lg"
                     variant="outline"
