@@ -623,7 +623,7 @@ const LeadCalculator = () => {
               </div>
 
               {/* Two Column Layout for Other Inputs */}
-              <div id="impo" className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Property Type */}
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Property Type</label>
@@ -815,21 +815,15 @@ const LeadCalculator = () => {
           <Card className="backdrop-blur-lg border-none shadow-xl rounded-2xl relative bg-white/95">
             {!resultsUnlocked && (
               <>
-  <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
-  <div className="absolute inset-0 z-30 flex items-center justify-center">
-    <div
-      onClick={() => {
-        const section = document.getElementById("impo");
-        section?.scrollIntoView({ behavior: "smooth" });
-      }}
-      className="cursor-pointer bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in transition-transform duration-300 hover:scale-105"
-    >
-      <p className="text-gray-800 font-bold text-center font-spartan text-lg">
-        Fill in the data to know your ad spend
-      </p>
-    </div>
-  </div>
-</>
+                <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
+                <div className="absolute inset-0 z-30 flex items-center justify-center">
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in">
+                    <p className="text-gray-800 font-bold text-center font-spartan text-lg">
+                      Fill in the data to know your ad spend
+                    </p>
+                  </div>
+                </div>
+              </>
             )}
 
             <CardContent className="p-6">
