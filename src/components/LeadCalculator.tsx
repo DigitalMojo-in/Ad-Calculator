@@ -386,7 +386,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Property Type</label>
                   <Select value={propertyType} onValueChange={setPropertyType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
@@ -403,7 +403,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Launch Type</label>
                   <Select value={launchType} onValueChange={setLaunchType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
@@ -420,7 +420,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Location</label>
                   <Select value={location} onValueChange={setLocation}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
@@ -480,7 +480,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Configuration</label>
                   <Select value={bhk} onValueChange={setBhk}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
@@ -509,7 +509,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Marketing Channels</label>
                   <Select value={marketingChannels} onValueChange={setMarketingChannels}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
@@ -525,7 +525,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-base font-semibold mb-2 block font-spartan">Duration</label>
                   <Select value={duration} onValueChange={setDuration}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-lg h-12 text-base transition-all duration-200 shadow-sm"
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
@@ -819,10 +819,10 @@ const LeadCalculator = () => {
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
                 <img 
-  src="/lovable-uploads/arrow.png" 
-  alt="arrow" 
-  className="absolute left-[50%] top-[53%] w-24 rotate-[15deg] -translate-x-1/2 z-10 pointer-events-none"
-/>
+                  src="/lovable-uploads/arrow.png" 
+                  alt="arrow" 
+                  className="absolute left-[50%] top-[53%] w-24 rotate-[15deg] -translate-x-1/2 z-10 pointer-events-none"
+                />
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
                   <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs}>
                     <p className="text-gray-800 font-bold text-center font-spartan text-lg">
