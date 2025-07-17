@@ -340,7 +340,7 @@ const LeadCalculator = () => {
     className="w-full max-w-2xl h-auto transform scale-110 sm:scale-125 transition-transform duration-300"
   />
 </div>
-`
+
             </div>
           </div>
 
@@ -631,7 +631,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Property Type</label>
                   <Select value={propertyType} onValueChange={setPropertyType}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
                     <SelectContent className="bg-white text-7 border-border rounded-xl shadow-xl">
@@ -647,7 +647,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Launch Type</label>
                   <Select value={launchType} onValueChange={setLaunchType}>
-                    <SelectTrigger className="bg-background text-7 border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-white text-7 border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-border rounded-xl shadow-xl">
@@ -663,7 +663,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Location</label>
                   <Select value={location} onValueChange={setLocation}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-border rounded-xl shadow-xl max-h-60">
@@ -722,7 +722,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Configuration</label>
                   <Select value={bhk} onValueChange={setBhk}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-border rounded-xl shadow-xl">
@@ -750,7 +750,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Marketing Channels</label>
                   <Select value={marketingChannels} onValueChange={setMarketingChannels}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-border rounded-xl shadow-xl">
@@ -765,7 +765,7 @@ const LeadCalculator = () => {
                 <div>
                   <label className="text-foreground text-sm font-semibold mb-3 block font-spartan">Duration</label>
                   <Select value={duration} onValueChange={setDuration}>
-                    <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
+                    <SelectTrigger className="bg-white border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
                     <SelectContent className="bg-white border-border rounded-xl shadow-xl">
@@ -909,6 +909,11 @@ const LeadCalculator = () => {
             {!resultsUnlocked && (
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
+                <img 
+                  src="/lovable-uploads/arrow.png" 
+                  alt="arrow" 
+                  className="absolute left-[50%] top-[40%] w-16 rotate-[25deg] -translate-x-1/2 z-10 pointer-events-none"
+                />
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
                   <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs}>
                     <p className="text-gray-800 font-bold text-center font-spartan">
