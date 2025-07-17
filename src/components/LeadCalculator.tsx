@@ -283,38 +283,26 @@ const LeadCalculator = () => {
 
       {/* Header */}
       <header className="top-0 left-0 right-0 z-40 transition-all duration-500 ease-in-out bg-transparent py-4">
-        <div className="flex justify-between items-center px-4 sm:px-8">
-          <div className="flex items-center space-x-2">
-            <a href="#" className="flex items-center group">
-              <img
-                src="./lovable-uploads/DMM.png"
-                alt="Digital Mojo Logo"
-                className="w-28 h-28 sm:w-40 sm:h-40 object-contain group-hover:scale-105 transition-all duration-500 ease-in-out"
-              />
-            </a>
-          </div>
+  <div className="flex justify-between items-center px-4 sm:px-8">
+    
+    {/* Empty div to push logo right on mobile, collapse on desktop */}
+    <div className="block sm:hidden flex-1"></div>
 
-          {/* Desktop CTA */}
-          <div className="hidden sm:flex justify-start">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-8 px-24 rounded-full shadow-2xl hover:shadow-red-400/30 hover:scale-110 hover:animate-bounce-once transition-all duration-300 font-spartan text-4xl"
-            >
-              Book Now
-            </Button>
-          </div>
+    {/* Logo Container */}
+    <div className="flex items-center justify-end sm:justify-start space-x-2 w-full sm:w-auto">
+      <a href="#" className="flex items-center group">
+        <img
+          src="./lovable-uploads/DMM.png"
+          alt="Digital Mojo Logo"
+          className="w-28 h-28 sm:w-40 sm:h-40 object-contain group-hover:scale-105 transition-all duration-500 ease-in-out"
+        />
+      </a>
+    </div>
 
-          {/* Mobile CTA */}
-          <div className="block sm:hidden">
-            <Button
-              onClick={handleBookCall}
-              className="bg-red-600 hover:bg-red-700 text-white font-black py-6 px-12 rounded-full shadow-md transition-all duration-300 font-spartan text-xl"
-            >
-              Book Now
-            </Button>
-          </div>
-        </div>
-      </header>
+    {/* Optional: Use this div only if you want symmetry or other items on the right */}
+    <div className="hidden sm:block flex-1"></div>
+  </div>
+</header>
 
       {/* Main Content - First Fold with Hero + Calculator */}
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-24 mt-1 sm:mt-4 lg:mt-8">
@@ -325,17 +313,18 @@ const LeadCalculator = () => {
           {/* Left - Hero Text */}
           <div className="flex-1">
             <div className="py-8">
-              <div className="flex-1 mx-auto lg:mx-0 max-w-2xl pt-10 pb-16">
-  <h1 className="text-3xl md:text-4xl lg:text-5xl font-black font-spartan leading-tight transition-colors duration-300 text-center sm:text-left">
+            <div className="flex-1 mx-auto lg:mx-0 max-w-2xl pt-2 sm:pt-4 pb-12">
+  <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-spartan leading-snug transition-colors duration-300 text-center sm:text-left mt-[-1.5rem]">
     <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
       Get benchmarks in seconds
     </span>
   </h1>
 
-  <p className={`mt-3 text-base md:text-lg font-spartan leading-relaxed text-center sm:text-left transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
+  <p className={`mt-2 text-lg md:text-xl lg:text-2xl font-spartan leading-relaxed text-center sm:text-left transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
     CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India’s top developers.</span>
   </p>
 </div>
+
 
 
 
@@ -577,7 +566,7 @@ const LeadCalculator = () => {
 <div className="lg:hidden flex flex-row items-center justify-between max-w-4xl mx-auto px-4 py-8 pt-0 gap-4">
 
   {/* Text Section */}
-  <div className="w-1/2 pr-2">
+  <div className="w-1/2 pr-2 ">
   <h1 className="text-2xl font-black font-spartan leading-tight transition-colors duration-300">
     <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
       Get benchmarks in seconds
