@@ -567,12 +567,12 @@ const LeadCalculator = () => {
 
   {/* Text Section */}
   <div className="w-1/2 pr-2 -mt-[120px]">
-  <h1 className="text-2xl font-black font-spartan leading-tight transition-colors duration-300">
+  <h1 className="text-3xl font-black font-spartan leading-tight transition-colors duration-300">
     <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
       Get benchmarks in seconds
     </span>
   </h1>
-  <p className={`mt-3 text-base font-spartan leading-relaxed ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
+  <p className={`mt-5 text-base font-spartan leading-relaxed ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
     CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India’s top developers.</span>
   </p>
 </div>
