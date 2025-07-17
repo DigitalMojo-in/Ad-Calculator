@@ -816,6 +816,11 @@ const LeadCalculator = () => {
             {!resultsUnlocked && (
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
+                <img 
+  src="/arrow-doodle.png" 
+  alt="arrow" 
+  className="absolute left-[50%] top-[53%] w-24 rotate-[15deg] -translate-x-1/2 z-10 pointer-events-none"
+/>
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
                   <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in">
                     <p className="text-gray-800 font-bold text-center font-spartan text-lg">
