@@ -208,6 +208,13 @@ const LeadCalculator = () => {
     setShowForm(true);
   };
 
+  const handleScrollToInputs = () => {
+    const inputSection = document.querySelector('.calculator-inputs');
+    if (inputSection) {
+      inputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const generateTimeSeriesData = () => {
     const timePoints = duration === '3 Months' ? 3 : duration === '6 Months' ? 6 : 12;
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -325,10 +332,6 @@ const LeadCalculator = () => {
   </p>
 </div>
 
-
-
-
-
               {/* Desktop Image moved here */}
               <div className="mt-8 flex justify-end pr-50 sm:pr-10">
   <img
@@ -346,7 +349,7 @@ const LeadCalculator = () => {
             <CardHeader className="pb-4">
               <h2 className="text-xl font-bold text-center text-gray-900">Calculate Your Leads</h2>
             </CardHeader>
-            <CardContent className="p-6">
+            <CardContent className="p-6 calculator-inputs">
               <div className="mb-6 text-center">
                 <label className="text-foreground text-lg font-bold mb-3 block font-spartan">Units to Sell</label>
                 <div className="flex items-center justify-center gap-3 max-w-sm mx-auto">
@@ -387,7 +390,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       <SelectItem value="Residential">Residential</SelectItem>
                       <SelectItem value="Commercial">Commercial</SelectItem>
                       <SelectItem value="Plots">Plots</SelectItem>
@@ -404,7 +407,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       <SelectItem value="Teaser">Pre-Launch</SelectItem>
                       <SelectItem value="Launch">Launch</SelectItem>
                       <SelectItem value="Sustenance">On-Going</SelectItem>
@@ -421,7 +424,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl max-h-60">
                       <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
@@ -481,7 +484,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       {propertyType === "Plots" ? (
                         <>
                           <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
@@ -510,7 +513,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       <SelectItem value="Google">Google Ads</SelectItem>
                       <SelectItem value="Meta">Meta Ads</SelectItem>
                       <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
@@ -526,7 +529,7 @@ const LeadCalculator = () => {
                       style={{ fontSize: '1.5rem' }}>
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       <SelectItem value="1 Month">1 Month</SelectItem>
                       <SelectItem value="2 Months">2 Months</SelectItem>
                       <SelectItem value="3 Months">3 Months</SelectItem>
@@ -591,7 +594,7 @@ const LeadCalculator = () => {
 
           {/* Mobile Calculator - First Fold */}
           <Card className="backdrop-blur-lg border-none shadow-2xl rounded-3xl overflow-hidden mb-8 bg-white">
-            <CardContent className="p-8">
+            <CardContent className="p-8 calculator-inputs">
               {/* Sell Units - Primary Input */}
               <div className="mb-8 text-center">
                 <label className="text-foreground text-lg font-bold mb-4 block font-spartan">Units to Sell</label>
@@ -631,7 +634,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background text-7 border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white text-7 border-border rounded-xl shadow-xl">
                       <SelectItem value="Residential">Residential</SelectItem>
                       <SelectItem value="Commercial">Commercial</SelectItem>
                       <SelectItem value="Plots">Plots</SelectItem>
@@ -647,7 +650,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background text-7 border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       <SelectItem value="Teaser">Pre-Launch</SelectItem>
                       <SelectItem value="Launch">Launch</SelectItem>
                       <SelectItem value="Sustenance">On-Going</SelectItem>
@@ -663,7 +666,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl max-h-60">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl max-h-60">
                       <SelectItem value="Bangalore East">Bangalore East</SelectItem>
                       <SelectItem value="Bangalore North">Bangalore North</SelectItem>
                       <SelectItem value="Bangalore South">Bangalore South</SelectItem>
@@ -722,7 +725,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       {propertyType === "Plots" ? (
                         <>
                           <SelectItem value="Plot Size 1000 Sq - 2000 Sq">Plot Size 1000 Sq - 2000 Sq</SelectItem>
@@ -750,7 +753,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       <SelectItem value="Google">Google Ads</SelectItem>
                       <SelectItem value="Meta">Meta Ads</SelectItem>
                       <SelectItem value="G+M">Google Ads+Meta Ads</SelectItem>
@@ -765,8 +768,7 @@ const LeadCalculator = () => {
                     <SelectTrigger className="bg-background border-2 border-muted hover:border-secondary focus:border-primary text-foreground rounded-xl h-16 text-lg transition-all duration-200 shadow-sm">
                       <SelectValue placeholder="-select-" />
                     </SelectTrigger>
-                    <SelectContent className="bg-background border-border rounded-xl shadow-xl">
-                      
+                    <SelectContent className="bg-white border-border rounded-xl shadow-xl">
                       <SelectItem value="1 Month">1 Month</SelectItem>
                       <SelectItem value="2 Months">2 Months</SelectItem>
                       <SelectItem value="3 Months">3 Months</SelectItem>
@@ -822,7 +824,7 @@ const LeadCalculator = () => {
   className="absolute left-[50%] top-[53%] w-24 rotate-[15deg] -translate-x-1/2 z-10 pointer-events-none"
 />
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
-                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in">
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs}>
                     <p className="text-gray-800 font-bold text-center font-spartan text-lg">
                       Fill in the data to know your ad spend
                     </p>
@@ -908,7 +910,7 @@ const LeadCalculator = () => {
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
-                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in">
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs}>
                     <p className="text-gray-800 font-bold text-center font-spartan">
                       Fill in the data to know your ad spend
                     </p>
