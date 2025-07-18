@@ -1100,10 +1100,10 @@ const isValidWebsite = (url: string) => {
       </div>
 
       {/* Schedule Call Button - Desktop only */}
-      <div className="hidden lg:block bg-red-500 text-center mb-12">
+      <div className="hidden lg:block text-center mb-12">
         <BounceButton
           onClick={handleBookCall}
-          className=" py-6 px-16 rounded-lg text-2xl shadow-lg font-spartan "
+          className="py-6 px-16 rounded-lg text-2xl shadow-lg font-spartan"
         >
           <Calendar className="mr-2 h-6 w-6" />
           FREE Strategy Call
