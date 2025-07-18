@@ -1328,7 +1328,7 @@ const isValidWebsite = (url: string) => {
       <div id="clients" className="w-full px-4 md:px-10 py-12">
         <div className="text-center mb-10">
           <h2 className={`text-3xl md:text-5xl font-bold font-spartan transition-colors duration-300 ${isDarkMode ? 'text-white' : 'text-white'}`}>
-            Partnered with brands that demand Results
+            Partnered with <span className={`${isDarkMode ? 'text-yellow-500' : 'text-black'}`}>Brands</span> that demand <span className={`${isDarkMode ? 'text-yellow-500' : 'text-black'}`}>Results</span>
           </h2>
         </div>
 
