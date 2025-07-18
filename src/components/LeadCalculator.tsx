@@ -8,8 +8,6 @@ import { getCPLForLocation } from '@/data/cplData';
 import EnhancedCharts from './EnhancedCharts';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
-import BounceButton from './BounceButton';
-import doodleArrow from '@/assets/doodle-arrow.png';
 
 interface Metrics {
   leads: number;
@@ -573,13 +571,6 @@ const isValidWebsite = (url: string) => {
                 </div>
               </div>
 
-              {/* Doodle Arrow - only show when not showing results */}
-              {!resultsUnlocked && isFormValid && (
-                <div className="absolute top-[-40px] left-1/2 transform -translate-x-1/2 pointer-events-none z-10">
-                  <img src={doodleArrow} alt="" className="w-12 h-12 animate-pulse" />
-                </div>
-              )}
-              
               {/* View Results Button */}
               <div className="text-center mt-6 relative">
                 <Button
@@ -819,13 +810,6 @@ const isValidWebsite = (url: string) => {
                 </div>
               </div>
 
-              {/* Doodle Arrow - only show when not showing results */}
-              {!resultsUnlocked && isFormValid && (
-                <div className="absolute top-[-50px] left-1/2 transform -translate-x-1/2 pointer-events-none z-10">
-                  <img src={doodleArrow} alt="" className="w-16 h-16 animate-pulse" />
-                </div>
-              )}
-              
               {/* View Results Button */}
               <div className="text-center mt-8 relative">
                 <Button
@@ -1101,13 +1085,13 @@ const isValidWebsite = (url: string) => {
 
       {/* Schedule Call Button - Desktop only */}
       <div className="hidden lg:block text-center mb-12">
-        <BounceButton
+        <Button
           onClick={handleBookCall}
-          className="py-6 px-16 rounded-lg text-2xl shadow-lg font-spartan"
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-16 rounded-lg text-2xl transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
         >
           <Calendar className="mr-2 h-6 w-6" />
           FREE Strategy Call
-        </BounceButton>
+        </Button>
       </div>
 
       {/* Unlock Results Dialog */}
