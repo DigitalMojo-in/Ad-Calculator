@@ -154,12 +154,14 @@ const LeadCalculator = () => {
 
   const handleUnlockResults = async () => {
     if (!formData.name || !formData.mobile || !formData.email || !formData.organization) return;
-
+  
     setIsUnlockLoading(true);
+  
     const webAppURL = "https://script.google.com/macros/s/AKfycbzvY-cPO-fsMULjOLHsC-G47tePzt7EHUt2Uchlau8K3424HW9n7LG8Y-8HB_FOLkXX/exec";
-
+  
     try {
-      const response = await fetch(webAppURL, {
+      // Fire-and-forget, non-blocking
+      fetch(webAppURL, {
         method: "POST",
         mode: "no-cors",
         headers: {
@@ -172,31 +174,36 @@ const LeadCalculator = () => {
           company: formData.organization,
         }),
       });
-
-      await new Promise(resolve => setTimeout(resolve, 500));
-
+  
+      // Unlock UI instantly (no need to wait for fetch)
       setResultsUnlocked(true);
       setShowUnlockDialog(false);
       setShowForm(false);
-      setIsUnlockLoading(false);
+  
       toast({
         title: "We will call you back soon! 😊",
         description: "Thank you for your interest. Our team will reach out to you shortly.",
       });
-
-      // Scroll to results section
+  
+      // Smooth scroll after short delay for visual transition
       setTimeout(() => {
-        const resultsSection = document.getElementById('results-section');
+        const resultsSection = document.getElementById("results-section");
         if (resultsSection) {
-          resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      }, 300);
+      }, 300); // faster scroll
+  
     } catch (error) {
-      setIsUnlockLoading(false);
       console.error("Error submitting form:", error);
       alert("Something went wrong. Please try again.");
+    } finally {
+      // Clean UI, even if there's an error
+      setTimeout(() => {
+        setIsUnlockLoading(false);
+      }, 300); // short delay for smooth UI release
     }
   };
+  
 
   const handleViewResults = async () => {
     if (!resultsUnlocked) {
@@ -207,9 +214,22 @@ const LeadCalculator = () => {
   const handleBookCall = () => {
     setShowForm(true);
   };
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const isWorkEmail = (email) => isValidEmail(email) && !email.includes('@gmail.com');
+const isValidMobile = (mobile) => /^[6-9]\d{9}$/.test(mobile);
+const isValidWebsite = (url: string) => {
+  const websiteRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
+  return websiteRegex.test(url.trim());
+};
 
   const handleScrollToInputs = () => {
     const inputSection = document.querySelector('.calculator-inputs');
+    if (inputSection) {
+      inputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+  const handleScrollToInputs2 = () => {
+    const inputSection = document.querySelector('.calculator-inputs2');
     if (inputSection) {
       inputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -240,19 +260,27 @@ const LeadCalculator = () => {
 
       {/* Desktop Theme Toggle - Left Wall */}
       <div className="hidden sm:block fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
-        <Button
-          onClick={() => setIsDarkMode(!isDarkMode)}
-          variant="ghost"
-          size="sm"
-          className={`backdrop-blur-md p-3 rounded-full shadow-lg transition-all duration-300 ${
-            isDarkMode
-              ? 'bg-yellow-400 text-black hover:bg-yellow-300'
-              : 'bg-black text-white hover:bg-gray-800'
-          }`}
-        >
-          {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-        </Button>
-      </div>
+  <div
+    onClick={() => setIsDarkMode(!isDarkMode)}
+    className={`w-8 h-14 flex flex-col items-center justify-between p-1 rounded-full cursor-pointer transition-colors duration-300 ${
+      isDarkMode ? 'bg-yellow-400' : 'bg-gray-800'
+    }`}
+  >
+    {/* Icon container (rotated icons if needed) */}
+    <div
+      className={`w-6 h-6 rounded-full bg-white shadow-md transform transition-transform duration-300 flex items-center justify-center ${
+        isDarkMode ? 'translate-y-6 rotate-180' : 'translate-y-0 rotate-0'
+      }`}
+    >
+      {isDarkMode ? (
+        <Moon className="h-4 w-4 text-yellow-600" />
+      ) : (
+        <Sun className="h-4 w-4 text-orange-500" />
+      )}
+    </div>
+  </div>
+</div>
+
 
       {/* Mobile Theme Toggle - Bottom Left Corner */}
       <div className="sm:hidden fixed bottom-4 left-4 z-50">
@@ -323,7 +351,7 @@ const LeadCalculator = () => {
             <div className="flex-1 mx-auto lg:mx-0 max-w-2xl pt-2 sm:pt-4 pb-12">
   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black font-spartan leading-snug transition-colors duration-300 text-center sm:text-left mt-[-1.5rem]">
     <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
-      Get benchmarks in seconds
+      Get Benchmarks in <span className='text-white'>SECONDS</span>
     </span>
   </h1>
 
@@ -550,7 +578,7 @@ const LeadCalculator = () => {
                   disabled={!isFormValid}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  {resultsUnlocked ? "Results Unlocked" : "Visualize Your Growth"}
+                  {resultsUnlocked ? "Results Unlocked" : "Show me the Numbers!"}
                 </Button>
               </div>
 
@@ -572,7 +600,7 @@ const LeadCalculator = () => {
   <div className="w-1/2 pr-2 -mt-[120px]">
   <h1 className="text-3xl font-black font-spartan leading-tight transition-colors duration-300">
     <span className={`${isDarkMode ? 'text-yellow-400' : 'text-black'}`}>
-      Get benchmarks in seconds
+      Get Benchmark in <span className='text-white'>SECONDS</span>
     </span>
   </h1>
   <p className={`mt-5 text-base font-spartan leading-relaxed ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
@@ -594,7 +622,7 @@ const LeadCalculator = () => {
 
           {/* Mobile Calculator - First Fold */}
           <Card className="backdrop-blur-lg border-none shadow-2xl rounded-3xl overflow-hidden mb-8 bg-white">
-            <CardContent className="p-8 calculator-inputs">
+            <CardContent className="p-8 calculator-inputs2">
               {/* Sell Units - Primary Input */}
               <div className="mb-8 text-center">
                 <label className="text-foreground text-lg font-bold mb-4 block font-spartan">Units to Sell</label>
@@ -789,7 +817,7 @@ const LeadCalculator = () => {
                   disabled={!isFormValid}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
-                  {resultsUnlocked ? "Results Unlocked" : "Visualize Your Growth"}
+                  {resultsUnlocked ? "Results Unlocked" : "Show me the Numbers!"}
                 </Button>
               </div>
 
@@ -851,7 +879,7 @@ const LeadCalculator = () => {
 
                   <Card className="backdrop-blur-lg border-none shadow-md rounded-lg text-center p-4 bg-white">
                     <div className="text-xl text-black">{metrics.qualifiedLeads.toLocaleString()}</div>
-                    <div className="text-sm text-gray-500 font-medium mb-2">Qualified</div>
+                    <div className="text-sm text-gray-500 font-medium mb-2">Qualified Leads</div>
                     <div className="text-4xl font-bold text-black">₹{metrics.cpql.toLocaleString()}</div>
                     <div className="text-sm text-gray-600 group relative cursor-help">
                       CPQL
@@ -915,7 +943,7 @@ const LeadCalculator = () => {
                   className="absolute left-[50%] top-[40%] w-16 rotate-[25deg] -translate-x-1/2 z-10 pointer-events-none"
                 />
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
-                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs}>
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs2}>
                     <p className="text-gray-800 font-bold text-center font-spartan">
                       Fill in the data to know your ad spend
                     </p>
@@ -926,88 +954,112 @@ const LeadCalculator = () => {
 
             <div className={`transition-all duration-800 ${!resultsUnlocked ? 'blur-sm' : 'results-reveal'}`}>
               <div className="grid grid-cols-1 gap-4 mb-6">
-                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
-                  <CardContent className="p-0">
-                    <div className="grid grid-cols-3">
-                      <div className="bg-pink-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
-                        <span className="text-sm font-bold font-spartan">Leads</span>
-                      </div>
-                      <div className="p-4 flex items-center justify-center bg-gray-50">
-                        <span className="text-3xl font-bold text-black font-spartan">{metrics.leads.toLocaleString()}</span>
-                      </div>
-                      <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
-                        <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpl.toLocaleString()}</span>
-                        <span className="text-xs text-gray-500 font-spartan">CPL</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+              
 
-                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
-                  <CardContent className="p-0">
-                    <div className="grid grid-cols-3">
-                      <div className="bg-purple-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
-                        <span className="text-sm font-bold font-spartan">Qualified</span>
-                      </div>
-                      <div className="p-4 flex items-center justify-center bg-gray-50">
-                        <span className="text-3xl font-bold text-black font-spartan">{metrics.qualifiedLeads.toLocaleString()}</span>
-                      </div>
-                      <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
-                        <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpql.toLocaleString()}</span>
-                        <span className="text-xs text-gray-500 font-spartan">CPQL</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+    {/* Leads */}
+    <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
+      <CardContent className="p-0">
+        <div className="grid grid-cols-3">
+          <div className="bg-pink-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
+            <span className="text-[23px] font-bold font-spartan text-center">Leads</span>
+          </div>
+          <div className="p-4 flex flex-col items-center justify-center bg-gray-50">
+            <span className="text-center text-gray-500 font-spartan text-xs">No of<br /><span className="text-[10px]">Leads</span></span>
+            <span className="text-3xl font-bold text-black font-spartan mt-1">{metrics.leads.toLocaleString()}</span>
+          </div>
+          <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
+            <span className="text-center text-gray-500 font-spartan text-xs">
+              <span className="text-xs">Cost Per</span><br />
+              <span className="text-[10px]">Lead</span>
+            </span>
+            <span className="text-3xl font-bold text-black font-spartan mt-1">₹{metrics.cpl.toLocaleString()}</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
 
-                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
-                  <CardContent className="p-0">
-                    <div className="grid grid-cols-3">
-                      <div className="bg-orange-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
-                        <span className="text-sm font-bold font-spartan">Site Visits</span>
-                      </div>
-                      <div className="p-4 flex items-center justify-center bg-gray-50">
-                        <span className="text-3xl font-bold text-black font-spartan">{metrics.siteVisits.toLocaleString()}</span>
-                      </div>
-                      <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
-                        <span className="text-sm font-medium text-black font-spartan">₹{metrics.cpsv.toLocaleString()}</span>
-                        <span className="text-xs text-gray-500 font-spartan">CPSV</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+    {/* Qualified Leads */}
+    <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
+      <CardContent className="p-0">
+        <div className="grid grid-cols-3">
+          <div className="bg-purple-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
+            <span className="text-[23px] font-bold font-spartan text-center">Qualified</span>
+          </div>
+          <div className="p-4 flex flex-col items-center justify-center bg-gray-50">
+            <span className="text-center text-gray-500 font-spartan text-xs">No of<br /><span className="text-[10px]">Qualified Leads</span></span>
+            <span className="text-3xl font-bold text-black font-spartan mt-1">{metrics.qualifiedLeads.toLocaleString()}</span>
+          </div>
+          <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
+            <span className="text-center text-gray-500 font-spartan text-xs">
+              <span className="text-xs">Cost Per</span><br />
+              <span className="text-[10px]">Qualified Lead</span>
+            </span>
+            <span className="text-3xl font-bold text-black font-spartan mt-1">₹{metrics.cpql.toLocaleString()}</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
 
-                <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
-                  <CardContent className="p-0">
-                    <div className="grid grid-cols-3">
-                      <div className="bg-green-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
-                        <span className="text-sm font-bold font-spartan">Bookings</span>
-                      </div>
-                      <div className="p-4 flex items-center justify-center bg-gray-50">
-                        <span className="text-3xl font-bold text-black font-spartan">{metrics.bookings}</span>
-                      </div>
-                      <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
-                        <span className="text-sm font-medium text-black font-spartan">₹{(metrics.cpb / 100000).toFixed(2)}L</span>
-                        <span className="text-xs text-gray-500 font-spartan">CPB</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+    {/* Site Visits */}
+    <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
+      <CardContent className="p-0">
+        <div className="grid grid-cols-3">
+          <div className="bg-purple-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
+            <span className="text-[23px] font-bold font-spartan text-center">Site Visits</span>
+          </div>
+          <div className="p-4 flex flex-col items-center justify-center bg-gray-50">
+            <span className="text-center text-gray-500 font-spartan text-xs">No of<br /><span className="text-[10px]">Site Visits</span></span>
+            <span className="text-3xl font-bold text-black font-spartan mt-1">{metrics.siteVisits.toLocaleString()}</span>
+          </div>
+          <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
+            <span className="text-center text-gray-500 font-spartan text-xs">
+              <span className="text-xs">Cost Per</span><br />
+              <span className="text-[10px]">Site Visit</span>
+            </span>
+            <span className="text-3xl font-bold text-black font-spartan mt-1">₹{metrics.cpsv.toLocaleString()}</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
 
-              {/* Total Budget */}
-              <Card className="backdrop-blur-lg border-none shadow-2xl rounded-2xl bg-white">
-                <CardContent className="p-0">
-                  <div className="grid grid-cols-3">
-                    <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-l-2xl flex items-center justify-center">
-                      <span className="text-sm font-bold font-spartan text-center">Total Budget</span>
-                    </div>
-                    <div className="col-span-2 p-6 flex items-center justify-center bg-gray-50 rounded-r-2xl">
-                      <span className="text-4xl font-bold text-black font-spartan">₹{metrics.totalBudget.toLocaleString('en-IN')}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+    {/* Bookings */}
+    <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
+      <CardContent className="p-0">
+        <div className="grid grid-cols-3">
+          <div className="bg-purple-500 text-white p-4 rounded-l-2xl flex items-center justify-center">
+            <span className="text-[23px] font-bold font-spartan text-center">Bookings</span>
+          </div>
+          <div className="p-4 flex flex-col items-center justify-center bg-gray-50">
+            <span className="text-center text-gray-500 font-spartan text-xs">No of<br /><span className="text-[10px]">Bookings</span></span>
+            <span className="text-3xl font-bold text-black font-spartan mt-1">{metrics.bookings.toLocaleString()}</span>
+          </div>
+          <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
+            <span className="text-center text-gray-500 font-spartan text-xs">
+              <span className="text-xs">Cost Per</span><br />
+              <span className="text-[10px]">Booking</span>
+            </span>
+            <span className="text-3xl font-bold text-black font-spartan mt-1">₹{metrics.cpb.toLocaleString()}</span>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+
+  {/* Total Budget */}
+  <Card className="backdrop-blur-lg border-none shadow-2xl rounded-2xl bg-white">
+    <CardContent className="p-0">
+      <div className="grid grid-cols-3">
+        <div className="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-l-2xl flex items-center justify-center">
+          <span className="text-[23px] font-bold font-spartan text-center">Total Budget</span>
+        </div>
+        <div className="col-span-2 p-6 flex items-center justify-center bg-gray-50 rounded-r-2xl">
+          <span className="text-4xl font-bold text-black font-spartan">₹{metrics.totalBudget.toLocaleString('en-IN')}</span>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+
+
 
               {/* CTA Buttons */}
               <div className="flex flex-col gap-4 justify-center mb-8 mt-8">
@@ -1101,41 +1153,53 @@ const LeadCalculator = () => {
                   type="text"
                   value={formData.organization}
                   onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                  placeholder="Your Organization/Project/Website"
+                  placeholder="Your Website"
                   className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                 />
 
-                <Button
-                  onClick={handleUnlockResults}
-                  disabled={
-                    !formData.name ||
-                    !formData.mobile ||
-                    !/^[6-9]\d{9}$/.test(formData.mobile) ||
-                    !formData.email ||
-                    formData.email.includes('@gmail.com') ||
-                    !formData.organization ||
-                    isUnlockLoading
-                  }
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
-                >
-                  {isUnlockLoading ? "Unlocking..." : "Know My Per Unit Sale"}
-                </Button>
+<Button
+  onClick={handleUnlockResults}
+  disabled={
+    !formData.name ||
+    !formData.mobile ||
+    !isValidMobile(formData.mobile) ||
+    !formData.email ||
+    !isWorkEmail(formData.email) ||
+    !formData.organization ||
+    !isValidWebsite(formData.organization) ||
+    isUnlockLoading
+  }
+  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
+>
+  {isUnlockLoading ? "Unlocking..." : "Show me the Numbers!"}
+</Button>
 
-                {formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email) && (
-                  <div className="text-red-600 text-sm text-center font-spartan">
-                    Please enter a valid email address.
-                  </div>
-                )}
-                {formData.email.includes('@gmail.com') && (
-                  <div className="text-red-600 text-sm text-center font-spartan">
-                    Sorry, Gmail addresses are not accepted. Please use a work email.
-                  </div>
-                )}
-                {!/^[6-9]\d{9}$/.test(formData.mobile) && formData.mobile && (
-                  <div className="text-red-600 text-sm text-center font-spartan">
-                    Please enter a valid 10-digit mobile number.
-                  </div>
-                )}
+{/* ✅ Email Format Error */}
+{formData.email && !isValidEmail(formData.email) && (
+  <div className="text-red-600 text-sm text-center font-spartan mt-2">
+    Please enter a valid email address.
+  </div>
+)}
+
+{/* ✅ Work Email Check (only if format is valid) */}
+{isValidEmail(formData.email) && formData.email.includes('@gmail.com') && (
+  <div className="text-red-600 text-sm text-center font-spartan mt-2">
+    Sorry, Gmail addresses are not accepted. Please use a work email.
+  </div>
+)}
+
+{/* ✅ Mobile Number Error */}
+{formData.mobile && !isValidMobile(formData.mobile) && (
+  <div className="text-red-600 text-sm text-center font-spartan mt-2">
+    Please enter a valid 10-digit mobile number.
+  </div>
+)}
+{formData.organization && !isValidWebsite(formData.organization) && (
+  <div className="text-red-600 text-sm text-center font-spartan mt-2">
+    Please enter a valid company website (e.g., example.com).
+  </div>
+)}
+
               </div>
             </CardContent>
           </Card>
@@ -1184,21 +1248,51 @@ const LeadCalculator = () => {
                   type="text"
                   value={formData.organization}
                   onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                  placeholder="Your Organization"
+                  placeholder="Your Website"
                   className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                 />
                 <Button
-                  onClick={handleUnlockResults}
-                  disabled={!formData.name || !formData.mobile || !formData.email || !formData.organization || isLoading}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Processing...
-                    </>
-                  ) : "Submit"}
-                </Button>
+  onClick={handleUnlockResults}
+  disabled={
+    !formData.name ||
+    !formData.mobile ||
+    !isValidMobile(formData.mobile) ||
+    !formData.email ||
+    !isWorkEmail(formData.email) ||
+    !formData.organization ||
+    !isValidWebsite(formData.organization) ||
+    isUnlockLoading
+  }
+  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
+>
+  {isUnlockLoading ? "Submiting" : "Discuss My Ads"}
+</Button>
+
+{/* ✅ Email Format Error */}
+{formData.email && !isValidEmail(formData.email) && (
+  <div className="text-red-600 text-sm text-center font-spartan mt-2">
+    Please enter a valid email address.
+  </div>
+)}
+
+{/* ✅ Work Email Check (only if format is valid) */}
+{isValidEmail(formData.email) && formData.email.includes('@gmail.com') && (
+  <div className="text-red-600 text-sm text-center font-spartan mt-2">
+    Sorry, Gmail addresses are not accepted. Please use a work email.
+  </div>
+)}
+
+{/* ✅ Mobile Number Error */}
+{formData.mobile && !isValidMobile(formData.mobile) && (
+  <div className="text-red-600 text-sm text-center font-spartan mt-2">
+    Please enter a valid 10-digit mobile number.
+  </div>
+)}
+{formData.organization && !isValidWebsite(formData.organization) && (
+  <div className="text-red-600 text-sm text-center font-spartan mt-2">
+    Please enter a valid company website (e.g., example.com).
+  </div>
+)}
               </div>
             </CardContent>
           </Card>
@@ -1224,26 +1318,29 @@ const LeadCalculator = () => {
 
         {/* Desktop Grid Layout */}
         <div className="hidden md:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 place-items-center">
-          {Array.from({ length: 36 }, (_, i) => (
-            <div
-              key={i}
-              className="group p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 h-20 w-28 flex items-center justify-center filter grayscale hover:grayscale-0 animate-fade-in"
-              style={{ animationDelay: `${i * 0.05}s` }}
-            >
-              <img
-                src={`./client-logo/logo-${i + 1}.png`}
-                alt={`Client Logo ${i + 1}`}
-                className="h-12 w-auto object-contain"
-              />
-            </div>
-          ))}
-        </div>
+  {Array.from({ length: 32 }, (_, i) => (
+    <div
+      key={i}
+      className="group p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 h-20 w-28 flex items-center justify-center filter grayscale hover:grayscale-0 animate-fade-in"
+      style={{ animationDelay: `${i * 0.05}s` }}
+    >
+      <img
+        src={`./client-logo/logo-${i + 1}.png`}
+        alt={`Client Logo ${i + 1}`}
+        className={`object-contain ${
+          i === 0 || i === 3 ? 'h-16' : 'h-12'
+        } w-auto transition-all duration-300`}
+      />
+    </div>
+  ))}
+</div>
+
 
         {/* Mobile Infinite Scroll */}
         <div className="md:hidden overflow-hidden whitespace-nowrap px-2 py-4">
           <div className="inline-flex space-x-4 animate-scroll-slow">
             {[...Array(2)].flatMap(() => (
-              Array.from({ length: 38 }, (_, i) => (
+              Array.from({ length: 32 }, (_, i) => (
                 <div
                   key={`loop-${i}-${Math.random()}`}
                   className="p-3 bg-white rounded-lg shadow-md h-16 w-20 flex items-center justify-center filter grayscale"
@@ -1251,7 +1348,7 @@ const LeadCalculator = () => {
                   <img
                     src={`./client-logo/logo-${i + 1}.png`}
                     alt={`Client Logo ${i + 1}`}
-                    className="h-8 w-auto object-contain"
+                    className="h-8 w-auto object-contain scale-300"
                   />
                 </div>
               ))
@@ -1267,7 +1364,7 @@ const LeadCalculator = () => {
           className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-3 shadow-2xl font-spartan font-bold"
         >
           <Phone className="mr-2 h-4 w-4" />
-          Ready To Talk? CLICK ME!
+          FREE Strategy Call
         </Button>
       </div>
 
@@ -1286,7 +1383,8 @@ const LeadCalculator = () => {
 
     {/* Tagline */}
     <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">
-      The clock's ticking.⏰ Let's turn inventory into income.
+    Sell your Realestate <span className="italic text-[50px] md:text-[80px] text-red-500">47%</span> faster
+
     </h3>
 
     {/* CTA Button */}
