@@ -37,12 +37,8 @@ const MouseTracker: React.FC = () => {
     };
     resizeCanvas();
 
-    // Hide default cursor
-    document.body.style.cursor = 'none';
-    const allElements = document.querySelectorAll('*');
-    allElements.forEach(el => {
-      (el as HTMLElement).style.cursor = 'none';
-    });
+    // Keep default cursor visible
+    document.body.style.cursor = 'auto';
 
     const handleMouseMove = (e: MouseEvent) => {
       targetPosition.current = { x: e.clientX, y: e.clientY };
@@ -123,9 +119,6 @@ const MouseTracker: React.FC = () => {
 
     return () => {
       document.body.style.cursor = '';
-      allElements.forEach(el => {
-        (el as HTMLElement).style.cursor = '';
-      });
       
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', resizeCanvas);
@@ -145,19 +138,18 @@ const MouseTracker: React.FC = () => {
         style={{ mixBlendMode: 'difference' }}
       />
       
-      {/* Custom cursor */}
+      {/* Custom trailing cursor - smaller and more subtle */}
       <div
         ref={cursorRef}
         className={`fixed top-0 left-0 pointer-events-none z-[9999] transition-all duration-200 ease-out ${
-          isHovering ? 'scale-150' : 'scale-100'
+          isHovering ? 'scale-125' : 'scale-100'
         }`}
         style={{
-          width: '24px',
-          height: '24px',
-          backgroundColor: '#ffffff',
+          width: '12px',
+          height: '12px',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
           borderRadius: '50%',
-          mixBlendMode: 'difference',
-          boxShadow: '0 0 20px rgba(255, 255, 255, 0.5)',
+          boxShadow: '0 0 15px rgba(255, 255, 255, 0.4)',
         }}
       />
     </>

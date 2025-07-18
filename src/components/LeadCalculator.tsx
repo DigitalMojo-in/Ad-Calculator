@@ -1087,7 +1087,10 @@ const isValidWebsite = (url: string) => {
       <div className="hidden lg:block text-center mb-12">
         <Button
           onClick={handleBookCall}
-          className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-16 rounded-lg text-2xl transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
+          className="bg-red-600 hover:bg-red-700 text-white font-bold py-6 px-16 rounded-lg text-2xl transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan animate-bounce-custom hover:animate-none"
+          style={{
+            animation: 'bounce-custom 2s infinite',
+          }}
         >
           <Calendar className="mr-2 h-6 w-6" />
           FREE Strategy Call
