@@ -1103,7 +1103,7 @@ const isValidWebsite = (url: string) => {
       <div className="hidden lg:block text-center mb-12">
         <BounceButton
           onClick={handleBookCall}
-          className="py-6 px-16 rounded-lg text-2xl shadow-lg font-spartan"
+          className="py-6 px-16 rounded-lg text-2xl shadow-lg font-spartan bg-red-500"
         >
           <Calendar className="mr-2 h-6 w-6" />
           FREE Strategy Call
