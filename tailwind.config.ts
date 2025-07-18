@@ -43,6 +43,7 @@ export default {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))'
         },
+        
         popover: {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))'
@@ -85,7 +86,18 @@ export default {
       keyframes: {
         'accordion-down': {
           from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' }
+          to: { height: 'var(--radix-accordion-content-height)' },
+          bounce: {
+  '0%, 100%': {
+    transform: 'translateY(-25%)',
+    animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)',
+  },
+  '50%': {
+    transform: 'translateY(0)',
+    animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)',
+  },
+}
+
         },
         'accordion-up': {
           from: { height: 'var(--radix-accordion-content-height)' },
@@ -104,7 +116,8 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'fade-in': 'fade-in 0.5s ease-in-out',
-        'float': 'float 3s ease-in-out infinite'
+        'float': 'float 3s ease-in-out infinite',
+        bounce: 'bounce 1s infinite'
       }
     }
   },
