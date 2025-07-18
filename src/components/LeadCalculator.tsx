@@ -256,7 +256,7 @@ const isValidWebsite = (url: string) => {
   const chartData = generateTimeSeriesData();
 
   return (
-    <div className={`min-h-screen px-0 transition-colors duration-300`} style={{ backgroundColor: isDarkMode ? '#000000' : '#f0bc00' }}>
+    <div id="mouse-tracker" className={`min-h-screen px-0 transition-colors duration-300`} style={{ backgroundColor: isDarkMode ? '#000000' : '#f0bc00' }}>
 
       {/* Desktop Theme Toggle - Left Wall */}
       <div className="hidden sm:block fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
@@ -361,7 +361,7 @@ const isValidWebsite = (url: string) => {
 </div>
 
               {/* Desktop Image moved here */}
-              <div className="mt-8 flex justify-end pr-50 sm:pr-10">
+              <div className="mt-8 mr-[50px] flex justify-end pr-50 sm:pr-10">
   <img
     src="./lovable-uploads/img.png"
     alt="Business Growth Calculator"
@@ -373,7 +373,7 @@ const isValidWebsite = (url: string) => {
           </div>
 
           {/* Right - Calculator */}
-          <Card className="backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden bg-white/95 h-fit">
+          <Card className="backdrop-blur-lg border-none shadow-xl rounded-2xl overflow-hidden bg-white/95 -mt-[180px] h-fit">
             <CardHeader className="pb-4">
               <h2 className="text-xl font-bold text-center text-gray-900">Calculate Your Leads</h2>
             </CardHeader>
