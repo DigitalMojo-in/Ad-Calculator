@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Sun, Moon, Phone, Mail, MapPin, Clock, Users, TrendingUp, DollarSign, Target, Zap, ArrowRight, Star, CheckCircle, BarChart3, PieChart, Award, Sparkles, Calculator } from 'lucide-react';
-import { EnhancedCharts } from './EnhancedCharts';
+import EnhancedCharts from './EnhancedCharts';
 import { cplData } from '@/data/cplData';
 import { BounceButton } from './BounceButton';
 import { useScrollAnimations } from '@/hooks/useScrollAnimations';
@@ -73,9 +73,8 @@ const LeadCalculator = () => {
     
     setTimeout(() => {
       const budget = parseFloat(formData.budget);
-      const industryData = cplData.find(data => 
-        data.industry.toLowerCase() === formData.industry.toLowerCase()
-      );
+      // Use default industry data since cplData is location-based, not industry-based
+      const industryData = { averageCPL: 50, conversionRate: 0.02, avgOrderValue: 1000 };
       
       const baseCPL = industryData?.averageCPL || 50;
       const locationMultiplier = getLocationMultiplier(formData.location);
@@ -432,7 +431,21 @@ const LeadCalculator = () => {
 
             {/* Charts Section */}
             <div className="mb-12" data-scroll-animation="slide-in-right">
-              <EnhancedCharts data={chartData} />
+              <EnhancedCharts 
+                metrics={{
+                  leads: results.estimatedLeads,
+                  qualifiedLeads: Math.floor(results.estimatedLeads * 0.7),
+                  siteVisits: Math.floor(results.estimatedLeads * 1.5),
+                  bookings: Math.floor(results.estimatedLeads * (results.conversionRate / 100)),
+                  cpl: results.costPerLead,
+                  cpql: results.costPerLead * 1.4,
+                  cpsv: results.costPerLead * 0.67,
+                  cpb: results.costPerLead / (results.conversionRate / 100),
+                  totalBudget: parseFloat(formData.budget)
+                }}
+                chartData={chartData}
+                duration="6 Months"
+              />
             </div>
 
             {/* CTA Section */}

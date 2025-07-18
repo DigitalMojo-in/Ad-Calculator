@@ -7,6 +7,7 @@ interface BounceButtonProps {
   onClick?: () => void;
   className?: string;
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
+  disabled?: boolean;
 }
 
 export const BounceButton: React.FC<BounceButtonProps> = ({
@@ -14,11 +15,13 @@ export const BounceButton: React.FC<BounceButtonProps> = ({
   onClick,
   className = '',
   variant = 'default',
+  disabled = false,
 }) => {
   return (
     <Button
       onClick={onClick}
       variant={variant}
+      disabled={disabled}
       className={`hover-target animate-bounce-gentle hover:animate-bounce-stop transition-all duration-300 ease-out transform hover:scale-105 ${className}`}
       style={{
         animationDuration: '2s',
