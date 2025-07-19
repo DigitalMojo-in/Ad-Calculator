@@ -584,6 +584,17 @@ const isValidWebsite = (url: string) => {
                 >
                   {resultsUnlocked ? "Results Unlocked" : "Show me the Numbers!"}
                 </Button>
+                
+                {/* Doodle Arrow - Desktop */}
+                {!resultsUnlocked && (
+                  <div className="absolute -right-32 top-1/2 transform -translate-y-1/2 pointer-events-none animate-bounce">
+                    <img
+                      src="/lovable-uploads/arrow.png"
+                      alt="Arrow pointing to button"
+                      className="w-24 h-24 object-contain rotate-180 opacity-80"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="text-xs pt-6 border-t mt-6 font-spartan text-muted-foreground border-border">
@@ -825,6 +836,17 @@ const isValidWebsite = (url: string) => {
                 >
                   {resultsUnlocked ? "Results Unlocked" : "Show me the Numbers!"}
                 </Button>
+                
+                {/* Doodle Arrow - Mobile */}
+                {!resultsUnlocked && (
+                  <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
+                    <img
+                      src="/lovable-uploads/arrow.png"
+                      alt="Arrow pointing to button"
+                      className="w-16 h-16 object-contain rotate-45 opacity-80"
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
@@ -854,10 +876,19 @@ const isValidWebsite = (url: string) => {
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
                 
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
-                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs}>
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in cursor-pointer relative" onClick={handleScrollToInputs}>
                     <p className="text-gray-800 font-bold text-center font-spartan text-lg">
                       Fill in the data to know your ad spend
                     </p>
+                    
+                    {/* Doodle Arrow pointing up to form */}
+                    <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 pointer-events-none animate-pulse">
+                      <img
+                        src="/lovable-uploads/arrow.png"
+                        alt="Arrow pointing up"
+                        className="w-20 h-20 object-contain -rotate-90 opacity-70"
+                      />
+                    </div>
                   </div>
                 </div>
               </>
@@ -941,10 +972,19 @@ const isValidWebsite = (url: string) => {
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
                 
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
-                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs2}>
+                  <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in cursor-pointer relative" onClick={handleScrollToInputs2}>
                     <p className="text-gray-800 font-bold text-center font-spartan">
                       Fill in the data to know your ad spend
                     </p>
+                    
+                    {/* Doodle Arrow pointing up to form */}
+                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 pointer-events-none animate-pulse">
+                      <img
+                        src="/lovable-uploads/arrow.png"
+                        alt="Arrow pointing up"
+                        className="w-16 h-16 object-contain -rotate-90 opacity-70"
+                      />
+                    </div>
                   </div>
                 </div>
               </>
@@ -1052,13 +1092,11 @@ const isValidWebsite = (url: string) => {
           <span className="text-[23px] font-bold font-spartan text-center">Total Budget</span>
         </div>
         <div className="col-span-2 p-6 flex items-center justify-center bg-gray-50 rounded-r-2xl">
-          <span className="text-4xl font-bold text-black font-spartan">₹{metrics.totalBudget.toLocaleString('en-IN')}</span>
+          <span className="text-4xl font-bold text-black font-spartan">₹{metrics.totalBudget.toLocaleString()}</span>
         </div>
       </div>
     </CardContent>
   </Card>
-
-
 
               {/* CTA Buttons */}
               <div className="flex flex-col gap-4 justify-center mb-8 mt-8">
@@ -1427,7 +1465,6 @@ const isValidWebsite = (url: string) => {
     </div>
   </div>
 </div>
-
 
     </div>
   );
