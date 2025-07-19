@@ -863,23 +863,23 @@ const isValidWebsite = (url: string) => {
                     </p>
                     
                     {/* Doodle Arrow connecting to desktop Show me the Numbers button */}
-                    <div className="absolute top-8 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
-                      <svg width="200" height="300" viewBox="0 0 200 300" className="opacity-70">
-                        {/* Curved path from message to button */}
+                    <div className="absolute -top-32 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
+                      <svg width="300" height="400" viewBox="0 0 300 400" className="opacity-70">
+                        {/* Curved path from message up to button */}
                         <path
-                          d="M100 20 Q150 80 120 140 Q90 200 100 280"
+                          d="M150 50 Q200 -50 180 -150 Q160 -250 150 -350"
                           stroke="#666"
                           strokeWidth="3"
                           fill="none"
                           strokeDasharray="5,5"
                         />
-                        {/* Arrow head */}
+                        {/* Arrow head pointing up */}
                         <polygon
-                          points="95,275 105,275 100,285"
+                          points="145,-355 155,-355 150,-365"
                           fill="#666"
                         />
                       </svg>
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-sm font-bold text-gray-600 whitespace-nowrap">
+                      <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 text-sm font-bold text-gray-600 whitespace-nowrap">
                         👆 Click here!
                       </div>
                     </div>
@@ -972,23 +972,23 @@ const isValidWebsite = (url: string) => {
                     </p>
                     
                     {/* Doodle Arrow connecting to mobile Show me the Numbers button */}
-                    <div className="absolute top-6 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
-                      <svg width="150" height="200" viewBox="0 0 150 200" className="opacity-70">
-                        {/* Curved path from message to button */}
+                    <div className="absolute -top-24 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
+                      <svg width="200" height="300" viewBox="0 0 200 300" className="opacity-70">
+                        {/* Curved path from message up to button */}
                         <path
-                          d="M75 15 Q110 60 90 100 Q70 140 75 180"
+                          d="M100 30 Q130 -30 120 -100 Q110 -170 100 -220"
                           stroke="#666"
                           strokeWidth="2"
                           fill="none"
                           strokeDasharray="4,4"
                         />
-                        {/* Arrow head */}
+                        {/* Arrow head pointing up */}
                         <polygon
-                          points="72,175 78,175 75,183"
+                          points="95,-225 105,-225 100,-235"
                           fill="#666"
                         />
                       </svg>
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-600 whitespace-nowrap">
+                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-600 whitespace-nowrap">
                         👆 Click here!
                       </div>
                     </div>
