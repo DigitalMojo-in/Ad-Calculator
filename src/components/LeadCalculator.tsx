@@ -9,7 +9,7 @@ import EnhancedCharts from './EnhancedCharts';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
 import BounceButton from './BounceButton';
-import doodleArrow from '@/assets/doodle-arrow.png';
+
 
 interface Metrics {
   leads: number;
@@ -573,12 +573,7 @@ const isValidWebsite = (url: string) => {
                 </div>
               </div>
 
-              {/* Doodle Arrow - only show when not showing results */}
-              {!resultsUnlocked && isFormValid && (
-                <div className="absolute top-[-40px] left-1/2 transform -translate-x-1/2 pointer-events-none z-10">
-                  <img src={doodleArrow} alt="" className="w-12 h-12 animate-pulse" />
-                </div>
-              )}
+              
               
               {/* View Results Button */}
               <div className="text-center mt-6 relative">
@@ -819,12 +814,7 @@ const isValidWebsite = (url: string) => {
                 </div>
               </div>
 
-              {/* Doodle Arrow - only show when not showing results */}
-              {!resultsUnlocked && isFormValid && (
-                <div className="absolute top-[-50px] left-1/2 transform -translate-x-1/2 pointer-events-none z-10">
-                  <img src={doodleArrow} alt="" className="w-16 h-16 animate-pulse" />
-                </div>
-              )}
+              
               
               {/* View Results Button */}
               <div className="text-center mt-8 relative">
@@ -862,11 +852,7 @@ const isValidWebsite = (url: string) => {
             {!resultsUnlocked && (
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
-                <img 
-                  src="/lovable-uploads/arrow.png" 
-                  alt="arrow" 
-                  className="absolute left-[50%] top-[53%] w-24 rotate-[15deg] -translate-x-1/2 z-10 pointer-events-none"
-                />
+                
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
                   <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-8 py-6 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs}>
                     <p className="text-gray-800 font-bold text-center font-spartan text-lg">
@@ -953,11 +939,7 @@ const isValidWebsite = (url: string) => {
             {!resultsUnlocked && (
               <>
                 <div className="absolute inset-0 z-20 blur-overlay rounded-2xl"></div>
-                <img 
-                  src="/lovable-uploads/arrow.png" 
-                  alt="arrow" 
-                  className="absolute left-[50%] top-[40%] w-16 rotate-[25deg] -translate-x-1/2 z-10 pointer-events-none"
-                />
+                
                 <div className="absolute inset-0 z-30 flex items-center justify-center">
                   <div className="bg-white/95 backdrop-blur-md border border-gray-200 rounded-xl px-6 py-4 shadow-lg animate-fade-in cursor-pointer" onClick={handleScrollToInputs2}>
                     <p className="text-gray-800 font-bold text-center font-spartan">
@@ -980,19 +962,20 @@ const isValidWebsite = (url: string) => {
             <span className="text-[23px] font-bold font-spartan text-center">Leads</span>
           </div>
           <div className="p-4 flex flex-col items-center justify-center bg-gray-50">
-            <span className="text-center text-gray-500 font-spartan text-xs">No of<br /><span className="text-[10px]">Leads</span></span>
-            <span className="text-3xl font-bold text-black font-spartan mt-1">{metrics.leads.toLocaleString()}</span>
+            <span className="text-center text-black-500 font-spartan text-sm">No. of <br />Leads</span>
+            <span className="text-2xl font-bold text-black font-spartan mt-1">{metrics.leads.toLocaleString()}</span>
           </div>
           <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
-            <span className="text-center text-gray-500 font-spartan text-xs">
-              <span className="text-xs">Cost Per</span><br />
-              <span className="text-[10px]">Lead</span>
+            <span className="text-center text-black-500 font-spartan text-sm">
+              <span className="text-sm">Cost Per</span><br />
+              <span className="">Lead</span>
             </span>
-            <span className="text-3xl font-bold text-black font-spartan mt-1">₹{metrics.cpl.toLocaleString()}</span>
+            <span className="text-2xl font-bold text-black font-spartan mt-1">₹{metrics.cpl.toLocaleString()}</span>
           </div>
         </div>
       </CardContent>
     </Card>
+    
 
     {/* Qualified Leads */}
     <Card className="backdrop-blur-lg border-none shadow-lg rounded-2xl bg-white">
@@ -1002,15 +985,15 @@ const isValidWebsite = (url: string) => {
             <span className="text-[23px] font-bold font-spartan text-center">Qualified</span>
           </div>
           <div className="p-4 flex flex-col items-center justify-center bg-gray-50">
-            <span className="text-center text-gray-500 font-spartan text-xs">No of<br /><span className="text-[10px]">Qualified Leads</span></span>
-            <span className="text-3xl font-bold text-black font-spartan mt-1">{metrics.qualifiedLeads.toLocaleString()}</span>
+            <span className="text-center text-black-500 font-spartan text-sm">No of<br /><span className="">Qualified Leads</span></span>
+            <span className="text-2xl font-bold text-black font-spartan mt-1">{metrics.qualifiedLeads.toLocaleString()}</span>
           </div>
           <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
-            <span className="text-center text-gray-500 font-spartan text-xs">
-              <span className="text-xs">Cost Per</span><br />
-              <span className="text-[10px]">Qualified Lead</span>
+            <span className="text-center text-black-500 font-spartan text-sm">
+              <span className="text-sm">Cost Per</span><br />
+              <span className="">Qualified Lead</span>
             </span>
-            <span className="text-3xl font-bold text-black font-spartan mt-1">₹{metrics.cpql.toLocaleString()}</span>
+            <span className="text-2xl font-bold text-black font-spartan mt-1">₹{metrics.cpql.toLocaleString()}</span>
           </div>
         </div>
       </CardContent>
@@ -1024,15 +1007,15 @@ const isValidWebsite = (url: string) => {
             <span className="text-[23px] font-bold font-spartan text-center">Site Visits</span>
           </div>
           <div className="p-4 flex flex-col items-center justify-center bg-gray-50">
-            <span className="text-center text-gray-500 font-spartan text-xs">No of<br /><span className="text-[10px]">Site Visits</span></span>
-            <span className="text-3xl font-bold text-black font-spartan mt-1">{metrics.siteVisits.toLocaleString()}</span>
+            <span className="text-center text-black-500 font-spartan text-sm">No of<br /><span className="">Site Visits</span></span>
+            <span className="text-2xl font-bold text-black font-spartan mt-1">{metrics.siteVisits.toLocaleString()}</span>
           </div>
           <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
-            <span className="text-center text-gray-500 font-spartan text-xs">
-              <span className="text-xs">Cost Per</span><br />
-              <span className="text-[10px]">Site Visit</span>
+            <span className="text-center text-black-500 font-spartan text-sm">
+              <span className="text-sm">Cost Per</span><br />
+              <span className="">Site Visit</span>
             </span>
-            <span className="text-3xl font-bold text-black font-spartan mt-1">₹{metrics.cpsv.toLocaleString()}</span>
+            <span className="text-2xl font-bold text-black font-spartan mt-1">₹{metrics.cpsv.toLocaleString()}</span>
           </div>
         </div>
       </CardContent>
@@ -1046,15 +1029,15 @@ const isValidWebsite = (url: string) => {
             <span className="text-[23px] font-bold font-spartan text-center">Bookings</span>
           </div>
           <div className="p-4 flex flex-col items-center justify-center bg-gray-50">
-            <span className="text-center text-gray-500 font-spartan text-xs">No of<br /><span className="text-[10px]">Bookings</span></span>
-            <span className="text-3xl font-bold text-black font-spartan mt-1">{metrics.bookings.toLocaleString()}</span>
+            <span className="text-center text-black-500 font-spartan text-sm">No of<br /><span className="">Bookings</span></span>
+            <span className="text-2xl font-bold text-black font-spartan mt-1">{metrics.bookings.toLocaleString()}</span>
           </div>
           <div className="p-4 flex flex-col items-center justify-center bg-gray-100 rounded-r-2xl">
-            <span className="text-center text-gray-500 font-spartan text-xs">
-              <span className="text-xs">Cost Per</span><br />
-              <span className="text-[10px]">Booking</span>
+            <span className="text-center text-black-500 font-spartan text-sm">
+              <span className="text-sm">Cost Per</span><br />
+              <span className="">Booking</span>
             </span>
-            <span className="text-3xl font-bold text-black font-spartan mt-1">₹{metrics.cpb.toLocaleString()}</span>
+            <span className="text-2xl font-bold text-black font-spartan mt-1">₹{metrics.cpb.toLocaleString('en-IN')}</span>
           </div>
         </div>
       </CardContent>
@@ -1281,7 +1264,7 @@ const isValidWebsite = (url: string) => {
   }
   className="w-full bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl h-12 transition-all duration-300 font-spartan disabled:opacity-50"
 >
-  {isUnlockLoading ? "Submiting" : "Discuss My Ads"}
+  {isUnlockLoading ? "Submiting" : "FREE Strategy Call"}
 </Button>
 
 {/* ✅ Email Format Error */}
@@ -1359,7 +1342,7 @@ const isValidWebsite = (url: string) => {
               Array.from({ length: 32 }, (_, i) => (
                 <div
                   key={`loop-${i}-${Math.random()}`}
-                  className="p-3 bg-white rounded-lg shadow-md h-16 w-20 flex items-center justify-center filter grayscale"
+                  className="p-3 bg-white rounded-lg shadow-md h-16 w-20 flex items-center justify-center"
                 >
                   <img
                     src={`./client-logo/logo-${i + 1}.png`}
@@ -1409,7 +1392,7 @@ const isValidWebsite = (url: string) => {
       className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan"
     >
       <Phone className="mr-2 h-5 w-5" />
-      Book Now
+      FREE Strategy Call
     </Button>
 
     {/* Footer Links & Credits */}
