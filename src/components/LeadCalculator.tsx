@@ -358,7 +358,7 @@ const isValidWebsite = (url: string) => {
   </h1>
 
   <p className={`mt-2 text-lg md:text-xl lg:text-2xl font-spartan leading-relaxed text-center sm:text-left transition-colors duration-300 ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
-    CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India’s top developers.</span>
+    CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India's top developers.</span>
   </p>
 </div>
 
@@ -581,6 +581,7 @@ const isValidWebsite = (url: string) => {
                   onClick={handleViewResults}
                   disabled={!isFormValid}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-base transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  id="desktop-show-numbers-btn"
                 >
                   {resultsUnlocked ? "Results Unlocked" : "Show me the Numbers!"}
                 </Button>
@@ -822,6 +823,7 @@ const isValidWebsite = (url: string) => {
                   onClick={handleViewResults}
                   disabled={!isFormValid}
                   className="bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg font-spartan disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                  id="mobile-show-numbers-btn"
                 >
                   {resultsUnlocked ? "Results Unlocked" : "Show me the Numbers!"}
                 </Button>
@@ -860,14 +862,24 @@ const isValidWebsite = (url: string) => {
                       Fill in the data to know your ad spend
                     </p>
                     
-                    {/* Doodle Arrow from "Fill in the data" to "Show me the Numbers!" - Desktop */}
-                    <div className="absolute -bottom-32 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
-                      <img
-                        src="/lovable-uploads/arrow.png"
-                        alt="Arrow pointing to Show me the Numbers button"
-                        className="w-40 h-40 object-contain rotate-180 opacity-70"
-                      />
-                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm font-bold text-gray-600 whitespace-nowrap">
+                    {/* Doodle Arrow connecting to desktop Show me the Numbers button */}
+                    <div className="absolute top-8 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
+                      <svg width="200" height="300" viewBox="0 0 200 300" className="opacity-70">
+                        {/* Curved path from message to button */}
+                        <path
+                          d="M100 20 Q150 80 120 140 Q90 200 100 280"
+                          stroke="#666"
+                          strokeWidth="3"
+                          fill="none"
+                          strokeDasharray="5,5"
+                        />
+                        {/* Arrow head */}
+                        <polygon
+                          points="95,275 105,275 100,285"
+                          fill="#666"
+                        />
+                      </svg>
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-sm font-bold text-gray-600 whitespace-nowrap">
                         👆 Click here!
                       </div>
                     </div>
@@ -959,14 +971,24 @@ const isValidWebsite = (url: string) => {
                       Fill in the data to know your ad spend
                     </p>
                     
-                    {/* Doodle Arrow from "Fill in the data" to "Show me the Numbers!" - Mobile */}
-                    <div className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
-                      <img
-                        src="/lovable-uploads/arrow.png"
-                        alt="Arrow pointing to Show me the Numbers button"
-                        className="w-24 h-24 object-contain rotate-180 opacity-70"
-                      />
-                      <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-600 whitespace-nowrap">
+                    {/* Doodle Arrow connecting to mobile Show me the Numbers button */}
+                    <div className="absolute top-6 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
+                      <svg width="150" height="200" viewBox="0 0 150 200" className="opacity-70">
+                        {/* Curved path from message to button */}
+                        <path
+                          d="M75 15 Q110 60 90 100 Q70 140 75 180"
+                          stroke="#666"
+                          strokeWidth="2"
+                          fill="none"
+                          strokeDasharray="4,4"
+                        />
+                        {/* Arrow head */}
+                        <polygon
+                          points="72,175 78,175 75,183"
+                          fill="#666"
+                        />
+                      </svg>
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-600 whitespace-nowrap">
                         👆 Click here!
                       </div>
                     </div>
