@@ -591,7 +591,7 @@ const isValidWebsite = (url: string) => {
                     <img
                       src="/lovable-uploads/arrow.png"
                       alt="Arrow pointing to button"
-                      className="w-24 h-24 object-contain rotate-180 opacity-80"
+                      className="w-32 h-80 object-contain rotate-180 opacity-80"
                     />
                   </div>
                 )}
