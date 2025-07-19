@@ -585,16 +585,6 @@ const isValidWebsite = (url: string) => {
                   {resultsUnlocked ? "Results Unlocked" : "Show me the Numbers!"}
                 </Button>
                 
-                {/* Doodle Arrow - Desktop */}
-                {!resultsUnlocked && (
-                  <div className="absolute -right-32 top-1/2 transform -translate-y-1/2 pointer-events-none animate-bounce">
-                    <img
-                      src="/lovable-uploads/arrow.png"
-                      alt="Arrow pointing to button"
-                      className="w-32 h-80 object-contain rotate-180 opacity-80"
-                    />
-                  </div>
-                )}
               </div>
 
               <div className="text-xs pt-6 border-t mt-6 font-spartan text-muted-foreground border-border">
@@ -619,7 +609,7 @@ const isValidWebsite = (url: string) => {
     </span>
   </h1>
   <p className={`mt-5 text-base font-spartan leading-relaxed ${isDarkMode ? 'text-white/80' : 'text-gray-700'}`}>
-    CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India’s top developers.</span>
+    CPL, CPSV & CPB data used by <span className={`${isDarkMode ? 'text-yellow-300' : 'text-black font-semibold'}`}>India's top developers.</span>
   </p>
 </div>
 
@@ -633,7 +623,6 @@ const isValidWebsite = (url: string) => {
 </div>
 
 </div>
-
 
           {/* Mobile Calculator - First Fold */}
           <Card className="backdrop-blur-lg border-none shadow-2xl rounded-3xl overflow-hidden mb-8 bg-white">
@@ -837,16 +826,6 @@ const isValidWebsite = (url: string) => {
                   {resultsUnlocked ? "Results Unlocked" : "Show me the Numbers!"}
                 </Button>
                 
-                {/* Doodle Arrow - Mobile */}
-                {!resultsUnlocked && (
-                  <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
-                    <img
-                      src="/lovable-uploads/arrow.png"
-                      alt="Arrow pointing to button"
-                      className="w-16 h-16 object-contain rotate-45 opacity-80"
-                    />
-                  </div>
-                )}
               </div>
 
               <div className="text-xs text-muted-foreground pt-6 border-t border-border mt-6 font-spartan">
@@ -881,13 +860,16 @@ const isValidWebsite = (url: string) => {
                       Fill in the data to know your ad spend
                     </p>
                     
-                    {/* Doodle Arrow pointing up to form */}
-                    <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 pointer-events-none animate-pulse">
+                    {/* Doodle Arrow from "Fill in the data" to "Show me the Numbers!" - Desktop */}
+                    <div className="absolute -bottom-32 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
                       <img
                         src="/lovable-uploads/arrow.png"
-                        alt="Arrow pointing up"
-                        className="w-20 h-20 object-contain -rotate-90 opacity-70"
+                        alt="Arrow pointing to Show me the Numbers button"
+                        className="w-40 h-40 object-contain rotate-180 opacity-70"
                       />
+                      <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-sm font-bold text-gray-600 whitespace-nowrap">
+                        👆 Click here!
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -977,13 +959,16 @@ const isValidWebsite = (url: string) => {
                       Fill in the data to know your ad spend
                     </p>
                     
-                    {/* Doodle Arrow pointing up to form */}
-                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 pointer-events-none animate-pulse">
+                    {/* Doodle Arrow from "Fill in the data" to "Show me the Numbers!" - Mobile */}
+                    <div className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 pointer-events-none animate-bounce">
                       <img
                         src="/lovable-uploads/arrow.png"
-                        alt="Arrow pointing up"
-                        className="w-16 h-16 object-contain -rotate-90 opacity-70"
+                        alt="Arrow pointing to Show me the Numbers button"
+                        className="w-24 h-24 object-contain rotate-180 opacity-70"
                       />
+                      <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-600 whitespace-nowrap">
+                        👆 Click here!
+                      </div>
                     </div>
                   </div>
                 </div>
