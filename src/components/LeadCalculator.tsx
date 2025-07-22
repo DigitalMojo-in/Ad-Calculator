@@ -1383,7 +1383,7 @@ const isValidWebsite = (url: string) => {
 
     {/* Tagline */}
     <h3 className="text-2xl md:text-3xl font-bold mb-4 font-spartan">
-    Sell your Realestate <span className="italic text-[50px] md:text-[80px] text-red-500">47%</span> faster
+    Sell your Real Estate <span className="italic text-[47px] md:text-[80px] text-red-500">47%</span> faster
 
     </h3>
 
