@@ -28,8 +28,9 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
   ];
 
   const generateTimeSeriesData = () => {
-    const periods = parseInt(duration.split(' ')[0]);
-    const timeUnit = duration.includes('Month') ? 'Month' : duration.includes('Week') ? 'Week' : 'Day';
+    const durationStr = duration || '1 Month';
+    const periods = parseInt(durationStr.split(' ')[0]) || 1;
+    const timeUnit = durationStr.includes('Month') ? 'Month' : durationStr.includes('Week') ? 'Week' : 'Day';
     const data = [];
 
     if (periods === 1 && timeUnit === 'Month') {

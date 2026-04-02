@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
@@ -32,6 +33,8 @@ interface UserFormData {
 
 const LeadCalculator = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const routerLocation = useLocation();
 
   const [propertyType, setPropertyType] = useState('');
   const [launchType, setLaunchType] = useState('');
@@ -52,6 +55,34 @@ const LeadCalculator = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showUnlockDialog, setShowUnlockDialog] = useState(false);
   const [isUnlockLoading, setIsUnlockLoading] = useState(false);
+
+  // Check for unlocked state from navigation
+  useEffect(() => {
+    if (routerLocation.state?.unlocked) {
+      setResultsUnlocked(true);
+      
+      // Restore calculator state if available
+      if (routerLocation.state?.calculatorState) {
+        const s = routerLocation.state.calculatorState;
+        setPropertyType(s.propertyType || '');
+        setLaunchType(s.launchType || '');
+        setLocation(s.location || '');
+        setBhk(s.bhk || '');
+        setMarketingChannels(s.marketingChannels || '');
+        setSellUnits(s.sellUnits || 50);
+        setDuration(s.duration || '');
+        setMetrics(s.metrics);
+      }
+      
+      // Smooth scroll to results
+      setTimeout(() => {
+        const resultsSection = document.getElementById("results-section");
+        if (resultsSection) {
+          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 500);
+    }
+  }, [routerLocation.state]);
 
   const [metrics, setMetrics] = useState<Metrics>({
     leads: 8333,
@@ -177,32 +208,29 @@ const LeadCalculator = () => {
         }),
       });
   
-      // Unlock UI instantly (no need to wait for fetch)
-      setResultsUnlocked(true);
-      setShowUnlockDialog(false);
-      setShowForm(false);
-  
-      toast({
-        title: "We will call you back soon! 😊",
-        description: "Thank you for your interest. Our team will reach out to you shortly.",
+      // Navigate to Thank You page with all state
+      navigate('/thank-you', { 
+        state: { 
+          unlocked: true,
+          calculatorState: {
+            propertyType,
+            launchType,
+            location,
+            bhk,
+            marketingChannels,
+            sellUnits,
+            duration,
+            metrics
+          }
+        } 
       });
-  
-      // Smooth scroll after short delay for visual transition
-      setTimeout(() => {
-        const resultsSection = document.getElementById("results-section");
-        if (resultsSection) {
-          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 300); // faster scroll
   
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Something went wrong. Please try again.");
     } finally {
       // Clean UI, even if there's an error
-      setTimeout(() => {
-        setIsUnlockLoading(false);
-      }, 300); // short delay for smooth UI release
+      setIsUnlockLoading(false);
     }
   };
   
@@ -219,6 +247,13 @@ const LeadCalculator = () => {
   const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 const isWorkEmail = (email) => isValidEmail(email) && !email.includes('@gmail.com');
 const isValidMobile = (mobile) => /^[6-9]\d{9}$/.test(mobile);
+
+const handleMobileChange = (value: string) => {
+  const digits = value.replace(/\D/g, '');
+  if (digits.length > 10) return;
+  setFormData(prev => ({ ...prev, mobile: digits }));
+};
+
 const isValidWebsite = (url: string) => {
   const websiteRegex = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/;
   return websiteRegex.test(url.trim());
@@ -1136,7 +1171,7 @@ const isValidWebsite = (url: string) => {
                 <Input
                   type="tel"
                   value={formData.mobile}
-                  onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                  onChange={(e) => handleMobileChange(e.target.value)}
                   placeholder="Phone Number"
                   className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                 />
@@ -1189,9 +1224,14 @@ const isValidWebsite = (url: string) => {
 )}
 
 {/* ✅ Mobile Number Error */}
-{formData.mobile && !isValidMobile(formData.mobile) && (
+{formData.mobile && formData.mobile.length > 0 && !['6','7','8','9'].includes(formData.mobile[0]) && (
   <div className="text-red-600 text-sm text-center font-spartan mt-2">
-    Please enter a valid 10-digit mobile number.
+    Indian mobile numbers start with 6, 7, 8, or 9.
+  </div>
+)}
+{formData.mobile && ['6','7','8','9'].includes(formData.mobile[0]) && !isValidMobile(formData.mobile) && (
+  <div className="text-red-500 text-sm text-center font-spartan mt-2">
+    Please enter a complete 10-digit mobile number.
   </div>
 )}
 {formData.organization && !isValidWebsite(formData.organization) && (
@@ -1233,7 +1273,7 @@ const isValidWebsite = (url: string) => {
                 <Input
                   type="tel"
                   value={formData.mobile}
-                  onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
+                  onChange={(e) => handleMobileChange(e.target.value)}
                   placeholder="Phone Number"
                   className="border-0 rounded-xl h-12 placeholder:text-gray-500 font-spartan bg-gray-100 text-gray-600"
                 />
@@ -1283,9 +1323,14 @@ const isValidWebsite = (url: string) => {
 )}
 
 {/* ✅ Mobile Number Error */}
-{formData.mobile && !isValidMobile(formData.mobile) && (
+{formData.mobile && formData.mobile.length > 0 && !['6','7','8','9'].includes(formData.mobile[0]) && (
   <div className="text-red-600 text-sm text-center font-spartan mt-2">
-    Please enter a valid 10-digit mobile number.
+    Indian mobile numbers start with 6, 7, 8, or 9.
+  </div>
+)}
+{formData.mobile && ['6','7','8','9'].includes(formData.mobile[0]) && !isValidMobile(formData.mobile) && (
+  <div className="text-red-500 text-sm text-center font-spartan mt-2">
+    Please enter a complete 10-digit mobile number.
   </div>
 )}
 {formData.organization && !isValidWebsite(formData.organization) && (
