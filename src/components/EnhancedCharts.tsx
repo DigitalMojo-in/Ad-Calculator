@@ -87,15 +87,15 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
         </CardHeader>
         <CardContent className="p-4">
           <div className="flex items-center gap-4">
-            <div className="h-48 flex-1">
+            <div className="h-64 flex-1">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie
                     data={conversionData}
                     cx="50%"
                     cy="50%"
-                    innerRadius={40}
-                    outerRadius={80}
+                    innerRadius={60}
+                    outerRadius={100}
                     paddingAngle={2}
                     dataKey="value"
                     animationDuration={1500}
@@ -108,7 +108,7 @@ const EnhancedCharts: React.FC<EnhancedChartsProps> = ({ metrics, chartData, dur
                 </PieChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 justify-center">
               {conversionData.map((item, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }} />

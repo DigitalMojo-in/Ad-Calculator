@@ -11,6 +11,9 @@ import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
 import BounceButton from './BounceButton';
 
+import { useLeadCalculator } from '@/hooks/useLeadCalculator';
+
+
 
 interface Metrics {
   leads: number;
@@ -36,16 +39,22 @@ const LeadCalculator = () => {
   const navigate = useNavigate();
   const routerLocation = useLocation();
 
-  const [propertyType, setPropertyType] = useState('');
-  const [launchType, setLaunchType] = useState('');
-  const [location, setLocation] = useState('');
-  const [bhk, setBhk] = useState('');
-  const [marketingChannels, setMarketingChannels] = useState('');
-  const [sellUnits, setSellUnits] = useState(50);
-  const [duration, setDuration] = useState('');
+  const {
+    propertyType, setPropertyType,
+    launchType, setLaunchType,
+    location, setLocation,
+    bhk, setBhk,
+    marketingChannels, setMarketingChannels,
+    sellUnits, setSellUnits,
+    duration, setDuration,
+    metrics, 
+    isFormValid,
+    chartData
+  } = useLeadCalculator(routerLocation.state?.calculatorState);
+
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState<UserFormData>({ name: '', mobile: '', email: '', organization: '' });
-  const [resultsUnlocked, setResultsUnlocked] = useState(false);
+  const [resultsUnlocked, setResultsUnlocked] = useState(routerLocation.state?.unlocked || false);
   const [isLoading, setIsLoading] = useState(false);
   const [viewResultsClicked, setViewResultsClicked] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,23 +65,11 @@ const LeadCalculator = () => {
   const [showUnlockDialog, setShowUnlockDialog] = useState(false);
   const [isUnlockLoading, setIsUnlockLoading] = useState(false);
 
+
   // Check for unlocked state from navigation
   useEffect(() => {
     if (routerLocation.state?.unlocked) {
       setResultsUnlocked(true);
-      
-      // Restore calculator state if available
-      if (routerLocation.state?.calculatorState) {
-        const s = routerLocation.state.calculatorState;
-        setPropertyType(s.propertyType || '');
-        setLaunchType(s.launchType || '');
-        setLocation(s.location || '');
-        setBhk(s.bhk || '');
-        setMarketingChannels(s.marketingChannels || '');
-        setSellUnits(s.sellUnits || 50);
-        setDuration(s.duration || '');
-        setMetrics(s.metrics);
-      }
       
       // Smooth scroll to results
       setTimeout(() => {
@@ -84,88 +81,9 @@ const LeadCalculator = () => {
     }
   }, [routerLocation.state]);
 
-  const [metrics, setMetrics] = useState<Metrics>({
-    leads: 8333,
-    qualifiedLeads: 1833,
-    siteVisits: 500,
-    bookings: 50,
-    cpl: 2160,
-    cpql: 9819,
-    cpsv: 35999,
-    cpb: 359986,
-    totalBudget: 17999280
-  });
 
-  // Check if all required fields are selected
-  const isFormValid = propertyType && launchType && location && bhk && marketingChannels && duration;
+  // Calculation logic is now handled by the useLeadCalculator hook
 
-  const calculateMetrics = () => {
-    if (!isFormValid) return; // Don't calculate if form is not valid
-
-    const actualCPL = getCPLForLocation(location, bhk);
-
-    const baseLeads = sellUnits * 167;
-    const locationMultiplier = location.includes('Mumbai') ? 1.5 :
-      location.includes('Delhi') ? 1.3 :
-        location.includes('Bangalore') ? 1.2 :
-          location.includes('Chennai') ? 1.0 :
-            location.includes('Hyderabad') ? 0.9 : 0.8;
-
-    const bhkMultiplier = bhk === '1 RK' ? 0.7 :
-      bhk === '1 BHK' ? 0.8 :
-        bhk === '2 BHK' ? 1.0 :
-          bhk === '3 BHK' ? 1.2 :
-            bhk === '4 BHK' ? 1.4 :
-              bhk === '5 BHK' ? 1.6 :
-                bhk.includes('Plot') ? 1.1 :
-                  bhk === 'Villa' ? 1.8 : 1.0;
-
-    const channelMultiplier = marketingChannels.includes('Google') ? 1.3 :
-      marketingChannels.includes('+') ? 1.1 : 1.0;
-
-    const cplMult = marketingChannels.includes('+') ? 0 : 257;
-    const propertyMultiplier = propertyType === 'Villa' ? 1.5 :
-      propertyType === 'Commercial' ? 1.3 :
-        propertyType === 'Senior Living' ? 0.8 : 1.0;
-
-    const launchMultiplier = launchType === 'Teaser' ? 0.7 :
-      launchType === 'Launch' ? 1.0 :
-        launchType === 'Sustenance' ? 0.9 :
-          launchType === 'NRI' ? 1.2 : 1.0;
-
-    let cpl = marketingChannels.includes('+') ? actualCPL :
-      marketingChannels.includes('Google') ? actualCPL + cplMult : actualCPL - cplMult;
-    cpl = Math.round(cpl*launchMultiplier);
-    if (cpl < 300) {
-      cpl = cpl + 200;
-    }
-    const leads = Math.round(baseLeads * locationMultiplier * bhkMultiplier * channelMultiplier * propertyMultiplier * launchMultiplier);
-    const qualifiedLeads = Math.round(leads * 0.3);
-    const siteVisits = Math.round(qualifiedLeads * 0.2);
-    const bookings = sellUnits;
-
-    const totalBudget = leads * cpl;
-    const cpql = Math.round(totalBudget / qualifiedLeads);
-
-    const cpsv = Math.round(totalBudget / siteVisits);
-    const cpb = Math.round(cpsv * (siteVisits / bookings));
-
-    setMetrics({
-      leads,
-      qualifiedLeads,
-      siteVisits,
-      bookings,
-      cpl,
-      cpql,
-      cpsv,
-      cpb,
-      totalBudget
-    });
-  };
-
-  useEffect(() => {
-    calculateMetrics();
-  }, [propertyType, launchType, location, bhk, marketingChannels, sellUnits, duration]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -272,25 +190,8 @@ const isValidWebsite = (url: string) => {
     }
   };
 
-  const generateTimeSeriesData = () => {
-    const timePoints = duration === '3 Months' ? 3 : duration === '6 Months' ? 6 : 12;
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  // Chart data is now handled by the useLeadCalculator hook
 
-    return Array.from({ length: timePoints }, (_, i) => {
-      const monthIndex = (new Date().getMonth() + i) % 12;
-      const baseVariation = 0.8 + (Math.random() * 0.4);
-
-      return {
-        month: monthNames[monthIndex],
-        leads: Math.round(metrics.leads * baseVariation / timePoints),
-        siteVisits: Math.round(metrics.siteVisits * baseVariation / timePoints),
-        bookings: Math.round(metrics.bookings * baseVariation / timePoints),
-        cpl: metrics.cpl
-      };
-    });
-  };
-
-  const chartData = generateTimeSeriesData();
 
   return (
     <div id="mouse-tracker" className={`min-h-screen px-0 transition-colors duration-300`} style={{ backgroundColor: isDarkMode ? '#000000' : '#f0bc00' }}>
@@ -873,14 +774,8 @@ const isValidWebsite = (url: string) => {
         </div>
       </div>
 
-      {/* Aesthetic Divider after First Fold */}
-      <div className="w-full px-4 sm:px-10 xl:px-24 my-12">
-        <div className="flex items-center justify-center">
-          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
-          <div className={`mx-4 text-2xl ${isDarkMode ? 'text-white/40' : 'text-white/50'}`}>✦</div>
-          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
-        </div>
-      </div>
+      {/* Spacing instead of explicit line divider */}
+      <div className="h-12" />
 
       {/* Results Section */}
       <div id="results-section" className="w-full px-4 sm:px-6 lg:px-10 xl:px-24 mb-12">
@@ -1344,14 +1239,12 @@ const isValidWebsite = (url: string) => {
         </div>
       )}
 
-      {/* Aesthetic Divider before Clients Section */}
-      <div className="w-full my-16">
-        <div className="flex items-center justify-center">
-          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
-          <div className={`mx-6 text-4xl ${isDarkMode ? 'text-white/40' : 'text-white/30'}`}>✧</div>
-          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-white/30'}`} />
-        </div>
+      {/* Simple Line Divider before Clients Section */}
+      <div className="container mx-auto px-4 my-16">
+        <Separator className="bg-gray-200 dark:bg-gray-800" />
       </div>
+
+
 
       {/* Clients Section */}
       <div id="clients" className="w-full px-4 md:px-10 py-12">
@@ -1413,14 +1306,12 @@ const isValidWebsite = (url: string) => {
         </Button>
       </div>
 
-      {/* Aesthetic Divider before Footer */}
-      <div className="w-full mb-8">
-        <div className="flex items-center justify-center">
-          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
-          <div className={`mx-6 text-3xl ${isDarkMode ? 'text-white/40' : 'text-gray-600/50'}`}>❋</div>
-          <Separator className={`flex-1 ${isDarkMode ? 'bg-white/20' : 'bg-gray-600/30'}`} />
-        </div>
+      {/* Simple Line Divider before Footer */}
+      <div className="container mx-auto px-4 my-16">
+        <Separator className="bg-gray-200 dark:bg-gray-800" />
       </div>
+
+
 
       {/* CTA Footer */}
       <div id="footer" className="bg-white dark:bg-black text-accent-black dark:text-white py-10 text-center">
